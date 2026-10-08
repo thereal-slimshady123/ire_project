@@ -1,0 +1,8 @@
+# Hybrid retriever configuration: alpha sweep grid, normalization method
+normalization:
+  method: "min_max"  # options: "min_max", "z_score"
+
+alpha_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+rrf:
+  k: 60  # standard RRF constant

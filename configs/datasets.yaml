@@ -1,0 +1,22 @@
+# Dataset configuration: names, BEIR paths/URLs, doc/query counts
+datasets:
+  nfcorpus:
+    name: "nfcorpus"
+    beir_name: "nfcorpus"
+    url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/nfcorpus.zip"
+    description: "Nutrition facts medical IR benchmark"
+  scifact:
+    name: "scifact"
+    beir_name: "scifact"
+    url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip"
+    description: "Scientific fact-checking retrieval"
+  fiqa:
+    name: "fiqa"
+    beir_name: "fiqa"
+    url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/fiqa.zip"
+    description: "Financial opinion QA benchmark"
+  trec-covid:
+    name: "trec-covid"
+    beir_name: "trec-covid"
+    url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/trec-covid.zip"
+    description: "COVID-19 literature search (optional / stretch)"

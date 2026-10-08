@@ -1,0 +1,24 @@
+# Top-level experiment configuration: datasets, seeds, k-fold CV
+datasets:
+  - "nfcorpus"
+  - "scifact"
+  - "fiqa"
+
+optional_datasets:
+  - "trec-covid"
+
+seed: 42
+k_folds: 5
+
+routes:
+  - "bm25"
+  - "dense"
+  - "hybrid"
+
+evaluation_metrics:
+  - "ndcg_cut_10"
+  - "recip_rank"
+  - "map"
+  - "recall_100"
+
+output_dir: "results"

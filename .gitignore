@@ -1,0 +1,44 @@
+# Environments & virtualenvs
+.venv/
+venv/
+env/
+ENV/
+*.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Data and artifacts (large files)
+data/
+results/indexes/
+results/labels/
+results/features/
+results/models/
+results/metrics/
+results/latency/
+results/figures/
+results/logs/
+*.index
+*.pt
+*.bin
+*.parquet
+
+# Caches & experiment trackers
+.cache/
+wandb/
+.ipynb_checkpoints/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,9 @@
+# Cross-encoder escalation backend configuration
+model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+batch_size: 32
+max_length: 512
+device: "cpu"
+
+# Candidate pool settings
+candidate_pool_size: 50  # candidate pool size union top-k (30, 50, or 100)
+top_k_rerank: 10

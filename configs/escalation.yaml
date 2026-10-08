@@ -1,0 +1,4 @@
+# Escalation configuration: tau threshold grid for confidence-based routing
+tau_grid: [0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70]
+target_escalation_rates: [0.05, 0.10, 0.15]
+escalation_action: "cross_encoder_rerank"

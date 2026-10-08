@@ -1,0 +1,13 @@
+# Retrievers configuration: BM25 params, dense embedding model, FAISS index type
+bm25:
+  k1: 1.2
+  b: 0.75
+  engine: "rank_bm25"  # or "pyserini"
+
+dense:
+  model_name: "sentence-transformers/msmarco-distilbert-base-v4" # or "facebook/contriever"
+  batch_size: 64
+  max_length: 512
+  device: "cpu"
+  faiss_index_type: "IndexFlatIP" # Inner Product / Cosine with L2-normalized embeddings
+  top_k: 100
