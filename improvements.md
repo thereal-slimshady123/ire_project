@@ -1,0 +1,2 @@
+- Design an experiment to show that always picking hybrid over dense/BM25 can make accuracy suffer in some cases
+- Figure out a way to generate the ground truth labels for the training dataset
