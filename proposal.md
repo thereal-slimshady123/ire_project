@@ -115,7 +115,6 @@ Models: logistic regression and a GBM (LightGBM/XGBoost) with class weighting.
 5. **Feature ablation.** Which features drive routing, and how much comes from query-only vs. retrieval-signal features.
 6. **Efficiency framing.** Quality retained per unit of latency vs. always-rerank and DAT-style approaches.
 
-Recommended order for a first pass: (1) + (2) + (5) as the core deliverable, with (4) as a stretch result.
 
 ### Does it justify a 3-person team?
 
@@ -125,7 +124,7 @@ This is a possible workload split among the three teammates:
 - **Person B, labels and analysis:** per-route nDCG for every query, margin-based labeling, oracle-router headroom analysis, significance testing.
 - **Person C, router modeling:** feature extraction, router training (regret-weighted loss), τ sweep and risk-coverage curves, ablations, writeup coordination.
 
-After initial work is done, the individual tasks are almost independent, and can be done simultaneously. Hence, a 3 person team is justified
+After initial work is done, the individual tasks are almost independent, and can be done simultaneously. Hence, a 3 person team is justified.
 
 ### Risks
 
