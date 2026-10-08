@@ -7,7 +7,7 @@ Train a lightweight query router that assigns each query to one of four buckets:
 **Hypotheses**
 - H1: Routing improves ranking-quality metrics (nDCG@10, MRR, MAP) over fixed-α hybrid and RRF, with significance tested per dataset.
 - H2: Recall@100 matches or slightly improves on fixed hybrid (reranking the union cannot exceed the union's recall, so large recall gains are not expected).
-- H3: With ≤10% of queries escalated, the router retains most of the always-rerank quality gain at a small fraction of its latency.
+- H3: With ≤B% of queries escalated, the router retains most of the always-rerank quality gain at a small fraction of its latency.
 - H4: Average per-query latency stays close to fixed hybrid and far below always-rerank and LLM-in-the-loop approaches such as DAT.
 
 ## Relevant Literature
@@ -106,7 +106,7 @@ The field is moving toward cheap, learned adaptation. The specific combination h
 
 Models: logistic regression and a GBM (LightGBM/XGBoost) with class weighting.
 
-### Threads to pursue (future work that could become a paper)
+### Future work
 
 1. **Hand-crafted vs. latent-representation routers.** The MDPI paper uses learned query embeddings; this project uses interpretable retrieval-signal features. Comparing the two is a specific research question and the main differentiation angle.
 2. **Confidence-based vs. label-based escalation.** Compare a fourth "escalate" class against thresholding router confidence.
@@ -119,13 +119,13 @@ Recommended order for a first pass: (1) + (2) + (5) as the core deliverable, wit
 
 ### Does it justify a 3-person team?
 
-Yes, split by lane after a shared infrastructure milestone (~week 2):
+This is a possible workload split among the three teammates:
 
 - **Person A, retrieval infra:** BM25 and dense pipelines, score normalization, fixed-α and RRF baselines, cross-encoder escalation backend, always-rerank baseline, latency benchmarking.
 - **Person B, labels and analysis:** per-route nDCG for every query, margin-based labeling, oracle-router headroom analysis, significance testing.
 - **Person C, router modeling:** feature extraction, router training (regret-weighted loss), τ sweep and risk-coverage curves, ablations, writeup coordination.
 
-The lanes are close to independently parallelizable once infrastructure is shared. One person would bottleneck sequentially (infra → labels → model), and five or more would have too little independent work.
+After initial work is done, the individual tasks are almost independent, and can be done simultaneously. Hence, a 3 person team is justified
 
 ### Risks
 
