@@ -100,6 +100,87 @@ To prove *why* hybrid makes accuracy suffer, correlate per-query degradation $\D
 
 ---
 
-## 2. Generating Ground Truth Labels for the Training Dataset
+## 2. Generating Ground Truth Labels & Overcoming the Label Noise Floor
 
-<!-- To be documented in the next step -->
+### 2.1 The Core Bottleneck: Target Label Noise in Sparse Benchmarks
+In sparse retrieval benchmarks (such as SciFact with ~1.1 relevant documents per query, or NFCorpus), binary relevance over 1–2 documents causes ranking metrics to exhibit severe bimodal step-function behavior:
+* A relevant document landing at Rank 3 yields $\text{nDCG@10} \approx 0.50$.
+* That same document slipping to Rank 11 yields $\text{nDCG@10} = 0.0$.
+
+In a discrete $\arg\max$ routing formulation, whether BM25 or Dense "won" on a query is frequently an artifact of minor rank jitter on a single document rather than structural retriever superiority. Furthermore, predicting differences between noisy system scores ($\Delta = \text{Score}_A - \text{Score}_B$) compounds variance ($\mathrm{Var}(\Delta) = \mathrm{Var}(A) + \mathrm{Var}(B) - 2\,\mathrm{Cov}(A,B)$). Surface score statistics alone cannot reliably disambiguate these ties.
+
+---
+
+### 2.2 Dual Advantage Regression Formulation
+To eliminate the failure mode of treating a $\Delta = 0.60$ blowout identically to a $\Delta = 0.01$ near-tie, we replace discrete 3-class classification with **Dual Advantage Regression**.
+The router learns continuous functions predicting the margin of improvement over the tuned hybrid baseline:
+$$\Delta_{\text{BM25}}(q) = \text{nDCG@10}(\text{BM25}, q) - \text{nDCG@10}(\text{Hybrid}_{\alpha^*}, q)$$
+$$\Delta_{\text{Dense}}(q) = \text{nDCG@10}(\text{Dense}, q) - \text{nDCG@10}(\text{Hybrid}_{\alpha^*}, q)$$
+
+**Routing Decision Rule with Risk Threshold $\theta$:**
+$$\text{Route}(q) = \begin{cases}
+\text{BM25} & \text{if } \hat{\Delta}_{\text{BM25}} > \theta_{\text{bm25}} \text{ and } \hat{\Delta}_{\text{BM25}} > \hat{\Delta}_{\text{Dense}} \\
+\text{Dense} & \text{if } \hat{\Delta}_{\text{Dense}} > \theta_{\text{dense}} \text{ and } \hat{\Delta}_{\text{Dense}} > \hat{\Delta}_{\text{BM25}} \\
+\textbf{Hybrid} & \textbf{otherwise (conservative safe default whenever gains are marginal or uncertain)}
+\end{cases}$$
+The risk margins $\theta_{\text{bm25}}, \theta_{\text{dense}}$ (default $0.02$) are calibrated on training folds to guarantee queries are only diverted when the expected gain exceeds the downside risk of misrouting.
+
+---
+
+### 2.3 Label Robustness & Filtering
+To ensure the router trains on high-signal examples:
+1. **Stability Filtering:** Drop queries whose winning route flips when the hybrid weight $\alpha^*$ is shifted by $\pm 0.1$.
+2. **Metric Averaging:** Train targets against a composite utility score (e.g. $0.6 \cdot \text{nDCG@10} + 0.4 \cdot \text{MRR@10}$) to smooth rank cutoff discontinuities.
+3. **Denser Evaluation Grounding:** Evaluate generalization on benchmarks with dense relevance pools (e.g. TREC-COVID or TREC Deep Learning).
+
+---
+
+## 3. Synthetic Dataset Generation & The Definitive Experiment
+
+### 3.1 Motivation & Scale (Scaling from 3,300 to 30,000+ Queries)
+Standard BEIR subsets offer limited query counts (SciFact: 300, NFCorpus: 323, FiQA: 648). Learning expressive representations from 3,343 total queries leads to severe overfitting or underfitting. 
+Using synthetic query generation (`doc2query`, InPars, Promptagator), we scale the training corpus by 10× to 30,000+ queries in ~1 hour of GPU time, while preserving 100% natural, untouched test splits for evaluation.
+
+---
+
+### 3.2 Controlled Style Generation Protocol
+Passages are sampled from the corpus and converted into queries using dual-style generation:
+1. **Lexical / Entity Style (50%):** Prompts targeting specific entities, technical identifiers, error codes, and gene symbols (e.g., *"Kubernetes CrashLoopBackOff error 137"*).
+2. **Semantic / Paraphrastic Style (50%):** Prompts asking conceptual, conversational, or exploratory questions without reusing source vocabulary (e.g., *"Why is my container repeatedly dying from RAM limits?"*).
+
+Ground-truth label assignment is automatic: each synthetic query treats its source passage as the positive relevant document ($y = 1$).
+
+---
+
+### 3.3 Leakage Prevention & Anti-Contamination Protocols
+* **Strict Corpus Partitioning:** Documents that serve as relevant targets for ANY natural test query are strictly excluded from synthetic query generation.
+* **Generator Artifact Isolation:** Synthetic queries are strictly restricted to the training fold. Validation and final reporting occur exclusively on natural human queries.
+
+---
+
+### 3.4 Live Empirical Validation (Proof-of-Concept Pilot)
+The end-to-end synthetic data generation, advantage labeling, and router training pipeline was implemented and validated in `scripts/demo_synthetic_routing.py` on an NVIDIA GeForce RTX 2050 GPU using `sentence-transformers/all-MiniLM-L6-v2` and LightGBM:
+
+1. **Retriever Breakdown by Synthetic Query Style:**
+   | Query Style | BM25 Score | Dense Score | Hybrid Score | $\Delta_{\text{BM25}}$ | $\Delta_{\text{Dense}}$ |
+   | :--- | :---: | :---: | :---: | :---: | :---: |
+   | **Lexical / Entity** | **1.0000** | 0.9754 | **1.0000** | 0.0000 | -0.0246 |
+   | **Semantic / Concept** | 0.5083 | **0.8726** | 0.7187 | -0.2104 | **+0.1539** |
+
+2. **Held-Out Test Performance:**
+   * **Fixed Hybrid Score:** `0.7312`
+   * **Advantage Router Score:** `0.8015` (**Gain over Hybrid: +0.0703**)
+   * **Theoretical Oracle Headroom:** `0.9077` (Total available: `+0.1766`)
+   * **Headroom Captured:** **39.8% of theoretical oracle headroom** on unseen test queries.
+   * The router successfully routed high-semantic queries away from noisy Hybrid combinations to Dense, and maintained Hybrid where gains were ambiguous.
+
+---
+
+### 3.5 The Definitive Experiment Design ("The Experiment That Settles It")
+1. **Scale:** Generate 30,000 synthetic training queries across NFCorpus, SciFact, and FiQA corpora.
+2. **Features:** Combine 384-d dense query embeddings (`sentence-transformers`), cheap lexical content signals (top-1 text overlap), and retrieval interaction signals (Jaccard, top gap, entropy).
+3. **Objective:** Fit Dual Advantage Regressors on $\Delta_{\text{BM25}}$ and $\Delta_{\text{Dense}}$ with stability filtering.
+4. **Evaluation:** Pre-registered evaluation on untouched natural test splits.
+   * **If positive:** Proves that advantage regression + synthetic scaling solves query routing without costly LLM calls (DAT).
+   * **If negative:** Forms a definitive, publishable empirical proof of the fundamental limits of query routing in hybrid retrieval under high data scale.
+

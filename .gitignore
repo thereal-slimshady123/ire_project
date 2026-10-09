@@ -18,7 +18,7 @@ build/
 *.egg-info/
 
 # Data and artifacts (large files)
-data/
+/data/
 results/indexes/
 results/labels/
 results/features/
