@@ -43,10 +43,13 @@ class EscalationDecider:
         target_escalation_rate: float,
     ) -> float:
         """
-        Calibrate tau on training set to achieve a target escalation rate (e.g. 5%, 10%, 15%).
+        Calibrate tau so that a target fraction of queries is escalated (e.g. 5%, 10%, 15%):
+        tau = the target_escalation_rate quantile of max(probas).
+        Must be called on DEV probabilities from a router trained on train only; training-set
+        probabilities are overconfident and would under-escalate on test.
 
         Args:
-            probas: Training predicted probabilities.
+            probas: Dev-set predicted probabilities.
             target_escalation_rate: Target fraction of queries to escalate.
 
         Returns:

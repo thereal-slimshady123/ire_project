@@ -24,7 +24,8 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Running feature ablations for dataset: {args.dataset}")
-    # TODO: Train & evaluate router with query-only, retrieval-signal only, and combined feature sets
+    # TODO: Train on train / select on dev / evaluate on test with query-only, retrieval-signal-only
+    #       and combined feature sets (same protocol as train_router.py).
     raise NotImplementedError
 
 

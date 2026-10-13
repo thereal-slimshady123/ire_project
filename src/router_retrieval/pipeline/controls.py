@@ -1,72 +1,81 @@
-"""Baseline and control pipelines for rigorous comparison."""
+"""Baseline and control escalation policies for rigorous comparison.
 
-from typing import Dict, List, Optional
-from router_retrieval.data.schema import Candidate, Query, Document
-from router_retrieval.retrieval.bm25 import BM25Retriever
-from router_retrieval.retrieval.dense import DenseRetriever
-from router_retrieval.retrieval.hybrid import HybridRetriever
-from router_retrieval.retrieval.cross_encoder import CrossEncoderReranker
+All controls operate on whole query sets, because "same escalation rate" means escalating
+exactly the same NUMBER of queries as the router (not a per-query coin flip). Each policy
+returns query_id -> decision, where a decision is 'bm25', 'dense', 'hybrid' or 'escalate'.
+Final runs are assembled from precomputed per-route runs and the cross-encoder run.
+"""
+
+from typing import Dict, List, Sequence
+from router_retrieval.data.schema import Candidate
 
 
 class AlwaysRerankPipeline:
-    """Every query is reranked through the cross-encoder backend."""
+    """Every query is escalated to the cross-encoder (cost and quality upper bound)."""
 
-    def __init__(
-        self,
-        bm25_retriever: BM25Retriever,
-        dense_retriever: DenseRetriever,
-        cross_encoder: CrossEncoderReranker,
-        corpus: Dict[str, Document],
-    ):
-        self.bm25 = bm25_retriever
-        self.dense = dense_retriever
-        self.cross_encoder = cross_encoder
-        self.corpus = corpus
-
-    def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
-        """Process query by always routing through cross-encoder."""
+    def decide(self, query_ids: Sequence[str]) -> Dict[str, str]:
+        """Return 'escalate' for every query."""
         raise NotImplementedError
 
 
 class RandomEscalationPipeline:
-    """Escalates a random subset of queries at the exact same rate as the router."""
+    """
+    Keeps the router's route for every query, but replaces WHICH queries are escalated:
+    exactly n_escalate queries, chosen uniformly at random. Tests whether the router's
+    confidence picks better queries to escalate than chance.
+    """
 
-    def __init__(
-        self,
-        hybrid_retriever: HybridRetriever,
-        cross_encoder: CrossEncoderReranker,
-        corpus: Dict[str, Document],
-        escalation_rate: float = 0.10,
-        seed: int = 42,
-    ):
-        self.hybrid = hybrid_retriever
-        self.cross_encoder = cross_encoder
-        self.corpus = corpus
-        self.escalation_rate = escalation_rate
+    def __init__(self, seed: int = 42):
         self.seed = seed
 
-    def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
-        """Process query with random escalation."""
+    def decide(self, router_routes: Dict[str, str], n_escalate: int) -> Dict[str, str]:
+        """
+        Args:
+            router_routes: query_id -> router's argmax cheap route (before escalation).
+            n_escalate: Number of queries the router escalated at the same tau.
+
+        Returns:
+            query_id -> decision.
+        """
         raise NotImplementedError
 
 
 class AlwaysHybridRandomRerankPipeline:
-    """Always-hybrid baseline with random cross-encoder reranking on a matching fraction."""
+    """
+    No routing at all: every query uses hybrid, and exactly n_escalate random queries are
+    reranked. Tests whether routing adds anything beyond spending the same reranking budget.
+    """
 
-    def __init__(
-        self,
-        hybrid_retriever: HybridRetriever,
-        cross_encoder: CrossEncoderReranker,
-        corpus: Dict[str, Document],
-        rerank_rate: float = 0.10,
-        seed: int = 42,
-    ):
-        self.hybrid = hybrid_retriever
-        self.cross_encoder = cross_encoder
-        self.corpus = corpus
-        self.rerank_rate = rerank_rate
+    def __init__(self, seed: int = 42):
         self.seed = seed
 
-    def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
-        """Process query with random subset reranked."""
+    def decide(self, query_ids: Sequence[str], n_escalate: int) -> Dict[str, str]:
+        """
+        Args:
+            query_ids: All evaluated query IDs.
+            n_escalate: Number of queries the router escalated at the same tau.
+
+        Returns:
+            query_id -> decision ('hybrid' or 'escalate').
+        """
         raise NotImplementedError
+
+
+def assemble_run(
+    decisions: Dict[str, str],
+    route_runs: Dict[str, Dict[str, List[Candidate]]],
+    rerank_run: Dict[str, List[Candidate]],
+) -> Dict[str, List[Candidate]]:
+    """
+    Build the final run: for each query take the list from route_runs[decision], or from
+    rerank_run if the decision is 'escalate'. Lists are already at retrieval depth 100.
+
+    Args:
+        decisions: query_id -> decision.
+        route_runs: route name -> query_id -> candidates ('bm25', 'dense', 'hybrid').
+        rerank_run: query_id -> cross-encoder reranked candidates.
+
+    Returns:
+        query_id -> candidates.
+    """
+    raise NotImplementedError

@@ -4,7 +4,7 @@ from router_retrieval.router.base import RouterModel
 from router_retrieval.router.logistic_router import LogisticRouter
 from router_retrieval.router.gbm_router import GBMRouter
 from router_retrieval.router.escalation import EscalationDecider
-from router_retrieval.router.oracle_router import OracleRouter
+from router_retrieval.router.oracle_router import OracleRouter, oracle_escalation
 
 __all__ = [
     "RouterModel",
@@ -12,4 +12,5 @@ __all__ = [
     "GBMRouter",
     "EscalationDecider",
     "OracleRouter",
+    "oracle_escalation",
 ]

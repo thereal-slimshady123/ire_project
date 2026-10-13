@@ -2,6 +2,9 @@
 
 import pytest
 
+# Placeholders: remove this marker once the module under test is implemented.
+pytestmark = pytest.mark.skip(reason="not implemented yet")
+
 
 def test_min_max_normalization_range():
     """Test min-max normalization bounds scores to [0, 1]."""

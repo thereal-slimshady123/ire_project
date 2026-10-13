@@ -15,7 +15,13 @@ from router_retrieval.pipeline.latency import LatencyTracker
 class EndToEndPipeline:
     """
     Orchestrates full routing pipeline:
-    Query -> Feature extraction -> Router decision -> (BM25 | Dense | Hybrid | CrossEncoder Escalation)
+    Query -> BM25 + dense retrieval (always both: features need both lists)
+          -> feature extraction -> router probabilities
+          -> max(proba) >= tau: return the chosen cheap route's list
+          -> max(proba) <  tau: escalate (cross-encoder over the hybrid-ordered union pool)
+    Every returned list has retrieval depth 100 so MAP@100 and Recall@100 are computable.
+    Used for latency measurement; quality evaluation can assemble the same decisions from
+    precomputed runs (pipeline.controls.assemble_run).
     """
 
     def __init__(
@@ -43,7 +49,7 @@ class EndToEndPipeline:
     def process_query(
         self,
         query: Query,
-        top_k: int = 10,
+        top_k: int = 100,
     ) -> Tuple[List[Candidate], str, bool]:
         """
         Process a single query end-to-end.
@@ -63,7 +69,7 @@ class EndToEndPipeline:
     def batch_process(
         self,
         queries: List[Query],
-        top_k: int = 10,
-    ) -> Dict[str, List[Candidate]]:
-        """Batch process a collection of queries."""
+        top_k: int = 100,
+    ) -> Dict[str, Tuple[List[Candidate], str, bool]]:
+        """Batch process a collection of queries; returns query_id -> process_query output."""
         raise NotImplementedError

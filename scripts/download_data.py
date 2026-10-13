@@ -24,7 +24,8 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Downloading datasets: {args.datasets} to {args.output_dir}")
-    # TODO: Fetch and unpack datasets from BEIR repository URLs
+    # TODO: Fetch and unpack datasets from the BEIR URLs in configs/datasets.yaml into
+    #       data/raw/{dataset}/ (corpus.jsonl, queries.jsonl, qrels/{train,dev,test}.tsv).
     raise NotImplementedError
 
 

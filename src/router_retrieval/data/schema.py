@@ -12,6 +12,11 @@ class Document:
     title: str = ""
     metadata: Dict[str, Any] = field(default_factory=dict)
 
+    @property
+    def full_text(self) -> str:
+        """Text used by every retriever and the cross-encoder: title + " " + text."""
+        return f"{self.title} {self.text}".strip()
+
 
 @dataclass
 class Query:

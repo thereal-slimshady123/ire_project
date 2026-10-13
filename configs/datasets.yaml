@@ -1,22 +1,32 @@
-# Dataset configuration: names, BEIR paths/URLs, doc/query counts
+# Dataset configuration: names, BEIR URLs, and which qrels split plays each role.
+# Roles (fixed project-wide):
+#   train -> router training, alpha* tuning, label generation
+#   dev   -> epsilon / router hyperparameter selection, tau calibration
+#   test  -> final reporting only (touched once)
+# SciFact ships no dev qrels, so a seeded fraction of its train queries is held out as dev.
 datasets:
   nfcorpus:
     name: "nfcorpus"
     beir_name: "nfcorpus"
     url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/nfcorpus.zip"
-    description: "Nutrition facts medical IR benchmark"
+    description: "Nutrition facts medical IR benchmark (graded relevance, many relevant docs per query)"
+    splits: {train: "train", dev: "dev", test: "test"}
   scifact:
     name: "scifact"
     beir_name: "scifact"
     url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip"
-    description: "Scientific fact-checking retrieval"
+    description: "Scientific fact-checking retrieval (~1 relevant doc per query)"
+    splits: {train: "train", dev: null, test: "test"}
+    dev_from_train_fraction: 0.2  # carved from train with experiment seed
   fiqa:
     name: "fiqa"
     beir_name: "fiqa"
     url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/fiqa.zip"
     description: "Financial opinion QA benchmark"
+    splits: {train: "train", dev: "dev", test: "test"}
   trec-covid:
     name: "trec-covid"
     beir_name: "trec-covid"
     url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/trec-covid.zip"
-    description: "COVID-19 literature search (optional / stretch)"
+    description: "COVID-19 literature search (optional / stretch; test-only, usable for cross-domain evaluation)"
+    splits: {train: null, dev: null, test: "test"}

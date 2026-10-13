@@ -11,6 +11,7 @@ def extract_query_features(
 ) -> Dict[str, float]:
     """
     Extract intrinsic features from the raw query string.
+    Tokenization (stemming + stopwords) matches the BM25 index so IDF lookups line up.
 
     Features extracted:
         - query_length: Token count of query.

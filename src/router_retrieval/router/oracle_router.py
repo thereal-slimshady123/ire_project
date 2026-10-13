@@ -35,3 +35,25 @@ class OracleRouter:
             Candidates from the optimal route.
         """
         raise NotImplementedError
+
+
+def oracle_escalation(
+    routed_scores: Dict[str, float],
+    rerank_scores: Dict[str, float],
+    escalation_rate: float,
+) -> List[str]:
+    """
+    Escalation ceiling (evaluation only, no model): with the router's routing held fixed,
+    escalate the escalation_rate fraction of queries whose true cross-encoder gain
+    (rerank_score - routed_score) is largest. Gives the best quality any escalation rule
+    could reach at that budget, for comparison with confidence-based escalation (H3).
+
+    Args:
+        routed_scores: query_id -> nDCG@10 of the route the router chose.
+        rerank_scores: query_id -> nDCG@10 of the cross-encoder (always-rerank) run.
+        escalation_rate: Fraction of queries to escalate (count = round(rate * n_queries)).
+
+    Returns:
+        Query IDs to escalate.
+    """
+    raise NotImplementedError

@@ -1,4 +1,10 @@
-# Escalation configuration: tau threshold grid for confidence-based routing
-tau_grid: [0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70]
+# Escalation configuration: confidence-based routing (selective classification)
+# A query is escalated when max(router class probability) < tau.
+# tau is calibrated on DEV probabilities (out-of-sample) so that the dev escalation rate hits each target;
+# training-set probabilities are overconfident and must not be used for calibration.
 target_escalation_rates: [0.05, 0.10, 0.15]
-escalation_action: "cross_encoder_rerank"
+calibration_split: "dev"
+escalation_action: "cross_encoder_rerank"  # see cross_encoder.yaml for the candidate pool
+
+# Number of evenly spaced escalation rates (0..1) for the risk-coverage curve.
+risk_coverage_points: 21

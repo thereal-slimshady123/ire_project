@@ -2,6 +2,9 @@
 
 import pytest
 
+# Placeholders: remove this marker once the module under test is implemented.
+pytestmark = pytest.mark.skip(reason="not implemented yet")
+
 
 def test_gbm_router_fit_predict():
     """Test GBM router trains and outputs valid class probabilities."""
@@ -9,5 +12,5 @@ def test_gbm_router_fit_predict():
 
 
 def test_gbm_router_regret_weighting():
-    """Test sample weight incorporation with regret values."""
+    """Test sample weights from compute_sample_weights change the fitted model."""
     pass

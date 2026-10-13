@@ -7,6 +7,7 @@ from router_retrieval.data.schema import Candidate
 def min_max_normalize(candidates: List[Candidate]) -> List[Candidate]:
     """
     Min-max normalize candidate scores to [0, 1] range.
+    If all scores are identical, every candidate gets 1.0. An empty list returns an empty list.
 
     Args:
         candidates: List of Candidate objects for a query.
@@ -20,6 +21,7 @@ def min_max_normalize(candidates: List[Candidate]) -> List[Candidate]:
 def z_score_normalize(candidates: List[Candidate]) -> List[Candidate]:
     """
     Z-score normalize candidate scores (zero mean, unit variance).
+    If all scores are identical (zero variance), every candidate gets 0.0.
 
     Args:
         candidates: List of Candidate objects for a query.

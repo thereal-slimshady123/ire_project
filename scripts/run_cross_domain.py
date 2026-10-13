@@ -30,7 +30,8 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Running cross-domain generalization: {args.source_dataset} -> {args.target_dataset}")
-    # TODO: Train on source domain, evaluate zero-shot routing on target domain
+    # TODO: Use the router (and tau) trained on the source dataset's train/dev; evaluate routing
+    #       on the target dataset's TEST queries (zero-shot: the source's alpha* is used for hybrid).
     raise NotImplementedError
 
 

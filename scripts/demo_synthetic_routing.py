@@ -1,4 +1,15 @@
-"""Proof-of-Concept: Synthetic Query Generation, Advantage Labeling, and Router Training."""
+"""Smoke test (NOT evidence): advantage-regression routing on a toy corpus.
+
+Checks that the code path BM25/dense/hybrid -> per-query scores -> LightGBM -> routing runs
+end to end. It is not part of the main method (3-class classifier + confidence escalation;
+see plan.md) and its numbers support no claim:
+- queries are hand-written (no query generation model is used);
+- 60 queries, 12 in the test split; both queries of a document can straddle the split;
+- query style is trivially separable (every "semantic" query is a question);
+- half the corpus are near-duplicate "_var" documents;
+- hybrid uses an untuned alpha = 0.5;
+- needs the optional `demo` extra (rank-bm25) and a cached all-MiniLM-L6-v2.
+"""
 
 import os
 import random
@@ -21,7 +32,7 @@ os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 print("=" * 70)
-print("PROOF OF CONCEPT: SYNTHETIC DATASET GENERATION & ADVANTAGE ROUTING")
+print("SMOKE TEST: TOY ADVANTAGE ROUTING (hand-written queries, not evidence)")
 print("=" * 70)
 
 # -----------------------------------------------------------------------------
@@ -77,9 +88,9 @@ for doc in raw_corpus:
 print(f"\n[1] Built evaluation corpus of {len(corpus)} documents.")
 
 # -----------------------------------------------------------------------------
-# 2. SYNTHETIC QUERY GENERATION (Dual Style: Lexical vs Paraphrased)
+# 2. HAND-WRITTEN QUERIES (Dual Style: Lexical vs Paraphrased; no generation model)
 # -----------------------------------------------------------------------------
-print("\n[2] Synthesizing queries for each document...")
+print("\n[2] Loading hand-written queries for each document...")
 synthetic_data = []
 
 for doc in raw_corpus:
@@ -194,12 +205,12 @@ for doc in raw_corpus:
         "style": "semantic"
     })
 
-print(f"Generated {len(synthetic_data)} synthetic queries (50% lexical keyword, 50% semantic concept).")
+print(f"Loaded {len(synthetic_data)} hand-written queries (50% lexical keyword, 50% semantic question).")
 
 # -----------------------------------------------------------------------------
 # 3. BUILD RETRIEVERS (BM25 + DENSE GPU EMBEDDINGS)
 # -----------------------------------------------------------------------------
-print("\n[3] Indexing corpus with BM25 and SentenceTransformer (GPU)...")
+print("\n[3] Indexing corpus with BM25 and SentenceTransformer...")
 corpus_tokens = [d["text"].lower().split() for d in corpus]
 doc_ids = [d["id"] for d in corpus]
 doc_texts = [d["text"] for d in corpus]
@@ -384,5 +395,5 @@ print(f"Mean Router Score:  {np.mean(router_scores):.4f}  (Gain over Hybrid: {np
 print(f"Mean Oracle Score:  {np.mean(oracle_scores):.4f}  (Max Possible Headroom: {np.mean(oracle_scores) - np.mean(hybrid_scores):+.4f})")
 print(f"Route Distribution: {pd.Series(routes_chosen).value_counts().to_dict()}")
 print("=" * 70)
-print("SUCCESS: End-to-end pipeline (synthetic generation -> advantage labeling -> training -> routing) validated!")
+print("Smoke test complete: code path ran end to end (results are not evidence; see module docstring).")
 

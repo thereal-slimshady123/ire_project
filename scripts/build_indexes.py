@@ -30,7 +30,8 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Building indexes for dataset: {args.dataset}")
-    # TODO: Build BM25 and FAISS dense indexes and serialize to output_dir
+    # TODO: Build the bm25s index (stemmed, stopwords removed) and the TAS-B FAISS IndexFlatIP index
+    #       over Document.full_text, and serialize both to output_dir/{dataset}/.
     raise NotImplementedError
 
 

@@ -24,7 +24,10 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Training routers for dataset: {args.dataset}")
-    # TODO: Train LogisticRouter and GBMRouter using k-fold CV and regret weighting
+    # TODO: For each epsilon and hyperparameter setting: train LogisticRouter and GBMRouter on TRAIN
+    #       with compute_sample_weights; pick the setting with the best routed nDCG@10 on DEV.
+    #       Calibrate tau on DEV probabilities for each target escalation rate. Save the models,
+    #       the chosen epsilon/hyperparameters and the tau values to output_dir/{dataset}/.
     raise NotImplementedError
 
 

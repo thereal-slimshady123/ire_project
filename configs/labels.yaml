@@ -1,6 +1,10 @@
-# Labeling configuration: epsilon margin threshold grid and strategies
-epsilon_grid: [0.0, 0.01, 0.02, 0.05, 0.10]
-default_epsilon: 0.02
+# Labeling configuration: margin-based argmax labels
+# best_route = argmax over {bm25, dense, hybrid(alpha*)} of the metric;
+# if top1 - top2 < epsilon the label falls back to hybrid (safe default).
+# Regret (best - route score) is kept per route and used only as training sample weights.
+# epsilon is selected on dev by downstream routed nDCG@10 (see scripts/train_router.py).
+# nDCG@10 moves in coarse steps on single-relevant datasets, so very small epsilons filter almost nothing.
+epsilon_grid: [0.02, 0.05, 0.10, 0.15]
+default_epsilon: 0.05
 metric: "ndcg_cut_10"
-labeling_strategy: "margin_argmax"  # options: "margin_argmax", "regret_weighted"
-fallback_route: "hybrid"  # route when top routes are within margin epsilon
+fallback_route: "hybrid"

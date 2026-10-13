@@ -2,8 +2,12 @@
 model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
 batch_size: 32
 max_length: 512
-device: "cpu"
+device: "cuda"  # falls back to cpu if CUDA is unavailable
 
-# Candidate pool settings
-candidate_pool_size: 50  # candidate pool size union top-k (30, 50, or 100)
-top_k_rerank: 10
+# Escalation candidate pool:
+#   1. union of BM25 top-100 and dense top-100
+#   2. ordered by hybrid score (alpha*)
+#   3. the top `rerank_depth` are reranked by the cross-encoder
+#   4. the remaining hybrid-ordered docs are appended after them, up to `output_depth`
+rerank_depth: 50
+output_depth: 100

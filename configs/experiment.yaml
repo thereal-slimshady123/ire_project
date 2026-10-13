@@ -1,4 +1,4 @@
-# Top-level experiment configuration: datasets, seeds, k-fold CV
+# Top-level experiment configuration: datasets, seed, splits, retrieval depth, metrics
 datasets:
   - "nfcorpus"
   - "scifact"
@@ -8,17 +8,29 @@ optional_datasets:
   - "trec-covid"
 
 seed: 42
-k_folds: 5
+
+# Split protocol (see configs/datasets.yaml): train on train, select on dev, report on test once.
+split_protocol: "train_dev_test"
 
 routes:
   - "bm25"
   - "dense"
   - "hybrid"
 
+# Every run (cheap routes, escalated, baselines, controls) is evaluated at this depth.
+retrieval_depth: 100
+
+# ndcg_cut_10, map_cut_100, recall_100 are pytrec_eval measure names.
+# recip_rank@10 (MRR@10) = pytrec_eval recip_rank computed on the run truncated to the top 10.
 evaluation_metrics:
   - "ndcg_cut_10"
-  - "recip_rank"
-  - "map"
+  - "recip_rank@10"
+  - "map_cut_100"
   - "recall_100"
+
+significance:
+  test: "paired_bootstrap"
+  n_resamples: 10000
+  multiple_comparison_correction: "holm"  # Holm-Bonferroni across all comparisons per dataset
 
 output_dir: "results"

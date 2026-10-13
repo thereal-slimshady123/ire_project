@@ -8,20 +8,22 @@ from router_retrieval.router.base import RouterModel
 
 
 class LogisticRouter(RouterModel):
-    """Logistic regression classifier for 3-class route prediction."""
+    """
+    Logistic regression classifier for 3-class route prediction.
+    Features are standardized inside the model. Class balancing and regret weighting both come
+    from the sample_weight passed to fit() (labeling.regret.compute_sample_weights).
+    """
 
     def __init__(
         self,
         classes: Optional[List[str]] = None,
         C: float = 1.0,
         max_iter: int = 1000,
-        class_weight: str = "balanced",
         random_state: int = 42,
     ):
         super().__init__(classes=classes)
         self.C = C
         self.max_iter = max_iter
-        self.class_weight = class_weight
         self.random_state = random_state
         self.model = None
 
@@ -31,7 +33,7 @@ class LogisticRouter(RouterModel):
         y: pd.Series,
         sample_weight: Optional[np.ndarray] = None,
     ) -> "LogisticRouter":
-        """Fit logistic regression router."""
+        """Fit logistic regression router with per-sample weights."""
         raise NotImplementedError
 
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:

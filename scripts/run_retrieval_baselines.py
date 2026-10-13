@@ -24,7 +24,9 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Running retrieval baselines for dataset: {args.dataset}")
-    # TODO: Run BM25, Dense, Hybrid alpha sweep, and RRF evaluations
+    # TODO: For train, dev and test queries: run BM25 top-100, dense top-100, hybrid over the
+    #       union for every alpha in configs/hybrid.yaml, and RRF. Select alpha* on TRAIN
+    #       (mean nDCG@10) and save it; persist all runs and per-query metrics.
     raise NotImplementedError
 
 

@@ -2,6 +2,9 @@
 
 import pytest
 
+# Placeholders: remove this marker once the module under test is implemented.
+pytestmark = pytest.mark.skip(reason="not implemented yet")
+
 
 def test_bm25_indexing_and_search():
     """Test BM25 index construction and scoring on a synthetic mini corpus."""

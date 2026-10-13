@@ -1,4 +1,5 @@
-# Router configuration: feature lists, model types, hyperparams, class weights
+# Router configuration: feature lists, model types, hyperparams, sample weighting
+# Router = 3-class classifier over {bm25, dense, hybrid}. Escalation is NOT a class (see escalation.yaml).
 features:
   query_features:
     - "query_length"
@@ -10,7 +11,7 @@ features:
   retrieval_signal_features:
     - "jaccard_overlap_top10"
     - "jaccard_overlap_top20"
-    - "rank_correlation_spearman"
+    - "rank_correlation_spearman"  # over docs in both top-20 lists; 0.0 if fewer than 2 shared docs
     - "bm25_top1_score"
     - "bm25_top1_top2_gap"
     - "bm25_score_entropy"
@@ -18,17 +19,29 @@ features:
     - "dense_top1_top2_gap"
     - "dense_score_entropy"
 
+# Sample weighting (applies to both models):
+#   weight_i = class_balance_weight(label_i) * regret_weight_i, rescaled to mean 1
+#   class_balance_weight = n_samples / (n_classes * n_samples_in_class)   ("balanced")
+#   regret_weight_i      = (top1_score_i - top2_score_i) + regret_weight_floor
+# The floor keeps near-tie (hybrid-fallback) queries from getting zero weight.
+sample_weighting:
+  class_balance: true
+  use_regret_weights: true
+  regret_weight_floor: 0.05
+
 models:
   logistic:
-    class_weight: "balanced"
     max_iter: 1000
     C: 1.0
     solver: "lbfgs"
+    standardize_features: true
 
   gbm:
-    model_type: "lightgbm"  # or "xgboost"
+    model_type: "lightgbm"
     n_estimators: 100
     learning_rate: 0.05
     num_leaves: 31
-    class_weight: "balanced"
-    use_regret_weights: true
+    min_child_samples: 20
+
+# Hyperparameters and epsilon are selected on dev; the final router is trained on train only.
+selection_split: "dev"

@@ -1,8 +1,13 @@
 # Hybrid retriever configuration: alpha sweep grid, normalization method
+# hybrid_score(d) = alpha * norm_dense(d) + (1 - alpha) * norm_bm25(d)
+# Candidate set = union of BM25 top-100 and dense top-100. For every doc in the union BOTH
+# raw scores are computed exactly (no imputation), then min-max normalized per query over the union.
 normalization:
   method: "min_max"  # options: "min_max", "z_score"
 
 alpha_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+alpha_selection_split: "train"   # alpha* = argmax mean nDCG@10 on train queries
+alpha_selection_metric: "ndcg_cut_10"
 
 rrf:
   k: 60  # standard RRF constant

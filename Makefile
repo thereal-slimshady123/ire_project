@@ -1,6 +1,7 @@
-.PHONY: help install data index baselines headroom labels features train sweep eval latency ablations test clean
+.PHONY: help install data index baselines headroom labels features train sweep eval latency ablations test demo clean
 
 PYTHON = python
+DATASETS ?= nfcorpus scifact fiqa
 
 help:
 	@echo "Available targets:"
@@ -17,46 +18,51 @@ help:
 	@echo "  latency    - Run latency benchmark"
 	@echo "  ablations  - Run feature ablation studies"
 	@echo "  test       - Run unit and integration tests"
+	@echo "  demo       - Run the toy smoke test (needs the demo extra)"
+	@echo "Override datasets with: make <target> DATASETS=\"scifact\""
 	@echo "  clean      - Clean build artifacts and cache"
 
 install:
-	pip install -e .[dev]
+	pip install -e .[dev,demo]
 
 data:
-	$(PYTHON) scripts/download_data.py
+	$(PYTHON) scripts/download_data.py --datasets $(DATASETS)
 
 index:
-	$(PYTHON) scripts/build_indexes.py
+	for d in $(DATASETS); do $(PYTHON) scripts/build_indexes.py --dataset $$d || exit 1; done
 
 baselines:
-	$(PYTHON) scripts/run_retrieval_baselines.py
+	for d in $(DATASETS); do $(PYTHON) scripts/run_retrieval_baselines.py --dataset $$d || exit 1; done
 
 headroom:
-	$(PYTHON) scripts/run_oracle_headroom.py
+	for d in $(DATASETS); do $(PYTHON) scripts/run_oracle_headroom.py --dataset $$d || exit 1; done
 
 labels:
-	$(PYTHON) scripts/generate_labels.py
+	for d in $(DATASETS); do $(PYTHON) scripts/generate_labels.py --dataset $$d || exit 1; done
 
 features:
-	$(PYTHON) scripts/extract_features.py
+	for d in $(DATASETS); do $(PYTHON) scripts/extract_features.py --dataset $$d || exit 1; done
 
 train:
-	$(PYTHON) scripts/train_router.py
+	for d in $(DATASETS); do $(PYTHON) scripts/train_router.py --dataset $$d || exit 1; done
 
 sweep:
-	$(PYTHON) scripts/sweep_escalation.py
+	for d in $(DATASETS); do $(PYTHON) scripts/sweep_escalation.py --dataset $$d || exit 1; done
 
 eval:
-	$(PYTHON) scripts/run_full_evaluation.py
+	$(PYTHON) scripts/run_full_evaluation.py --datasets $(DATASETS)
 
 latency:
-	$(PYTHON) scripts/run_latency_benchmark.py
+	for d in $(DATASETS); do $(PYTHON) scripts/run_latency_benchmark.py --dataset $$d || exit 1; done
 
 ablations:
-	$(PYTHON) scripts/run_ablations.py
+	for d in $(DATASETS); do $(PYTHON) scripts/run_ablations.py --dataset $$d || exit 1; done
 
 test:
 	pytest tests/
+
+demo:
+	$(PYTHON) scripts/demo_synthetic_routing.py
 
 clean:
 	rm -rf build dist *.egg-info .pytest_cache

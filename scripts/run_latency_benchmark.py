@@ -24,7 +24,9 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Running latency benchmark on dataset: {args.dataset}")
-    # TODO: Benchmark BM25, Dense encode+search, feature extraction, router inference, cross-encoder
+    # TODO: Benchmark per query (mean, p95): BM25, dense encode+search, hybrid fusion, feature
+    #       extraction, router inference, cross-encoder rerank (50 candidates). Report totals for
+    #       BM25-only, hybrid, router (cheap path), router (escalated path) and always-rerank.
     raise NotImplementedError
 
 

@@ -24,7 +24,11 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Running full evaluation on datasets: {args.datasets}")
-    # TODO: Evaluate BM25, Dense, Hybrid, RRF, Always-Rerank, Random Escalation, Router
+    # TODO: On TEST queries only: BM25, dense, hybrid(alpha*), RRF, always-rerank, router at each
+    #       target escalation rate, random escalation (router routes, same count), always-hybrid +
+    #       random rerank (same count), oracle router, and oracle escalation (ceiling).
+    #       Metrics: nDCG@10, MRR@10, MAP@100, Recall@100. Paired bootstrap of the router vs each
+    #       non-oracle system with Holm-Bonferroni correction per dataset.
     raise NotImplementedError
 
 

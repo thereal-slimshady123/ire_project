@@ -24,7 +24,8 @@ def parse_args():
 def main():
     args = parse_args()
     print(f"Sweeping escalation thresholds for dataset: {args.dataset}")
-    # TODO: Sweep tau across grid, compute risk vs. coverage curve points
+    # TODO: Using the trained router: compute the risk-coverage curve and routed nDCG@10 vs.
+    #       escalation rate on test, with tau taken from the DEV calibration for each rate.
     raise NotImplementedError
 
 

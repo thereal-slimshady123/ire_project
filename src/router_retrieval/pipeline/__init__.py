@@ -5,6 +5,7 @@ from router_retrieval.pipeline.controls import (
     RandomEscalationPipeline,
     AlwaysHybridRandomRerankPipeline,
     AlwaysRerankPipeline,
+    assemble_run,
 )
 from router_retrieval.pipeline.latency import ComponentTimer, LatencyTracker
 
@@ -13,6 +14,7 @@ __all__ = [
     "RandomEscalationPipeline",
     "AlwaysHybridRandomRerankPipeline",
     "AlwaysRerankPipeline",
+    "assemble_run",
     "ComponentTimer",
     "LatencyTracker",
 ]

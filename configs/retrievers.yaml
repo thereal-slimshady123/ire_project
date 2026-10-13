@@ -1,13 +1,19 @@
 # Retrievers configuration: BM25 params, dense embedding model, FAISS index type
+# Document text for every component (BM25, dense, cross-encoder) = title + " " + text.
 bm25:
+  engine: "bm25s"
   k1: 1.2
   b: 0.75
-  engine: "rank_bm25"  # or "pyserini"
+  stemmer: "english"   # PyStemmer Snowball stemmer
+  stopwords: "en"
+  top_k: 100
 
 dense:
-  model_name: "sentence-transformers/msmarco-distilbert-base-v4" # or "facebook/contriever"
+  model_name: "sentence-transformers/msmarco-distilbert-base-tas-b"
+  similarity: "dot"            # TAS-B is trained for dot product: do NOT L2-normalize embeddings
+  normalize_embeddings: false
   batch_size: 64
   max_length: 512
-  device: "cpu"
-  faiss_index_type: "IndexFlatIP" # Inner Product / Cosine with L2-normalized embeddings
+  device: "cuda"               # falls back to cpu if CUDA is unavailable
+  faiss_index_type: "IndexFlatIP"  # exact inner-product search
   top_k: 100

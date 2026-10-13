@@ -7,21 +7,24 @@ import pandas as pd
 
 def compute_risk_coverage_curve(
     confidences: np.ndarray,
-    errors_or_regrets: np.ndarray,
-    taus: List[float],
+    regrets: np.ndarray,
+    escalation_rates: List[float],
 ) -> pd.DataFrame:
     """
-    Compute risk vs coverage points across confidence thresholds.
+    Compute risk vs coverage points (selective classification) across escalation rates.
+    For each rate, tau is the rate-quantile of the confidences; queries with confidence < tau
+    are escalated.
 
-    Coverage: fraction of queries handled by cheap routes without escalation.
-    Risk: average regret or error on the covered queries.
+    Coverage: fraction of queries handled by cheap routes without escalation (1 - escalation_rate).
+    Risk: mean regret of the router's chosen cheap route on the covered queries, where
+          regret = best cheap-route nDCG@10 - chosen-route nDCG@10.
 
     Args:
         confidences: Max prediction probability per query.
-        errors_or_regrets: Per-query regret or error of the cheap route.
-        taus: List of threshold values swept.
+        regrets: Per-query regret of the router's argmax cheap route.
+        escalation_rates: Escalation rates to evaluate (configs/escalation.yaml risk_coverage_points).
 
     Returns:
-        DataFrame with columns [tau, coverage, risk, escalation_rate].
+        DataFrame with columns [escalation_rate, tau, coverage, risk].
     """
     raise NotImplementedError

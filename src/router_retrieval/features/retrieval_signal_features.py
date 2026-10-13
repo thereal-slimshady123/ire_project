@@ -19,17 +19,20 @@ def compute_rank_correlation(
     k: int = 20,
     method: str = "spearman",
 ) -> float:
-    """Compute rank correlation (Spearman or Kendall tau) over candidate intersection."""
+    """
+    Compute rank correlation (Spearman or Kendall tau) over the documents present in both
+    top-k lists. Returns 0.0 if fewer than 2 documents are shared.
+    """
     raise NotImplementedError
 
 
 def compute_score_entropy(candidates: List[Candidate]) -> float:
-    """Compute Shannon entropy over normalized candidate score distribution."""
+    """Compute Shannon entropy over the softmax of the candidate scores (0.0 for an empty list)."""
     raise NotImplementedError
 
 
 def compute_top_gap(candidates: List[Candidate]) -> float:
-    """Compute margin between top-1 and top-2 candidate scores."""
+    """Compute margin between top-1 and top-2 raw candidate scores (0.0 if fewer than 2 candidates)."""
     raise NotImplementedError
 
 

@@ -1,4 +1,4 @@
-"""Gradient Boosted Trees (LightGBM/XGBoost) router with regret weighting."""
+"""Gradient Boosted Trees (LightGBM) router with regret weighting."""
 
 from pathlib import Path
 from typing import List, Optional, Dict, Any
@@ -8,26 +8,27 @@ from router_retrieval.router.base import RouterModel
 
 
 class GBMRouter(RouterModel):
-    """Gradient boosted decision tree router supporting regret-weighted sample weights."""
+    """
+    LightGBM multi-class router. Class balancing and regret weighting both come from the
+    sample_weight passed to fit() (labeling.regret.compute_sample_weights); no class_weight here.
+    """
 
     def __init__(
         self,
-        backend: str = "lightgbm",
         classes: Optional[List[str]] = None,
         n_estimators: int = 100,
         learning_rate: float = 0.05,
         num_leaves: int = 31,
+        min_child_samples: int = 20,
         random_state: int = 42,
-        class_weight: Optional[str] = "balanced",
         extra_params: Optional[Dict[str, Any]] = None,
     ):
         super().__init__(classes=classes)
-        self.backend = backend
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.num_leaves = num_leaves
+        self.min_child_samples = min_child_samples
         self.random_state = random_state
-        self.class_weight = class_weight
         self.extra_params = extra_params or {}
         self.model = None
 
@@ -43,7 +44,7 @@ class GBMRouter(RouterModel):
         Args:
             X: Feature matrix.
             y: Target route labels.
-            sample_weight: Per-sample regret weights.
+            sample_weight: Per-sample weights from compute_sample_weights.
         """
         raise NotImplementedError
 
