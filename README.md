@@ -4,7 +4,7 @@ An empirical information retrieval framework that dynamically routes queries bet
 
 ## Project Structure
 
-Refer to [plan.md](plan.md) and [proposal.md](proposal.md) for architectural contracts, experimental design, and timelines.
+Refer to [plan.md](plan.md), [proposal.md](proposal.md), and [improvements.md](improvements.md) for architectural contracts, experimental design, and synthetic scaling protocols.
 
 ```
 ire_project/
@@ -40,4 +40,5 @@ pip install -e .[dev]
 7. **Train Router**: `python scripts/train_router.py`
 8. **Sweep Escalation**: `python scripts/sweep_escalation.py`
 9. **Full Evaluation**: `python scripts/run_full_evaluation.py`
-10. **Run Tests**: `pytest tests/`
+10. **Synthetic Routing Demo**: `python scripts/demo_synthetic_routing.py`
+11. **Run Tests**: `pytest tests/`
