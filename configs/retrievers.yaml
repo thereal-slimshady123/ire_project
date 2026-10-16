@@ -8,6 +8,6 @@ dense:
   model_name: "sentence-transformers/msmarco-distilbert-base-v4" # or "facebook/contriever"
   batch_size: 64
   max_length: 512
-  device: "cpu"
+  device: "auto"  # "auto" = cuda if available, else cpu; or force "cpu" / "cuda"
   faiss_index_type: "IndexFlatIP" # Inner Product / Cosine with L2-normalized embeddings
   top_k: 100

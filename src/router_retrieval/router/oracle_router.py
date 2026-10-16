@@ -34,4 +34,4 @@ class OracleRouter:
         Returns:
             Candidates from the optimal route.
         """
-        raise NotImplementedError
+        return candidate_pools[self.ground_truth_labels[query.query_id]]

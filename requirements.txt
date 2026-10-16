@@ -8,6 +8,7 @@ tqdm>=4.65.0
 
 # Retrieval and search
 rank-bm25>=0.2.2
+nltk>=3.8  # Porter stemmer for the BM25 analyzer
 sentence-transformers>=2.2.2
 faiss-cpu>=1.7.4
 

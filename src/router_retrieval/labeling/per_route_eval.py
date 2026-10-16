@@ -1,8 +1,11 @@
 """Per-query, per-route retrieval evaluation."""
 
 from typing import Dict, List
+
 import pandas as pd
+
 from router_retrieval.data.schema import Candidate, QRel
+from router_retrieval.evaluation.ranking_metrics import compute_ranking_metrics
 
 
 def evaluate_per_query_per_route(
@@ -21,4 +24,10 @@ def evaluate_per_query_per_route(
     Returns:
         DataFrame with columns [query_id, route, ndcg_cut_10, recip_rank, map, recall_100].
     """
-    raise NotImplementedError
+    metrics = metrics or ["ndcg_cut_10", "recip_rank", "map", "recall_100"]
+    frames = []
+    for route, run in route_runs.items():
+        df = compute_ranking_metrics(qrels, run, metrics).reset_index()
+        df.insert(1, "route", route)
+        frames.append(df)
+    return pd.concat(frames, ignore_index=True)

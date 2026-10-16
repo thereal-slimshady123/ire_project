@@ -20,3 +20,13 @@ datasets:
     beir_name: "trec-covid"
     url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/trec-covid.zip"
     description: "COVID-19 literature search (optional / stretch)"
+  quora:
+    name: "quora"
+    beir_name: "quora"
+    url: "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/quora.zip"
+    description: "Duplicate-question retrieval; paraphrastic/conversational queries (Experiment 1b, subsampled)"
+  cqadupstack-unix:
+    name: "cqadupstack-unix"
+    beir_name: "cqadupstack/unix"
+    url: "https://huggingface.co/datasets/mteb/cqadupstack-unix/resolve/main"
+    description: "StackExchange Unix questions; error messages, flags, paths (Experiment 1b)"

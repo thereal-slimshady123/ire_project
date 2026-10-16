@@ -1,6 +1,8 @@
 """Margin-based route labeler."""
 
-from typing import Dict, List, Optional
+from typing import Callable, List, Optional
+
+import numpy as np
 import pandas as pd
 
 
@@ -21,6 +23,27 @@ class MarginLabeler:
         self.epsilon = epsilon
         self.default_route = default_route
 
+    def label_wide(self, scores: pd.DataFrame) -> pd.DataFrame:
+        """
+        Label from a wide frame (index = query_id, one column per route holding the metric).
+
+        Exact ties for first place go to `default_route` when it is among the tied routes.
+        """
+        routes = list(scores.columns)
+        values = scores.to_numpy(dtype=np.float64)
+        order = np.argsort(-values, axis=1, kind="stable")
+        top1 = values[np.arange(len(values)), order[:, 0]]
+        top2 = values[np.arange(len(values)), order[:, 1]] if len(routes) > 1 else top1
+        margin = top1 - top2
+        best = np.array(routes, dtype=object)[order[:, 0]]
+        default_is_top = (
+            values[:, routes.index(self.default_route)] >= top1 if self.default_route in routes else False
+        )
+        best = np.where((margin < self.epsilon) | default_is_top, self.default_route, best)
+        return pd.DataFrame(
+            {"best_route": best, "margin": margin, "top1_score": top1, "top2_score": top2}, index=scores.index
+        )
+
     def label_queries(
         self,
         route_scores_df: pd.DataFrame,
@@ -30,29 +53,41 @@ class MarginLabeler:
         Generate labels for queries given per-route scores.
 
         Args:
-            route_scores_df: DataFrame containing query_id, route, and metric score.
+            route_scores_df: DataFrame containing query_id, route, and metric score (long format).
             metric: Target metric to optimize.
 
         Returns:
             DataFrame with columns [query_id, best_route, margin, top1_score, top2_score].
         """
-        raise NotImplementedError
+        wide = route_scores_df.pivot(index="query_id", columns="route", values=metric)
+        return self.label_wide(wide).reset_index()
 
     def tune_epsilon(
         self,
         train_route_scores_df: pd.DataFrame,
         epsilon_grid: List[float],
         metric: str = "ndcg_cut_10",
+        utility_fn: Optional[Callable[[float], float]] = None,
     ) -> float:
         """
         Tune epsilon on training data to optimize downstream utility.
+
+        `utility_fn(epsilon) -> float` should train/evaluate a router on training data only
+        (e.g. inner cross-validation) and return the routed metric. Without it, there is no
+        label-only notion of utility, so the configured epsilon is kept.
 
         Args:
             train_route_scores_df: Training fold scores.
             epsilon_grid: List of epsilon candidate values.
             metric: Target evaluation metric.
+            utility_fn: Callable scoring a candidate epsilon on training data.
 
         Returns:
-            Optimal epsilon float value.
+            Optimal epsilon float value (ties -> the smaller epsilon).
         """
-        raise NotImplementedError
+        if utility_fn is None:
+            return self.epsilon
+        scores = [(utility_fn(e), -e) for e in epsilon_grid]
+        best = max(scores)
+        self.epsilon = -best[1]
+        return self.epsilon

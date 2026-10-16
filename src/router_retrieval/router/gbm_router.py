@@ -1,10 +1,14 @@
 """Gradient Boosted Trees (LightGBM/XGBoost) router with regret weighting."""
 
+import pickle
 from pathlib import Path
 from typing import List, Optional, Dict, Any
+
 import numpy as np
 import pandas as pd
+
 from router_retrieval.router.base import RouterModel
+from router_retrieval.router.logistic_router import _align_proba
 
 
 class GBMRouter(RouterModel):
@@ -45,21 +49,40 @@ class GBMRouter(RouterModel):
             y: Target route labels.
             sample_weight: Per-sample regret weights.
         """
-        raise NotImplementedError
+        if self.backend != "lightgbm":
+            raise ValueError(f"Unsupported backend: {self.backend}")
+        import lightgbm as lgb
+
+        self.model = lgb.LGBMClassifier(
+            n_estimators=self.n_estimators,
+            learning_rate=self.learning_rate,
+            num_leaves=self.num_leaves,
+            class_weight=self.class_weight,
+            random_state=self.random_state,
+            deterministic=True,
+            force_row_wise=True,
+            verbose=-1,
+            **self.extra_params,
+        )
+        self.model.fit(X, y, sample_weight=sample_weight)
+        return self
 
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
-        """Predict class probability matrix."""
-        raise NotImplementedError
+        """Predict class probability matrix with columns ordered as `self.classes`."""
+        return _align_proba(self.model.predict_proba(X), list(self.model.classes_), self.classes)
 
     def predict(self, X: pd.DataFrame) -> List[str]:
         """Predict route for each sample."""
-        raise NotImplementedError
+        return [self.classes[i] for i in self.predict_proba(X).argmax(axis=1)]
 
     def save(self, path: Path) -> None:
         """Persist model artifact."""
-        raise NotImplementedError
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "wb") as f:
+            pickle.dump(self, f)
 
     @classmethod
     def load(cls, path: Path) -> "GBMRouter":
         """Load model artifact."""
-        raise NotImplementedError
+        with open(path, "rb") as f:
+            return pickle.load(f)

@@ -1,0 +1,599 @@
+set,dataset,query_id,text,alpha_star,ndcg_bm25,ndcg_dense,ndcg_hybrid,gap,robust
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1018,DHA,0.5,0.521098444712307,0.3683756341388872,0.4202172267955779,0.10088121791672916,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1028,dietary scoring,0.5,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-112,Food Dyes and ADHD,0.5,0.4027144836875453,0.6347586605097095,0.4590828233913731,0.17567583711833645,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1183,Finland,0.5,0.2895229882348574,0.3679212572135327,0.3052348839397011,0.06268637327383159,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1193,flax oil,0.5,0.0636207881989517,0.07336392209936,0.0,0.0636207881989517,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-1193,flax oil,0.5,0.0636207881989517,0.07336392209936,0.0,0.07336392209936,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-12,Exploiting Autophagy to Live Longer,0.5,0.0945670154802327,0.1262273549885719,0.0735874413409925,0.020979574139240204,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-12,Exploiting Autophagy to Live Longer,0.5,0.0945670154802327,0.1262273549885719,0.0735874413409925,0.0526399136475794,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1203,folic acid,0.5,0.3589542101716347,0.494639655562801,0.3589542101716347,0.13568544539116628,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1225,fructose,0.5,0.5363559634917963,0.7241528458281337,0.6874708847784536,0.03668196104968002,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-123,How Citrus Might Help Keep Your Hands Warm,0.5,0.0424724451679024,0.2119799274920992,0.1728043061722819,0.039175621319817305,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1275,goji berries,0.5,0.5473983622993502,0.6489315753318465,0.5541432109622958,0.09478836436955074,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1288,grapes,0.5,0.9052116356304492,0.4642913062995817,0.7136540102475308,0.19155762538291832,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1320,Harvard Physicians’ Study II,0.5,0.3692312710536414,0.0,0.1919598743897292,0.1772713966639122,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1342,heme iron,0.5,0.4085359184257955,0.4000232483092519,0.3187939258847263,0.08974199254106918,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-1342,heme iron,0.5,0.4085359184257955,0.4000232483092519,0.3187939258847263,0.08122932242452557,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1409,industrial toxins,0.5,0.142019057177627,0.0636207881989517,0.0851431176416209,0.0568759395360061,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-143,Are Dental X-Rays Safe?,0.5,0.417545421874368,0.7048282480575098,0.598031029029431,0.10679721902807882,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1453,junk food,0.5,0.3718539573761155,0.6780494608112012,0.6025064803817581,0.07554298042944307,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1506,leucine,0.5,0.2984900352767555,0.2122263659729145,0.2336508082431053,0.06483922703365019,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1537,low-carb diets,0.5,0.0947883643695507,0.4662774717636409,0.382414714083678,0.08386275767996293,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-165,Breast Cancer & Alcohol: How Much is Safe?,0.5,0.3821856027565683,0.5598370158237287,0.4755025454130627,0.084334470410666,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1656,mouth cancer,0.5,0.1388624438735545,0.066254223454389,0.11004588314904,0.02881656072451451,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1721,NIH-AARP study,0.5,0.6594803070902429,0.2745478892647208,0.5431008121547419,0.11637949493550093,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1805,Parkinson's disease,0.5,0.9305687780632228,1.0,0.9363792118010484,0.06362078819895156,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-1847,philippines,0.5,0.2489083270225946,0.0,0.2122263659729145,0.036681961049680106,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-1929,prenatal vitamins,0.5,0.0,0.2984900352767555,0.0851431176416209,0.21334691763513458,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-1950,prunes,0.5,0.2489083270225946,0.3301376494471202,0.2489083270225946,0.0812293224245256,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2051,saturated fat,0.5,0.7215194105726964,0.6059848036189867,0.5887498202463202,0.13276959032637625,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2071,serotonin,0.5,0.6473362615659566,0.5328965452000554,0.530263109944618,0.11707315162133858,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2145,St. John's wort,0.5,0.1482972305701491,0.0,0.1175227747072426,0.030774455862906502,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-217,Plant-Based Diets for Psoriasis,0.5,0.0,0.158507039740981,0.0,0.158507039740981,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2197,sweeteners,0.5,0.841492960259019,0.6059848036189867,0.77523873680463,0.06625422345438903,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2230,thiamine,0.5,0.1183827929553629,0.0,0.0979129253499678,0.020469867605395098,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2332,viral infections,0.5,0.4291411337886064,0.7136540102475308,0.4671034547999446,0.24655055544758625,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-238,How Chemically Contaminated Are We?,0.5,0.0,0.2200917662980801,0.1388624438735545,0.0812293224245256,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2460,Diabetes as a Disease of Fat Toxicity,0.5,0.2176889663231753,0.1613796619898583,0.1922542355453186,0.025434730777856712,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2470,Is Milk Good for Our Bones?,0.5,0.4226720322240529,0.6747063969112834,0.5527323649324452,0.12197403197883827,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2490,The Actual Benefit of Diet vs. Drugs,0.5,0.482922821804591,0.0,0.2574107611835914,0.2255120606209996,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2500,The Saturated Fat Studies: Buttering Up the Public,0.5,0.0,0.1097243120045741,0.0,0.1097243120045741,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2530,Infectobesity: Adenovirus 36 and Childhood Obesity,0.5,0.9276737537834676,0.9668728882728056,0.9321572773044168,0.03471561096838882,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2560,Childhood Constipation and Cow’s Milk,0.5,0.8603818544462509,0.933745776545611,0.866947989864271,0.06679778668133995,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2590,Do Vegetarians Get Enough Protein?,0.5,0.0404870432923911,0.1596529632588101,0.0717124223536757,0.0879405409051344,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2610,Treating Asthma With Plants vs. Supplements?,0.5,0.2457313285402063,0.500624684364676,0.4393342941789282,0.06129039018574778,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2620,Phytates for the Treatment of Cancer,0.5,0.5942322686530155,0.0331271117271945,0.4712858981830805,0.122946370469935,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2630,Alkylphenol Endocrine Disruptors and Allergies,0.5,0.5423640154200349,0.7303454303932464,0.6567015446262676,0.07364388576697878,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2640,Chicken Salmonella Thanks to Meat Industry Lawsuit,0.5,0.6675861726045336,0.4920365295110466,0.5978949427906471,0.06969122981388642,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2650,Turmeric Curcumin and Osteoarthritis,0.5,0.4631896595828492,0.4225749983705864,0.4323181322709947,0.030871527311854496,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2660,How Long to Detox From Fish Before Pregnancy?,0.5,0.1884441521277154,0.363525819896446,0.2999050316974944,0.06362078819895162,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2680,Counteracting the Effects of Dioxins Through Diet,0.5,0.4920033254983605,0.2411741642702572,0.3979514306711175,0.09405189482724302,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-270,Is Caffeinated Tea Really Dehydrating?,0.5,0.0947883643695507,0.2200917662980801,0.1388624438735545,0.0812293224245256,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2710,Artificial Food Colors and ADHD,0.5,0.5157381179269986,0.6708298207508385,0.6263380278851488,0.04449179286568972,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2730,Anti-Angiogenesis: Cutting Off Tumor Supply Lines,0.5,0.2464795788483361,0.7432213767465039,0.6377495111186308,0.10547186562787314,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2740,Cancer Risk From CT Scan Radiation,0.5,0.416871987332739,0.6246795924793923,0.458978781195792,0.1657008112836003,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2750,Preventing the Common Cold with Probiotics?,0.5,0.6317931042233312,0.5002476458942217,0.5929786743359348,0.03881442988739647,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2760,Eating Healthy on a Budget,0.5,0.0,0.1078111541294674,0.0,0.1078111541294674,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2770,Flaxseeds & Breast Cancer Survival: Clinical Evidence,0.5,0.5523399793322521,0.3155011995963706,0.3999317412506993,0.1524082380815528,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-2790,Titanium Dioxide & Inflammatory Bowel Disease,0.5,0.642186726668901,0.498289935916031,0.5985040686586142,0.04368265801028681,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-2870,Filled Full of Lead,0.5,0.0,0.1266316770532765,0.0844211180355176,0.042210559017758886,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-2970,Preventing Cataracts with Diet,0.5,0.3806265275412985,0.526027743527972,0.5057074808660653,0.020320262661906674,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3026,Vitamin C-Enriched Bacon,0.5,0.430676558073393,0.2890648263178879,0.3868528072345416,0.04382375083885143,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3037,Out of the Lab Onto the Track,0.5,0.0,0.1510196182278052,0.1128451413489352,0.03817447687887002,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-3085,The Difficulty of Arriving at a Vitamin D Recommendation,0.5,0.2184074368181641,0.3065735963827292,0.2640681225725909,0.042505473810138306,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3097,Amyloid and Apple Juice,0.5,0.4770382338730848,0.6615818138050954,0.6206410513474527,0.040940762457642665,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3151,Too Much Iodine Can Be as Bad as Too Little,0.5,0.0,0.772382671159967,0.5605554592302693,0.21182721192969767,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3171,Convergence of Evidence,0.5,0.2040078737501978,0.0,0.1678842962280494,0.0361235775221484,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3201,Acne & Cancer Connection,0.5,0.2724154706688163,0.3607790370815594,0.227626228959616,0.04478924170920026,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-3201,Acne & Cancer Connection,0.5,0.2724154706688163,0.3607790370815594,0.227626228959616,0.13315280812194338,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3231,Meat & Multiple Myeloma,0.5,0.0,0.3993623708002738,0.1056685458592989,0.2936938249409749,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3261,Update on Herbalife®,0.5,0.1498242017129915,0.0,0.1290515430196899,0.020772658693301582,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-3281,Aluminum in Vaccines vs. Food,0.5,0.3239134396887189,0.417545421874368,0.3239134396887189,0.09363198218564911,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3292,Are Multivitamins Good For You?,0.5,0.282509931963177,0.6345124326260251,0.5936455643247773,0.04086686830124775,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-33,What’s Driving America’s Obesity Problem?,0.5,0.0684310418647442,0.4126969231530367,0.267313124838694,0.14538379831434267,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3302,Fish Fog,0.5,0.2942026330205877,0.0,0.0,0.2942026330205877,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3322,Veggies vs. Cancer,0.5,0.0694312219367772,0.2051166673279436,0.1427951440361373,0.06232152329180629,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3342,Is Coconut Milk Good For You?,0.5,0.7653606369886217,0.1480409554829326,0.7039180890341347,0.061442547954487,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-3352,Boosting Heart Nerve Control,0.5,0.0,0.0998454873428217,0.0,0.0998454873428217,False
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3372,The Healthiest Sweetener,0.5,0.113813114479808,0.0,0.0,0.113813114479808,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-3382,Are Artificial Colors Bad for You?,0.5,0.1489993044334678,0.5417076297501563,0.4570817261152812,0.0846259036348751,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-3422,Vitamin Supplements Worth Taking,0.5,0.1330971611916963,0.0354276980775296,0.0773491041157354,0.055748057075960894,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-3472,How Doctors Responded to Being Named a Leading Killer,0.5,0.0,0.1793033660425867,0.0,0.1793033660425867,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-44,Who Should be Careful About Curcumin?,0.5,0.1607827761801714,0.3845178130274548,0.3284984109219488,0.05601940210550599,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-488,adenovirus 36,0.5,0.933745776545611,1.0,0.9363792118010484,0.06362078819895156,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-541,American Dental Association,0.5,0.0,0.4034698846650846,0.286381299268402,0.1170885853966826,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-613,ascorbic acid,0.5,0.0,0.2200917662980801,0.1388624438735545,0.0812293224245256,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-623,Atkins diet,0.5,0.3273065960012699,0.0947883643695507,0.2489083270225946,0.07839826897867527,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-68,What is Actually in Chicken Nuggets?,0.5,0.4745921515613674,0.5695324953192894,0.5288948075455261,0.04063768777376331,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-731,bone fractures,0.5,0.8630152897016883,0.4252084336260237,0.7151857987862356,0.14782949091545272,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-792,cadaverine,0.5,0.644824486427155,0.2248517476624744,0.601312434202259,0.04351205222489596,True
+dense_wins,nfcorpus,nfcorpus:PLAIN-827,carcinogens,0.5,0.6698623505528798,0.933745776545611,0.8482378089219645,0.08550796762364643,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-902,chlorophyll,0.5,0.6366824387328317,0.3903800499921017,0.5855700749881525,0.0511123637446792,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-91,Chronic Headaches and Pork Parasites,0.5,0.5577774033867198,0.3804849557181545,0.4441579487855304,0.11361945460118938,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-913,cinnamon,0.5,0.933745776545611,0.800693766409882,0.8643145546088337,0.06943122193677731,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-934,coffee,0.5,0.7877736340270854,0.3913817611255761,0.4041404811087088,0.38363315291837663,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-946,coma,0.5,0.3301376494471202,0.0,0.3052348839397011,0.0249027655074191,False
+dense_wins,nfcorpus,nfcorpus:PLAIN-956,cooking methods,0.5,0.5184650094568697,0.5933607200949346,0.5455017237786198,0.04785899631631474,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-966,cortisol,0.5,0.1412669728598289,0.0,0.0,0.1412669728598289,True
+bm25_wins,nfcorpus,nfcorpus:PLAIN-987,cumin,0.5,0.2346393630113782,0.0,0.1671604549662022,0.067478908045176,False
+dense_wins,scifact,scifact:1,0-dimensional biomaterials show inductive properties.,0.5,0.0,0.3868528072345416,0.0,0.3868528072345416,True
+dense_wins,scifact,scifact:1020,Rapid up-regulation and higher basal expression of interferon-induced genes increase survival of granule cell neurons that are infected by West Nile virus.,0.5,0.430676558073393,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:1021,Rapid up-regulation and higher basal expression of interferon-induced genes reduce survival of granule cell neurons that are infected by West Nile virus.,0.5,0.430676558073393,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:1029,Reduced responsiveness to interleukin-2 in regulatory T cells is associated with greater resistance to autoimmune diseases such as Type 1 Diabetes.,0.5,0.7653606369886217,0.9469024295259744,0.9010126104210696,0.04588981910490475,True
+dense_wins,scifact,scifact:1088,Silencing of Bcl2 is important for the maintenance and progression of tumors.,0.5,0.0,1.0,0.5,0.5,False
+dense_wins,scifact,scifact:1132,TCR/CD3 microdomains are a required to induce the immunologic synapse to activate T cells.,0.5,0.2184074368181641,0.3065735963827292,0.2640681225725909,0.042505473810138306,False
+bm25_wins,scifact,scifact:1187,The YAP1 and TEAD complex tanslocates into the nucleus where it interacts with transcription factors and DNA-binding proteins that modulate target gene transcription.,0.5,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,False
+dense_wins,scifact,scifact:1191,The amount of publicly available DNA data doubles every 10 years.,0.5,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+dense_wins,scifact,scifact:1197,The availability of safe places to study is not effective at decreasing homelessness.,0.5,0.430676558073393,0.5,0.430676558073393,0.069323441926607,True
+dense_wins,scifact,scifact:1221,The genomic aberrations found in matasteses are very similar to those found in the primary tumor.,0.5,0.0,1.0,0.3333333333333333,0.6666666666666667,True
+bm25_wins,scifact,scifact:1272,The single flash-evoked ERG b-wave is generated by activity of ON-bipolar cells.,0.5,0.3010299956639812,0.0,0.0,0.3010299956639812,False
+bm25_wins,scifact,scifact:128,Arterioles have a larger lumen diameter than venules.,0.5,0.5,0.0,0.0,0.5,True
+dense_wins,scifact,scifact:133,"Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",0.5,0.4461533376408799,0.7756199604526248,0.6992148198508501,0.07640514060177472,False
+dense_wins,scifact,scifact:1344,Up-regulation of the p53 pathway and related molecular events casues cancer resistance and results in a significantly shortened lifespan marked by senescent cells and accelerated organismal aging.,0.5,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,scifact,scifact:1362,Venules have a larger lumen diameter than arterioles.,0.5,0.5,0.0,0.3010299956639812,0.1989700043360188,False
+bm25_wins,scifact,scifact:1363,Venules have a thinner or absent smooth layer compared to arterioles.,0.5,1.0,0.0,0.5,0.5,False
+dense_wins,scifact,scifact:1368,Vitamin D deficiency effects the term of delivery.,0.5,0.0,1.0,0.5,0.5,True
+dense_wins,scifact,scifact:1379,Women with a higher birth weight are more likely to develop breast cancer later in life.,0.5,0.4590547845727913,0.9438661545147248,0.6710022092790502,0.2728639452356746,True
+dense_wins,scifact,scifact:1382,aPKCz causes tumour enhancement by affecting glutamine metabolism.,0.5,0.3010299956639812,1.0,0.5,0.5,True
+dense_wins,scifact,scifact:179,Birth-weight is positively associated with breast cancer.,0.5,0.4414924137367808,0.9619991470595832,0.8597408875863228,0.1022582594732604,True
+bm25_wins,scifact,scifact:185,Breast cancer development is determined exclusively by genetic factors.,0.5,0.5,0.3010299956639812,0.3868528072345416,0.11314719276545843,True
+dense_wins,scifact,scifact:275,Combining phosphatidylinositide 3-kinase and MEK 1/2 inhibitors is effective at treating KRAS mutant tumors.,0.5,0.4692787260227564,0.812653045383133,0.6364391809889587,0.1762138643941743,True
+bm25_wins,scifact,scifact:294,Crossover hot spots are not found within gene promoters in Saccharomyces cerevisiae.,0.5,0.6309297535714575,0.0,0.5,0.13092975357145753,False
+bm25_wins,scifact,scifact:295,Crosstalk between dendritic cells (DCs) and innate lymphoid cells (ILCs) is important in the regulation of intestinal homeostasis.,0.5,1.0,0.3010299956639812,0.6309297535714575,0.36907024642854247,False
+bm25_wins,scifact,scifact:324,Deleting Raptor reduces G-CSF levels.,0.5,0.430676558073393,0.0,0.3154648767857287,0.11521168128766429,True
+dense_wins,scifact,scifact:36,A deficiency of vitamin B12 increases blood levels of homocysteine.,0.5,0.2043823975884861,0.3868528072345416,0.2184074368181641,0.16844537041637747,True
+dense_wins,scifact,scifact:384,Epidemiological disease burden from noncommunicable diseases is more prevalent in low economic settings.,0.5,0.0,0.3154648767857287,0.0,0.3154648767857287,True
+dense_wins,scifact,scifact:388,Ethanol stress decreases the expression of IBP in bacteria.,0.5,0.5,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:415,Female carriers of the Apolipoprotein E4 (APOE4) allele have increased risk for dementia.,0.5,0.3333333333333333,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+dense_wins,scifact,scifact:452,Gene expression does not vary appreciably across genetically identical cells.,0.5,0.0,0.6131471927654584,0.3065735963827292,0.3065735963827292,False
+dense_wins,scifact,scifact:475,Glycolysis is one of the primary glycometabolic pathways in cells.,0.5,0.0,1.0,0.430676558073393,0.569323441926607,True
+dense_wins,scifact,scifact:514,High dietary calcium intakes are unnecessary for prevention of secondary hyperparathyroidism in subjects with 25(OH)D levels above 75 nmol/liter.,0.5,0.3333333333333333,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,scifact,scifact:527,Homozygous deletion of murine Sbds gene from osterix-expressing mesenchymal stem and progenitor cells (MPCs) prevents oxidative stress.,0.5,0.6309297535714575,0.0,0.5,0.13092975357145753,True
+dense_wins,scifact,scifact:535,Hypertension is frequently observed in type 1 diabetes patients.,0.5,0.0,0.3868528072345416,0.0,0.3868528072345416,True
+dense_wins,scifact,scifact:540,Hypothalamic glutamate neurotransmission is crucial to energy balance.,0.5,0.2043823975884861,0.3868528072345416,0.3065735963827292,0.08027921085181239,True
+dense_wins,scifact,scifact:544,IFIT1 restricts viral replication by sequestrating mis-capped viral RNAs.,0.5,0.3868528072345416,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,scifact,scifact:551,ITAM phosphorylation prevents the transfer of the T cell receptor (TCR) signal from the echo-domain to the cytoplasmic tail of the T cell receptor (TCR).,0.5,0.5,0.3562071871080222,0.3868528072345416,0.11314719276545843,True
+bm25_wins,scifact,scifact:554,Immune complex triggered cell death leads to extracellular release of neutrophil protein HMGB1.,0.5,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+bm25_wins,scifact,scifact:587,"In transgenic mice harboring green florescent protein under the control of the Sox2 promoter, less than ten percent of the cells with green florescent colocalize with cell proliferation markers.",0.5,0.3562071871080222,0.0,0.2890648263178879,0.0671423607901343,True
+bm25_wins,scifact,scifact:598,Incidence rates of cervical cancer have increased due to nationwide screening programs based primarily on cytology to detect uterine cervical cancer.,0.5,0.3333333333333333,0.3010299956639812,0.3010299956639812,0.03230333766935212,True
+bm25_wins,scifact,scifact:619,Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.,0.5,0.2371977127692962,0.0,0.1845756967795681,0.0526220159897281,True
+bm25_wins,scifact,scifact:637,Input from  mental and physical health care professionals is effective at decreasing homelessness.,0.5,1.0,0.5,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:641,Insomnia can be effectively treated with cognitive behavioral therapy.,0.5,0.6131471927654584,1.0,0.8315546295836225,0.16844537041637753,True
+bm25_wins,scifact,scifact:674,LDL cholesterol has no involvement in the development of cardiovascular disease.,0.5,1.0,0.0,0.5,0.5,True
+bm25_wins,scifact,scifact:691,Leukemia associated Rho guanine nucleotide-exchange factor represses RhoA in response to SRC activation.,0.5,1.0,0.3868528072345416,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:700,Localization of PIN1 in the Arabidopsis embryo does not require VPS9a,0.5,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:702,Localization of PIN1 in the roots of Arabidopsis does not require VPS9a,0.5,0.5,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:728,Ly6C hi monocytes have a lower inflammatory capacity than Ly6C lo monocytes.,0.5,0.5249810332008933,0.8315546295836225,0.6934264036172708,0.13812822596635166,True
+dense_wins,scifact,scifact:756,Many proteins in human cells can be post-translationally modified at lysine residues via acetylation.,0.5,0.3154648767857287,0.6309297535714575,0.5,0.13092975357145753,True
+bm25_wins,scifact,scifact:768,Mercaptopurine is anabolized into the inactive methylmercaptopurine by thiopurine methyltrasnferase (TPMT).,0.5,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+dense_wins,scifact,scifact:781,Mice that lack Interferon-γ or its receptor exhibit high resistance to experimental autoimmune myocarditis.,0.5,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,scifact,scifact:793,Mitochondria are uninvolved in apoptosis.,0.5,1.0,0.5,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:800,Modifying the epigenome in the brain affects the normal human aging process by affecting certain genes related to neurogenesis.,0.5,0.0,1.0,0.3868528072345416,0.6131471927654584,True
+dense_wins,scifact,scifact:820,N-terminal cleavage increases success identifying transcription start sites.,0.5,0.0,0.5,0.430676558073393,0.069323441926607,True
+bm25_wins,scifact,scifact:845,Neutrophil extracellular traps (NETs) are released by ANCA-stimulated neutrophils.,0.5,1.0,0.430676558073393,0.6309297535714575,0.36907024642854247,False
+dense_wins,scifact,scifact:852,Non-invasive ventilation use should be decreased if there is inadequate response to conventional treatment.,0.5,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,False
+dense_wins,scifact,scifact:859,Normal expression of RUNX1 has tumor-promoting effects.,0.5,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,scifact,scifact:870,Obesity decreases life quality.,0.5,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+dense_wins,scifact,scifact:873,Obesity is determined solely by environmental factors.,0.5,0.2229086978224058,0.3156484524795145,0.2530614822099702,0.0625869702695443,False
+dense_wins,scifact,scifact:914,PPAR-RXRs can be activated by PPAR ligands.,0.5,0.0,1.0,0.430676558073393,0.569323441926607,True
+dense_wins,scifact,scifact:971,Primary cervical cancer screening with HPV detection has higher longitudinal sensitivity than conventional cytology to detect cervical intraepithelial neoplasia grade 2.,0.5,0.7226387152952866,0.9267582364714126,0.8667163765466583,0.060041859924754304,True
+dense_wins,fiqa,fiqa:10137,F-1 student investing in foreign markets,0.6,0.0,0.3868528072345416,0.0,0.3868528072345416,True
+bm25_wins,fiqa,fiqa:10213,Looking for good investment vehicle for seasonal work and savings,0.6,0.1412669728598289,0.0,0.0,0.1412669728598289,True
+dense_wins,fiqa,fiqa:10558,Investment strategy for 401k when rolling over soon,0.6,0.2043823975884861,0.8315546295836225,0.6131471927654584,0.2184074368181641,True
+dense_wins,fiqa,fiqa:106,What approaches are there for pricing a small business?,0.6,0.0,0.3562071871080222,0.0,0.3562071871080222,True
+dense_wins,fiqa,fiqa:10639,Short term parking of a large inheritance?,0.6,0.1020973951229116,0.3391602052736161,0.2139862647345275,0.12517394053908862,True
+dense_wins,fiqa,fiqa:10645,Explain the details and benefits of rebalancing a retirement portfolio?,0.6,0.2640681225725909,0.5640920940185894,0.411833840435435,0.15225825358315442,True
+bm25_wins,fiqa,fiqa:10674,How to sell a stock in a crashing market?,0.6,0.3903800499921017,0.1951900249960508,0.3591475300896652,0.031232519902436473,True
+dense_wins,fiqa,fiqa:10792,How can I calculate a “running” return using XIRR in a spreadsheet?,0.6,0.2043823975884861,0.8315546295836225,0.4684505201610769,0.36310410942254556,True
+dense_wins,fiqa,fiqa:10808,What are a few sites that make it easy to invest in high interest rate mutual funds?,0.6,0.0,0.2021073465005475,0.1564262420075854,0.045681104492962116,True
+bm25_wins,fiqa,fiqa:10812,Is is possible to dispute IRS underpayment penalties?,0.6,0.9619991470595832,0.123151194370365,0.6170963711982227,0.34490277586136053,True
+bm25_wins,fiqa,fiqa:10994,Net loss not distributed by mutual funds to their shareholders?,0.6,0.4684505201610769,0.2371977127692962,0.4227898344066503,0.04566068575442661,True
+dense_wins,fiqa,fiqa:11039,Pay off credit card debt or earn employer 401(k) match?,0.6,0.0,0.1264713513838285,0.0978515946351604,0.02861975674866811,False
+dense_wins,fiqa,fiqa:1230,How does Walmart account their expired food,0.6,0.0,0.3868528072345416,0.3333333333333333,0.05351947390120826,False
+bm25_wins,fiqa,fiqa:1306,"I made an investment with a company that contacted me, was it safe?",0.6,0.5413996682199069,0.0,0.3903800499921017,0.15101961822780524,True
+dense_wins,fiqa,fiqa:1309,Why does FlagStar Bank harass you about payments within grace period?,0.6,0.2476427880871277,0.7668091220635322,0.6366824387328317,0.13012668333070054,True
+bm25_wins,fiqa,fiqa:1310,Is is possible to take a mortgage using Bitcoin as collateral?,0.6,0.5,0.0,0.2890648263178879,0.21093517368211212,True
+dense_wins,fiqa,fiqa:1322,Is this follow-up after a car crash a potential scam?,0.6,0.0,0.1951900249960508,0.1510196182278052,0.044170406768245574,True
+dense_wins,fiqa,fiqa:1393,"Which is better when working as a contractor, 1099 or incorporating?",0.6,0.0,0.6238470455881188,0.3824924438260484,0.24135460176207035,True
+bm25_wins,fiqa,fiqa:1415,I am not VAT registered. Do I need to buy from my supplier with excl VAT prices or incl VAT?,0.6,1.0,0.8318724637288826,0.9550236580992476,0.04497634190075239,True
+bm25_wins,fiqa,fiqa:1736,How can people have such high credit card debts?,0.6,0.5531464700081437,0.0,0.3451913422468693,0.20795512776127434,False
+dense_wins,fiqa,fiqa:1819,Found an old un-cashed paycheck. How long is it good for? What to do if it's expired?,0.6,0.0,0.2987100207034456,0.2783925802803428,0.020317440423102795,False
+dense_wins,fiqa,fiqa:1824,Is there a way to open a U.S. bank account for my LLC remotely?,0.6,0.0,0.430676558073393,0.3868528072345416,0.04382375083885143,True
+dense_wins,fiqa,fiqa:1871,Is there any US bank that does not charge for incoming wire transfers?,0.6,0.3903800499921017,0.715696758318853,0.5654495432396527,0.15024721507920036,True
+dense_wins,fiqa,fiqa:2010,Paypal website donations without being a charity,0.6,0.2960819109658652,0.8395700624665824,0.5307212739772434,0.30884878848933894,True
+bm25_wins,fiqa,fiqa:2070,"Advantage of credit union or local community bank over larger nationwide banks such as BOA, Chase, etc.?",0.6,0.4692787260227564,0.0,0.2021073465005475,0.2671713795222089,True
+dense_wins,fiqa,fiqa:2076,Can vet / veterinary bills be considered deductions (tax-deductible) for Income Tax purposes [Canada]?,0.6,0.0,1.0,0.6509209298071326,0.34907907019286744,True
+dense_wins,fiqa,fiqa:2118,What happened in Argentina in 2001 bank sector? did the banks closed? all or some?,0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,False
+dense_wins,fiqa,fiqa:2264,Personal Tax Return software for Linux?,0.6,0.3065735963827292,0.8772153153380493,0.8503449055347546,0.026870409803294693,False
+dense_wins,fiqa,fiqa:2318,F1 student and eBay selling tax,0.6,0.0,0.5,0.3562071871080222,0.14379281289197782,True
+bm25_wins,fiqa,fiqa:2330,How can I determine if a debt consolidation offer is real or a scam?,0.6,0.6131471927654584,0.0,0.3868528072345416,0.2262943855309168,False
+dense_wins,fiqa,fiqa:2334,How do you determine “excess cash” for Enterprise Value calculations from a balance sheet?,0.6,0.2960819109658652,0.6257049680303419,0.5307212739772434,0.09498369405309848,True
+bm25_wins,fiqa,fiqa:2348,Why can't you just have someone invest for you and split the profits (and losses) with him?,0.6,0.3843113526044082,0.07336392209936,0.2200917662980801,0.16421958630632807,True
+bm25_wins,fiqa,fiqa:2407,How long to wait after getting a mortgage to increase my credit limit?,0.6,0.3903800499921017,0.0,0.24630238874073,0.1440776612513717,False
+dense_wins,fiqa,fiqa:2472,How do I deal with a mistaken attempt to collect a debt from me that is owed by someone else?,0.6,0.0,0.2346393630113782,0.2021073465005475,0.03253201651083068,True
+dense_wins,fiqa,fiqa:2513,How does revenue shared with someone else go into my tax return in Canada?,0.6,0.0,0.5,0.430676558073393,0.069323441926607,False
+dense_wins,fiqa,fiqa:2551,How to find cheaper alternatives to a traditional home telephone line?,0.6,0.0,1.0,0.8710785440003369,0.1289214559996631,True
+dense_wins,fiqa,fiqa:2568,How to pay with cash when car shopping?,0.6,0.0,0.5399294342072939,0.4483039899025303,0.0916254443047636,True
+dense_wins,fiqa,fiqa:2579,What to do when a job offer is made but with a salary less than what was asked for?,0.6,0.0,0.2816249726597774,0.1963279042557384,0.08529706840403897,False
+bm25_wins,fiqa,fiqa:2587,Typically how many digits are in a cheque number?,0.6,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,True
+dense_wins,fiqa,fiqa:2590,Are non-residents or foreigners permitted to buy or own shares of UK companies?,0.6,0.1480409554829326,0.6713860725233041,0.6049306994552042,0.0664553730680999,True
+bm25_wins,fiqa,fiqa:26,Applying for and receiving business credit,0.6,0.1845756967795681,0.0,0.0,0.1845756967795681,True
+dense_wins,fiqa,fiqa:2676,Tax question about selling a car,0.6,0.0,0.3868528072345416,0.3562071871080222,0.03064562012651939,True
+dense_wins,fiqa,fiqa:2856,How can I cash out a check internationally?,0.6,0.1390561795107756,0.4517623092632536,0.4144299250118475,0.037332384251406114,False
+dense_wins,fiqa,fiqa:2968,Should I prioritize retirement savings inside of my HSA?,0.6,0.2640681225725909,0.5802792108518124,0.5437713091520254,0.036507901699787015,False
+dense_wins,fiqa,fiqa:3039,Can increasing my tax withholding from my full-time job cover FICA taxes for my freelance work?,0.6,0.3562071871080222,0.6309297535714575,0.5,0.13092975357145753,False
+dense_wins,fiqa,fiqa:3051,What items are exempt from the VAT? [U.K.],0.6,0.7977228895450266,1.0,0.9197207891481876,0.08027921085181244,False
+dense_wins,fiqa,fiqa:3067,Should I make extra payments to my under water mortgage or increase my savings?,0.6,0.0,0.1934264036172708,0.0,0.1934264036172708,True
+dense_wins,fiqa,fiqa:3085,How long can I convert 401(k) to Roth 401(k)?,0.6,0.0,0.3889580943680543,0.1845756967795681,0.2043823975884862,True
+bm25_wins,fiqa,fiqa:3177,Vanguard ETF vs mutual fund,0.6,0.1815417925373526,0.0,0.0,0.1815417925373526,True
+bm25_wins,fiqa,fiqa:3186,United States Treasury Not Endorsing Checks,0.6,0.8772153153380493,0.7977228895450266,0.8503449055347546,0.026870409803294693,False
+dense_wins,fiqa,fiqa:3264,Pros and Cons of Interest Only Loans,0.6,0.0,0.75369761125927,0.6366824387328317,0.11701517252643834,False
+dense_wins,fiqa,fiqa:3394,What is the easiest way to back-test index funds and ETFs?,0.6,0.0,0.3253167083267513,0.2856436410275446,0.03967306729920672,True
+dense_wins,fiqa,fiqa:3446,What's the difference between Term and Whole Life insurance?,0.6,0.2338647044573662,0.6601396023754075,0.4852285551163225,0.17491104725908496,True
+dense_wins,fiqa,fiqa:3503,Is there any instance where less leverage will get you a better return on a rental property?,0.6,0.1374381664571454,0.6174111208209189,0.5159624448948675,0.10144867592605133,True
+bm25_wins,fiqa,fiqa:3566,"Where can I buy stocks if I only want to invest a little bit at a time, and not really be involved in trading?",0.6,0.2960819109658652,0.1480409554829326,0.2021073465005475,0.09397456446531771,False
+dense_wins,fiqa,fiqa:3569,Funds in closed bank account have gone to the government,0.6,0.0,0.3868528072345416,0.3562071871080222,0.03064562012651939,False
+dense_wins,fiqa,fiqa:3615,My previous and current employers both use Fidelity for 401(k). Does it make sense to rollover?,0.6,0.0,0.6131471927654584,0.4684505201610769,0.14469667260438146,True
+dense_wins,fiqa,fiqa:3683,Can I trust the Motley Fool?,0.6,0.1303237659103706,0.6924048374257171,0.5547710914144913,0.1376337460112258,True
+dense_wins,fiqa,fiqa:3724,Should you always max out contributions to your 401k?,0.6,0.0,0.142019057177627,0.066254223454389,0.075764833723238,True
+dense_wins,fiqa,fiqa:3735,Shorting Stocks And Margin Account Minimum,0.6,0.0,0.2960819109658652,0.2346393630113782,0.06144254795448703,False
+dense_wins,fiqa,fiqa:3771,Best way to buy Japanese yen for travel?,0.6,0.0,0.4539036202482202,0.3422220729283414,0.11168154731987878,True
+bm25_wins,fiqa,fiqa:3781,What is the rough estimate of salary value for a taxpayer to pay AMT?,0.6,1.0,0.8503449055347546,0.9197207891481876,0.08027921085181244,True
+dense_wins,fiqa,fiqa:3791,"""When people say 'Interest rates are at all time low!"""" … Which interest rate are they actually referring to?""",0.6,0.6364391809889587,0.7653606369886217,0.6713860725233041,0.0939745644653176,True
+dense_wins,fiqa,fiqa:3829,Are all VISA cards connected with bank accounts?,0.6,0.0,0.3868528072345416,0.3065735963827292,0.08027921085181239,False
+dense_wins,fiqa,fiqa:3837,"Opening a Roth IRA account, what is the fee structure for Vanguard, Scottrade and TIAA-CREF",0.6,0.5,0.6309297535714575,0.5,0.13092975357145753,False
+bm25_wins,fiqa,fiqa:3934,Should market based health insurance premiums be factored into 6 months emergency fund savings?,0.6,0.1681275362711174,0.2900757977385808,0.1390561795107756,0.02907135676034181,False
+dense_wins,fiqa,fiqa:3934,Should market based health insurance premiums be factored into 6 months emergency fund savings?,0.6,0.1681275362711174,0.2900757977385808,0.1390561795107756,0.15101961822780519,True
+dense_wins,fiqa,fiqa:3995,"I have more than $250,000 in a US Bank account… mistake?",0.6,0.0,0.4461533376408799,0.3120255505658846,0.13412778707499529,True
+bm25_wins,fiqa,fiqa:4007,What is a reasonable salary for the owner and sole member of a small S-Corp?,0.6,0.6257049680303419,0.1480409554829326,0.2346393630113782,0.3910656050189637,True
+dense_wins,fiqa,fiqa:4011,How can I deal with a spouse who compulsively spends?,0.6,0.4692787260227564,1.0,0.9674679834891692,0.03253201651083082,False
+bm25_wins,fiqa,fiqa:4047,Does doing your “research”/“homework” on stocks make any sense?,0.6,0.8318724637288826,0.5855700749881525,0.7757386182436072,0.056133845485275335,True
+dense_wins,fiqa,fiqa:4084,What industries soar when oil prices go up?,0.6,0.0,0.5802792108518124,0.3868528072345416,0.19342640361727087,True
+dense_wins,fiqa,fiqa:4116,Would the effects of an anticipated default by a nation be mostly symbolic?,0.6,0.3065735963827292,0.8503449055347546,0.7903864795495061,0.059958425985248476,True
+dense_wins,fiqa,fiqa:4153,How do I invest in emerging markets,0.6,0.0,0.3154648767857287,0.2890648263178879,0.02640005046784083,False
+dense_wins,fiqa,fiqa:4286,"Given advice “buy term insurance and invest the rest”, how should one “invest the rest”?",0.6,0.6131471927654584,0.8315546295836225,0.6131471927654584,0.2184074368181641,True
+bm25_wins,fiqa,fiqa:4306,How do currency markets work? What factors are behind why currencies go up or down?,0.6,0.5855700749881525,0.3903800499921017,0.5413996682199069,0.044170406768245574,True
+bm25_wins,fiqa,fiqa:4312,Is it true that 90% of investors lose their money?,0.6,0.7640814291585591,0.6334982227809455,0.7202356619815307,0.04384576717702848,False
+dense_wins,fiqa,fiqa:4411,How does the importance of a cash emergency fund change when you live in a country with nationalized healthcare?,0.6,0.1412669728598289,0.3228087653971817,0.1480409554829326,0.17476780991424906,True
+dense_wins,fiqa,fiqa:4433,When should you use an actively managed mutual fund in a 401k?,0.6,0.0,0.2043823975884861,0.0,0.2043823975884861,True
+dense_wins,fiqa,fiqa:4514,"What intrinsic, non-monetary value does gold have as a commodity?",0.6,0.1513012067494067,0.4103915680233244,0.3422220729283414,0.06816949509498299,True
+dense_wins,fiqa,fiqa:4523,What should I do with my $25k to invest as a 20 years old?,0.6,0.0,0.098039285831357,0.0,0.098039285831357,False
+dense_wins,fiqa,fiqa:4571,"HSBC Hong Kong's “Deposit Plus” Product: What is it, and what strategies to employ?",0.6,0.4692787260227564,0.7653606369886217,0.7039180890341347,0.061442547954487,False
+dense_wins,fiqa,fiqa:4605,"If the U.S. defaults on its debt, what will happen to my bank money?",0.6,0.08274602130532,0.628610217676767,0.5151154298255826,0.11349478785118439,False
+dense_wins,fiqa,fiqa:4640,What can my relatives do to minimize their out of pocket expenses on their fathers estate,0.6,0.0,0.1412669728598289,0.0,0.1412669728598289,True
+dense_wins,fiqa,fiqa:4641,Where should I park my rainy-day / emergency fund?,0.6,0.0,0.5087403079104241,0.4599715079731103,0.04876879993731381,True
+dense_wins,fiqa,fiqa:4756,What is the formula for the Tesla Finance calculation?,0.6,0.0,1.0,0.5,0.5,True
+dense_wins,fiqa,fiqa:4804,How do financial services aimed at women differ from conventional services?,0.6,0.0,1.0,0.9197207891481876,0.08027921085181244,False
+dense_wins,fiqa,fiqa:4827,Are all financial advisors compensated in the same way?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,fiqa,fiqa:4968,Reasons behind a large price movement of a penny stock without any recent news releases?,0.6,0.3562071871080222,0.0,0.3154648767857287,0.040742310322293473,True
+dense_wins,fiqa,fiqa:4999,Looking for a good source for Financial Statements,0.6,0.24630238874073,0.6366824387328317,0.5135312443624667,0.12315119437036504,True
+dense_wins,fiqa,fiqa:503,Privacy preferences on creditworthiness data,0.6,0.0,0.3154648767857287,0.0,0.3154648767857287,False
+bm25_wins,fiqa,fiqa:5067,LLC: Where should the funds for initial startup costs come from?,0.6,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+dense_wins,fiqa,fiqa:5083,Co-signer deceased,0.6,0.0,0.3868528072345416,0.1772392867840477,0.20961352045049386,True
+dense_wins,fiqa,fiqa:5172,does interest payment on loan stay the same if I pay early,0.6,0.0,0.1845756967795681,0.0,0.1845756967795681,False
+dense_wins,fiqa,fiqa:5178,Formula that predicts whether one is better off investing or paying down debt,0.6,0.0,0.4461533376408799,0.3391602052736161,0.10699313236726377,False
+dense_wins,fiqa,fiqa:5206,Is it a good idea to get an unsecured loan to pay off a credit card that won't lower a high rate?,0.6,0.0,0.0954604330894673,0.0,0.0954604330894673,False
+bm25_wins,fiqa,fiqa:5331,Exercises of employee share options,0.6,1.0,0.430676558073393,0.6309297535714575,0.36907024642854247,True
+dense_wins,fiqa,fiqa:5356,Historical stock prices: Where to find free / low cost data for offline analysis?,0.6,0.0,0.1020973951229116,0.0,0.1020973951229116,True
+dense_wins,fiqa,fiqa:5402,Is it impossible to get a home loan with a poor credit history after a divorce?,0.6,0.0,0.3868528072345416,0.2640681225725909,0.1227846846619507,True
+dense_wins,fiqa,fiqa:5422,"What are some good books for learning stocks, bonds, derivatives e.t.c for beginner with a math background?",0.6,0.0,0.3903800499921017,0.24630238874073,0.1440776612513717,True
+bm25_wins,fiqa,fiqa:5460,Paying off a loan with a loan to get a better interest rate,0.6,0.098039285831357,0.0,0.0,0.098039285831357,True
+dense_wins,fiqa,fiqa:547,What percentage of my company should I have if I only put money?,0.6,0.0,0.2184074368181641,0.0,0.2184074368181641,True
+dense_wins,fiqa,fiqa:5503,Tax considerations for selling a property below appraised value to family?,0.6,0.0,0.5714285040141098,0.2640681225725909,0.30736038144151895,True
+dense_wins,fiqa,fiqa:5511,Pay off car loan entirely or leave $1 until the end of the loan period?,0.6,0.0,0.0636207881989517,0.0,0.0636207881989517,True
+dense_wins,fiqa,fiqa:570,Employer options when setting up 401k for employees,0.6,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+bm25_wins,fiqa,fiqa:5763,What is the best way to get a “rough” home appraisal prior to starting the refinance process?,0.6,0.1671604549662022,0.0,0.0,0.1671604549662022,True
+bm25_wins,fiqa,fiqa:5808,How do you calculate return on investment for a share of stock?,0.6,0.3154648767857287,0.0,0.2890648263178879,0.02640005046784083,False
+dense_wins,fiqa,fiqa:588,Is there a reason to buy a 0% yield bond?,0.6,0.6131471927654584,1.0,0.8503449055347546,0.1496550944652454,True
+bm25_wins,fiqa,fiqa:5888,Interest charges on balance transfer when purchases are involved,0.6,0.3065735963827292,0.0,0.1845756967795681,0.1219978996031611,True
+bm25_wins,fiqa,fiqa:5951,Why can't house prices be out of tune with salaries,0.6,0.3365757659984724,0.2162406314884398,0.2350455494144853,0.10153021658398709,False
+dense_wins,fiqa,fiqa:5993,Why would anyone want to pay off their debts in a way other than “highest interest” first?,0.6,0.0783982689786753,0.3494867399516552,0.3280622976814645,0.02142444227019069,False
+dense_wins,fiqa,fiqa:603,Will one’s education loan application be rejected if one doesn't have a payslip providing collateral?,0.6,0.0,0.3562071871080222,0.3154648767857287,0.040742310322293473,False
+dense_wins,fiqa,fiqa:604,"Is there a dollar amount that, when adding Massachusetts Sales Tax, precisely equals $200?",0.6,0.0,0.7039180890341347,0.6508205185601091,0.053097570474025524,False
+dense_wins,fiqa,fiqa:6121,What are my best options if I don't have a lot of credit lines for housing loans?,0.6,0.0,0.2371977127692962,0.1845756967795681,0.0526220159897281,False
+dense_wins,fiqa,fiqa:6122,Better to rent condo to daughter or put her on title?,0.6,0.4692787260227564,0.6049306994552042,0.4692787260227564,0.13565197343244778,True
+bm25_wins,fiqa,fiqa:6142,How does stabilization work during an IPO?,0.6,0.3868528072345416,0.0,0.1772392867840477,0.20961352045049386,True
+dense_wins,fiqa,fiqa:6146,Lost credit card replaced with new card and new numbers. Credit score affected?,0.6,0.6131471927654584,1.0,0.9197207891481876,0.08027921085181244,True
+bm25_wins,fiqa,fiqa:6410,Will an ETF immediately reflect a reconstitution of underlying index,0.6,0.6309297535714575,0.0,0.0,0.6309297535714575,True
+dense_wins,fiqa,fiqa:6468,Why deep in the money options have very low liquidity,0.6,0.6131471927654584,0.8503449055347546,0.6131471927654584,0.23719771276929624,True
+bm25_wins,fiqa,fiqa:6525,Does it make sense to trade my GOOGL shares for GOOG and pocket the difference?,0.6,0.4776237035032179,0.2346393630113782,0.4373488838256942,0.04027481967752372,True
+dense_wins,fiqa,fiqa:659,Buying from an aggressive salesperson,0.6,0.3120490772217806,0.7534494445524138,0.6177639991612475,0.13568544539116634,True
+dense_wins,fiqa,fiqa:6611,How does Vanguard determine the optimal asset allocation for their Target Retirement Funds?,0.6,0.3065735963827292,0.9197207891481876,0.8772153153380493,0.04250547381013825,True
+dense_wins,fiqa,fiqa:6635,Why don't share prices of a company rise every other Friday when the company buys shares for its own employees?,0.6,0.3903800499921017,0.8048099750039491,0.6366824387328317,0.16812753627111743,True
+bm25_wins,fiqa,fiqa:6668,Approximate IT company valuation (to proximate stock options value),0.6,0.3065735963827292,0.0,0.2640681225725909,0.042505473810138306,False
+dense_wins,fiqa,fiqa:6679,Specifically when do options expire?,0.6,0.0,0.7039180890341347,0.5307212739772434,0.17319681505689122,True
+bm25_wins,fiqa,fiqa:6683,Who are the sellers for the new public stocks?,0.6,0.2184074368181641,0.0,0.0,0.2184074368181641,True
+bm25_wins,fiqa,fiqa:6849,What do the points in a stock market index epresent?,0.6,0.5,0.0,0.3154648767857287,0.1845351232142713,True
+dense_wins,fiqa,fiqa:6862,Canada discount stock brokers: Interactive Brokers vs. Questrade?,0.6,0.3010299956639812,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,fiqa,fiqa:6875,Where to find free Thailand stock recommendations and research?,0.6,0.3010299956639812,0.0,0.0,0.3010299956639812,True
+dense_wins,fiqa,fiqa:6959,What is the term for the quantity (high price minus low price) for a stock?,0.6,0.0,0.3065735963827292,0.2371977127692962,0.069375883613433,False
+bm25_wins,fiqa,fiqa:7068,Making money through CFD,0.6,0.9197207891481876,0.2184074368181641,0.3868528072345416,0.5328679819136459,True
+dense_wins,fiqa,fiqa:7098,Can another tax loss be used to offset capital gains taxes? How does it work?,0.6,0.3868528072345416,0.5912352048230277,0.3868528072345416,0.20438239758848614,False
+bm25_wins,fiqa,fiqa:7109,How do I analyse moving averages?,0.6,0.4692787260227564,0.0,0.1480409554829326,0.3212377705398238,True
+dense_wins,fiqa,fiqa:7124,How come we can find stocks with a Price-to-Book ratio less than 1?,0.6,0.1301266833307005,0.5855700749881525,0.5585075862632192,0.02706248872493333,False
+dense_wins,fiqa,fiqa:7145,Are there “buy and hold” passively managed funds?,0.6,0.0,0.1815417925373526,0.1412669728598289,0.04027481967752369,True
+dense_wins,fiqa,fiqa:7178,Should an ADR that is being delisted be sold off?,0.6,0.0,1.0,0.3562071871080222,0.6437928128919779,True
+bm25_wins,fiqa,fiqa:7218,What margin is required to initiate and maintain a short sale,0.6,0.3868528072345416,0.0,0.3562071871080222,0.03064562012651939,True
+dense_wins,fiqa,fiqa:7279,"If I invest in securities denominated in a foreign currency, should I hedge my currency risk?",0.6,0.1128451413489352,0.8048099750039491,0.5855700749881525,0.21923990001579663,True
+dense_wins,fiqa,fiqa:7329,Does Implied Volatilty factor in all known future events?,0.6,0.0,0.6131471927654584,0.3868528072345416,0.2262943855309168,False
+bm25_wins,fiqa,fiqa:7344,How is the Dow divisor calculated?,0.6,0.3868528072345416,0.2640681225725909,0.2640681225725909,0.1227846846619507,True
+dense_wins,fiqa,fiqa:744,What options are available for a home loan with poor credit but a good rental history?,0.6,0.0,0.2021073465005475,0.1815417925373526,0.020565553963194927,False
+dense_wins,fiqa,fiqa:7463,Pros/cons of borrowing money using a mortgage loan and investing it in a low-fee index fund?,0.6,0.0,0.3391602052736161,0.2139862647345275,0.12517394053908862,True
+bm25_wins,fiqa,fiqa:7529,Does the expense ratio of a fund-of-funds include the expense ratios of its holdings?,0.6,0.3065735963827292,0.1934264036172708,0.2184074368181641,0.08816615956456508,True
+dense_wins,fiqa,fiqa:7754,Inverse Relationship between Volatility and Beta,0.6,0.0,0.3010299956639812,0.0,0.3010299956639812,False
+bm25_wins,fiqa,fiqa:7880,Are there index tracking funds that avoid the “buy high - sell low” problem?,0.6,0.3868528072345416,0.0,0.2043823975884861,0.1824704096460555,False
+bm25_wins,fiqa,fiqa:7928,"If I believe a stock is going to fall, what options do I have to invest on this?",0.6,0.1951900249960508,0.1128451413489352,0.1390561795107756,0.0561338454852752,True
+dense_wins,fiqa,fiqa:7936,Why naked call writing is risky compare to Covered call?,0.6,0.1480409554829326,0.617319681505689,0.4441228664487979,0.17319681505689116,True
+bm25_wins,fiqa,fiqa:8072,"What does it mean “sell on ask” , “sell on bid” in stocks?",0.6,0.3759063358712072,0.0,0.1564262420075854,0.2194800938636218,True
+dense_wins,fiqa,fiqa:8079,Growth rate plus dividend yieid total?,0.6,0.3826803184943108,0.9469024295259744,0.8529278650606567,0.09397456446531771,True
+dense_wins,fiqa,fiqa:813,Income Tax and Investments,0.6,0.0,0.6131471927654584,0.3065735963827292,0.3065735963827292,True
+bm25_wins,fiqa,fiqa:8275,Buy/Selling prices at the stock exchange represent someone Selling/Buying at that price?,0.6,0.2890648263178879,0.0,0.0,0.2890648263178879,True
+bm25_wins,fiqa,fiqa:8351,What happens when a calendar spread is assigned in a non-margin account?,0.6,0.2043823975884861,0.0,0.0,0.2043823975884861,True
+dense_wins,fiqa,fiqa:8378,Should I wait a few days to sell ESPP Stock?,0.6,0.0,0.1356519734324477,0.0,0.1356519734324477,True
+bm25_wins,fiqa,fiqa:852,Dalbar: How can the average investor lose money?,0.6,0.9217868789962071,0.7039180890341347,0.8710785440003369,0.05070833499587024,True
+dense_wins,fiqa,fiqa:8532,What do these options trading terms mean?,0.6,0.2960819109658652,0.6462302129493456,0.6105456988825855,0.0356845140667601,False
+dense_wins,fiqa,fiqa:859,"Any reason to keep around my account with my old, 'big' bank?",0.6,0.0,0.1772392867840477,0.0,0.1772392867840477,True
+bm25_wins,fiqa,fiqa:8592,Tax implications of exercising ISOs and using proceeds to exercise more ISOs,0.6,0.3171937659698004,0.1412669728598289,0.0,0.3171937659698004,True
+dense_wins,fiqa,fiqa:8592,Tax implications of exercising ISOs and using proceeds to exercise more ISOs,0.6,0.3171937659698004,0.1412669728598289,0.0,0.1412669728598289,False
+dense_wins,fiqa,fiqa:8779,How does a defined contribution plan work,0.6,0.0,0.2043823975884861,0.0,0.2043823975884861,False
+dense_wins,fiqa,fiqa:8834,Pros/Cons of Buying Discounted Company Stock,0.6,0.1303237659103706,0.6980575869171198,0.6238470455881188,0.07421054132900107,True
+bm25_wins,fiqa,fiqa:8874,When can you adjust for (and re-allow) a disallowed year-end (December) wash-sale loss?,0.6,0.3333333333333333,0.0,0.0,0.3333333333333333,True
+bm25_wins,fiqa,fiqa:89,How can I deposit a check made out to my business into my personal account?,0.6,0.1909208661789346,0.1170625931379635,0.1513012067494067,0.039619659429527915,False
+bm25_wins,fiqa,fiqa:8934,Dividend yield for multiple years?,0.6,0.2184074368181641,0.0,0.1772392867840477,0.04116815003411639,False
+dense_wins,fiqa,fiqa:8947,Can a Roth IRA be used as a savings account?,0.6,0.0,0.2184074368181641,0.1772392867840477,0.04116815003411639,True
+bm25_wins,fiqa,fiqa:8959,How is the opening-day price of a stock decided?,0.6,0.3562071871080222,0.0,0.0,0.3562071871080222,True
+dense_wins,fiqa,fiqa:8974,"As a 22-year-old, how risky should I be with my 401(k) investments?",0.6,0.1264713513838285,0.6291031399287498,0.5026317885449211,0.1264713513838287,True
+dense_wins,fiqa,fiqa:9115,Why does the calculation for percentage profit vary based on whether a position is short vs. long?,0.6,0.0,0.3692678014667498,0.3487022475035549,0.020565553963194927,True
+dense_wins,fiqa,fiqa:9188,Selling mutual fund and buying equivalent ETF: Can I 1031 exchange?,0.6,0.6131471927654584,1.0,0.8503449055347546,0.1496550944652454,True
+dense_wins,fiqa,fiqa:9296,Why would Two ETFs tracking Identical Indexes Produce different Returns?,0.6,0.0,0.2640681225725909,0.2371977127692962,0.026870409803294693,True
+bm25_wins,fiqa,fiqa:9329,Interactive Brokers: IOPTS and list of structured products,0.6,0.8175295903539445,0.6131471927654584,0.6131471927654584,0.2043823975884861,True
+dense_wins,fiqa,fiqa:939,How to correct a tax return filed electronically and already approved?,0.6,0.3154648767857287,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,fiqa,fiqa:945,Paid by an American company but working from France: where should I pay taxes?,0.6,0.0,0.3562071871080222,0.3154648767857287,0.040742310322293473,False
+bm25_wins,fiqa,fiqa:9556,How does pre-market trading work?,0.6,1.0,0.0,0.430676558073393,0.569323441926607,True
+dense_wins,fiqa,fiqa:9617,What differentiates index funds and ETFs?,0.6,0.0,0.2960819109658652,0.2346393630113782,0.06144254795448703,False
+dense_wins,fiqa,fiqa:9646,Do common stocks and preferred stocks have any differences in terms of percentage of the company per unit they represent?,0.6,0.2043823975884861,0.3868528072345416,0.2640681225725909,0.1227846846619507,True
+bm25_wins,fiqa,fiqa:9737,Long(100%)-Short(-100%) investment explanation,0.6,0.9674679834891692,0.0,0.6713860725233041,0.2960819109658651,True
+bm25_wins,fiqa,fiqa:9808,Selling To Close,0.6,0.1564262420075854,0.0,0.0,0.1564262420075854,True
+bm25_wins,fiqa,fiqa:9871,What should I do with the 50k I have sitting in a European bank?,0.6,0.1951900249960508,0.0,0.0,0.1951900249960508,True
+dense_wins,fiqa,fiqa:9929,"Investing in commodities, pros and cons?",0.6,0.0,0.4227898344066503,0.1845756967795681,0.2382141376270822,True
+bm25_wins,fiqa,fiqa:9961,Employer rollover from 403b to 401k?,0.6,0.6309297535714575,0.0,0.430676558073393,0.20025319549806453,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:10055,Why does `last` show '{' and '|' in the TTY field?,0.6,0.0,0.430676558073393,0.3333333333333333,0.09734322474005969,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:101392,Why does halt not turn the machine off?,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:101772,Xorg.conf to only use part of screen,0.6,0.430676558073393,0.0,0.3010299956639812,0.1296465624094118,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:102732,Regex and patterns on a ksh command line,0.6,0.0,0.6309297535714575,0.3562071871080222,0.27472256646343535,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:103019,Can't install new applications,0.6,0.0,0.5,0.3562071871080222,0.14379281289197782,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:103270,How do I get the current bandwidth speed of an interface from the terminal?,0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:1033,"How to change font-size, number of rows / columns on a terminal",0.6,0.3868528072345416,1.0,0.5,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:10355,git and remote security with Encfs,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:104018,Set dynamic window title based on command input,0.6,0.0,0.6131471927654584,0.2371977127692962,0.3759494799961622,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:105402,"/dev/disk/ lists disks, why /dev/net/ doesn't list network interfaces?",0.6,0.2890648263178879,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:105717,upgrading an O.S. affects which file systems?,0.6,0.6309297535714575,0.0,0.3154648767857287,0.3154648767857288,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:105908,How to display meminfo in megabytes in top?,0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:106377,How to route traffic to different interfaces for different ports,0.6,0.1772392867840477,0.3868528072345416,0.3065735963827292,0.08027921085181239,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:107111,what is meant by vi and emacs editing modes,0.6,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:107168,What's the practical difference between `command` and $(command)?,0.6,0.098039285831357,0.7227265726449519,0.6992148198508501,0.02351175279410178,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:107541,Add ssh user with minimum rights for backup,0.6,0.0,0.430676558073393,0.3154648767857287,0.11521168128766429,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:108222,Linux - Sending a command to a screen through a shell script?,0.6,0.3080351663449861,0.1510196182278052,0.1951900249960508,0.11284514134893533,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:110269,The amount of time since the system was last booted,0.6,0.6309297535714575,0.0,0.0,0.6309297535714575,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:110540,Adding Postgres bins to PATH: should I `export`?,0.6,0.3853585682515056,0.2900757977385808,0.3191471544989227,0.06621141375258288,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:110595,Why do forked processes sometimes appear with brackets [] around their name in ps?,0.6,0.8451850618939637,0.6653497124326151,0.8179809735263114,0.027204088367652313,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:111650,How to set up wireshark with correct permissions,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:11343,Linux tools to treat files as sets and perform set operations on them,0.6,1.0,0.0,0.3333333333333333,0.6666666666666667,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:114235,Weird behaviour on debian machine,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:114274,An init-script does not get called on shutdown,0.6,0.6309297535714575,0.0,0.3562071871080222,0.27472256646343535,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:114613,How to determine which init system is used?,0.6,0.0,0.6787622294601761,0.5723986829443736,0.10636354651580249,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:116498,List the file permissions of only the current directory,0.6,0.6131471927654584,0.3868528072345416,0.3868528072345416,0.2262943855309168,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:116640,What is maximum RAM supportable by Linux?,0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:1168,how to glob every hidden file except current and parent directory,0.6,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:116847,lsmod outputs: Not tainted,0.6,0.5,0.0,0.3868528072345416,0.11314719276545843,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:116849,Why load is high despite the fact that neither CPU or disk is overused,0.6,0.0,0.430676558073393,0.3333333333333333,0.09734322474005969,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:119662,Can we make grep faster by indexing words in files?,0.6,0.0,1.0,0.5,0.5,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:119733,Can a superuser (with 'root' access) manipulate data on a database installed on the server?,0.6,0.3868528072345416,0.0,0.0,0.3868528072345416,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:119779,alternatives to adding entry in /etc/hosts,0.6,0.1815417925373526,0.4692787260227564,0.2960819109658652,0.17319681505689116,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:120067,Copy files without changing owner,0.6,0.0,0.6309297535714575,0.3154648767857287,0.3154648767857288,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:121761,Having ssh tunneling itself for remote access from a third machine,0.6,0.0,0.2346393630113782,0.2021073465005475,0.03253201651083068,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:122014,setting output of a command to a variable,0.6,0.0,0.4034698846650846,0.2917883373452057,0.1116815473198789,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:12332,Which are the biggest offshoots of UNIX?,0.6,0.0,0.3562071871080222,0.2890648263178879,0.0671423607901343,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:124351,Transfer files client-server inside a SSH session,0.6,0.0,0.2748763329142908,0.1063366810302298,0.168539651884061,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:12522,Installing two glibc alongside in debian/ubuntu,0.6,0.0,0.3154648767857287,0.0,0.3154648767857287,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:127110,Which process scheduler is my linux system using?,0.6,0.6131471927654584,0.9197207891481876,0.8772153153380493,0.04250547381013825,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:128060,finding specific path for an installed program,0.6,0.0,0.3764290720714305,0.1951900249960508,0.18123904707537972,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:129072,What's the difference between $@ and $*,0.6,0.0,0.5531464700081437,0.5087403079104241,0.044406162097719526,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:130796,What is the difference between all and default in kernel setting?,0.6,0.0,0.430676558073393,0.3868528072345416,0.04382375083885143,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:131168,renaming multiple files increment order,0.6,0.0,0.3868528072345416,0.3154648767857287,0.07138793044881286,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:132115,How to find reason a notebook wakes up?,0.6,0.0,1.0,0.5,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:132122,shell or python script to transpose rows to columns,0.6,0.448643819352159,1.0,0.8315546295836225,0.16844537041637753,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:13251,Batch delete exif info,0.6,1.0,0.0,0.6309297535714575,0.36907024642854247,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:136258,What are the advantages / disadvantages Linux file hierarchy has in compare to other OSs?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:137219,Execute snippet of code when key is pressed,0.6,0.3562071871080222,0.0,0.3010299956639812,0.055177191444040985,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:138398,How to get lines 10 to 100 from a 200 line file into a new file,0.6,0.0797945385624481,0.5252085403110709,0.4125317798925534,0.11267676041851749,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:138877,Extracting text using sed does not work as expected,0.6,0.0,0.3868528072345416,0.3065735963827292,0.08027921085181239,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:13996,How can I break away from an SSH session that has crashed?,0.6,0.8503449055347546,0.6131471927654584,0.6131471927654584,0.23719771276929624,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:141402,SCP Automation in production environment,0.6,0.5,0.0,0.0,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:143871,What is the difference between ~ and / in paths,0.6,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:14537,How to limit resource usage to save CPU+RAM for a certain process?,0.6,0.6309297535714575,0.3010299956639812,0.3868528072345416,0.24407694633691596,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:146114,How to find which application is creating a particular file in a path?,0.6,0.0,0.7039180890341347,0.4441228664487979,0.25979522258533677,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:146521,Result of diff two files with switched lines says missing the same line twice,0.6,0.3562071871080222,0.0,0.0,0.3562071871080222,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:146773,why bash increment: `n=0;((n++));` return error?,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:147568,Is there a way to pass a Password to ssh automatically?,0.6,0.0,0.3010299956639812,0.0,0.3010299956639812,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:148843,Searching in man pages,0.6,0.1356519734324477,0.1412669728598289,0.0,0.1356519734324477,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:148843,Searching in man pages,0.6,0.1356519734324477,0.1412669728598289,0.0,0.1412669728598289,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:151455,Show signals received by processes,0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:152733,bashrc in custom folder,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:153569,SSH - Is it possible for an SSH session to take complete control of the client?,0.6,0.0,0.3868528072345416,0.3562071871080222,0.03064562012651939,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:15360,How to add a ssh user who only has permissions to access specific folder?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:153977,Automatically put an alias into ~/.bashrc or ~/.zshrc,0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:154509,How can I make sed not append a newline character?,0.6,0.0,0.6309297535714575,0.3868528072345416,0.24407694633691596,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:154803,Obtaining information about system hardware,0.6,0.0,0.3868528072345416,0.0,0.3868528072345416,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:15611,What is the difference between 'su -' and 'su root'?,0.6,0.0,0.4692787260227564,0.2021073465005475,0.2671713795222089,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:15932,How do I add a user in SVN?,0.6,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:16120,In bash how can I change the color of my command prompt?,0.6,0.6131471927654584,0.6934264036172708,0.6240505200038379,0.06937588361343294,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:16815,What does DISPLAY=:0.0 actually mean?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:17323,Installing a .deb package in home directory,0.6,0.0,0.430676558073393,0.3010299956639812,0.1296465624094118,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:1832,Why do some commands have man pages and other commands use --help?,0.6,0.0,0.5,0.3562071871080222,0.14379281289197782,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:18796,How to apply changes of newly added user groups without needing to reboot?,0.6,0.9197207891481876,0.3868528072345416,0.5912352048230277,0.32848558432515984,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:18877,What is the proper sudoers syntax to add a user?,0.6,1.0,0.3562071871080222,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:19232,Boot-loader to boot to an encrypted partition,0.6,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:20193,How to make putty to not break my session after some time?,0.6,0.3333333333333333,0.0,0.2890648263178879,0.044268507015445435,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:2062,grep - why do brackets in grep pattern remove the grep process from ps results?,0.6,0.0,0.430676558073393,0.3562071871080222,0.07446937096537082,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:20804,"In a regular expression, which characters need escaping?",0.6,1.0,0.5,0.5,0.5,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:21449,How can I prevent Apt-Get from autoremoving packages?,0.6,0.3868528072345416,0.0,0.3154648767857287,0.07138793044881286,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:21920,SSH output isn't line buffered?,0.6,0.0,0.3010299956639812,0.0,0.3010299956639812,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:21956,Pretty tail -f for log files,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:23163,Newlines in filenames,0.6,0.0,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:23306,Can the background of the log-in screen of linux mint 11 change?,0.6,0.3010299956639812,0.0,0.0,0.3010299956639812,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:23833,How can I tell what version of linux I'm using?,0.6,0.0,0.3562071871080222,0.0,0.3562071871080222,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:24878,How do I install g++ on RHEL6?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:25404,Is there a difference between Linux and Unix?,0.6,0.5205067333228022,0.8048099750039491,0.5855700749881525,0.21923990001579663,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:25541,Updating tar.gz daily only with changed files,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:2577,How can I move files and view the progress (e.g. with a progress bar)?,0.6,0.5032251913410369,0.7541985434892589,0.5585075862632192,0.19569095722603969,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:2606,Get list of required libraries when installing something from source,0.6,0.0,0.9197207891481876,0.8772153153380493,0.04250547381013825,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:2658,Why use swap when there is more than enough free space in RAM?,0.6,0.0,1.0,0.5,0.5,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:26928,Should I install 32 or 64 bit?,0.6,0.0,0.6309297535714575,0.3010299956639812,0.32989975790747633,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:27220,ssh + nohup does not work,0.6,0.6309297535714575,0.0,0.3154648767857287,0.3154648767857288,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:28267,"what does ""serial=${serial##*.}"" do?",0.6,0.0,0.0731168384439099,0.0,0.0731168384439099,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:28363,"What's the difference between ""s"" and ""S"" in ls -la?",0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:28506,How do you install Grub2 on a USB stick?,0.6,0.0,0.3562071871080222,0.3154648767857287,0.040742310322293473,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:28615,How to hide commands typed in a Linux shell?,0.6,0.3868528072345416,0.1772392867840477,0.3065735963827292,0.08027921085181239,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:29182,"Meaning of ""* */1 * * *"" cron entry?",0.6,0.3868528072345416,0.0,0.3333333333333333,0.05351947390120826,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:29470,Keep running a script via ssh,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:29791,.bash_profile not sourced when running su,0.6,0.3868528072345416,0.0,0.0,0.3868528072345416,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:30400,"Execute remote commands, completely detaching from the ssh connection",0.6,0.6131471927654584,0.0,0.1845756967795681,0.4285714959858903,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:30470,What does `:-` mean in a shell script,0.6,0.0,0.6131471927654584,0.3868528072345416,0.2262943855309168,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:30621,Execute command for x seconds?,0.6,0.0,0.1951900249960508,0.1510196182278052,0.044170406768245574,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:30956,How to access the data stored in guest operating system(i.e Virtual machine) from Host system,0.6,1.0,0.3868528072345416,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:32314,using SSH to connect to remote CentOS 5.6 server where Firefox running on server is very slow,0.6,0.0,0.3154648767857287,0.0,0.3154648767857287,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:33099,How to check progress when cloning a disk using `dd`?,0.6,0.0,0.3868528072345416,0.3154648767857287,0.07138793044881286,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:33203,How does load average work with modern CPU's?,0.6,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:33519,How to make X less sensitive when right clicking?,0.6,0.0,1.0,0.430676558073393,0.569323441926607,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:33541,`free`: output format,0.6,1.0,0.0,0.5,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:35338,su vs sudo -s vs sudo bash,0.6,0.2043823975884861,0.5714285040141098,0.4838128831667769,0.08761562084733293,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:3645,How can I check which shell I am currently using?,0.6,0.1301266833307005,0.9493885684853096,0.7541985434892589,0.19519002499605076,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:366,"Convince grep to output all lines, not just those with matches",0.6,0.0,0.1312050775123417,0.098039285831357,0.0331657916809847,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:36682,Printing files as PDF with syntax highlighting via terminal,0.6,0.0,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:3747,Understanding the exclamation mark (!) in bash,0.6,0.0,0.1356519734324477,0.0,0.1356519734324477,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:38191,Terminal 256 colors don't work through Tmux,0.6,0.3065735963827292,0.3868528072345416,0.3065735963827292,0.08027921085181239,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:38634,"Is there any way to exit ""less"" without clearing the screen?",0.6,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:39652,Colorized `cat` for source and script files?,0.6,0.0,0.2184074368181641,0.0,0.2184074368181641,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:41141,How to clean up the RAM memory that is being used as cache memory?,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:41555,can't change file permission,0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:43154,How do I set permissions for a directory so that files and directories created under it maintain group write permissions?,0.6,0.0,0.430676558073393,0.0,0.430676558073393,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:4422,Is gnu coreutils sort broken?,0.6,0.6131471927654584,0.1845756967795681,0.2371977127692962,0.3759494799961622,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:44421,"One machine & two keyboard, mouse & monitors",0.6,0.6131471927654584,0.3065735963827292,0.3868528072345416,0.2262943855309168,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:45040,Why isn't there a server edition for Fedora like Ubuntu?,0.6,0.0,1.0,0.5,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:46796,How to pass a variable to an sh child process?,0.6,0.0,0.430676558073393,0.3333333333333333,0.09734322474005969,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:47730,Rescale a PDF file,0.6,0.0,0.3333333333333333,0.2890648263178879,0.044268507015445435,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:47941,What's wrong with these two cron job's?,0.6,0.6309297535714575,0.0,0.3868528072345416,0.24407694633691596,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:49058,Shouldn't there be more RAM free than this?,0.6,0.1077891545245109,0.0,0.0,0.1077891545245109,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:49183,MySQL not getting started on linux,0.6,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:49567,How do you access internet in RHEL 5 using Android smartphone USB LAN?,0.6,0.0,0.6309297535714575,0.3868528072345416,0.24407694633691596,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:49785,Distribution for eldery people,0.6,0.3010299956639812,0.0,0.0,0.3010299956639812,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:49942,Simple jail for user with open-ssh,0.6,0.2960819109658652,0.0,0.1480409554829326,0.1480409554829326,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:50150,"Can I map a key (caps lock) so it does one thing pressed alone, and another when pressed with a second key?",0.6,0.0,0.430676558073393,0.3868528072345416,0.04382375083885143,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:50186,Home folder name with Unicode characters?,0.6,0.5,0.0,0.0,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:50508,Reusing ssh session for repeated rsync commands,0.6,0.0,0.6131471927654584,0.3065735963827292,0.3065735963827292,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:52268,Why is it a bad idea to run as root?,0.6,0.0,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:52908,"How do I ""merge"" two text files?",0.6,0.0,0.3868528072345416,0.3333333333333333,0.05351947390120826,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:53143,Move a file and re-target all of its symlinks,0.6,0.0,0.3868528072345416,0.0,0.3868528072345416,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:53250,Package managers for local installations under home directory,0.6,0.0,0.8772153153380493,0.6240505200038379,0.25316479533421143,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:53875,Is there any impact of reaping zombie processes?,0.6,0.3333333333333333,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:54975,How to check that a daemon is listening on what interface?,0.6,0.3154648767857287,0.0,0.0,0.3154648767857287,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:55124,Remove a block of lines between two patterns,0.6,0.0,0.5,0.430676558073393,0.069323441926607,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:57012,Coloring shell command and output differrently,0.6,0.5,0.3154648767857287,0.430676558073393,0.069323441926607,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:58963,Script to convert filenames to lowercase depending on extension,0.6,0.3065735963827292,0.6131471927654584,0.3868528072345416,0.2262943855309168,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:604,Isn't less just more?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:61313,Renaming Files according to Pattern,0.6,0.08274602130532,0.1734276569882394,0.1374381664571454,0.03598949053109399,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:62830,"""error setting up gummiboot-efi"" on Archboot UEFI install",0.6,0.0,0.430676558073393,0.0,0.430676558073393,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:63284,why cannot rename subdir when parent dir owner is not the same user,0.6,0.0,0.3562071871080222,0.2890648263178879,0.0671423607901343,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:63594,Avoiding temporary files in zsh,0.6,0.0,0.3154648767857287,0.0,0.3154648767857287,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:64203,How to get lighter (more white) themes for Xfce?,0.6,0.430676558073393,0.3154648767857287,0.3868528072345416,0.04382375083885143,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:65110,No more coredumps after migrating to systemd,0.6,0.0,0.2890648263178879,0.0,0.2890648263178879,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:6790,executing a sh script from the cron,0.6,0.0,0.1845756967795681,0.0,0.1845756967795681,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:685,Why put things other than /home to a separate partition?,0.6,0.0,1.0,0.5,0.5,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:71857,What is the @ after directory listing mean?,0.6,0.0,0.113053401757872,0.0,0.113053401757872,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:72096,Grab text from detached screen,0.6,0.0,0.430676558073393,0.3562071871080222,0.07446937096537082,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:73527,why . and .. are listed when ls -a command executed?,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:73750,difference between function foo() {} and foo() {},0.6,0.0,1.0,0.3868528072345416,0.6131471927654584,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:73836,Failed to sign CSR with the CA root key,0.6,1.0,0.0,0.3868528072345416,0.6131471927654584,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:73989,Why do Unix man pages use double backticks in place of double quotes?,0.6,1.0,0.3868528072345416,0.6309297535714575,0.36907024642854247,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:7412,How to reconnect a logically disconnected USB device?,0.6,0.4692787260227564,0.0,0.2346393630113782,0.2346393630113782,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:74322,Tailing a New File with an Old Name,0.6,0.6131471927654584,0.2184074368181641,0.3868528072345416,0.2262943855309168,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:75059,How to blacklist a correct bad RAM sector according to MemTest86+ error indication?,0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:76162,How do I capture the return status and use tee at the same time in korn shell?,0.6,0.0,0.1303237659103706,0.1008674711662711,0.029456294744099498,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:7631,error booting the custom compiled kernel 2.6.37 on ubuntu 10.04 : gave up waiting on root device,0.6,0.0,0.1845756967795681,0.0,0.1845756967795681,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:7658,Linux: Writing a watchdog to monitor multiple processes,0.6,1.0,0.3154648767857287,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:78886,LVM to extend a partition?,0.6,0.0,0.6309297535714575,0.0,0.6309297535714575,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:79211,Can linux systems on multiple virtual machines share the same swap partition?,0.6,0.2640681225725909,0.0,0.0,0.2640681225725909,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:79882,What exactly did mv /tmp/folder/* /* do to my filesystem?,0.6,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:82515,"How can I filter those ""Permission denied"" from find output?",0.6,0.6509209298071326,1.0,0.9197207891481876,0.08027921085181244,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:82657,Trouble with mv and adding the date,0.6,0.430676558073393,0.0,0.2890648263178879,0.14161173175550512,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:84376,How to remove the last character from every line in a text file,0.6,0.3333333333333333,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:84888,Can we run objective c on UNIX operating system?,0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:84955,"Given a CSV file, how do I delete the content between the 2nd and 3rd tabs of each row?",0.6,0.430676558073393,0.0,0.3010299956639812,0.1296465624094118,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:85009,"Shell, Concatenating 2 strings to reference a 3rd variable",0.6,0.0,0.2371977127692962,0.1934264036172708,0.0437713091520254,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:85021,"In Bash scripting, what's the meaning of "" $! ""?",0.6,0.0,0.430676558073393,0.3868528072345416,0.04382375083885143,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:85678,insert text in a file using echo command,0.6,0.2200917662980801,0.07336392209936,0.1388624438735545,0.0812293224245256,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:85728,How to switch to editing command in text editor,0.6,0.0,0.6309297535714575,0.430676558073393,0.20025319549806453,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:87667,cp : short way of copying,0.6,0.0,0.3812130139445207,0.2748763329142908,0.10633668103022986,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:87928,Combining rsync --files-from with --delete,0.6,0.2890648263178879,0.0,0.0,0.2890648263178879,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:881,Ensure a process is always running,0.6,0.1934264036172708,0.0,0.0,0.1934264036172708,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:88602,scp from remote host fails due to login greeting set in .bashrc,0.6,0.0,1.0,0.430676558073393,0.569323441926607,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:88675,Is there any way to check df -k hanging for nfs mount issues?,0.6,0.3562071871080222,0.0,0.0,0.3562071871080222,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:90073,Does 'rm .*' ever delete the parent directory?,0.6,0.3562071871080222,0.3010299956639812,0.3333333333333333,0.022873853774688868,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:91060,Why is `find -name *.jks` not returning some files?,0.6,0.0,0.3868528072345416,0.3154648767857287,0.07138793044881286,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:92710,How to create alias to kill processes running on a TCP/IP port?,0.6,0.0636207881989517,0.0,0.0,0.0636207881989517,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:94247,SSH connection establishment too slow,0.6,0.0,0.5012658353418871,0.4227898344066503,0.07847600093523677,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:94297,ksh:Get files created on specific date in directory,0.6,0.3333333333333333,0.0,0.0,0.3333333333333333,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:94780,"Alternative shells (Javascript, Ruby, etc)?",0.6,0.0,0.3562071871080222,0.3154648767857287,0.040742310322293473,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:96348,Reason for the inability of root to send a fatal signal to PID 1/init,0.6,0.3154648767857287,1.0,0.6309297535714575,0.36907024642854247,False
+dense_wins,cqadupstack-unix,cqadupstack-unix:96579,"What is the difference between ' and ""?",0.6,0.0,0.5,0.3868528072345416,0.11314719276545843,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:96700,Equivalent of iwlist to see who is around?,0.6,0.0,0.2043823975884861,0.0,0.2043823975884861,True
+bm25_wins,cqadupstack-unix,cqadupstack-unix:96712,Variable Substitution in sed,0.6,1.0,0.3010299956639812,0.5,0.5,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:96868,Why do I see myself twice when I run the who command?,0.6,0.0,0.6309297535714575,0.5,0.13092975357145753,True
+dense_wins,cqadupstack-unix,cqadupstack-unix:99243,How can I grep for a string containing regex metacharacters like $ and '?,0.6,0.0,0.3154648767857287,0.0,0.3154648767857287,False
+bm25_wins,cqadupstack-unix,cqadupstack-unix:99325,Automatically save bash command history in screen session,0.6,0.369453583111095,0.1681275362711174,0.2900757977385808,0.07937778537251422,True
+dense_wins,quora,quora:10148,"Is it possible to escape the friend zone? If so, how?",0.6,0.8200261225503443,0.943473299121064,0.8990671370233444,0.04440616209771964,True
+bm25_wins,quora,quora:102489,"What are some mind-blowing facts about sex/sexuality that sound like BS, but are actually true?",0.6,1.0,0.0,0.3562071871080222,0.6437928128919779,False
+bm25_wins,quora,quora:108586,What is the fastest way to lose weight and body fat?,0.6,0.8175295903539445,0.0,0.3065735963827292,0.5109559939712153,True
+dense_wins,quora,quora:110415,What is the best earphone under 500rs?,0.6,0.6374883738653385,0.9267582364714126,0.8485833840018,0.07817485246961264,True
+dense_wins,quora,quora:119747,Will the universe end?,0.6,0.5437713091520254,0.8772153153380493,0.6240505200038379,0.25316479533421143,True
+bm25_wins,quora,quora:123760,Why did the government replace 1000 to 2000?,0.6,0.430676558073393,0.0,0.3154648767857287,0.11521168128766429,True
+dense_wins,quora,quora:12775,What are the tips and best books for preparing NTSE?,0.6,0.7380396325465056,1.0,0.9156857657441144,0.08431423425588558,True
+dense_wins,quora,quora:135310,Why should I be in Quora?,0.6,0.8315546295836225,1.0,0.9197207891481876,0.08027921085181244,True
+dense_wins,quora,quora:139327,What is the best mobile to buy below 20K?,0.6,0.6713860725233041,0.932521091954824,0.9010126104210696,0.03150848153375441,True
+dense_wins,quora,quora:143978,Why China supports Pakistani terrorism?,0.6,0.9047172294870752,1.0,0.9558295932317544,0.044170406768245574,False
+bm25_wins,quora,quora:144055,Why do some people ask nonsense questions on Quora and why do so many people still answer them?,0.6,0.6309297535714575,0.5,0.5,0.13092975357145753,True
+bm25_wins,quora,quora:150365,How Do I learn android app development?,0.6,1.0,0.5,0.6309297535714575,0.36907024642854247,True
+bm25_wins,quora,quora:168167,Someone hacked my Instagram account using some type of software. How do I block them?,0.6,1.0,0.0,0.430676558073393,0.569323441926607,True
+bm25_wins,quora,quora:173309,How do you choose a mutual fund to invest in?,0.6,1.0,0.6240505200038379,0.6934264036172708,0.3065735963827292,True
+dense_wins,quora,quora:176847,What is Arnab Goswami going to do as he has resigned from Times Now?,0.6,0.430624116386567,0.6509209298071326,0.5012658353418871,0.1496550944652455,True
+bm25_wins,quora,quora:18176,How do I know if someone loves you?,0.6,0.3562071871080222,0.0,0.0,0.3562071871080222,True
+bm25_wins,quora,quora:184982,Which are the best R rated hollywood movies?,0.6,0.3562071871080222,0.3333333333333333,0.3333333333333333,0.022873853774688868,True
+bm25_wins,quora,quora:190771,When you do not feel like studying how do you motivate yourself back to study?,0.6,0.6309297535714575,0.5,0.5,0.13092975357145753,True
+dense_wins,quora,quora:191457,How corruption can be reduced in India?,0.6,0.0,0.5,0.3562071871080222,0.14379281289197782,True
+dense_wins,quora,quora:202171,What is a good cure for the flu?,0.6,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:204978,How can I start a career in animation?,0.6,0.9197207891481876,1.0,0.9197207891481876,0.08027921085181244,True
+bm25_wins,quora,quora:229281,How can I potty train a difficult dog?,0.6,1.0,0.6934264036172708,0.6934264036172708,0.3065735963827292,True
+dense_wins,quora,quora:243426,How shall I find my life partner?,0.6,0.9197207891481876,1.0,0.9197207891481876,0.08027921085181244,True
+bm25_wins,quora,quora:247469,How did the big bang occur if there was nothing to cause it?,0.6,0.7381919257729245,0.6046855387118412,0.6651928536555899,0.07299907211733458,True
+dense_wins,quora,quora:278888,How do you make money in your college?,0.6,0.3868528072345416,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,quora,quora:28379,How can I improve my social circle?,0.6,0.7751482523375255,0.7675478300920817,0.7526136409516659,0.02253461138585955,False
+dense_wins,quora,quora:292900,Which movies have the best opening 5 minutes and why ?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:30386,What is one characteristic that you believe every leader should possess?,0.6,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,False
+bm25_wins,quora,quora:305020,Why does power factor increases when capacitor is introduced?,0.6,0.9674679834891692,0.9060254355346824,0.9060254355346824,0.06144254795448678,True
+bm25_wins,quora,quora:307286,What is causing universe to expand?,0.6,0.8772153153380493,0.6131471927654584,0.7977228895450266,0.07949242579302274,True
+dense_wins,quora,quora:312707,What is the best way to make life more interesting?,0.6,0.3868528072345416,0.5912352048230277,0.5437713091520254,0.04746389567100229,True
+dense_wins,quora,quora:312969,Where can I learn about investing in stock market from scratch?,0.6,0.0,0.1020973951229116,0.0,0.1020973951229116,True
+bm25_wins,quora,quora:332773,What if the whole world were to speak one language?,0.6,0.6309297535714575,0.5,0.5,0.13092975357145753,True
+dense_wins,quora,quora:33602,How do I get over anxiety?,0.6,0.2640681225725909,0.7903864795495061,0.6131471927654584,0.17723928678404777,False
+bm25_wins,quora,quora:338375,What should I do to succeed?,0.6,0.3562071871080222,0.0,0.0,0.3562071871080222,True
+dense_wins,quora,quora:348053,How do girls pee?,0.6,0.6309297535714575,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,quora,quora:354002,"How does Quora work, in the sense what do people on Quora do?",0.6,1.0,0.5,0.5,0.5,False
+dense_wins,quora,quora:356954,"If I am 18 years old and my weight is 65 kgs, how much time would it take to become slimmer?",0.6,0.2350455494144853,0.5412163092689025,0.3187704634136788,0.2224458458552237,True
+bm25_wins,quora,quora:366262,What is Hillary Clinton offering to do as president?,0.6,0.430676558073393,0.0,0.3562071871080222,0.07446937096537082,True
+dense_wins,quora,quora:380034,Is it possible for Barack Obama to continue as the President of the United States of America for the next term too?,0.6,0.2043823975884861,0.8503449055347546,0.7977228895450266,0.052622015989728044,True
+bm25_wins,quora,quora:394574,How do I find goal in life?,0.6,1.0,0.9197207891481876,0.9197207891481876,0.08027921085181244,True
+dense_wins,quora,quora:395539,"What is the best way to learn digital creative design, Photoshop plus graphic design on my own?",0.6,0.1480409554829326,1.0,0.8278123145308894,0.17218768546911056,True
+dense_wins,quora,quora:40959,What are some ways to make money from home?,0.6,0.0,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:432647,Why do earthquakes come?,0.6,0.7541985434892589,1.0,0.9709286432396584,0.02907135676034156,False
+bm25_wins,quora,quora:43440,How can one find a Mentor in life?,0.6,0.7606395682357036,0.3986624063149329,0.6829656479960798,0.07767392023962372,True
+dense_wins,quora,quora:442775,What is Hillary Clinton’s opinion of the Israeli-Palestinian conflict?,0.6,0.7653606369886217,0.9469024295259744,0.9217868789962071,0.025115550529767217,False
+bm25_wins,quora,quora:443254,How do I forget a person whom I loved?,0.6,1.0,0.5,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:445000,Why was Osama bin Laden buried at sea?,0.6,0.5249810332008933,1.0,0.9197207891481876,0.08027921085181244,False
+bm25_wins,quora,quora:458367,Who do you think should win the presidency of 2016 and why?,0.6,1.0,0.5912352048230277,0.9197207891481876,0.08027921085181244,True
+dense_wins,quora,quora:46,Which question should I ask on Quora?,0.6,0.1671604549662022,0.6447841584694202,0.5726073975563163,0.07217676091310388,True
+bm25_wins,quora,quora:462697,Which places in the USA attracted the best tech talent before Silicon Valley emerged in California?,0.6,1.0,0.6309297535714575,0.6309297535714575,0.36907024642854247,False
+dense_wins,quora,quora:483970,Which is the best app for dating?,0.6,0.873659246283982,0.9896062251871524,0.951231200062686,0.03837502512446633,True
+dense_wins,quora,quora:534631,What is the best way to practice web development?,0.6,0.5,0.6309297535714575,0.5,0.13092975357145753,True
+dense_wins,quora,quora:61213,What should I do to make a long-distance relationship last?,0.6,0.8772153153380493,1.0,0.9197207891481876,0.08027921085181244,False
+dense_wins,quora,quora:63930,Why is life suck so bad?,0.6,0.0,0.3333333333333333,0.0,0.3333333333333333,True
+dense_wins,quora,quora:68818,What is the best electric razor.?,0.6,0.6766372988929881,1.0,0.9047172294870752,0.09528277051292477,False
+bm25_wins,quora,quora:70976,Do you play chess?,0.6,1.0,0.3154648767857287,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:72648,Do venture capitalists or angel investors invest in projects of part-time entrepreneurs who have a good business plan and idea?,0.6,0.7737459235132744,0.8854598815714874,0.8529278650606567,0.03253201651083071,True
+dense_wins,quora,quora:76248,What are the best places to go alone in Pune?,0.6,0.3562071871080222,1.0,0.6309297535714575,0.36907024642854247,True
+bm25_wins,quora,quora:77775,What is the scariest horror movie you've even seen?,0.6,0.9060254355346824,0.8529278650606567,0.7328286204777911,0.17319681505689133,False
+dense_wins,quora,quora:77775,What is the scariest horror movie you've even seen?,0.6,0.9060254355346824,0.8529278650606567,0.7328286204777911,0.12009924458286558,False
+bm25_wins,quora,quora:83402,What are some of the best jokes you've heard?,0.6,0.8385465274895063,0.3228087653971817,0.6663732474096913,0.17217328007981503,True
+dense_wins,quora,quora:86668,Have you ever had sex with your best friend?,0.6,0.5,1.0,0.6309297535714575,0.36907024642854247,True
+dense_wins,quora,quora:98504,Are humans really causing global warming?,0.6,0.9010126104210696,0.9674679834891692,0.9469024295259744,0.020565553963194816,True

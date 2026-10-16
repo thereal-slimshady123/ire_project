@@ -25,13 +25,16 @@ def get_logger(name: str, log_file: Optional[Path] = None, level: int = logging.
             fmt="[%(asctime)s] [%(levelname)s] [%(name)s]: %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S",
         )
+        # Windows consoles/redirects default to cp1252, which cannot encode symbols like α/ε.
+        if hasattr(sys.stdout, "reconfigure") and (sys.stdout.encoding or "").lower() not in ("utf-8", "utf8"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
         stream_handler = logging.StreamHandler(sys.stdout)
         stream_handler.setFormatter(formatter)
         logger.addHandler(stream_handler)
 
         if log_file:
             log_file.parent.mkdir(parents=True, exist_ok=True)
-            file_handler = logging.FileHandler(log_file)
+            file_handler = logging.FileHandler(log_file, encoding="utf-8")
             file_handler.setFormatter(formatter)
             logger.addHandler(file_handler)
 
