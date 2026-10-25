@@ -12,7 +12,7 @@ dense:
   model_name: "sentence-transformers/msmarco-distilbert-base-tas-b"
   similarity: "dot"            # TAS-B is trained for dot product: do NOT L2-normalize embeddings
   normalize_embeddings: false
-  batch_size: 64
+  batch_size: 32
   max_length: 512
   device: "cuda"               # falls back to cpu if CUDA is unavailable
   faiss_index_type: "IndexFlatIP"  # exact inner-product search

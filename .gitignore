@@ -20,6 +20,7 @@ build/
 # Data and artifacts (large files)
 /data/
 results/indexes/
+results/runs/
 results/labels/
 results/features/
 results/models/

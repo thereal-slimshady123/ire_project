@@ -142,6 +142,7 @@ ire_project/
 │
 ├── results/                           # gitignored or git-lfs; generated artifacts
 │   ├── indexes/{dataset}/             # BM25 index files, FAISS index files
+│   ├── runs/{dataset}/                # candidate rankings per route/split (bm25, dense, hybrid, cross_encoder)
 │   ├── labels/{dataset}.parquet
 │   ├── features/{dataset}.parquet
 │   ├── models/{dataset}/{router_type}.pkl

@@ -1,6 +1,7 @@
 .PHONY: help install data index baselines headroom labels features train sweep eval latency ablations test demo clean
 
-PYTHON = python
+VENV ?= ./venv
+PYTHON ?= $(if $(wildcard $(VENV)/bin/python),$(VENV)/bin/python,python)
 DATASETS ?= nfcorpus scifact fiqa
 
 help:
@@ -59,7 +60,7 @@ ablations:
 	for d in $(DATASETS); do $(PYTHON) scripts/run_ablations.py --dataset $$d || exit 1; done
 
 test:
-	pytest tests/
+	$(PYTHON) -m pytest tests/
 
 demo:
 	$(PYTHON) scripts/demo_synthetic_routing.py
