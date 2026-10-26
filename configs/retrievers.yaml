@@ -5,7 +5,7 @@ bm25:
   engine: "rank_bm25"  # or "pyserini"
 
 dense:
-  model_name: "sentence-transformers/msmarco-distilbert-base-v4" # or "facebook/contriever"
+  model_name: "intfloat/e5-small-v2" # or "facebook/contriever"
   batch_size: 64
   max_length: 512
   device: "auto"  # "auto" = cuda if available, else cpu; or force "cpu" / "cuda"

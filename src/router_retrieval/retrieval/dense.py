@@ -14,9 +14,12 @@ def resolve_device(device: str) -> str:
     """Map 'auto' to 'cuda' if a CUDA device is visible to torch, else 'cpu'."""
     if device != "auto":
         return device
-    import torch
+    try:
+        import torch
 
-    return "cuda" if torch.cuda.is_available() else "cpu"
+        return "cuda" if torch.cuda.is_available() else "cpu"
+    except ImportError:
+        return "cpu"
 
 
 class DenseRetriever:

@@ -225,15 +225,16 @@ def main():
 
     # Leave-one-dataset-out transfer (secondary).
     transfer = {}
-    for target in tables:
-        source = pd.concat([t for n, t in tables.items() if n != target])
-        source.index = [f"{d}:{q}" for d, q in zip(source["dataset"], source.index)]
-        out, info = evaluate_fold(source, tables[target], alphas, router_cfg, seed)
-        transfer[target] = {
-            "n": len(out), "skip_rate": float(out["skip_router"].mean()),
-            "router_minus_hybrid": paired_bootstrap_test(out["router"].values, out["hybrid"].values, args.n_bootstrap, seed),
-            "router_minus_random": paired_bootstrap_test(out["router"].values, out["random"].values, args.n_bootstrap, seed),
-        }
+    if len(tables) > 1:
+        for target in tables:
+            source = pd.concat([t for n, t in tables.items() if n != target])
+            source.index = [f"{d}:{q}" for d, q in zip(source["dataset"], source.index)]
+            out, info = evaluate_fold(source, tables[target], alphas, router_cfg, seed)
+            transfer[target] = {
+                "n": len(out), "skip_rate": float(out["skip_router"].mean()),
+                "router_minus_hybrid": paired_bootstrap_test(out["router"].values, out["hybrid"].values, args.n_bootstrap, seed),
+                "router_minus_random": paired_bootstrap_test(out["router"].values, out["random"].values, args.n_bootstrap, seed),
+            }
 
     def block(df):
         b = lambda a, c: paired_bootstrap_test(df[a].values, df[c].values, args.n_bootstrap, seed)  # noqa: E731

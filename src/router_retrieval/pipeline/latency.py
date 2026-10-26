@@ -3,6 +3,7 @@
 import time
 from typing import Dict, List, Optional
 from contextlib import contextmanager
+import numpy as np
 
 
 class ComponentTimer:
@@ -45,7 +46,23 @@ class LatencyTracker:
         Returns:
             Dictionary mapping component to summary statistics.
         """
-        raise NotImplementedError
+        summary: Dict[str, Dict[str, float]] = {}
+        for comp, vals in self.records.items():
+            if not vals:
+                continue
+            arr = np.asarray(vals, dtype=np.float64)
+            summary[comp] = {
+                "count": float(len(arr)),
+                "mean": float(np.mean(arr)),
+                "std": float(np.std(arr)),
+                "median": float(np.median(arr)),
+                "p50": float(np.percentile(arr, 50)),
+                "p95": float(np.percentile(arr, 95)),
+                "p99": float(np.percentile(arr, 99)),
+                "min": float(np.min(arr)),
+                "max": float(np.max(arr)),
+            }
+        return summary
 
     def reset(self) -> None:
         """Reset recorded latencies."""
