@@ -1,298 +1,321 @@
 # Implementation Plan: Confidence-Based Query Router for Hybrid Retrieval
+## Three-Person Independent Execution Blueprint
 
-This document translates `proposal.md` into a concrete, step-by-step engineering plan with a full repository layout. It is written so that any contributor (human or coding agent) can pick up a module, understand its inputs/outputs/contracts, and implement it without needing to re-derive design decisions already made in the proposal.
+This document specifies the complete engineering architecture, experiment protocol, and **strictly decoupled 3-person division of labor** for the Information Retrieval (IRE) project. 
 
----
-
-## 0. Guiding Contracts (read first)
-
-These are fixed decisions from the proposal that every module must respect. Do not re-litigate them without updating this file.
-
-1. **Datasets:** BEIR subsets only, chosen for feasibility: NFCorpus, SciFact, FiQA (primary); TREC-COVID optional/stretch. SciDocs optional.
-2. **Retrievers (cheap routes):**
-   - BM25 (Pyserini or `rank_bm25`)
-   - Dense (Contriever or a `sentence-transformers` model, FAISS CPU index)
-   - Hybrid = fixed-α convex combination of **normalized** BM25 and dense scores.
-3. **Escalation backend:** MiniLM-style cross-encoder reranking the **union** of BM25 top-100 and dense top-100 (optionally truncated to top 30–50 candidates for latency).
-4. **Router:** multi-class classifier over 3 cheap routes (BM25 / dense / hybrid). Escalation is **not** a 4th class in the main design — it is triggered when `max(class_probability) < τ`. (A 4th-class variant is a documented stretch thread, see §9.)
-5. **Labels:** per-query argmax over {BM25, dense, hybrid} nDCG@10, with margin threshold ε — if the top two routes are within ε, label = hybrid (safe default). Raw per-route nDCG values are retained for regret-weighted loss.
-6. **Models:** Logistic Regression (baseline router) and LightGBM/XGBoost (main router), both with class weighting.
-7. **Thresholds (ε for labeling, τ for escalation):** tuned on training folds only, never on test folds.
-8. **Baselines/controls:** BM25-only, dense-only, fixed-α hybrid (swept), RRF, always-rerank, random-escalation-at-same-rate, oracle router, always-hybrid+rerank-random-subset.
-9. **Metrics:** nDCG@10, MRR, MAP, Recall@100 (primary); macro-F1 + confusion matrix (router diagnostic, secondary); latency mean/p95 per component.
-10. **Validation:** k-fold cross-validation over queries + paired bootstrap significance testing on per-query nDCG@10.
-11. **Week-2 checkpoint gate:** compute oracle-router headroom over hybrid. If headroom < ~2 nDCG points, revisit dataset choice before investing further in router modeling.
-12. **Team lanes** (for parallel work once shared infra lands):
-    - **Lane A — Retrieval infra:** BM25/dense pipelines, score normalization, fixed-α + RRF baselines, cross-encoder escalation backend, always-rerank baseline, latency benchmarking.
-    - **Lane B — Labels & analysis:** per-query per-route nDCG, margin-based labeling, oracle headroom analysis, significance testing.
-    - **Lane C — Router modeling:** feature extraction, router training (regret-weighted loss), τ sweep, risk-coverage curves, ablations, writeup coordination.
+The division is architected to guarantee **maximum developer independence**: no contributor is blocked waiting on another's code or experimental run. Decoupling is enforced through **frozen interface contracts**, **standardized data artifacts (Parquet/JSON)**, **self-contained test suites**, and **dedicated file ownership**.
 
 ---
 
-## 1. Repository File Structure
+## 1. Principles of Independence & Decoupling Strategy
+
+In multi-stage ML/IR pipelines, team members frequently suffer from serial blocking: *Modeling waits for Features, Features wait for Retrieval, and Evaluation waits for Modeling.* 
+
+To completely eliminate these bottlenecks, the project enforces four architectural safeguards:
 
 ```
-ire_project/
-├── README.md                          # project overview, setup, how to reproduce results
-├── plan.md                            # this file
-├── proposal.md                        # original proposal (already in repo)
-├── pyproject.toml                     # or requirements.txt — pinned deps
-├── requirements.txt
-├── .gitignore                         # data/, *.index, *.pt, wandb/, .cache/, __pycache__/
-├── Makefile                           # convenience targets: make data, make baselines, make train, make eval
-├── configs/
-│   ├── datasets.yaml                  # dataset names, BEIR paths/URLs, doc/query counts
-│   ├── retrievers.yaml                # BM25 params (k1, b), dense model name, FAISS index type
-│   ├── hybrid.yaml                    # alpha grid for sweep, normalization method
-│   ├── cross_encoder.yaml             # model name, batch size, candidate pool size (30/50/100)
-│   ├── labels.yaml                    # epsilon grid, labeling strategy flag
-│   ├── router.yaml                    # feature list, model type, hyperparams, class weights
-│   ├── escalation.yaml                # tau grid (0.05, 0.10, 0.15 escalation-rate targets)
-│   └── experiment.yaml                # top-level: which datasets/models/seeds to run end-to-end
-│
-├── data/                              # gitignored; populated by scripts/download_data.py
-│   ├── raw/{dataset}/                 # corpus.jsonl, queries.jsonl, qrels/
-│   └── processed/{dataset}/           # tokenized/cleaned copies if needed
-│
-├── src/
-│   └── router_retrieval/              # installable package (pip install -e .)
-│       ├── __init__.py
-│       │
-│       ├── data/
-│       │   ├── __init__.py
-│       │   ├── beir_loader.py         # load BEIR corpus/queries/qrels into a common schema
-│       │   ├── schema.py              # dataclasses: Document, Query, QRel, Candidate
-│       │   └── splits.py              # k-fold CV split generation over queries (seeded)
-│       │
-│       ├── retrieval/
-│       │   ├── __init__.py
-│       │   ├── bm25.py                # BM25Retriever: index(), search(query, k) -> List[Candidate]
-│       │   ├── dense.py               # DenseRetriever: encode corpus, build FAISS index, search()
-│       │   ├── normalization.py       # min-max / z-score normalization of BM25 & dense scores
-│       │   ├── hybrid.py              # HybridRetriever(alpha): convex combination of normalized scores
-│       │   ├── rrf.py                 # ReciprocalRankFusion: rank-based fusion baseline
-│       │   └── cross_encoder.py       # CrossEncoderReranker: rerank(query, candidates) -> reranked list
-│       │
-│       ├── features/
-│       │   ├── __init__.py
-│       │   ├── query_features.py      # length, max/mean IDF, rare-term density, entity density, OOV frac
-│       │   ├── retrieval_signal_features.py  # top-k Jaccard overlap, rank correlation (Kendall/Spearman),
-│       │   │                                  # top-1 score, top1-top2 gap, score entropy per retriever
-│       │   └── feature_builder.py     # orchestrates: query -> full feature vector (+ caching to disk)
-│       │
-│       ├── labeling/
-│       │   ├── __init__.py
-│       │   ├── per_route_eval.py      # compute nDCG@10/MRR/MAP/Recall@100 per query per route
-│       │   ├── margin_labeler.py      # argmax-with-margin-epsilon labeling -> best_route label
-│       │   └── regret.py              # regret weights = best_nDCG - route_nDCG, for weighted loss
-│       │
-│       ├── router/
-│       │   ├── __init__.py
-│       │   ├── base.py                # RouterModel interface: fit(), predict_proba(), predict()
-│       │   ├── logistic_router.py     # sklearn LogisticRegression wrapper, class_weight='balanced'
-│       │   ├── gbm_router.py          # LightGBM/XGBoost wrapper, regret-weighted sample_weight
-│       │   ├── escalation.py          # apply tau threshold to predict_proba -> route or ESCALATE
-│       │   └── oracle_router.py       # "cheats" using true labels; upper-bound baseline
-│       │
-│       ├── pipeline/
-│       │   ├── __init__.py
-│       │   ├── end_to_end.py          # given a query -> route decision -> final ranked list
-│       │   ├── controls.py            # random-escalation, always-hybrid+random-rerank, always-rerank
-│       │   └── latency.py             # per-component timers (BM25, dense, feature extraction,
-│       │                               # router inference, cross-encoder), context-manager based
-│       │
-│       ├── evaluation/
-│       │   ├── __init__.py
-│       │   ├── ranking_metrics.py     # nDCG@10, MRR, MAP, Recall@100 (reuse pytrec_eval or ir_measures)
-│       │   ├── router_metrics.py      # macro-F1, confusion matrix, per-class precision/recall
-│       │   ├── significance.py        # paired bootstrap test on per-query nDCG@10
-│       │   ├── risk_coverage.py       # risk-coverage curve computation across tau sweep
-│       │   └── latency_report.py      # aggregate mean/p95 latency by component, by dataset
-│       │
-│       └── utils/
-│           ├── __init__.py
-│           ├── config.py              # YAML config loading + validation
-│           ├── seeding.py             # global seed control for reproducibility
-│           ├── logging_utils.py       # structured run logging
-│           └── caching.py             # disk cache for embeddings/features/retrieval results
-│
-├── scripts/                           # thin CLI entry points, one responsibility each
-│   ├── download_data.py               # fetch BEIR datasets into data/raw/
-│   ├── build_indexes.py               # build BM25 + FAISS indexes for a dataset
-│   ├── run_retrieval_baselines.py     # BM25-only, dense-only, hybrid-sweep, RRF -> results/
-│   ├── run_oracle_headroom.py         # WEEK-2 CHECKPOINT: compute oracle vs hybrid headroom
-│   ├── generate_labels.py             # per-route nDCG + margin labeling -> labels/{dataset}.parquet
-│   ├── extract_features.py            # build feature matrix -> features/{dataset}.parquet
-│   ├── train_router.py                # train logistic + GBM routers, save models/
-│   ├── sweep_escalation.py            # sweep tau, produce risk-coverage curve data
-│   ├── run_full_evaluation.py         # run router + all baselines/controls, compute all metrics
-│   ├── run_latency_benchmark.py       # dedicated latency measurement pass
-│   ├── run_ablations.py               # feature ablation study (query-only vs retrieval-signal vs both)
-│   └── run_cross_domain.py            # stretch: train on dataset X, test on dataset Y
-│
-├── notebooks/                         # exploratory only; nothing load-bearing lives only here
-│   ├── 00_data_exploration.ipynb
-│   ├── 01_headroom_checkpoint.ipynb
-│   ├── 02_feature_inspection.ipynb
-│   ├── 03_router_error_analysis.ipynb
-│   └── 04_risk_coverage_plots.ipynb
-│
-├── results/                           # gitignored or git-lfs; generated artifacts
-│   ├── indexes/{dataset}/             # BM25 index files, FAISS index files
-│   ├── labels/{dataset}.parquet
-│   ├── features/{dataset}.parquet
-│   ├── models/{dataset}/{router_type}.pkl
-│   ├── metrics/{dataset}/*.json       # per-dataset metric tables
-│   ├── metrics/pooled/*.json          # cross-dataset pooled results
-│   ├── latency/{dataset}.json
-│   ├── figures/                       # risk-coverage curves, confusion matrices, ablation bar charts
-│   └── logs/                          # run logs per script invocation
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_bm25.py
-│   ├── test_dense.py
-│   ├── test_normalization.py
-│   ├── test_hybrid.py
-│   ├── test_rrf.py
-│   ├── test_cross_encoder.py
-│   ├── test_query_features.py
-│   ├── test_retrieval_signal_features.py
-│   ├── test_margin_labeler.py
-│   ├── test_router_logistic.py
-│   ├── test_router_gbm.py
-│   ├── test_escalation.py
-│   ├── test_ranking_metrics.py
-│   ├── test_significance.py
-│   └── test_end_to_end_pipeline.py
-│
-└── report/
-    ├── report.md / report.tex         # final writeup
-    ├── figures/                       # final polished figures for the report
-    └── tables/                        # final result tables (csv/markdown) for the report
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   SHARED REPOSITORY CONTRACTS                                  │
+│               (data/raw/, src/router_retrieval/data/schema.py, configs/*.yaml)                 │
+└───────────────────┬────────────────────────────┬────────────────────────────┬──────────────────┘
+                    │                            │                            │
+                    ▼                            ▼                            ▼
+┌────────────────────────────────┐ ┌────────────────────────────────┐ ┌────────────────────────────────┐
+│            TRACK 1             │ │            TRACK 2             │ │            TRACK 3             │
+│      [Person 1 Ownership]      │ │      [Person 2 Ownership]      │ │      [Person 3 Ownership]      │
+│  Retrieval Infra, Baselines,   │ │    Feature Engineering,        │ │  Strong Escalation Backend,    │
+│  Latency Profiling &           │ │    Synthetic Data Scaling &    │ │  Statistical Evaluation &      │
+│  Skip-Dense Efficiency (Exp 3) │ │    Advantage Routing (Exp 2)   │ │  End-to-End Pipeline (Exp 4)   │
+└────────────────┬───────────────┘ └────────────────┬───────────────┘ └────────────────┬───────────────┘
+                 │                                  │                                  │
+                 ▼                                  ▼                                  ▼
+┌────────────────────────────────┐ ┌────────────────────────────────┐ ┌────────────────────────────────┐
+│      OUTPUT ARTIFACTS 1        │ │      OUTPUT ARTIFACTS 2        │ │      OUTPUT ARTIFACTS 3        │
+│  results/runs/{dataset}/       │ │  results/features/{dataset}/   │ │  results/labels/{dataset}/     │
+│  results/latency/{dataset}.json│ │  results/models/{dataset}/     │ │  results/metrics/{dataset}/    │
+│  results/experiment3/          │ │  results/synthetic/            │ │  results/experiment4/          │
+└────────────────────────────────┘ └────────────────────────────────┘ └────────────────────────────────┘
+```
+
+1. **Contract-First Data Serialization**:
+   All communication between tracks happens via strictly typed on-disk artifacts (Parquet / JSON). For example, Track 2 and Track 3 consume candidate rankings from `results/runs/{dataset}/{retriever}.parquet` using a frozen schema (`query_id`, `doc_id`, `score`, `rank`).
+2. **Instant Parallel Start via Pre-Cached Runs**:
+   Base BM25 and dense retrieval runs for all 5 evaluation benchmarks (`nfcorpus`, `scifact`, `fiqa`, `cqadupstack-unix`, `quora`) are already generated and cached in `results/runs/` and `results/indexes/`. Track 2 (Features & Routing) and Track 3 (Escalation & Evaluation) can begin immediately on day one without waiting for Track 1's index builds.
+3. **Zero-Overlap File & Directory Ownership**:
+   Each person has 100% exclusive write ownership of specific modules in `src/`, scripts in `scripts/`, test suites in `tests/`, and output folders in `results/`. Merge conflicts are structurally prevented.
+4. **Offline Isolation & Mock Fixtures**:
+   Every track includes standalone synthetic fixtures (in `tests/conftest.py`). A developer can run, test, and validate their entire subsystem on 5 mock queries and 10 mock documents in <2 seconds with zero GPU or network dependencies.
+
+---
+
+## 2. The 3-Person Division of Labor
+
+### 2.1 Person 1 — Track 1: Retrieval Infrastructure, Latency Profiling & Skip-Dense Efficiency
+*The "Retrieval & Systems Efficiency Engineer"*
+
+* **Mission**: Own first-stage retrieval engines (lexical, dense, hybrid fusion, RRF), establish wall-clock latency measurement and FLOPs profiling (addressing Issue D3), and implement the **Skip-Dense Retrieval Engine** (Experiment 3: skipping dense vector search when BM25 is confident to slash latency without quality degradation).
+
+#### Owned Modules & Files
+| Category | File Paths Owned |
+| :--- | :--- |
+| **Source Modules** | `src/router_retrieval/retrieval/bm25.py`<br>`src/router_retrieval/retrieval/dense.py`<br>`src/router_retrieval/retrieval/normalization.py`<br>`src/router_retrieval/retrieval/hybrid.py`<br>`src/router_retrieval/retrieval/rrf.py`<br>`src/router_retrieval/pipeline/latency.py`<br>`src/router_retrieval/evaluation/latency_report.py` |
+| **Scripts** | `scripts/build_indexes.py`<br>`scripts/run_retrieval_baselines.py`<br>`scripts/run_latency_benchmark.py`<br>`scripts/run_experiment3_skip_dense.py` |
+| **Unit Tests** | `tests/test_bm25.py`<br>`tests/test_dense.py`<br>`tests/test_normalization.py`<br>`tests/test_hybrid.py`<br>`tests/test_rrf.py`<br>`tests/test_experiment3.py` |
+| **Configurations** | `configs/retrievers.yaml`<br>`configs/hybrid.yaml` |
+| **Results** | `results/indexes/`<br>`results/runs/`<br>`results/latency/`<br>`results/experiment3/` |
+| **Report Sections** | **Section 3** (Retrieval Setup, Indexing, and Hyperparameter Grids)<br>**Section 4.2** (Latency Benchmarks, Wall-Clock Profiling, and Skip-Dense Efficiency Frontiers) |
+
+#### Detailed Responsibilities & Milestones
+1. **Tokenizer & Indexing Pipeline Robustness**:
+   - Fix tokenizer stemming discrepancies in `tests/test_bm25.py` to ensure reproducible Lucene/Porter normalization across OS environments.
+   - Implement clean CLI `scripts/build_indexes.py` supporting BM25 (Pyserini / rank_bm25) and Dense embeddings (FAISS flat IP index with `intfloat/e5-small-v2` and `facebook/contriever`).
+2. **Score Normalization & Hybrid Baselines**:
+   - Maintain min-max score normalization with floor anchoring (`retrieval/normalization.py`) so sparse matches are never dropped (Bug B1 prevention).
+   - Implement convex combination `HybridRetriever(alpha)` and rank-based Reciprocal Rank Fusion (`retrieval/rrf.py`).
+   - Run baseline sweeps across $\alpha \in [0.0, 1.0]$ in 5-fold CV to establish the non-strawman benchmark.
+3. **Dedicated Latency & FLOPs Profiling Suite (Addressing Issue D3)**:
+   - Build `pipeline/latency.py` context-manager timers measuring mean, median, p95, and p99 wall-clock latency per component: BM25 search, dense query encoding, FAISS index search, feature extraction, router forward pass, and cross-encoder reranking.
+   - Run `scripts/run_latency_benchmark.py` across CPU vs. GPU environments on FiQA, NFCorpus, and SciFact, producing publication-ready latency distribution curves.
+4. **Skip-Dense Efficiency Engine (Experiment 3 Deep-Dive)**:
+   - Own `scripts/run_experiment3_skip_dense.py`. Evaluate routing policies that decide whether to execute dense retrieval based *only* on pre-retrieval and BM25 signals (top-1/top-2 score ratio, max-IDF, score entropy).
+   - Compute Pareto frontiers of Quality (nDCG@10) vs. Dense Retrieval Calls Skipped (20%–60% compute reduction target). Compare learned LightGBM skip-classifier against one-feature heuristic baselines (addressing Issue D1/D2).
+
+#### Independent Developer Playbook (How to work without waiting)
+* Person 1 works directly from `data/raw/{dataset}/` and BEIR downloads.
+* Runs can be tested locally using a 100-doc synthetic fixture or the lightweight `scifact` corpus.
+* Person 1 is completely unblocked from router modeling or cross-encoders.
+
+---
+
+### 2.2 Person 2 — Track 2: Query Feature Engineering, Synthetic Scaling & Advantage Routing
+*The "Router Modeling & Data Scaling Engineer"*
+
+* **Mission**: Own query representations and interaction features, eliminate the sample-size statistical bottleneck (Issue A6) via **Synthetic Dataset Generation at Scale** (scaling from 3.3k to 30,000+ queries per `improvements.md §3`), and implement the **Dual Advantage Regression Router** (replacing noisy 3-class classification with continuous gain prediction per `improvements.md §2`).
+
+#### Owned Modules & Files
+| Category | File Paths Owned |
+| :--- | :--- |
+| **Source Modules** | `src/router_retrieval/features/query_features.py`<br>`src/router_retrieval/features/retrieval_signal_features.py`<br>`src/router_retrieval/features/feature_builder.py`<br>`src/router_retrieval/router/base.py`<br>`src/router_retrieval/router/logistic_router.py`<br>`src/router_retrieval/router/gbm_router.py`<br>`src/router_retrieval/router/oracle_router.py` |
+| **Scripts** | `scripts/extract_features.py`<br>`scripts/train_router.py`<br>`scripts/run_experiment2_heldout_routing.py`<br>`scripts/demo_synthetic_routing.py`<br>`scripts/run_ablations.py`<br>`scripts/run_cross_domain.py` |
+| **Unit Tests** | `tests/test_query_features.py`<br>`tests/test_retrieval_signal_features.py`<br>`tests/test_router_logistic.py`<br>`tests/test_router_gbm.py` |
+| **Configurations** | `configs/router.yaml` |
+| **Results** | `results/features/`<br>`results/models/`<br>`results/experiment2/`<br>`results/synthetic/` |
+| **Report Sections** | **Section 2** (Methodology: Dual Advantage Regression, Feature Representations, and Synthetic Scaling)<br>**Section 4.3** (Feature Ablation Studies: Query-Only vs. Retrieval-Signal vs. Joint, and Out-of-Domain Generalization) |
+
+#### Detailed Responsibilities & Milestones
+1. **Feature Extraction Engine & Disk Caching**:
+   - Maintain `features/query_features.py`: query length, max/mean IDF, rare-term density, entity density, and out-of-vocabulary (OOV) ratio.
+   - Maintain `features/retrieval_signal_features.py`: BM25/dense top-10 Jaccard overlap, rank correlation (Kendall tau / Spearman rho), normalized top-1 scores, top-1/top-2 score gaps, score ratios, and Shannon score entropy.
+   - Build high-speed Parquet disk caching in `features/feature_builder.py` and CLI `scripts/extract_features.py`.
+2. **Dual Advantage Regression Formulation (Solving Issues A1, A2 & A5)**:
+   - Implement continuous regressors in `router/gbm_router.py` predicting margins over hybrid:
+     $$\Delta_{\text{BM25}}(q) = \text{nDCG@10}(\text{BM25}, q) - \text{nDCG@10}(\text{Hybrid}, q)$$
+     $$\Delta_{\text{Dense}}(q) = \text{nDCG@10}(\text{Dense}, q) - \text{nDCG@10}(\text{Hybrid}, q)$$
+   - Calibrate risk margins $\theta_{\text{bm25}}, \theta_{\text{dense}}$ on training folds to prevent false routing on near-ties, maintaining Hybrid as the safe default whenever predictions are ambiguous.
+3. **Large-Scale Synthetic Dataset Scaling (Improvements §3 Protocol)**:
+   - Scale `scripts/demo_synthetic_routing.py` into a production training generator producing 30,000+ synthetic queries across NFCorpus, SciFact, and FiQA.
+   - Implement dual generation styles:
+     - *Lexical / Entity Style (50%)*: High-IDF keyword/identifier queries favoring BM25.
+     - *Semantic / Conceptual Style (50%)*: Paraphrastic/abstract questions favoring Dense.
+   - Enforce strict test-set isolation: passages relevant to natural evaluation queries are strictly forbidden from synthetic training sets.
+4. **Feature Ablations & Cross-Domain Generalization**:
+   - Own `scripts/run_ablations.py`: benchmark router performance using (a) query-only features, (b) retrieval-signal features, and (c) all features combined.
+   - Own `scripts/run_cross_domain.py`: train on dataset $X$ (e.g. FiQA) and test zero-shot on dataset $Y$ (e.g. SciFact) to quantify domain transfer degradation.
+
+#### Independent Developer Playbook (How to work without waiting)
+* Person 2 loads candidate runs directly from `results/runs/{dataset}/` which already exist in the repository.
+* When experimenting with synthetic generation, Person 2 works directly from raw corpus texts (`data/raw/{dataset}/corpus.jsonl`).
+* Person 2 does not need the cross-encoder or final evaluation scripts to train, ablate, and evaluate routers.
+
+---
+
+### 2.3 Person 3 — Track 3: Escalation Backend, Cross-Encoder Optimization, Rigorous Evaluation & Pipeline Integration
+*The "Escalation, Statistical Evaluation & Integration Lead"*
+
+* **Mission**: Own the selective cross-encoder escalation pipeline (Experiment 4), resolve **Issue D4** by upgrading the cross-encoder to a stronger reranker (e.g., `BAAI/bge-reranker-base` or `cross-encoder/ms-marco-MiniLM-L-12-v2` to guarantee escalation produces a true positive quality headroom), implement budget-constrained escalation policies, build the unified end-to-end integration harness, execute rigorous statistical validation (paired bootstrap and Wilcoxon tests), and lead final report synthesis.
+
+#### Owned Modules & Files
+| Category | File Paths Owned |
+| :--- | :--- |
+| **Source Modules** | `src/router_retrieval/retrieval/cross_encoder.py`<br>`src/router_retrieval/router/escalation.py`<br>`src/router_retrieval/labeling/per_route_eval.py`<br>`src/router_retrieval/labeling/margin_labeler.py`<br>`src/router_retrieval/labeling/regret.py`<br>`src/router_retrieval/evaluation/ranking_metrics.py`<br>`src/router_retrieval/evaluation/router_metrics.py`<br>`src/router_retrieval/evaluation/significance.py`<br>`src/router_retrieval/evaluation/risk_coverage.py`<br>`src/router_retrieval/pipeline/controls.py`<br>`src/router_retrieval/pipeline/end_to_end.py` |
+| **Scripts** | `scripts/generate_labels.py`<br>`scripts/run_oracle_headroom.py`<br>`scripts/sweep_escalation.py`<br>`scripts/run_experiment4_escalation.py`<br>`scripts/run_full_evaluation.py`<br>`scripts/build_hybrid_outperformed_sets.py` |
+| **Unit Tests** | `tests/test_cross_encoder.py`<br>`tests/test_escalation.py`<br>`tests/test_margin_labeler.py`<br>`tests/test_ranking_metrics.py`<br>`tests/test_significance.py`<br>`tests/test_end_to_end_pipeline.py` |
+| **Configurations** | `configs/cross_encoder.yaml`<br>`configs/escalation.yaml`<br>`configs/labels.yaml`<br>`configs/experiment.yaml` |
+| **Results** | `results/labels/`<br>`results/metrics/`<br>`results/experiment4/`<br>`results/figures/` |
+| **Report Sections** | **Abstract & Section 1** (Introduction, Core Hypotheses H1–H4, and Literature Positioning)<br>**Section 4.1** (End-to-End Retrieval Performance, Headroom Analysis, and Escalation Trade-offs)<br>**Section 5** (Discussion, Limitations, Analysis of Negative Findings, and Master Document Compilation) |
+
+#### Detailed Responsibilities & Milestones
+1. **Cross-Encoder Upgrade & Headroom Restoration (Solving Issue D4)**:
+   - In `retrieval/cross_encoder.py`, integrate modern, high-capacity rerankers (configurable via `configs/cross_encoder.yaml`: `BAAI/bge-reranker-base` and `cross-encoder/ms-marco-MiniLM-L-12-v2`) in addition to default `MiniLM-L-6-v2`.
+   - Recompute reranking on hybrid candidate pools to confirm that `Always-Rerank > Always-Hybrid` on the target benchmarks, restoring the essential prerequisite for escalation.
+2. **Budgeted Selective Escalation (Experiment 4 Execution)**:
+   - Own `router/escalation.py` and `scripts/run_experiment4_escalation.py`. Implement selective escalation policies at fixed budgets $B \in [0.05, 0.10, 0.15, 0.20, 0.30, 0.50, 1.0]$:
+     - *Policy 1 (Predicted-Gain)*: LightGBM regressor predicting $\text{nDCG}_{\text{Rerank}} - \text{nDCG}_{\text{Hybrid}}$.
+     - *Policy 2 (Router Confidence)*: Escalating when $\max_r P(\text{route}=r) < \tau$.
+     - *Policy 3 (Random Control)*: Escalating random queries at identical budget $B$.
+     - *Policy 4 (Oracle Upper Bound)*: Escalating true highest-gain queries.
+   - Generate Risk-Coverage and Quality-Retention curves across budget sweeps (`evaluation/risk_coverage.py`).
+3. **Rigorous Statistical Validation & Diagnostics (Addressing Issues A1, A2, D6)**:
+   - Standardize `evaluation/ranking_metrics.py` (nDCG@10, MRR@10, MAP, Recall@100) and `evaluation/significance.py` (paired bootstrap test with $B=10{,}000$ resamples and paired Wilcoxon signed-rank tests with 95% confidence intervals).
+   - Format win/loss/tie contingency tables and confusion matrices (`evaluation/router_metrics.py`). Handle edge cases where denominators collapse gracefully (Issue D6 fix).
+4. **End-to-End Orchestration & Report Lead**:
+   - Complete `pipeline/end_to_end.py` and `scripts/run_full_evaluation.py` to produce unified comparison tables across all systems: BM25, Dense, Tuned Hybrid, RRF, Skip-Dense (from P1), Advantage Router (from P2), Selective Escalation (from P3), Always-Rerank, and Oracle.
+   - Lead master compilation of `report/report.md`, aggregating figures, tables, and honest discussion of hypotheses.
+
+#### Independent Developer Playbook (How to work without waiting)
+* Person 3 uses existing cached runs in `results/runs/` to compute ground-truth labels and candidate pools for cross-encoder reranking.
+* To test escalation and ranking metrics, Person 3 can run completely offline using mock candidate lists or pre-computed parquet files.
+* Person 3 is not dependent on router training or feature extraction to benchmark rerankers and escalation policies.
+
+---
+
+## 3. Data Interface Contracts & File Schemas
+
+To maintain complete autonomy, all data passed between tracks follows these immutable schemas:
+
+### Contract 1: Candidate Pool Run Schema (`results/runs/{dataset}/{retriever}.parquet`)
+*Produced by Person 1; Consumed by Person 2 & Person 3*
+| Column Name | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `query_id` | `str` | Unique query identifier (strictly string to avoid Bug B2) | `"302"` |
+| `doc_id` | `str` | Unique document identifier in corpus | `"MED-1049"` |
+| `score` | `float32` | Raw retriever score | `14.821` |
+| `rank` | `int32` | 1-based rank position within top-$k$ | `1` |
+
+### Contract 2: Feature Matrix Schema (`results/features/{dataset}.parquet`)
+*Produced by Person 2; Consumed by Person 2 & Person 3*
+| Column Name | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `query_id` | `str` | Unique query identifier | `"302"` |
+| `query_length` | `float32` | Word count of query string | `7.0` |
+| `max_idf` | `float32` | Maximum BM25 corpus IDF of query terms | `8.41` |
+| `mean_idf` | `float32` | Average BM25 corpus IDF of query terms | `4.12` |
+| `rare_term_density` | `float32` | Fraction of query terms with IDF > threshold | `0.428` |
+| `entity_density` | `float32` | Heuristic capitalized / alphanumeric entity density | `0.142` |
+| `oov_fraction` | `float32` | Fraction of terms not in corpus vocabulary | `0.0` |
+| `jaccard_overlap` | `float32` | Top-10 Jaccard overlap between BM25 and Dense | `0.25` |
+| `rank_correlation` | `float32` | Kendall-tau rank correlation over top candidates | `0.38` |
+| `bm25_top1_score` | `float32` | Normalized top-1 score of BM25 | `0.89` |
+| `bm25_top1_top2_ratio`| `float32`| Ratio of top-1 to top-2 BM25 score | `1.34` |
+| `bm25_score_entropy` | `float32`| Shannon entropy of softmaxed candidate scores | `2.11` |
+| `dense_top1_score` | `float32` | Normalized top-1 score of Dense | `0.76` |
+| `dense_top1_top2_gap`| `float32`| Difference between top-1 and top-2 Dense scores | `0.08` |
+| `dense_score_entropy`| `float32`| Shannon entropy of Dense candidate distribution | `2.84` |
+
+### Contract 3: Router Predictions Schema (`results/models/{dataset}/predictions.parquet`)
+*Produced by Person 2; Consumed by Person 3*
+| Column Name | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `query_id` | `str` | Unique query identifier | `"302"` |
+| `fold` | `int32` | Cross-validation fold index | `2` |
+| `route_predicted` | `str` | Predicted route (`"bm25"`, `"dense"`, `"hybrid"`) | `"dense"` |
+| `p_bm25` | `float32` | Calibrated probability for BM25 route | `0.15` |
+| `p_dense` | `float32` | Calibrated probability for Dense route | `0.65` |
+| `p_hybrid` | `float32` | Calibrated probability for Hybrid route | `0.20` |
+| `delta_pred_bm25` | `float32` | Advantage regression estimate $\hat{\Delta}_{\text{BM25}}$ | `-0.04` |
+| `delta_pred_dense`| `float32` | Advantage regression estimate $\hat{\Delta}_{\text{Dense}}$ | `+0.07` |
+
+### Contract 4: Escalation Candidates & Predictions (`results/experiment4/{dataset}_escalation.parquet`)
+*Produced and Managed by Person 3*
+| Column Name | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `query_id` | `str` | Unique query identifier | `"302"` |
+| `budget` | `float32` | Escalation budget fraction ($B$) | `0.10` |
+| `policy` | `str` | Policy name (`"predicted_gain"`, `"confidence"`, `"random"`, `"oracle"`) | `"predicted_gain"` |
+| `escalated` | `bool` | True if query was sent to cross-encoder | `True` |
+| `ndcg_final` | `float32` | Final achieved nDCG@10 under policy | `0.421` |
+| `latency_ms` | `float32` | Wall-clock query latency | `48.3` |
+
+### Contract 5: Standardized Evaluation Metrics (`results/metrics/{dataset}/metrics.json`)
+*Produced by Person 3; Consumed by All for Report*
+```json
+{
+  "dataset": "fiqa",
+  "system": "advantage_router_with_escalation_10pct",
+  "ndcg_10": { "mean": 0.358, "ci_95": [0.342, 0.374] },
+  "mrr_10": { "mean": 0.341, "ci_95": [0.325, 0.357] },
+  "map": { "mean": 0.312, "ci_95": [0.298, 0.326] },
+  "recall_100": { "mean": 0.692, "ci_95": [0.675, 0.709] },
+  "latency_ms": { "mean": 18.4, "p50": 11.2, "p95": 54.1 },
+  "headroom_vs_hybrid": { "delta": +0.021, "p_value": 0.004, "significant": true }
+}
 ```
 
 ---
 
-## 2. Step-by-Step Execution Plan
+## 4. Synchronized Implementation Timeline & Parallel Milestones
 
-### Phase 0 — Setup (Week 1, all hands)
+```
+Timeline      Person 1 (Retrieval & Efficiency)    Person 2 (Features & Routing)         Person 3 (Escalation & Evaluation)
+────────────  ───────────────────────────────────  ────────────────────────────────────  ───────────────────────────────────
+Week 1        • Fix test_bm25 tokenizer stems      • Extract features on existing runs   • Benchmark upgraded cross-encoders
+              • Build CLI scripts/build_indexes    • Implement FeatureBuilder caching    • Confirm Always-Rerank > Hybrid
+              • Verify score normalizations        • Implement Dual Advantage Regressor  • Build evaluation metrics wrapper
 
-1. Initialize repo structure above; set up `pyproject.toml`/`requirements.txt` with pinned versions: `rank_bm25` or `pyserini`, `sentence-transformers`, `faiss-cpu`, `scikit-learn`, `lightgbm`, `xgboost`, `pytrec_eval` or `ir_measures`, `pandas`, `numpy`, `pyyaml`, `pytest`.
-2. Write `src/router_retrieval/data/schema.py` — shared dataclasses (`Document`, `Query`, `QRel`, `Candidate`) used by every downstream module so retrieval, labeling, and features all speak the same format.
-3. Write `scripts/download_data.py` to pull NFCorpus, SciFact, FiQA (and optionally TREC-COVID) via the BEIR dataset distribution; cache to `data/raw/{dataset}/`.
-4. Write `src/router_retrieval/data/beir_loader.py` to parse each dataset into the common schema, and `src/router_retrieval/data/splits.py` for seeded k-fold CV splits over queries.
-5. Agree on `configs/*.yaml` defaults as a team (BM25 k1/b, dense model name — e.g. `facebook/contriever` or `sentence-transformers/msmarco-distilbert-base-v4`, cross-encoder model — e.g. `cross-encoder/ms-marco-MiniLM-L-6-v2`, alpha grid, epsilon grid, tau grid).
+Week 2        • Instrument latency.py timers       • Train Advantage Router on Exp 2     • Run selective escalation (Exp 4)
+              • Benchmark CPU vs GPU latencies     • Prototype synthetic query generator • Compute risk-coverage curves
+              • Verify alpha sweep baselines       • Test query-style prompt templates   • Implement bootstrap significance
 
-**Deliverable:** datasets loadable end-to-end into the common schema; configs agreed; repo skeleton committed.
+[MILESTONE 1] ─── DATA ARTIFACT HANDSHAKE: Index & Run Caches / Feature Parquets / Upgraded Cross-Encoder Pools ──────────
 
-### Phase 1 — Retrieval Infra (Lane A, Weeks 1–2)
+Week 3        • Implement Exp 3 Skip-Dense         • Scale synthetic queries to 30,000+  • Integrate End-to-End Pipeline
+              • Test BM25 top ratio heuristic      • Re-train Advantage Regressor at 30k • Build control policies harness
+              • Measure wall-clock skip savings    • Perform feature ablation studies    • Generate win/loss contingency tables
 
-6. Implement `retrieval/bm25.py`: index corpus, `search(query, k)` returning scored candidates.
-7. Implement `retrieval/dense.py`: encode corpus with the chosen embedding model, build a FAISS CPU index, `search(query, k)`.
-8. Implement `retrieval/normalization.py`: min-max and/or z-score normalization for BM25 and dense scores (BM25 is unbounded, dense is bounded — normalize before any fusion, per Pinecone reference in the proposal).
-9. Implement `retrieval/hybrid.py`: `HybridRetriever(alpha)` combining normalized scores; implement the alpha sweep in `scripts/run_retrieval_baselines.py`.
-10. Implement `retrieval/rrf.py`: standard reciprocal rank fusion.
-11. Implement `retrieval/cross_encoder.py`: load MiniLM cross-encoder, `rerank(query, candidates)` over the BM25∪dense top-100 union (configurable truncation to top 30–50).
-12. Implement `scripts/build_indexes.py` to build and persist BM25 + FAISS indexes per dataset into `results/indexes/`.
-13. Implement `pipeline/latency.py`: context-manager timers wrapping each component (BM25 search, dense encode+search, feature extraction, router inference, cross-encoder rerank), logging per-query component latencies.
-14. Run `scripts/run_retrieval_baselines.py` to produce BM25-only, dense-only, hybrid (swept α, pick best per dataset on training folds), and RRF results, with `evaluation/ranking_metrics.py` (nDCG@10, MRR, MAP, Recall@100).
+Week 4        • Map latency-quality Pareto curves  • Run cross-domain transfer tests     • Execute run_full_evaluation.py
+              • Finalize results/latency/ tables   • Profile feature importances         • Pool metrics across 5 datasets
+              • Draft Report Section 3 & 4.2       • Draft Report Section 2 & 4.3        • Draft Report Section 1, 4.1 & 5
 
-**Deliverable:** all cheap retrieval baselines + cross-encoder backend working end-to-end with scores, metrics, and per-component latency.
+[MILESTONE 2] ─── SYSTEM INTEGRATION FREEZE: All Experiments Complete & Figures Generated ────────────────────────────────
 
-### Phase 2 — Labels & Headroom Checkpoint (Lane B, Weeks 2–3)
-
-15. Implement `labeling/per_route_eval.py`: compute nDCG@10 (and MRR/MAP) per query, per route (BM25, dense, hybrid-best-α) using qrels.
-16. Implement `labeling/margin_labeler.py`: best route = argmax nDCG@10; if `top1 - top2 < epsilon`, label = `hybrid`. Tune ε on training folds only.
-17. Implement `labeling/regret.py`: regret per route = `best_route_nDCG - this_route_nDCG`, retained alongside labels for regret-weighted training.
-18. Implement `scripts/run_oracle_headroom.py`: oracle router = always pick the best route per query; compare oracle nDCG@10 vs. best fixed-α hybrid.
-19. **WEEK-2 CHECKPOINT (hard gate):** if oracle headroom over hybrid is < ~2 nDCG points on all chosen datasets, pause and revisit dataset selection (e.g., swap in TREC-COVID or SciDocs) before investing further in router modeling. Document the headroom numbers in `results/metrics/` and in the report.
-20. Run `scripts/generate_labels.py` to persist `labels/{dataset}.parquet` (query_id, best_route, regret_bm25, regret_dense, regret_hybrid, margin).
-
-**Deliverable:** labeled dataset per BEIR dataset + go/no-go checkpoint decision documented.
-
-### Phase 3 — Features (Lane C, Weeks 2–3, parallel with Phase 2)
-
-21. Implement `features/query_features.py`: query length, max/mean IDF (computed from the BM25 index's corpus statistics), rare-term density, entity density (simple NER or heuristic), OOV fraction (vs. corpus vocabulary).
-22. Implement `features/retrieval_signal_features.py`: BM25/dense top-k Jaccard overlap, rank correlation (Spearman or Kendall) between the two ranked lists, top-1 score (normalized), top1-top2 gap per retriever, score entropy per retriever.
-23. Implement `features/feature_builder.py`: orchestrate full feature vector construction per query, with disk caching (features are expensive to recompute — depend on retrieval being run already).
-24. Run `scripts/extract_features.py` to persist `features/{dataset}.parquet`, joinable with `labels/{dataset}.parquet` on `query_id`.
-
-**Deliverable:** feature matrix per dataset, ready for router training.
-
-### Phase 4 — Router Training (Lane C, Weeks 3–4)
-
-25. Implement `router/base.py` interface (`fit`, `predict_proba`, `predict`).
-26. Implement `router/logistic_router.py`: scikit-learn `LogisticRegression` with `class_weight='balanced'`, trained on features → 3-class label, k-fold CV.
-27. Implement `router/gbm_router.py`: LightGBM or XGBoost multi-class classifier, with per-sample weights from regret (regret-weighted loss — misrouting a high-gap query costs more than a near-tie), class weighting, k-fold CV, hyperparameter search on training folds only.
-28. Implement `router/escalation.py`: given `predict_proba` output, apply threshold τ — if `max(proba) < τ`, mark query as `ESCALATE`; else route to `argmax(proba)`.
-29. Implement `router/oracle_router.py`: upper-bound control that always picks the query's true best route (no escalation).
-30. Run `scripts/train_router.py`: train both router types per dataset, save models to `results/models/{dataset}/`.
-31. Run `scripts/sweep_escalation.py`: sweep τ to hit target escalation rates (5%, 10%, 15%), log resulting coverage/risk via `evaluation/risk_coverage.py`.
-
-**Deliverable:** trained routers + escalation mechanism + risk-coverage sweep data.
-
-### Phase 5 — End-to-End Pipeline & Controls (Lane A + C, Week 4)
-
-32. Implement `pipeline/end_to_end.py`: query → features → router decision → (cheap route OR escalate-to-cross-encoder) → final ranked list, with latency instrumentation at every step.
-33. Implement `pipeline/controls.py`:
-    - Random escalation at the same rate as the router (does the router beat random escalation selection?).
-    - Always-hybrid + rerank on a random subset of equal size to the router's escalation set.
-    - Always-rerank (every query through the cross-encoder).
-34. Wire oracle router and fixed-α/RRF baselines into the same end-to-end harness so every method is evaluated identically.
-
-**Deliverable:** single harness producing comparable results for router, all baselines, and all controls.
-
-### Phase 6 — Full Evaluation (Lane B, Week 5)
-
-35. Implement `evaluation/ranking_metrics.py` wrapper (reuse `pytrec_eval`/`ir_measures` rather than hand-rolling nDCG/MRR/MAP/Recall@100).
-36. Implement `evaluation/router_metrics.py`: macro-F1, confusion matrix, per-class precision/recall (diagnostic only, reported alongside ranking metrics).
-37. Implement `evaluation/significance.py`: paired bootstrap test on per-query nDCG@10 between router and each baseline, per dataset.
-38. Implement `evaluation/latency_report.py`: aggregate mean/p95 latency by component, across BM25-only, hybrid, router (cheap path), router (escalated path), always-rerank; compare qualitatively against DAT's reported LLM-call latency.
-39. Run `scripts/run_full_evaluation.py` to produce the full results table: per dataset + pooled, nDCG@10/MRR/MAP/Recall@100, significance, and latency — covering H1–H4 directly.
-40. Run `scripts/run_latency_benchmark.py` as a dedicated, isolated pass if system load affects timing accuracy in the combined run.
-
-**Deliverable:** complete results tables + significance tests + latency breakdown, mapped explicitly to hypotheses H1–H4.
-
-### Phase 7 — Ablations & Stretch Threads (Weeks 5–6)
-
-41. Run `scripts/run_ablations.py`: query-only features vs. retrieval-signal features vs. both, to attribute router performance to feature groups (Thread 5).
-42. Optional/stretch — Thread 2: train a 4-class router (BM25/dense/hybrid/escalate) and compare against confidence-thresholding; implement as an alternate `router/` variant behind a config flag.
-43. Optional/stretch — Thread 3: compare margin-based labels vs. regret-weighted-only vs. DAT's top-1 heuristic as alternate labeling strategies in `labeling/`.
-44. Optional/stretch — Thread 4: `scripts/run_cross_domain.py` — train router on one BEIR dataset, evaluate on another, report generalization gap.
-45. Optional/stretch — Thread 1: compare hand-crafted features against a latent-representation router (e.g., pooled query embedding fed to a small MLP/logistic head) as a differentiation study vs. the MDPI paper.
-
-**Deliverable:** ablation results; any stretch threads attempted, clearly marked as such in the report.
-
-### Phase 8 — Write-up (Week 6–7, all hands)
-
-46. Compile all tables/figures into `report/`. Report every metric honestly, including cases where the router only ties baselines (per proposal's design-decision commitment).
-47. Explicitly address each hypothesis H1–H4 with the corresponding evidence table/figure.
-48. Document the Week-2 checkpoint outcome, any dataset changes made because of it, and all risks encountered (small query sets, tuning parity between router and fixed-α baseline, latency-vs-BM25 floor).
+Week 5        • Cross-review experimental logs     • Review ablation and scaling tables  • Compile master report.md
+              • Verify latency reproducibility     • Format synthetic data appendix      • Polish final camera-ready report
+```
 
 ---
 
-## 3. Testing Strategy
+## 5. Team Governance, Git Strategy & Conflict Prevention
 
-- Unit tests for every retrieval component (`tests/test_bm25.py`, `test_dense.py`, `test_hybrid.py`, `test_rrf.py`, `test_cross_encoder.py`) using a tiny synthetic corpus (3–5 docs) with known expected rankings.
-- Unit tests for feature extraction correctness on hand-computed small examples.
-- Unit tests for margin labeling edge cases (exact ties, ε boundary).
-- Unit tests for escalation threshold logic (`τ` boundary conditions, all-escalate / no-escalate edge cases).
-- Integration test (`test_end_to_end_pipeline.py`) running the full pipeline on a tiny fixture dataset to catch wiring bugs before running on real BEIR data.
-- All randomized processes (splits, model training, bootstrap significance) must be seeded via `utils/seeding.py` for reproducibility.
+To maintain independent workflows in Git:
 
-## 4. Key Interfaces to Agree On Early (to enable lane parallelism)
+1. **Dedicated Track Branches**:
+   - Person 1 commits to `feature/track1-retrieval-latency`
+   - Person 2 commits to `feature/track2-router-synthetic`
+   - Person 3 commits to `feature/track3-escalation-eval`
+2. **Pull Request Protocol**:
+   - Merges to `master` require green test suite execution (`pytest`).
+   - PRs must only modify files within the author's designated ownership table (§2).
+3. **Artifact Isolation**:
+   - Intermediate model checkpoints and per-query CSVs land in dedicated subdirectories (`results/experiment3/`, `results/synthetic/`, `results/experiment4/`), preventing untracked merge collisions.
+4. **Issue & Negative Finding Transparency**:
+   - In accordance with the findings in `experiment_issues.md`, negative results (e.g. inability of cheap features to beat hybrid, or one-feature heuristics matching learned models) are treated as **first-class scientific contributions**. Team members document what was attempted, the confidence intervals, and the theoretical reason for the outcome without forcing artificial claims.
 
-- `Candidate` schema (query_id, doc_id, score, rank) — used by retrieval, labeling, and evaluation alike.
-- `labels/{dataset}.parquet` schema (query_id, best_route, margin, regret_bm25, regret_dense, regret_hybrid) — contract between Lane B and Lane C.
-- `features/{dataset}.parquet` schema (query_id, <feature columns>) — contract between Lane C's feature extraction and router training.
-- Config file schemas in `configs/*.yaml` — agreed once in Phase 0 so no lane blocks another.
+---
 
-## 5. Risks to Track (carried over from proposal, with owners)
+## 6. Report & Presentation Responsibility Matrix
 
-| Risk | Owner | Mitigation |
-|---|---|---|
-| Small query sets → noisy significance | Lane B | k-fold CV + paired bootstrap, report confidence intervals, not just point estimates |
-| Oracle headroom too small | All | Week-2 checkpoint gate (step 19); documented go/no-go |
-| Fixed-α baseline under-tuned vs. router | Lane A | Sweep α on same folds as router training, not a single default value |
-| Latency floor near hybrid, not BM25 | Lane A | State this explicitly as the claim in report; don't overclaim |
+The final project deliverable (`report/report.md` and presentation slides) is divided as follows:
+
+| Section | Title / Content | Primary Owner | Reviewer |
+| :--- | :--- | :--- | :--- |
+| **Abstract** | Executive summary of research questions, key findings, and efficiency results | **Person 3** | Person 1, Person 2 |
+| **Section 1** | **Introduction & Hypotheses**: Motivation, trade-offs, formal hypotheses H1–H4, literature positioning (DAT, Pinecone, Adaptive-RAG) | **Person 3** | Person 2 |
+| **Section 2** | **Methodology & Architecture**: Dual Advantage Regression, Feature Engineering (Lexical & Interaction), and Synthetic Scaling Protocol | **Person 2** | Person 3 |
+| **Section 3** | **Experimental Setup & Baselines**: Datasets (NFCorpus, SciFact, FiQA, Unix, Quora), retrievers, $\alpha$-sweeps, normalization, and test splits | **Person 1** | Person 3 |
+| **Section 4.1** | **Retrieval Quality & Headroom**: nDCG@10/MRR/MAP, Headroom analysis, Selective Escalation results, and Bootstrap Significance | **Person 3** | Person 2 |
+| **Section 4.2** | **Latency, FLOPs & Efficiency Trade-offs**: Wall-clock CPU/GPU timings, per-component breakdowns, and Skip-Dense Pareto frontiers | **Person 1** | Person 3 |
+| **Section 4.3** | **Ablation Studies & Scaling Impact**: Feature group ablations, Synthetic dataset scaling curves (3k vs 30k), and Cross-domain transfer | **Person 2** | Person 1 |
+| **Section 5** | **Discussion & Limitations**: Honest analysis of negative results (Issues A1–A9, D1–D6), failure modes, and deployment guidelines | **Person 3** | Person 1, Person 2 |
+| **Presentation** | Slide Deck creation & visual design | **All Hands** (P1: Setup/Latency, P2: Method/Ablations, P3: Results/Escalation) | Lead: P3 |
+
+---
+
+## 7. Master Risk & Mitigation Register
+
+| Identified Risk | Impacted Track | Pre-Emptive Mitigation |
+| :--- | :---: | :--- |
+| **Statistical power too low on small BEIR sets** (Issue A6) | Track 2 & 3 | Person 2 scales training via 30,000 synthetic queries; Person 3 runs 10,000 bootstrap resamples with pooled reporting. |
+| **Cross-encoder weaker than hybrid** (Issue D4) | Track 3 | Person 3 benchmarks higher-capacity models (`bge-reranker-base`, `ms-marco-MiniLM-L-12-v2`) in Phase 1 before running escalation. |
+| **Learned router matches simple heuristic** (Issue D1) | Track 1 & 2 | Document as an interpretability win: show that a transparent top-1/top-2 ratio heuristic yields 90%+ of the learned model's savings. |
+| **Retrieval latency dominated by network/IO** | Track 1 | Person 1 isolates benchmark runs locally using in-memory FAISS indices and warms up PyTorch caches prior to timing. |
+| **Merge conflicts on shared files** | All | Zero-overlap file ownership (§2) and contract-first architecture (§3). |
