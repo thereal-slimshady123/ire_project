@@ -65,6 +65,8 @@ def parse_args():
     p.add_argument("--exp2_dir", type=Path, default=Path("results/experiment2"))
     p.add_argument("--output_dir", type=Path, default=Path("results/experiment4"))
     p.add_argument("--dense_model", type=str, default="intfloat/e5-small-v2")
+    p.add_argument("--cross_encoder_model", type=str, default=None,
+                   help="Override configured checkpoint for controlled reranker comparisons")
     p.add_argument("--n_bootstrap", type=int, default=10000)
     p.add_argument("--no_plots", action="store_true")
     return p.parse_args()
@@ -108,7 +110,8 @@ def main():
     seed_everything(seed)
     alphas = [float(a) for a in hyb_cfg["alpha_grid"]]
     k = ret_cfg["dense"].get("top_k", 100)
-    ce = CrossEncoderReranker(model_name=ce_cfg["model_name"], batch_size=64, device="auto",
+    ce = CrossEncoderReranker(model_name=args.cross_encoder_model or ce_cfg["model_name"],
+                              batch_size=ce_cfg["batch_size"], device=ce_cfg["device"],
                               candidate_pool_size=POOL, max_length=ce_cfg["max_length"])
 
     heldout, fold_log, rerank_gain = [], {}, {}
@@ -201,7 +204,8 @@ def main():
         for B in BUDGETS:
             res["budgets"][str(B)] = {
                 pol: {"mean": float(df[f"{pol}@{B}"].mean()),
-                      "retained": float((df[f"{pol}@{B}"].mean() - h) / (full - h)) if full != h else None}
+                      "retained": (float((df[f"{pol}@{B}"].mean() - h) / (full - h))
+                                   if full > h else None)}
                 for pol in POLICIES
             }
         res["primary_pg_minus_random"] = paired_bootstrap_test(
@@ -260,17 +264,23 @@ def main():
     for name, s in [*summary["per_dataset"].items(), ("**pooled**", pooled)]:
         b = s["budgets"][str(PRIMARY_BUDGET)]
         ret = b["predicted_gain"]["retained"]
+        retained_cell = "n/a" if ret is None else f"{ret:.0%}"
         lines.append(
             f"| {name} | {s['n']} | {s['always_hybrid']:.4f} | {s['always_rerank']:.4f} | {b['predicted_gain']['mean']:.4f} "
             f"| {b['router_confidence']['mean']:.4f} | {b['random']['mean']:.4f} | {b['oracle']['mean']:.4f} "
-            f"| {ci(s['primary_pg_minus_random'])} | {'n/a' if ret is None else f'{ret:.0%}'} |"
+            f"| {ci(s['primary_pg_minus_random'])} | {retained_cell} |"
         )
     lines += ["", "## Pooled: quality retained = (policy − hybrid) / (always-rerank − hybrid)", "",
               "| Budget | Predicted gain | Router confidence | Random | Oracle |", "| :---: | :---: | :---: | :---: | :---: |"]
     for B in BUDGETS:
         b = pooled["budgets"][str(B)]
+        cells = []
+        for policy in POLICIES:
+            retained = b[policy]["retained"]
+            retained_text = "n/a" if retained is None else f"{retained:.0%}"
+            cells.append(f"{b[policy]['mean']:.4f} ({retained_text})")
         lines.append(f"| {B:.0%} | " + " | ".join(
-            f"{b[p]['mean']:.4f} ({b[p]['retained']:.0%})" for p in POLICIES) + " |")
+            cells) + " |")
     (out_dir / "tables.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     log.info(f"VERDICT {summary['verdict'].upper()}: pred-gain − random @10% = {ci(pooled['primary_pg_minus_random'])}")
 

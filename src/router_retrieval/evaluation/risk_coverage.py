@@ -24,4 +24,17 @@ def compute_risk_coverage_curve(
     Returns:
         DataFrame with columns [tau, coverage, risk, escalation_rate].
     """
-    raise NotImplementedError
+    conf = np.asarray(confidences, dtype=float)
+    risk = np.asarray(errors_or_regrets, dtype=float)
+    if conf.ndim != 1 or risk.shape != conf.shape:
+        raise ValueError("confidences and errors_or_regrets must be equal-length 1-D arrays")
+    if not np.isfinite(conf).all() or not np.isfinite(risk).all():
+        raise ValueError("inputs must be finite")
+    rows = []
+    for tau in taus:
+        covered = conf >= tau
+        coverage = float(covered.mean()) if len(conf) else 0.0
+        rows.append({"tau": float(tau), "coverage": coverage,
+                     "risk": float(risk[covered].mean()) if covered.any() else 0.0,
+                     "escalation_rate": 1.0 - coverage})
+    return pd.DataFrame(rows, columns=["tau", "coverage", "risk", "escalation_rate"])

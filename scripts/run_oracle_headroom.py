@@ -1,32 +1,24 @@
-"""Compute oracle router headroom over best fixed-alpha hybrid (Week-2 checkpoint)."""
-
+"""Report the recorded per-query oracle headroom from Experiment 1."""
 import argparse
+import json
 from pathlib import Path
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description="Compute oracle vs hybrid headroom (Week-2 checkpoint gate)")
-    parser.add_argument(
-        "--dataset",
-        type=str,
-        required=True,
-        help="Dataset name (e.g., nfcorpus, scifact, fiqa)",
-    )
-    parser.add_argument(
-        "--threshold",
-        type=float,
-        default=0.02,
-        help="Headroom gate threshold in nDCG@10 (default 0.02 / 2 points)",
-    )
-    return parser.parse_args()
-
-
 def main():
-    args = parse_args()
-    print(f"Computing oracle router headroom for dataset: {args.dataset}")
-    # TODO: Compare oracle routing vs. best fixed-alpha hybrid nDCG@10
-    # Hard gate check: if headroom < threshold, alert to revisit dataset choice.
-    raise NotImplementedError
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--dataset", required=True)
+    p.add_argument("--results_dir", type=Path, default=Path("results/experiment1"))
+    p.add_argument("--threshold", type=float, default=0.02)
+    args = p.parse_args()
+    path = args.results_dir / args.dataset / "summary.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    h = data["H2"]
+    ci = h["oracle3_vs_hybrid"]
+    report = {"dataset": args.dataset, "n": data["n_queries"], "hybrid_ndcg10": h["hybrid_ndcg"],
+              "oracle_ndcg10": h["oracle3_ndcg"], "headroom": h["headroom"],
+              "ci_95": [ci["ci_95_low"], ci["ci_95_high"]], "bootstrap_p": ci["p_value"],
+              "is_upper_bound_only": True, "meets_descriptive_threshold": h["headroom"] >= args.threshold}
+    print(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":

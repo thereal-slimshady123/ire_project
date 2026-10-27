@@ -23,4 +23,14 @@ def compute_router_classification_metrics(
             - 'per_class': Dict[str, Dict[str, float]]
             - 'confusion_matrix': np.ndarray
     """
-    raise NotImplementedError
+    from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+    if len(y_true) != len(y_pred):
+        raise ValueError("y_true and y_pred must have equal length")
+    labels = labels or sorted(set(y_true) | set(y_pred))
+    p, r, f, support = precision_recall_fscore_support(y_true, y_pred, labels=labels, zero_division=0)
+    return {"macro_f1": float(np.mean(f)) if len(f) else 0.0,
+            "per_class": {label: {"precision": float(p[i]), "recall": float(r[i]),
+                                  "f1": float(f[i]), "support": int(support[i])}
+                          for i, label in enumerate(labels)},
+            "confusion_matrix": confusion_matrix(y_true, y_pred, labels=labels).tolist(),
+            "labels": list(labels)}

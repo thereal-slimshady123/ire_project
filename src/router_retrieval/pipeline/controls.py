@@ -1,6 +1,7 @@
 """Baseline and control pipelines for rigorous comparison."""
 
 from typing import Dict, List, Optional
+import hashlib
 from router_retrieval.data.schema import Candidate, Query, Document
 from router_retrieval.retrieval.bm25 import BM25Retriever
 from router_retrieval.retrieval.dense import DenseRetriever
@@ -25,11 +26,22 @@ class AlwaysRerankPipeline:
 
     def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
         """Process query by always routing through cross-encoder."""
-        raise NotImplementedError
+        b = self.bm25.search(query, k=max(100, self.cross_encoder.candidate_pool_size))
+        d = self.dense.search(query, k=max(100, self.cross_encoder.candidate_pool_size))
+        candidates = HybridRetriever(self.bm25, self.dense, alpha=0.5).combine_candidates(
+            b, d, k=max(100, self.cross_encoder.candidate_pool_size))
+        return self.cross_encoder.rerank(query, candidates, self.corpus, top_k)
+
+
+def _selected(query_id: str, seed: int, rate: float) -> bool:
+    if not 0.0 <= rate <= 1.0:
+        raise ValueError("rate must be in [0, 1]")
+    digest = hashlib.sha256(f"{seed}:{query_id}".encode()).digest()
+    return int.from_bytes(digest[:8], "big") / 2**64 < rate
 
 
 class RandomEscalationPipeline:
-    """Escalates a random subset of queries at the exact same rate as the router."""
+    """Deterministically samples queries for escalation at an approximate target rate."""
 
     def __init__(
         self,
@@ -47,11 +59,14 @@ class RandomEscalationPipeline:
 
     def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
         """Process query with random escalation."""
-        raise NotImplementedError
+        candidates = self.hybrid.search(query, k=max(100, self.cross_encoder.candidate_pool_size))
+        if _selected(query.query_id, self.seed, self.escalation_rate):
+            return self.cross_encoder.rerank(query, candidates, self.corpus, top_k)
+        return candidates[:top_k]
 
 
 class AlwaysHybridRandomRerankPipeline:
-    """Always-hybrid baseline with random cross-encoder reranking on a matching fraction."""
+    """Always-hybrid baseline with seeded random reranking at an approximate target rate."""
 
     def __init__(
         self,
@@ -69,4 +84,7 @@ class AlwaysHybridRandomRerankPipeline:
 
     def process_query(self, query: Query, top_k: int = 10) -> List[Candidate]:
         """Process query with random subset reranked."""
-        raise NotImplementedError
+        candidates = self.hybrid.search(query, k=max(100, self.cross_encoder.candidate_pool_size))
+        if _selected(query.query_id, self.seed, self.rerank_rate):
+            return self.cross_encoder.rerank(query, candidates, self.corpus, top_k)
+        return candidates[:top_k]

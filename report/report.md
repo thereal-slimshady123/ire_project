@@ -1,104 +1,83 @@
-# Final Report: Confidence-Based Query Router for Hybrid Retrieval
+# Confidence-Based Query Routing for Hybrid Retrieval
 
 ## Abstract
 
-<!-- Summary of research question, methods, results across NFCorpus, SciFact, FiQA, and key takeaways -->
+We study whether query features can improve retrieval quality by selecting BM25, dense retrieval, or a fixed-weight hybrid, and whether confidence based escalation can target cross-encoder reranking under a budget. Experiments use five BEIR/MTEB query sets and held-out, five-fold evaluation over 3,343 queries. The main held-out test is negative: a LightGBM route classifier scores 0.0061 nDCG@10 below always-hybrid (95% paired bootstrap CI [−0.0091, −0.0032]). The model does not beat random routing at the same route proportions. A separate skip-dense experiment meets its pre-registered pooled non-inferiority, savings, and random-control criteria, while a simple BM25 top-score ratio matches the learned classifier. The tested MiniLM-L6 reranker lowers mean quality, and selective policies do not significantly beat random escalation. These findings support a narrower conclusion: feature based routing among the tested cheap systems did not generalize, BM25 score separation can identify some queries where dense retrieval may be skipped, and useful escalation depends on having a reranker that improves the base ranking.
 
-## 1. Introduction & Motivation
+## 1. Introduction and Research Questions
 
-<!-- IR trade-offs: BM25 latency vs. Dense semantic matching vs. Hybrid vs. Cross-encoder reranking -->
+Search systems commonly combine lexical matching with semantic retrieval. BM25 is effective for exact terms and identifiers; dense retrievers can find semantically related passages; hybrid retrieval combines both candidate lists. Cross-encoders can score query-document pairs jointly, but add inference cost. This project began with the hypothesis that inexpensive query and retrieval features could choose among BM25, dense, and hybrid, then escalate uncertain queries to a cross-encoder.
 
-## 2. Methodology & Architecture
+The initial proposal expected routing to outperform a fixed hybrid and selective reranking to retain most of the always-rerank gain at a low budget. The experiments below test those claims against held-out queries and matched random controls. We report negative results directly. In particular, a per-query oracle is an upper bound and does not demonstrate that a learnable signal can identify the winning route.
 
-<!-- Route definitions, confidence estimation, threshold-based escalation, training with regret weighting -->
+## 2. Method and Evaluation Protocol
 
-## 3. Experimental Setup
+### 2.1 Systems and features
 
-### 3.1 Benchmark Datasets
-We evaluate on five standard Information Retrieval benchmarks from the BEIR suite spanning distinct retrieval domains, linguistic registers, and query distributions:
-1. **NFCorpus** (3,633 documents, 323 test queries, 12,334 qrels): Medical information retrieval with multi-word clinical entities and terminology.
-2. **SciFact** (5,183 documents, 300 test queries, 339 qrels): Scientific claim verification with concise hypothesis statements and sparse relevance targets (~1.1 relevant documents per query).
-3. **FiQA** (57,638 documents, 648 test queries, 1,706 qrels): Financial opinion question answering with diverse, conversational queries and domain-specific vocabulary.
-4. **CQADupStack-Unix** (47,382 documents, 1,072 test queries): Technical StackExchange forum queries featuring terminal flags, file paths, and syntax errors.
-5. **Quora** (50,000 document subset, 1,000 sampled test queries): Conversational duplicate question matching characterized by high semantic paraphrase density.
+The first-stage systems are BM25, a dense bi-encoder, and a convex hybrid over min-max-normalized BM25 and dense scores. The hybrid dense weight α is selected from a grid on training queries only. The BM25 normalization uses a zero floor when a truncated BM25 list implies that missing documents have score zero. This prevents a single BM25 hit from being normalized to the same score as an unretrieved document.
 
-### 3.2 First-Stage Retrievers & Indexing
-- **BM25 (Sparse Lexical)**: Okapi BM25 parameterized at $k_1 = 1.2, b = 0.75$. The tokenizer implements standard Lucene `EnglishAnalyzer` semantics (case folding, Lucene English stopword pruning, and algorithmic Porter stemming). Document titles and bodies are concatenated per BEIR indexing conventions. Retrieval scores are computed using pre-computed compressed sparse column (CSC) term-document matrices.
-- **Dense Bi-Encoder**: `intfloat/e5-small-v2` (384-dimensional embeddings, 33M parameters). Text passages are prefixed with `"passage: "` and queries with `"query: "` per model architecture requirements. Embeddings are $L_2$-normalized such that maximum inner-product search in FAISS (`IndexFlatIP`) evaluates exact cosine similarities.
-- **Score Normalization & Fusion**:
-  - BM25 scores $[0, \infty)$ and Dense cosine similarities $[-1, 1]$ are min-max normalized per query:
-    $$\tilde{s}(d) = \frac{s(d) - \text{lo}}{\max_{d'} s(d') - \text{lo} + \delta}$$
-  - **Floor Anchoring (Bug B1 prevention)**: When candidate lists are truncated ($|C| < k$), the lower anchor $\text{lo}$ is anchored at $0.0$ (the exact score of unretrieved documents) rather than the list minimum, guaranteeing that sparsely retrieved BM25 hits are not zeroed out and demoted below unretrieved documents.
-  - **Convex Combination**: $\text{Score}_{\text{Hybrid}}(d) = \alpha \cdot \tilde{s}_{\text{Dense}}(d) + (1-\alpha) \cdot \tilde{s}_{\text{BM25}}(d)$ evaluated across $\alpha \in \{0.0, 0.1, \dots, 1.0\}$.
-  - **5-Fold Cross-Validation**: To ensure Hybrid is never an artificially tuned strawman, optimal $\alpha^*$ is calibrated strictly out-of-fold on the 4 training folds and evaluated on held-out test folds.
-- **Reciprocal Rank Fusion (RRF)**: Non-parametric rank-based fusion baseline:
-  $$\text{RRF}(d) = \sum_{m \in \{\text{BM25}, \text{Dense}\}} \frac{1}{k_{\text{rrf}} + r_m(d)}, \quad k_{\text{rrf}} = 60$$
+The original classifier uses 18 query and retrieval-signal features: query length, IDF and rare-term statistics, entity and out-of-vocabulary density, top-k list overlap, rank correlation, top scores, score gaps and entropy, top-score ratio, and query-term coverage. GBM labels use a margin rule that defaults near-ties to hybrid; training weights scale with the spread of route scores. The separate Experiment 3 skip model uses only query and BM25 signals available before dense retrieval.
 
-### 3.3 Evaluation Metrics & Statistical Controls
-All systems retrieve top-$k=100$ candidate pools per query. We evaluate ranking effectiveness using:
-- **Primary**: Normalized Discounted Cumulative Gain at rank 10 ($\text{nDCG@10}$).
-- **Secondary**: Mean Reciprocal Rank at rank 10 ($\text{MRR@10}$), Mean Average Precision ($\text{MAP}$), and Recall at rank 100 ($\text{Recall@100}$).
-- **Statistical Significance**: Paired bootstrap hypothesis testing ($B = 10{,}000$ resamples) computing 95% two-sided confidence intervals, along with paired Wilcoxon signed-rank tests.
+### 2.2 Datasets and metrics
 
----
+The evaluation covers NFCorpus (323 test queries), SciFact (300), FiQA (648), CQADupStack Unix (1,072), and a deterministic Quora subset (1,000). The Quora subset retains the sampled queries' relevant documents and 50,000 random distractors. Experiments 2–4 use `intfloat/e5-small-v2` for dense retrieval and top-100 candidate lists; Experiment 1 used `msmarco-distilbert-base-v4`, so its absolute values are not directly comparable with later experiments.
 
-## 4. Results & Analysis
+The primary measure is nDCG@10. MRR, MAP, and Recall@100 are additional retrieval metrics in the project evaluation code. Unless otherwise noted, held-out results use five-fold cross-validation within each dataset with seed 42 and a paired bootstrap with 10,000 resamples. Parameters and thresholds are selected from training folds. Pooled statistics combine per-query held-out predictions across the five datasets.
 
-### 4.1 Retrieval Performance (H1 & H2)
-<!-- nDCG@10, MRR, MAP, Recall@100 tables and significance testing -->
+### 2.3 Registered comparisons
 
-### 4.2 Latency Benchmarks, Wall-Clock Profiling, and Skip-Dense Efficiency Frontiers
+Experiment 2 compares GBM routing with always-hybrid and a random policy using the router's own route proportions. Experiment 3 asks whether BM25 can replace hybrid for selected queries while preserving quality and reducing dense calls. Experiment 4 compares predicted-gain and low-confidence escalation with random escalation at the same budget. Oracle results are reported only as upper bounds.
 
-#### 4.2.1 Per-Component Wall-Clock Profiling (Addressing Issue D3)
-Prior analyses relied purely on algorithmic count estimates without measuring empirical system execution costs. To resolve Issue D3, we instrumented all pipeline components with context-manager timers (`pipeline/latency.py`) and profiled per-component execution latency across benchmark collections.
+## 3. Results
 
-| Component | Operation Description | Mean Latency (ms) | p50 Latency (ms) | p95 Latency (ms) | Estimated Compute |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| `bm25_search` | Inverted index posting traversal & scoring | 0.81 – 1.59 | 0.70 – 1.52 | 1.50 – 2.42 | $\sim 5 \times 10^4$ lookups |
-| `dense_encode` | Bi-encoder query embedding forward pass | 3.86 – 3.99 | 3.84 – 4.01 | 4.14 – 4.20 | 2.11 GFLOPs ($2 N L$) |
-| `faiss_search` | FAISS IndexFlatIP vector search ($d=384$) | 1.06 – 11.84 | 0.95 – 11.80 | 1.84 – 14.72 | $2 \times N_{\text{docs}} \times d$ FLOPs |
-| `hybrid_fusion` | Min-max normalization & convex combination | 1.17 – 1.51 | 1.09 – 1.54 | 1.71 – 2.59 | $O(|C_1 \cup C_2|)$ |
-| `feature_extraction` | Query lexical & retrieval interaction features | 1.83 – 2.75 | 1.69 – 2.54 | 2.83 – 4.76 | $O(|q| + |C|)$ |
-| `router_inference` | LightGBM / decision rule skip evaluation | 0.01 – 0.02 | 0.01 – 0.02 | 0.02 – 0.03 | $O(N_{\text{trees}} \cdot \text{depth})$ |
-| `cross_encoder_rerank` | MiniLM-L6 cross-encoder over top-50 pool | 18.37 – 18.49 | 18.34 – 18.45 | 18.59 – 18.97 | $\sim 2.2 \times 10^9$ FLOPs |
+### 3.0 Latency profile
 
-**Key Latency Observations**:
-1. **Asymmetric First-Stage Cost**: BM25 inverted index traversal averages $\approx 1.0$ ms per query, whereas full dense retrieval requires $\approx 5.0$ ms on small corpora (NFCorpus, SciFact) and rises to $\approx 15.7$ ms on FiQA ($N=57{,}638$ documents) due to flat index vector distance computations.
-2. **Feature Extraction Overhead**: Extracting interactive signals requires $\approx 2.0$ ms per query, while router forward inference is virtually instantaneous ($\le 0.02$ ms).
+The component timers report the following observed ranges across the profiled collections. FLOP counts are estimates, not hardware-independent measurements.
 
-#### 4.2.2 End-to-End System Latency Comparison
+| Component | Mean (ms) | p50 (ms) | p95 (ms) |
+| :--- | :---: | :---: | :---: |
+| BM25 search | 0.81–1.59 | 0.70–1.52 | 1.50–2.42 |
+| Dense query encoding | 3.86–3.99 | 3.84–4.01 | 4.14–4.20 |
+| FAISS search | 1.06–11.84 | 0.95–11.80 | 1.84–14.72 |
+| Hybrid fusion | 1.17–1.51 | 1.09–1.54 | 1.71–2.59 |
+| Feature extraction | 1.83–2.75 | 1.69–2.54 | 2.83–4.76 |
+| Router inference | 0.01–0.02 | 0.01–0.02 | 0.02–0.03 |
+| Cross-encoder reranking | 18.37–18.49 | 18.34–18.45 | 18.59–18.97 |
 
-| System Configuration | NFCorpus Mean / p95 (ms) | SciFact Mean / p95 (ms) | FiQA Mean / p95 (ms) | Latency Reduction vs. Hybrid |
-| :--- | :---: | :---: | :---: | :---: |
-| **BM25 Only** | 0.81 / 1.50 | 1.00 / 1.55 | 1.59 / 2.42 | **−89.0%** to **−91.4%** |
-| **Skip-Dense Router** | 8.53 / 11.90 | 6.41 / 11.65 | 19.65 / 23.49 | **−18.7%** (on high-skip sets) |
-| **Always Hybrid** | 7.14 / 9.56 | 7.88 / 9.94 | 18.46 / 21.68 | Baseline (1.00×) |
-| **Escalation (10% Budget)** | 9.00 / 25.17 | 9.75 / 26.63 | 20.29 / 36.91 | +10% Mean (+70% p95 tail) |
+These measurements show that feature extraction adds measurable overhead, while router inference is negligible. End-to-end latency depends on corpus size and the selected policy; the skip-dense measurements and cross-encoder escalation results are reported with their corresponding experiments below.
 
-#### 4.2.3 Skip-Dense Efficiency Frontiers (Experiment 3 Deep-Dive)
-The Skip-Dense retrieval engine tests whether dense retrieval can be bypassed dynamically when pre-retrieval lexical signals and BM25 candidate statistics indicate high confidence.
+### 3.1 Initial hybrid analysis and held-out route selection
 
-**Held-Out 5-Fold Cross-Validation Performance Across 3,343 Queries**:
-- **Always-Hybrid Baseline (Pooled)**: 0.5880 nDCG@10
-- **Always-BM25 Baseline (Pooled)**: 0.5148 nDCG@10
-- **Learned Skip Router (Pooled)**: 0.5828 nDCG@10
-  - **Dense Calls Skipped**: **32.9%** (meeting the pre-registered $\ge 20\%$ target).
-  - **Quality Retention**: $-0.0053$ [95% CI: $-0.0073, -0.0032$], safely inside the pre-registered non-inferiority margin (CI low $\ge -0.010$).
-  - **Gain vs. Random Skipping**: $+0.0104$ [95% CI: $+0.0080, +0.0129$] ($p < 0.001$).
+Across NFCorpus, SciFact, and FiQA, the tuned hybrid was the best fixed system in mean nDCG@10. The original H1 “degraded query” prevalence compares hybrid with the per-query maximum of BM25 and dense; this selected maximum is biased upward by construction. The project issue log therefore withdraws the original H1 verdict and treats per-query oracle headroom as a bound. A separate, predefined query-type analysis on Unix technical/plain queries and Quora conversational queries found hybrid ahead of both single retrievers in each group; each group's best α was 0.6.
 
-**Addressing Issues D1 and D2**:
-- **Issue D1 (Heuristic Parity)**: The one-feature heuristic $H_1$ (BM25 top-1/top-2 score ratio) matches the learned LightGBM classifier across the entire Pareto sweep:
-  - At 20% skip: Router $= 0.5790$ vs. $H_1 = 0.5818$
-  - At 30% skip: Router $= 0.5744$ vs. $H_1 = 0.5753$
-  - At 50% skip: Router $= 0.5618$ vs. $H_1 = 0.5610$
-  This establishes that a confident BM25 score separation head is an interpretable, sufficient skip signal that eliminates the need for complex learned gating models.
-- **Issue D2 (Domain Sensitivity)**: Natural skip rates vary sharply by domain: Quora (62.7% skipped), SciFact (46.7%), NFCorpus (38.1%), down to FiQA (4.6%). Deployments in heterogeneous search engines must calibrate skip thresholds per vertical.
+The decisive held-out comparison pooled 3,343 queries. GBM routing achieved 0.5819 nDCG@10 versus 0.5880 for always-hybrid, a difference of −0.0061 (95% CI [−0.0091, −0.0032]). Logistic routing scored 0.5632. GBM routing differed from random routing at the same route proportions by +0.0017 (95% CI [−0.0010, +0.0044]), which is inconclusive. The oracle's +0.0344 difference is an upper bound, not evidence that the available features can realize that gain.
 
-### 4.3 Feature Ablations
-<!-- Query-only vs. Retrieval-signal vs. Combined -->
+### 3.2 Skipping dense retrieval
 
-## 5. Discussion & Future Work
+At the operating point chosen on training folds, the skip router omitted dense retrieval for 32.9% of held-out queries. Its pooled score was 0.5828 versus 0.5880 for always-hybrid, a difference of −0.0053 (95% CI [−0.0073, −0.0032]). It passed the registered criteria: the confidence interval lower bound exceeded −0.01, savings exceeded 20%, and the router beat expected random skipping by +0.0104 (95% CI [+0.0080, +0.0129]).
 
-<!-- Generalization, failure modes, oracle headroom analysis, conclusion -->
+The gain is domain dependent. The held-out skip rate ranged from 4.6% on FiQA to 62.7% on Quora. The BM25 top-1/top-2 ratio heuristic was at least as effective as the learned classifier in the reported matched-rate curves. Transfer results did not show uniform quality non-inferiority. The result is evidence for a useful BM25 confidence signal in this evaluation, not a general dense-call reduction guarantee.
+
+### 3.3 Cross-encoder escalation
+
+The preregistered MiniLM-L6 reranker lowered pooled nDCG@10 from 0.5880 for always-hybrid to 0.5718 for always-rerank. At a 10% budget, predicted-gain escalation scored 0.5872 and random escalation 0.5864. Their difference was +0.0008 (95% CI [−0.0012, +0.0028]); router-confidence escalation also did not significantly beat random. Although the oracle-selected 10% reached 0.6169, the tested features did not identify those beneficial cases. Since always-rerank is worse than hybrid on average, “quality retained” relative to that baseline has no meaningful denominator and is reported as not applicable.
+
+The result does not establish that stronger rerankers will help. Alternative checkpoints are configured for an exploratory matched-pool benchmark; their effect must be measured before making that claim. The preregistered MiniLM result remains the primary Experiment 4 result.
+
+## 4. Discussion and Limitations
+
+The first-stage routing hypothesis was not supported: the tested 18 surface features did not choose routes well enough to beat tuned hybrid on unseen queries. This is consistent with weak and dataset-dependent correlations and with the small, discontinuous per-query relevance signals in these benchmarks. Routing among BM25, dense, and hybrid should not be presented as a demonstrated quality improvement here.
+
+The skip-dense result has a narrower interpretation. A sharp BM25 score head carries some information about whether dense retrieval is necessary, but the operating point and savings vary substantially across datasets. The learned model did not outperform the simple top-score ratio rule, and transfer was not consistently non-inferior. A deployment would need domain-specific validation and threshold calibration.
+
+Selective escalation relies on the expensive backend having positive gain over its base system. MiniLM-L6 did not meet that prerequisite on these candidate pools. Stronger rerankers are a plausible next experiment, but model capacity alone does not guarantee improvement; they require matched candidate pools, held-out evaluation, and paired uncertainty estimates. The code includes an exploratory comparison path, separate from the preregistered result.
+
+Other limits include small dataset query counts, heterogeneous benchmark difficulty, the reduced Quora corpus, and model differences between Experiments 1 and 2–4. Pooled results improve precision but can hide dataset-level variation. Oracle headroom and outcome-selected subsets are descriptive upper-bound or existence analyses and cannot be used as evidence of predictive generalization.
+
+## 5. Conclusion
+
+For the tested datasets and features, always-hybrid remains the strongest dependable cheap ranking policy. A BM25 score-ratio rule can support selective dense skipping on the pooled registered evaluation, with important domain variation. The tested cross-encoder and escalation policies did not improve quality. Future work should first validate a genuinely stronger reranker, then evaluate selective escalation with a fresh held-out protocol; richer query representations and larger natural training sets may also test whether route advantages can be predicted reliably.
 
 ## References
+
+The project proposal and experiment design discuss BEIR, Adaptive-RAG, selective prediction, cross-encoder reranking, DAT, and query-adaptive hybrid retrieval. Bibliographic details should be completed from the cited source papers in the final submission.

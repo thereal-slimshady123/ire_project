@@ -31,3 +31,15 @@ def test_significance_is_seeded():
     rng = np.random.default_rng(3)
     a, b = rng.random(50), rng.random(50)
     assert paired_bootstrap_test(a, b, 1000, seed=7) == paired_bootstrap_test(a, b, 1000, seed=7)
+
+
+def test_ndcg_uses_trec_eval_graded_gain():
+    from router_retrieval.evaluation.ranking_metrics import ndcg_at_k
+    actual = ndcg_at_k(["rel2", "rel1"], {"rel2": 2, "rel1": 1}, 2)
+    ideal = (3 + 1 / np.log2(3)) / (3 + 1 / np.log2(3))
+    assert actual == pytest.approx(ideal)
+
+
+def test_wilcoxon_rejects_bad_shapes():
+    with pytest.raises(ValueError):
+        paired_wilcoxon_test([1, 2], [1])

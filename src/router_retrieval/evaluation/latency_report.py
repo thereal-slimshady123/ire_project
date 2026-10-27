@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 import numpy as np
@@ -31,6 +32,8 @@ def generate_latency_report(
         if not latencies:
             continue
         arr = np.asarray(latencies, dtype=np.float64)
+        if not np.all(np.isfinite(arr)) or np.any(arr < 0):
+            raise ValueError(f"Latencies for {component!r} must be finite and non-negative")
         rows.append(
             {
                 "component": component,

@@ -1,5 +1,11 @@
 # Cross-encoder escalation backend configuration
 model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+# Model identifiers available to the explicit reranker benchmark. No checkpoint is
+# assumed to improve quality until evaluated on the same held-out candidate pools.
+candidate_models:
+  - "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  - "cross-encoder/ms-marco-MiniLM-L-12-v2"
+  - "BAAI/bge-reranker-base"
 batch_size: 32
 max_length: 512
 device: "cpu"

@@ -35,6 +35,10 @@ def paired_bootstrap_test(
     b = np.asarray(scores_b, dtype=np.float64)
     if a.shape != b.shape or a.ndim != 1:
         raise ValueError("scores_a and scores_b must be 1-D arrays of equal length")
+    if not np.isfinite(a).all() or not np.isfinite(b).all():
+        raise ValueError("scores must be finite")
+    if n_resamples < 1:
+        raise ValueError("n_resamples must be at least 1")
     n = a.size
     diff = a - b
     observed = float(diff.mean()) if n else 0.0
@@ -71,7 +75,12 @@ def paired_wilcoxon_test(
     Returns:
         Dictionary with 'statistic', 'p_value', and 'n_nonzero' (pairs with a non-zero difference).
     """
-    diff = np.asarray(scores_a, dtype=np.float64) - np.asarray(scores_b, dtype=np.float64)
+    a, b = np.asarray(scores_a, dtype=np.float64), np.asarray(scores_b, dtype=np.float64)
+    if a.shape != b.shape or a.ndim != 1:
+        raise ValueError("scores_a and scores_b must be 1-D arrays of equal length")
+    if not np.isfinite(a).all() or not np.isfinite(b).all():
+        raise ValueError("scores must be finite")
+    diff = a - b
     nonzero = int(np.count_nonzero(diff))
     if nonzero == 0:
         return {"statistic": 0.0, "p_value": 1.0, "n_nonzero": 0}

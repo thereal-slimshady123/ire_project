@@ -4,6 +4,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 import pandas as pd
 from router_retrieval.data.schema import Query, Candidate
+from router_retrieval.features.query_features import extract_query_features
+from router_retrieval.features.retrieval_signal_features import extract_retrieval_signal_features
 
 
 class FeatureBuilder:
@@ -44,7 +46,9 @@ class FeatureBuilder:
         Returns:
             Dictionary of all feature names to float values.
         """
-        raise NotImplementedError
+        features = extract_query_features(query, self.idf_vocab, self.corpus_vocab)
+        features.update(extract_retrieval_signal_features(bm25_candidates, dense_candidates))
+        return {k: float(v) for k, v in features.items()}
 
     def build_feature_matrix(
         self,
@@ -63,12 +67,20 @@ class FeatureBuilder:
         Returns:
             DataFrame where index or column is query_id, containing all feature columns.
         """
-        raise NotImplementedError
+        rows = []
+        for query in queries:
+            row = self.extract_features(query, bm25_run.get(query.query_id, []),
+                                        dense_run.get(query.query_id, []))
+            row["query_id"] = query.query_id
+            rows.append(row)
+        return pd.DataFrame(rows).set_index("query_id") if rows else pd.DataFrame(index=pd.Index([], name="query_id"))
 
     def save_features(self, df: pd.DataFrame, path: Path) -> None:
         """Save feature matrix to Parquet file."""
-        raise NotImplementedError
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        df.to_parquet(path)
 
     def load_features(self, path: Path) -> pd.DataFrame:
         """Load feature matrix from Parquet file."""
-        raise NotImplementedError
+        return pd.read_parquet(path)

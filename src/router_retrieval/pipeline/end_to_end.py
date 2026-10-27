@@ -58,7 +58,32 @@ class EndToEndPipeline:
                 - route_taken: Name of the route chosen ('bm25', 'dense', 'hybrid', or 'escalate')
                 - was_escalated: Boolean indicating whether escalation was triggered
         """
-        raise NotImplementedError
+        k = max(100, self.cross_encoder.candidate_pool_size, top_k)
+        with self.latency_tracker.time_component("bm25_search"):
+            b = self.bm25.search(query, k)
+        with self.latency_tracker.time_component("dense_search_and_encode"):
+            d = self.dense.search(query, k)
+        with self.latency_tracker.time_component("feature_extraction"):
+            features = self.feature_builder.extract_features(query, b, d)
+        X = __import__("pandas").DataFrame([features])
+        with self.latency_tracker.time_component("router_inference"):
+            probas = self.router.predict_proba(X)
+        decisions, escalated, _ = self.escalation_decider.decide(probas)
+        route = decisions[0]
+        if escalated[0]:
+            route = "escalate"
+            candidates = self.hybrid.combine_candidates(b, d, k)
+            with self.latency_tracker.time_component("cross_encoder"):
+                final = self.cross_encoder.rerank(query, candidates, self.corpus, top_k)
+        elif route == "bm25":
+            final = b[:top_k]
+        elif route == "dense":
+            final = d[:top_k]
+        elif route == "hybrid":
+            final = self.hybrid.combine_candidates(b, d, top_k)
+        else:
+            raise ValueError(f"router returned unknown route {route!r}")
+        return final, route, bool(escalated[0])
 
     def batch_process(
         self,
@@ -66,4 +91,8 @@ class EndToEndPipeline:
         top_k: int = 10,
     ) -> Dict[str, List[Candidate]]:
         """Batch process a collection of queries."""
-        raise NotImplementedError
+        out = {}
+        for query in queries:
+            candidates, _, _ = self.process_query(query, top_k)
+            out[query.query_id] = candidates
+        return out

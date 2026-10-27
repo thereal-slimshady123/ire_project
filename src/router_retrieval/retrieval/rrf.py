@@ -17,6 +17,8 @@ class ReciprocalRankFusion:
         Args:
             k: Ranking constant (default 60).
         """
+        if k < 0:
+            raise ValueError("k must be non-negative")
         self.k = k
 
     def fuse(
@@ -34,7 +36,9 @@ class ReciprocalRankFusion:
         Returns:
             List of fused Candidate objects sorted by RRF score descending.
         """
-        if not candidate_rankings:
+        if top_k < 0:
+            raise ValueError("top_k must be non-negative")
+        if not candidate_rankings or top_k == 0:
             return []
 
         # Find query_id from the first non-empty candidate list
@@ -51,6 +55,8 @@ class ReciprocalRankFusion:
         doc_scores = {}
         for ranking in candidate_rankings:
             for rank_idx, cand in enumerate(ranking):
+                if cand.query_id != query_id:
+                    raise ValueError("All candidates must belong to the same query")
                 r = cand.rank if (cand.rank and cand.rank > 0) else (rank_idx + 1)
                 score, count = doc_scores.get(cand.doc_id, (0.0, 0))
                 doc_scores[cand.doc_id] = (score + 1.0 / (self.k + r), count + 1)

@@ -79,8 +79,9 @@ class CrossEncoderReranker:
         scores = self.score_pairs([(query.text, document_text(corpus[c.doc_id])) for c in head])
         reranked = [c.doc_id for c, _ in sorted(zip(head, scores), key=lambda p: (-p[1], p[0].rank))]
         reranked += [c.doc_id for c in tail]
-        score_of = dict(zip((c.doc_id for c in head), scores))
+        score_of = {c.doc_id: c.score for c in tail}
+        score_of.update(zip((c.doc_id for c in head), scores))
         return [
-            Candidate(query_id=query.query_id, doc_id=d, score=score_of.get(d, float("-inf")), rank=r + 1)
+            Candidate(query_id=query.query_id, doc_id=d, score=score_of[d], rank=r + 1)
             for r, d in enumerate(reranked[:top_k])
         ]

@@ -8,127 +8,127 @@
       "0.05": {
         "predicted_gain": {
           "mean": 0.5876883790119137,
-          "retained": 0.021266841501539603
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5884388144848463,
-          "retained": -0.024997132252851655
+          "retained": null
         },
         "random": {
           "mean": 0.587222306177334,
-          "retained": 0.04999999999999521
+          "retained": null
         },
         "oracle": {
           "mean": 0.60778112393485,
-          "retained": -1.2174408919373716
+          "retained": null
         }
       },
       "0.1": {
         "predicted_gain": {
           "mean": 0.5872387150866666,
-          "retained": 0.04898839889892178
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.587737011519899,
-          "retained": 0.018268671566624345
+          "retained": null
         },
         "random": {
           "mean": 0.586411269627689,
-          "retained": 0.09999999999999726
+          "retained": null
         },
         "oracle": {
           "mean": 0.6169129909310046,
-          "retained": -1.7804159514554867
+          "retained": null
         }
       },
       "0.15": {
         "predicted_gain": {
           "mean": 0.5875451117031024,
-          "retained": 0.03009919985049631
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5866454429004204,
-          "retained": 0.08556333417809518
+          "retained": null
         },
         "random": {
           "mean": 0.5856002330780441,
-          "retained": 0.14999999999999247
+          "retained": null
         },
         "oracle": {
           "mean": 0.6205912542833049,
-          "retained": -2.0071790581188362
+          "retained": null
         }
       },
       "0.2": {
         "predicted_gain": {
           "mean": 0.5864862766084558,
-          "retained": 0.09537585693273194
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5849179767809851,
-          "retained": 0.19206076146368076
+          "retained": null
         },
         "random": {
           "mean": 0.584789196528399,
-          "retained": 0.20000000000000137
+          "retained": null
         },
         "oracle": {
           "mean": 0.6216146237756235,
-          "retained": -2.0702692784527184
+          "retained": null
         }
       },
       "0.3": {
         "predicted_gain": {
           "mean": 0.5860995991579202,
-          "retained": 0.11921432948398947
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5841434063831359,
-          "retained": 0.23981264133816446
+          "retained": null
         },
         "random": {
           "mean": 0.5831671234291091,
-          "retained": 0.29999999999999866
+          "retained": null
         },
         "oracle": {
           "mean": 0.62206017865751,
-          "retained": -2.0977375153701248
+          "retained": null
         }
       },
       "0.5": {
         "predicted_gain": {
           "mean": 0.5824919161789359,
-          "retained": 0.3416261912282986
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5803155230398768,
-          "retained": 0.47579974604601416
+          "retained": null
         },
         "random": {
           "mean": 0.5799229772305293,
-          "retained": 0.5
+          "retained": null
         },
         "oracle": {
           "mean": 0.6220832808871216,
-          "retained": -2.099161756338166
+          "retained": null
         }
       },
       "1.0": {
         "predicted_gain": {
           "mean": 0.5718126117340798,
-          "retained": 1.0
+          "retained": null
         },
         "router_confidence": {
           "mean": 0.5718126117340798,
-          "retained": 1.0
+          "retained": null
         },
         "random": {
           "mean": 0.5718126117340798,
-          "retained": 1.0
+          "retained": null
         },
         "oracle": {
           "mean": 0.5718126117340798,
-          "retained": 1.0
+          "retained": null
         }
       }
     },
@@ -156,127 +156,127 @@
         "0.05": {
           "predicted_gain": {
             "mean": 0.3594441871206104,
-            "retained": -0.1266947674108183
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3574241986398568,
-            "retained": 0.33858307084282585
+            "retained": null
           },
           "random": {
             "mean": 0.35867707258079273,
-            "retained": 0.05000000000000448
+            "retained": null
           },
           "oracle": {
             "mean": 0.3694297417476883,
-            "retained": -2.426736235428112
+            "retained": null
           }
         },
         "0.1": {
           "predicted_gain": {
             "mean": 0.3598846990930816,
-            "retained": -0.22816091943549832
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.35576749459495877,
-            "retained": 0.7201831066750416
+            "retained": null
           },
           "random": {
             "mean": 0.358459999220031,
-            "retained": 0.09999999999999616
+            "retained": null
           },
           "oracle": {
             "mean": 0.37512665756106034,
-            "retained": -3.7389460324710653
+            "retained": null
           }
         },
         "0.15": {
           "predicted_gain": {
             "mean": 0.3576258605262867,
-            "retained": 0.2921329017105499
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.35665203119242034,
-            "retained": 0.5164417092143891
+            "retained": null
           },
           "random": {
             "mean": 0.35824292585926926,
-            "retained": 0.15000000000000063
+            "retained": null
           },
           "oracle": {
             "mean": 0.3799098782013866,
-            "retained": -4.840698136815226
+            "retained": null
           }
         },
         "0.2": {
           "predicted_gain": {
             "mean": 0.3561652539598058,
-            "retained": 0.6285644567745574
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3565889078724607,
-            "retained": 0.5309813376004109
+            "retained": null
           },
           "random": {
             "mean": 0.35802585249850755,
-            "retained": 0.19999999999999232
+            "retained": null
           },
           "oracle": {
             "mean": 0.38224006495212115,
-            "retained": -5.377426075830297
+            "retained": null
           }
         },
         "0.3": {
           "predicted_gain": {
             "mean": 0.3551429630534285,
-            "retained": 0.8640357515455739
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.35612605192752556,
-            "retained": 0.6375941304624488
+            "retained": null
           },
           "random": {
             "mean": 0.357591705776984,
-            "retained": 0.30000000000000127
+            "retained": null
           },
           "oracle": {
             "mean": 0.3844848172139525,
-            "retained": -5.894475301482433
+            "retained": null
           }
         },
         "0.5": {
           "predicted_gain": {
             "mean": 0.3536439350230749,
-            "retained": 1.2093171866081913
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3541148958798108,
-            "retained": 1.1008375336735232
+            "retained": null
           },
           "random": {
             "mean": 0.35672341233393706,
-            "retained": 0.4999999999999936
+            "retained": null
           },
           "oracle": {
             "mean": 0.38472392171423636,
-            "retained": -5.949549885356935
+            "retained": null
           }
         },
         "1.0": {
           "predicted_gain": {
             "mean": 0.35455267872631957,
-            "retained": 1.0
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.35455267872631957,
-            "retained": 1.0
+            "retained": null
           },
           "random": {
             "mean": 0.35455267872631957,
-            "retained": 1.0
+            "retained": null
           },
           "oracle": {
             "mean": 0.35455267872631957,
-            "retained": 1.0
+            "retained": null
           }
         }
       },
@@ -303,127 +303,127 @@
         "0.05": {
           "predicted_gain": {
             "mean": 0.725643186385001,
-            "retained": 0.027881171294074143
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.7282224617149993,
-            "retained": -0.0648191310060315
+            "retained": null
           },
           "random": {
             "mean": 0.7250277563616451,
-            "retained": 0.05000000000000259
+            "retained": null
           },
           "oracle": {
             "mean": 0.7519127738192725,
-            "retained": -0.9162594825296793
+            "retained": null
           }
         },
         "0.1": {
           "predicted_gain": {
             "mean": 0.727220653928499,
-            "retained": -0.02881371368005783
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.722869942526198,
-            "retained": 0.12755278877243414
+            "retained": null
           },
           "random": {
             "mean": 0.7236365660062738,
-            "retained": 0.1000000000000012
+            "retained": null
           },
           "oracle": {
             "mean": 0.7679665732338798,
-            "retained": -1.4932401722183513
+            "retained": null
           }
         },
         "0.15": {
           "predicted_gain": {
             "mean": 0.7298513116845285,
-            "retained": -0.12336072322022322
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.7187471296487846,
-            "retained": 0.275728516899623
+            "retained": null
           },
           "random": {
             "mean": 0.7222453756509024,
-            "retained": 0.1500000000000038
+            "retained": null
           },
           "oracle": {
             "mean": 0.772910799076244,
-            "retained": -1.670937847567911
+            "retained": null
           }
         },
         "0.2": {
           "predicted_gain": {
             "mean": 0.724828390542366,
-            "retained": 0.05716529619794198
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.7171519101540346,
-            "retained": 0.3330614148956088
+            "retained": null
           },
           "random": {
             "mean": 0.7208541852955311,
-            "retained": 0.2000000000000024
+            "retained": null
           },
           "oracle": {
             "mean": 0.7730184768684752,
-            "retained": -1.674807835302352
+            "retained": null
           }
         },
         "0.3": {
           "predicted_gain": {
             "mean": 0.723535879986984,
-            "retained": 0.10361870030586032
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.7184831981297883,
-            "retained": 0.2852143330561705
+            "retained": null
           },
           "random": {
             "mean": 0.7180718045847886,
-            "retained": 0.2999999999999996
+            "retained": null
           },
           "oracle": {
             "mean": 0.7730184768684752,
-            "retained": -1.674807835302352
+            "retained": null
           }
         },
         "0.5": {
           "predicted_gain": {
             "mean": 0.7112435092781078,
-            "retained": 0.5454119696962075
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.707369610916404,
-            "retained": 0.6846415994426613
+            "retained": null
           },
           "random": {
             "mean": 0.7125070431633034,
-            "retained": 0.499999999999998
+            "retained": null
           },
           "oracle": {
             "mean": 0.7730184768684752,
-            "retained": -1.674807835302352
+            "retained": null
           }
         },
         "1.0": {
           "predicted_gain": {
             "mean": 0.6985951396095902,
-            "retained": 1.0
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.6985951396095902,
-            "retained": 1.0
+            "retained": null
           },
           "random": {
             "mean": 0.6985951396095902,
-            "retained": 1.0
+            "retained": null
           },
           "oracle": {
             "mean": 0.6985951396095902,
-            "retained": 1.0
+            "retained": null
           }
         }
       },
@@ -450,127 +450,127 @@
         "0.05": {
           "predicted_gain": {
             "mean": 0.4028645721365277,
-            "retained": 0.0012575996402194002
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.40174740705697726,
-            "retained": 0.042594137301125906
+            "retained": null
           },
           "random": {
             "mean": 0.4015472555285885,
-            "retained": 0.05000000000000226
+            "retained": null
           },
           "oracle": {
             "mean": 0.42628447908970263,
-            "retained": -0.8653089297883622
+            "retained": null
           }
         },
         "0.1": {
           "predicted_gain": {
             "mean": 0.40102575284225506,
-            "retained": 0.06929626679931969
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.4041929213574465,
-            "retained": -0.04789302151904642
+            "retained": null
           },
           "random": {
             "mean": 0.40019595091677657,
-            "retained": 0.10000000000000041
+            "retained": null
           },
           "oracle": {
             "mean": 0.4399236441850662,
-            "retained": -1.3699754933500237
+            "retained": null
           }
         },
         "0.15": {
           "predicted_gain": {
             "mean": 0.4022416863134499,
-            "retained": 0.02430517224646376
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.4047742658221837,
-            "retained": -0.06940351070318546
+            "retained": null
           },
           "random": {
             "mean": 0.39884464630496463,
-            "retained": 0.14999999999999855
+            "retained": null
           },
           "oracle": {
             "mean": 0.4471059201762901,
-            "retained": -1.6357288967071353
+            "retained": null
           }
         },
         "0.2": {
           "predicted_gain": {
             "mean": 0.4011275220901778,
-            "retained": 0.06553067438465666
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.4031039100936408,
-            "retained": -0.007598211071185844
+            "retained": null
           },
           "random": {
             "mean": 0.39749334169315265,
-            "retained": 0.19999999999999876
+            "retained": null
           },
           "oracle": {
             "mean": 0.4503941348809993,
-            "retained": -1.7573970489492852
+            "retained": null
           }
         },
         "0.3": {
           "predicted_gain": {
             "mean": 0.4007350715724331,
-            "retained": 0.08005184578872974
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3997156907095186,
-            "retained": 0.11777024229251934
+            "retained": null
           },
           "random": {
             "mean": 0.39479073246952856,
-            "retained": 0.30000000000000326
+            "retained": null
           },
           "oracle": {
             "mean": 0.4515738185068871,
-            "retained": -1.801046852834213
+            "retained": null
           }
         },
         "0.5": {
           "predicted_gain": {
             "mean": 0.39603121973411687,
-            "retained": 0.2541003836683117
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3962681066948642,
-            "retained": 0.24533526295916006
+            "retained": null
           },
           "random": {
             "mean": 0.38938551402228067,
-            "retained": 0.5000000000000021
+            "retained": null
           },
           "oracle": {
             "mean": 0.4515738185068871,
-            "retained": -1.801046852834213
+            "retained": null
           }
         },
         "1.0": {
           "predicted_gain": {
             "mean": 0.3758724679041609,
-            "retained": 1.0
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3758724679041609,
-            "retained": 1.0
+            "retained": null
           },
           "random": {
             "mean": 0.3758724679041609,
-            "retained": 1.0
+            "retained": null
           },
           "oracle": {
             "mean": 0.3758724679041609,
-            "retained": 1.0
+            "retained": null
           }
         }
       },
@@ -597,127 +597,127 @@
         "0.05": {
           "predicted_gain": {
             "mean": 0.37803278365037385,
-            "retained": -0.20771753019811487
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3781461628233919,
-            "retained": -0.2217259522229877
+            "retained": null
           },
           "random": {
             "mean": 0.3759469098528655,
-            "retained": 0.049999999999997255
+            "retained": null
           },
           "oracle": {
             "mean": 0.4037226185077404,
-            "retained": -3.38179296973168
+            "retained": null
           }
         },
         "0.1": {
           "predicted_gain": {
             "mean": 0.37858858359991343,
-            "retained": -0.27638869834389657
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3798397131747244,
-            "retained": -0.4309704493411365
+            "retained": null
           },
           "random": {
             "mean": 0.3755422276808951,
-            "retained": 0.09999999999999451
+            "retained": null
           },
           "oracle": {
             "mean": 0.41757899408067123,
-            "retained": -5.093800136425517
+            "retained": null
           }
         },
         "0.15": {
           "predicted_gain": {
             "mean": 0.3790267565524221,
-            "retained": -0.3305266098776789
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.37980718220720117,
-            "retained": -0.42695112630487997
+            "retained": null
           },
           "random": {
             "mean": 0.3751375455089247,
-            "retained": 0.14999999999999863
+            "retained": null
           },
           "oracle": {
             "mean": 0.42188316527926467,
-            "retained": -5.625596629663218
+            "retained": null
           }
         },
         "0.2": {
           "predicted_gain": {
             "mean": 0.3788153260791889,
-            "retained": -0.30440358199585577
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.37843598181238663,
-            "retained": -0.2575341752024669
+            "retained": null
           },
           "random": {
             "mean": 0.3747328633369543,
-            "retained": 0.19999999999999588
+            "retained": null
           },
           "oracle": {
             "mean": 0.4223546274303958,
-            "retained": -5.683847546529113
+            "retained": null
           }
         },
         "0.3": {
           "predicted_gain": {
             "mean": 0.3796229210635997,
-            "retained": -0.4041849709904122
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.3791270188790441,
-            "retained": -0.3429143963390701
+            "retained": null
           },
           "random": {
             "mean": 0.3739234989930136,
-            "retained": 0.2999999999999904
+            "retained": null
           },
           "oracle": {
             "mean": 0.4223546274303958,
-            "retained": -5.683847546529113
+            "retained": null
           }
         },
         "0.5": {
           "predicted_gain": {
             "mean": 0.3766262842939406,
-            "retained": -0.033939260008327636
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.37540435405632805,
-            "retained": 0.11703480337368526
+            "retained": null
           },
           "random": {
             "mean": 0.372304770305132,
-            "retained": 0.4999999999999931
+            "retained": null
           },
           "oracle": {
             "mean": 0.4223546274303958,
-            "retained": -5.683847546529113
+            "retained": null
           }
         },
         "1.0": {
           "predicted_gain": {
             "mean": 0.368257948585428,
-            "retained": 1.0
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.368257948585428,
-            "retained": 1.0
+            "retained": null
           },
           "random": {
             "mean": 0.368257948585428,
-            "retained": 1.0
+            "retained": null
           },
           "oracle": {
             "mean": 0.368257948585428,
-            "retained": 1.0
+            "retained": null
           }
         }
       },
@@ -744,127 +744,127 @@
         "0.05": {
           "predicted_gain": {
             "mean": 0.9645414358636994,
-            "retained": 0.15739786126812902
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.96753119582807,
-            "retained": -0.00609158456172778
+            "retained": null
           },
           "random": {
             "mean": 0.9665054392539405,
-            "retained": 0.050000000000002126
+            "retained": null
           },
           "oracle": {
             "mean": 0.9778896690934936,
-            "retained": -0.5725253698786792
+            "retained": null
           }
         },
         "0.1": {
           "predicted_gain": {
             "mean": 0.9630184210882228,
-            "retained": 0.24068108286474516
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9639257604360614,
-            "retained": 0.19106492339858336
+            "retained": null
           },
           "random": {
             "mean": 0.9655910805474214,
-            "retained": 0.09999999999999817
+            "retained": null
           },
           "oracle": {
             "mean": 0.9780690432335595,
-            "retained": -0.5823341100802519
+            "retained": null
           }
         },
         "0.15": {
           "predicted_gain": {
             "mean": 0.9627254662128103,
-            "retained": 0.25670077367775795
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9608859470674235,
-            "retained": 0.3572914462590664
+            "retained": null
           },
           "random": {
             "mean": 0.9646767218409021,
-            "retained": 0.1500000000000003
+            "retained": null
           },
           "oracle": {
             "mean": 0.9780690432335595,
-            "retained": -0.5823341100802519
+            "retained": null
           }
         },
         "0.2": {
           "predicted_gain": {
             "mean": 0.9621130646390149,
-            "retained": 0.2901888112186641
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9581622998462604,
-            "retained": 0.5062290131977285
+            "retained": null
           },
           "random": {
             "mean": 0.9637623631343829,
-            "retained": 0.20000000000000243
+            "retained": null
           },
           "oracle": {
             "mean": 0.9780690432335595,
-            "retained": -0.5823341100802519
+            "retained": null
           }
         },
         "0.3": {
           "predicted_gain": {
             "mean": 0.9609269211634593,
-            "retained": 0.355050854260339
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9567778015091928,
-            "retained": 0.5819377217820326
+            "retained": null
           },
           "random": {
             "mean": 0.9619336457213445,
-            "retained": 0.3000000000000006
+            "retained": null
           },
           "oracle": {
             "mean": 0.9780690432335595,
-            "retained": -0.5823341100802519
+            "retained": null
           }
         },
         "0.5": {
           "predicted_gain": {
             "mean": 0.9592988248394853,
-            "retained": 0.4440802642919867
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9541895981915525,
-            "retained": 0.7234687915463895
+            "retained": null
           },
           "random": {
             "mean": 0.9582762108952677,
-            "retained": 0.500000000000003
+            "retained": null
           },
           "oracle": {
             "mean": 0.9780690432335595,
-            "retained": -0.5823341100802519
+            "retained": null
           }
         },
         "1.0": {
           "predicted_gain": {
             "mean": 0.9491326238300758,
-            "retained": 1.0
+            "retained": null
           },
           "router_confidence": {
             "mean": 0.9491326238300758,
-            "retained": 1.0
+            "retained": null
           },
           "random": {
             "mean": 0.9491326238300758,
-            "retained": 1.0
+            "retained": null
           },
           "oracle": {
             "mean": 0.9491326238300758,
-            "retained": 1.0
+            "retained": null
           }
         }
       },

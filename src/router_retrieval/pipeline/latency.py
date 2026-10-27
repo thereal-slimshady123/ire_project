@@ -1,6 +1,7 @@
 """Context-manager based component latency timers and tracker."""
 
 import time
+import math
 from typing import Dict, List, Optional
 from contextlib import contextmanager
 import numpy as np
@@ -35,6 +36,8 @@ class LatencyTracker:
 
     def record(self, component_name: str, latency_ms: float) -> None:
         """Record latency measurement for component."""
+        if not math.isfinite(latency_ms) or latency_ms < 0:
+            raise ValueError("latency_ms must be finite and non-negative")
         if component_name not in self.records:
             self.records[component_name] = []
         self.records[component_name].append(latency_ms)
