@@ -1,0 +1,266 @@
+{
+  "exploratory": true,
+  "settings": {
+    "datasets": [
+      "nfcorpus",
+      "scifact",
+      "fiqa"
+    ],
+    "models": [
+      "cross-encoder/ms-marco-MiniLM-L-12-v2",
+      "BAAI/bge-reranker-base"
+    ],
+    "device": "cuda",
+    "batch_size": 8,
+    "max_length": 512,
+    "candidate_pool_size": 50
+  },
+  "results": {
+    "nfcorpus": {
+      "hybrid": {
+        "ndcg_cut_10": 0.3588941459415545,
+        "mrr_10": 0.5757420512064475,
+        "map": 0.1690131229790414,
+        "recall_100": 0.3089685352282929
+      },
+      "models": {
+        "cross-encoder/ms-marco-MiniLM-L-12-v2": {
+          "n": 323,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.3271600851288663,
+            "mrr_10": 0.5243316624895572,
+            "map": 0.15365006226780253,
+            "recall_100": 0.3089685352282929
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.3588941459415545,
+            "mrr_10": 0.5757420512064475,
+            "map": 0.1690131229790414,
+            "recall_100": 0.3089685352282929
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.031734060812688196,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.0442930856534139,
+            "ci_95_high": -0.019598551658310488,
+            "n": 323,
+            "paired_wilcoxon": {
+              "statistic": 6138.5,
+              "p_value": 4.267695418928234e-06,
+              "n_nonzero": 198
+            },
+            "win_loss_tie": {
+              "wins": 75,
+              "losses": 123,
+              "ties": 125,
+              "n": 323
+            }
+          },
+          "rerank_latency_ms_mean": 620.730500080506,
+          "rerank_latency_ms_p50": 628.6262459998397,
+          "rerank_latency_ms_p95": 708.9232688000266
+        },
+        "BAAI/bge-reranker-base": {
+          "n": 323,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.3256830488908429,
+            "mrr_10": 0.552328124232149,
+            "map": 0.1528216180839673,
+            "recall_100": 0.3089685352282929
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.3588941459415545,
+            "mrr_10": 0.5757420512064475,
+            "map": 0.1690131229790414,
+            "recall_100": 0.3089685352282929
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.033211097050711645,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.04725286059450567,
+            "ci_95_high": -0.019827114302541245,
+            "n": 323,
+            "paired_wilcoxon": {
+              "statistic": 5847.5,
+              "p_value": 9.368223656531098e-06,
+              "n_nonzero": 192
+            },
+            "win_loss_tie": {
+              "wins": 70,
+              "losses": 122,
+              "ties": 131,
+              "n": 323
+            }
+          },
+          "rerank_latency_ms_mean": 3145.9034806222307,
+          "rerank_latency_ms_p50": 3193.585926999731,
+          "rerank_latency_ms_p95": 3543.599733699557
+        }
+      }
+    },
+    "scifact": {
+      "hybrid": {
+        "ndcg_cut_10": 0.7264189467170165,
+        "mrr_10": 0.6950912698412698,
+        "map": 0.6887344149958814,
+        "recall_100": 0.9583333333333334
+      },
+      "models": {
+        "cross-encoder/ms-marco-MiniLM-L-12-v2": {
+          "n": 300,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.696428875861356,
+            "mrr_10": 0.6629550264550265,
+            "map": 0.6589335298545026,
+            "recall_100": 0.9583333333333334
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.7264189467170165,
+            "mrr_10": 0.6950912698412698,
+            "map": 0.6887344149958814,
+            "recall_100": 0.9583333333333334
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.02999007085566042,
+            "p_value": 0.030396960303969604,
+            "ci_95_low": -0.05717800243779703,
+            "ci_95_high": -0.0033724616387434438,
+            "n": 300,
+            "paired_wilcoxon": {
+              "statistic": 2159.5,
+              "p_value": 0.023279222108100545,
+              "n_nonzero": 107
+            },
+            "win_loss_tie": {
+              "wins": 41,
+              "losses": 66,
+              "ties": 193,
+              "n": 300
+            }
+          },
+          "rerank_latency_ms_mean": 621.5049111200278,
+          "rerank_latency_ms_p50": 615.5950405000112,
+          "rerank_latency_ms_p95": 732.1790673502619
+        },
+        "BAAI/bge-reranker-base": {
+          "n": 300,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.7177875791112266,
+            "mrr_10": 0.6843148148148147,
+            "map": 0.6771487037041577,
+            "recall_100": 0.9583333333333334
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.7264189467170165,
+            "mrr_10": 0.6950912698412698,
+            "map": 0.6887344149958814,
+            "recall_100": 0.9583333333333334
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.00863136760578975,
+            "p_value": 0.512048795120488,
+            "ci_95_low": -0.03433942906346894,
+            "ci_95_high": 0.017462265280080182,
+            "n": 300,
+            "paired_wilcoxon": {
+              "statistic": 2469.0,
+              "p_value": 0.31573556739256314,
+              "n_nonzero": 105
+            },
+            "win_loss_tie": {
+              "wins": 43,
+              "losses": 62,
+              "ties": 195,
+              "n": 300
+            }
+          },
+          "rerank_latency_ms_mean": 3246.6401452833206,
+          "rerank_latency_ms_p50": 3254.0406025000266,
+          "rerank_latency_ms_p95": 3753.5258641998553
+        }
+      }
+    },
+    "fiqa": {
+      "hybrid": {
+        "ndcg_cut_10": 0.40289856014040054,
+        "mrr_10": 0.4825739760924947,
+        "map": 0.34302077605491765,
+        "recall_100": 0.6995419275511868
+      },
+      "models": {
+        "cross-encoder/ms-marco-MiniLM-L-12-v2": {
+          "n": 648,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.3856481737697027,
+            "mrr_10": 0.4546075837742504,
+            "map": 0.32390992802472596,
+            "recall_100": 0.6995419275511868
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.40289856014040054,
+            "mrr_10": 0.4825739760924947,
+            "map": 0.34302077605491765,
+            "recall_100": 0.6995419275511868
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.01725038637069789,
+            "p_value": 0.0410958904109589,
+            "ci_95_low": -0.03365629465059378,
+            "ci_95_high": -0.0004507692590618333,
+            "n": 648,
+            "paired_wilcoxon": {
+              "statistic": 24116.0,
+              "p_value": 0.0117525335331637,
+              "n_nonzero": 338
+            },
+            "win_loss_tie": {
+              "wins": 148,
+              "losses": 190,
+              "ties": 310,
+              "n": 648
+            }
+          },
+          "rerank_latency_ms_mean": 372.19377665431034,
+          "rerank_latency_ms_p50": 370.62162999973225,
+          "rerank_latency_ms_p95": 479.72343985056796
+        },
+        "BAAI/bge-reranker-base": {
+          "n": 648,
+          "mean_metrics": {
+            "ndcg_cut_10": 0.3508448327279534,
+            "mrr_10": 0.42024299431706846,
+            "map": 0.29083639381586607,
+            "recall_100": 0.6995419275511868
+          },
+          "hybrid_metrics": {
+            "ndcg_cut_10": 0.40289856014040054,
+            "mrr_10": 0.4825739760924947,
+            "map": 0.34302077605491765,
+            "recall_100": 0.6995419275511868
+          },
+          "reranker_minus_hybrid": {
+            "delta_mean": -0.05205372741244714,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.07043823385223703,
+            "ci_95_high": -0.034001826096574296,
+            "n": 648,
+            "paired_wilcoxon": {
+              "statistic": 24449.0,
+              "p_value": 6.130359396710643e-08,
+              "n_nonzero": 379
+            },
+            "win_loss_tie": {
+              "wins": 132,
+              "losses": 247,
+              "ties": 269,
+              "n": 648
+            }
+          },
+          "rerank_latency_ms_mean": 1737.1430164413352,
+          "rerank_latency_ms_p50": 1730.6979774994034,
+          "rerank_latency_ms_p95": 2347.1626890490365
+        }
+      }
+    }
+  }
+}

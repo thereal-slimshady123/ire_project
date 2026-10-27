@@ -1,4 +1,4 @@
-.PHONY: help install data index baselines headroom labels features train sweep eval latency ablations test clean
+.PHONY: help install data index baselines headroom labels features train sweep escalation rerankers policy-latency eval latency ablations test clean
 
 PYTHON = python
 
@@ -13,7 +13,10 @@ help:
 	@echo "  features   - Extract query and retrieval features"
 	@echo "  train      - Train router models"
 	@echo "  sweep      - Sweep escalation threshold tau"
-	@echo "  eval       - Run full pipeline evaluation"
+	@echo "  escalation - Experiment 4 + router/tau escalation (needs Experiment 2 artifacts)"
+	@echo "  rerankers  - Matched-pool cross-encoder checkpoint benchmark"
+	@echo "  policy-latency - Measured per-policy latency matched to held-out quality"
+	@echo "  eval       - Combined held-out evaluation + report figures"
 	@echo "  latency    - Run latency benchmark"
 	@echo "  ablations  - Run feature ablation studies"
 	@echo "  test       - Run unit and integration tests"
@@ -46,8 +49,19 @@ train:
 sweep:
 	$(PYTHON) scripts/sweep_escalation.py
 
+escalation:
+	$(PYTHON) scripts/run_experiment4_escalation.py
+	$(PYTHON) scripts/run_tau_escalation.py
+
+rerankers:
+	$(PYTHON) scripts/benchmark_cross_encoders.py
+
+policy-latency:
+	$(PYTHON) scripts/run_policy_latency.py
+
 eval:
-	$(PYTHON) scripts/run_full_evaluation.py
+	$(PYTHON) scripts/run_full_evaluation.py --reranker_benchmark_summary results/reranker_benchmark/summary.json
+	$(PYTHON) scripts/make_report_figures.py
 
 latency:
 	$(PYTHON) scripts/run_latency_benchmark.py

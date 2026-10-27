@@ -34,3 +34,19 @@ def compute_router_classification_metrics(
                           for i, label in enumerate(labels)},
             "confusion_matrix": confusion_matrix(y_true, y_pred, labels=labels).tolist(),
             "labels": list(labels)}
+
+
+def compute_win_loss_tie_counts(scores_a, scores_b, tie_tolerance: float = 1e-12) -> Dict[str, int]:
+    """Count paired per-query wins, losses, and ties for system A against B."""
+    a, b = np.asarray(scores_a, dtype=np.float64), np.asarray(scores_b, dtype=np.float64)
+    if a.ndim != 1 or a.shape != b.shape:
+        raise ValueError("scores_a and scores_b must be 1-D arrays of equal length")
+    if not np.isfinite(a).all() or not np.isfinite(b).all():
+        raise ValueError("scores must be finite")
+    if not np.isfinite(tie_tolerance) or tie_tolerance < 0:
+        raise ValueError("tie_tolerance must be finite and non-negative")
+    delta = a - b
+    return {"wins": int(np.count_nonzero(delta > tie_tolerance)),
+            "losses": int(np.count_nonzero(delta < -tie_tolerance)),
+            "ties": int(np.count_nonzero(np.abs(delta) <= tie_tolerance)),
+            "n": int(len(delta))}

@@ -1,0 +1,446 @@
+{
+  "dataset": "cqadupstack-unix",
+  "primary_metric": "ndcg_cut_10",
+  "systems": {
+    "always_hybrid": {
+      "ndcg_10_mean": 0.37635159202483587,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.37635159202483587,
+        "ci_95": [
+          0.3516613715999355,
+          0.40146545171246695
+        ]
+      }
+    },
+    "best_single": {
+      "ndcg_10_mean": 0.359709063160221,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.359709063160221,
+        "ci_95": [
+          0.33574075809123444,
+          0.3839703733637064
+        ]
+      }
+    },
+    "gbm_router": {
+      "ndcg_10_mean": 0.3658990501192661,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.3658990501192661,
+        "ci_95": [
+          0.34157924882312757,
+          0.3910002194979992
+        ]
+      }
+    },
+    "logistic_router": {
+      "ndcg_10_mean": 0.351465373006576,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.351465373006576,
+        "ci_95": [
+          0.32716265711922715,
+          0.3767984997374898
+        ]
+      }
+    },
+    "random_route": {
+      "ndcg_10_mean": 0.36563668881642847,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.36563668881642847,
+        "ci_95": [
+          0.3417616999515522,
+          0.3901545703263237
+        ]
+      }
+    },
+    "oracle_route": {
+      "ndcg_10_mean": 0.4181628689721817,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.4181628689721817,
+        "ci_95": [
+          0.39303582462860165,
+          0.44400953606307036
+        ]
+      }
+    },
+    "always_rerank_minilm_l6": {
+      "ndcg_10_mean": 0.368257948585428,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.368257948585428,
+        "ci_95": [
+          0.34360707170612736,
+          0.39357065659957424
+        ]
+      }
+    },
+    "predicted_gain_escalation_10pct": {
+      "ndcg_10_mean": 0.37858858359991343,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.37858858359991343,
+        "ci_95": [
+          0.3537518951310413,
+          0.40373117314800727
+        ]
+      }
+    },
+    "confidence_escalation_10pct": {
+      "ndcg_10_mean": 0.3798397131747244,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.3798397131747244,
+        "ci_95": [
+          0.35494087067485053,
+          0.40527539832988635
+        ]
+      }
+    },
+    "random_escalation_10pct": {
+      "ndcg_10_mean": 0.3755422276808951,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.3755422276808951,
+        "ci_95": [
+          0.3510048887389244,
+          0.4002748854510453
+        ]
+      }
+    },
+    "oracle_escalation_10pct": {
+      "ndcg_10_mean": 0.41757899408067123,
+      "n": 1072,
+      "ndcg_10": {
+        "mean": 0.41757899408067123,
+        "ci_95": [
+          0.39236624279803095,
+          0.4434901723527739
+        ]
+      }
+    },
+    "router_tau_escalation_10pct": {
+      "ndcg_10_mean": 0.36934292050693956,
+      "n": 1072,
+      "realized_escalation_rate": 0.10634328358208955,
+      "ndcg_10": {
+        "mean": 0.36934292050693956,
+        "ci_95": [
+          0.34444853570724565,
+          0.39468115923924585
+        ]
+      }
+    },
+    "router_random_escalation_10pct": {
+      "ndcg_10_mean": 0.36757060817900133,
+      "n": 1072,
+      "realized_escalation_rate": 0.10634328358208955,
+      "ndcg_10": {
+        "mean": 0.36757060817900133,
+        "ci_95": [
+          0.3433585665149059,
+          0.3923169722413785
+        ]
+      }
+    },
+    "hybrid_tau_escalation_10pct": {
+      "ndcg_10_mean": 0.375754876820607,
+      "n": 1072,
+      "realized_escalation_rate": 0.10634328358208955,
+      "ndcg_10": {
+        "mean": 0.375754876820607,
+        "ci_95": [
+          0.3507494988712284,
+          0.40129197892147433
+        ]
+      }
+    }
+  },
+  "headroom_vs_hybrid": {
+    "oracle_minus_hybrid": {
+      "delta_mean": 0.04181127694734574,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": 0.035379178980346,
+      "ci_95_high": 0.048570615744284326,
+      "n": 1072
+    },
+    "noise_corrected": {
+      "delta_mean": 0.023023318618796997,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": 0.01755875906200793,
+      "ci_95_high": 0.02864129375805386,
+      "n": 1072
+    },
+    "is_upper_bound_only": true
+  },
+  "paired_comparisons": {
+    "gbm_router_vs_hybrid": {
+      "system_a": "router_gbm",
+      "system_b": "hybrid",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": -0.010452541905569816,
+        "p_value": 0.0015998400159984002,
+        "ci_95_low": -0.016919790598427614,
+        "ci_95_high": -0.00421236570786333,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 2413.5,
+        "p_value": 0.0014387131906299728,
+        "n_nonzero": 120
+      },
+      "win_loss_tie": {
+        "wins": 47,
+        "losses": 73,
+        "ties": 952,
+        "n": 1072
+      }
+    },
+    "gbm_router_vs_random": {
+      "system_a": "router_gbm",
+      "system_b": "random_gbm",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": 0.00026236130283764376,
+        "p_value": 0.9284071592840716,
+        "ci_95_low": -0.005452484766930158,
+        "ci_95_high": 0.005881946320649507,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 36661.0,
+        "p_value": 5.578136709005453e-05,
+        "n_nonzero": 434
+      },
+      "win_loss_tie": {
+        "wins": 283,
+        "losses": 150,
+        "ties": 639,
+        "n": 1072
+      }
+    },
+    "predicted_gain_vs_random_10pct": {
+      "system_a": "predicted_gain@0.1",
+      "system_b": "random@0.1",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": 0.003046355919018375,
+        "p_value": 0.1416858314168583,
+        "ci_95_low": -0.0009675823946019489,
+        "ci_95_high": 0.00715220582365817,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 25916.5,
+        "p_value": 0.027677802596244437,
+        "n_nonzero": 346
+      },
+      "win_loss_tie": {
+        "wins": 196,
+        "losses": 148,
+        "ties": 728,
+        "n": 1072
+      }
+    },
+    "confidence_vs_random_10pct": {
+      "system_a": "router_confidence@0.1",
+      "system_b": "random@0.1",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": 0.004297485493829296,
+        "p_value": 0.04079592040795921,
+        "ci_95_low": 0.00032722083568038424,
+        "ci_95_high": 0.008498838978767407,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 25493.5,
+        "p_value": 0.015142962912046799,
+        "n_nonzero": 346
+      },
+      "win_loss_tie": {
+        "wins": 197,
+        "losses": 147,
+        "ties": 728,
+        "n": 1072
+      }
+    },
+    "always_rerank_vs_hybrid": {
+      "system_a": "reranked",
+      "system_b": "hybrid",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": -0.008093643439407905,
+        "p_value": 0.2091790820917908,
+        "ci_95_low": -0.020567707957983992,
+        "ci_95_high": 0.004802522508902915,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 27052.0,
+        "p_value": 0.15599211963247187,
+        "n_nonzero": 344
+      },
+      "win_loss_tie": {
+        "wins": 155,
+        "losses": 189,
+        "ties": 728,
+        "n": 1072
+      }
+    },
+    "router_tau_vs_hybrid_10pct": {
+      "system_a": "router_tau@0.1",
+      "system_b": "hybrid",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": -0.007008671517896368,
+        "p_value": 0.06379362063793621,
+        "ci_95_low": -0.014502684449978119,
+        "ci_95_high": 0.0003108219759005779,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 4478.0,
+        "p_value": 0.08283703333076212,
+        "n_nonzero": 146
+      },
+      "win_loss_tie": {
+        "wins": 67,
+        "losses": 79,
+        "ties": 926,
+        "n": 1072
+      }
+    },
+    "router_tau_vs_random_10pct": {
+      "system_a": "router_tau@0.1",
+      "system_b": "router_random@0.1",
+      "n": 1072,
+      "paired_bootstrap": {
+        "delta_mean": 0.0017723123279381827,
+        "p_value": 0.48705129487051296,
+        "ci_95_low": -0.0031704944057403283,
+        "ci_95_high": 0.00679121415576148,
+        "n": 1072
+      },
+      "paired_wilcoxon": {
+        "statistic": 31280.0,
+        "p_value": 0.140088716469459,
+        "n_nonzero": 370
+      },
+      "win_loss_tie": {
+        "wins": 195,
+        "losses": 166,
+        "ties": 711,
+        "n": 1072
+      }
+    }
+  },
+  "router_confusion_matrices": {
+    "gbm": {
+      "macro_f1": 0.3355299145299145,
+      "per_class": {
+        "bm25": {
+          "precision": 0.033707865168539325,
+          "recall": 0.05454545454545454,
+          "f1": 0.041666666666666664,
+          "support": 55
+        },
+        "dense": {
+          "precision": 0.15234375,
+          "recall": 0.3277310924369748,
+          "f1": 0.208,
+          "support": 119
+        },
+        "hybrid": {
+          "precision": 0.8459422283356258,
+          "recall": 0.6848552338530067,
+          "f1": 0.7569230769230769,
+          "support": 898
+        }
+      },
+      "confusion_matrix": [
+        [
+          3,
+          10,
+          42
+        ],
+        [
+          10,
+          39,
+          70
+        ],
+        [
+          76,
+          207,
+          615
+        ]
+      ],
+      "labels": [
+        "bm25",
+        "dense",
+        "hybrid"
+      ]
+    },
+    "logistic": {
+      "macro_f1": 0.2823787796735821,
+      "per_class": {
+        "bm25": {
+          "precision": 0.05016722408026756,
+          "recall": 0.2727272727272727,
+          "f1": 0.0847457627118644,
+          "support": 55
+        },
+        "dense": {
+          "precision": 0.1318051575931232,
+          "recall": 0.3865546218487395,
+          "f1": 0.19658119658119658,
+          "support": 119
+        },
+        "hybrid": {
+          "precision": 0.8820754716981132,
+          "recall": 0.41648106904231624,
+          "f1": 0.5658093797276853,
+          "support": 898
+        }
+      },
+      "confusion_matrix": [
+        [
+          15,
+          24,
+          16
+        ],
+        [
+          39,
+          46,
+          34
+        ],
+        [
+          245,
+          279,
+          374
+        ]
+      ],
+      "labels": [
+        "bm25",
+        "dense",
+        "hybrid"
+      ]
+    }
+  },
+  "strong_reranker": null,
+  "secondary_metrics": "Available for baseline systems when baseline artifacts exist.",
+  "unavailable_systems": [
+    "BM25/dense/RRF baseline metrics",
+    "MRR@10/MAP/Recall@100",
+    "skip_dense",
+    "stronger-reranker Experiment 4",
+    "advantage_regression_router",
+    "measured policy latency"
+  ],
+  "source": "saved baseline summaries and held-out Experiment 2\u20134 artifacts"
+}

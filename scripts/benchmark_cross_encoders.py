@@ -14,8 +14,10 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from router_retrieval.data.splits import create_kfold_splits
-from router_retrieval.evaluation.ranking_metrics import compute_ranking_metrics, ndcg_at_k
-from router_retrieval.evaluation.significance import paired_bootstrap_test
+from router_retrieval.data.schema import Candidate
+from router_retrieval.evaluation.ranking_metrics import compute_ranking_metrics
+from router_retrieval.evaluation.significance import paired_bootstrap_test, paired_wilcoxon_test
+from router_retrieval.evaluation.router_metrics import compute_win_loss_tie_counts
 from router_retrieval.retrieval.bm25 import document_text
 from router_retrieval.retrieval.cross_encoder import CrossEncoderReranker
 from router_retrieval.utils.config import load_config
@@ -42,9 +44,16 @@ def main():
     p.add_argument("--output_dir", type=Path, default=Path("results/reranker_benchmark"))
     p.add_argument("--dense_model", default="intfloat/e5-small-v2")
     p.add_argument("--device", default="auto")
+    p.add_argument("--batch_size", type=int, default=None,
+                   help="Override cross-encoder inference batch size (useful on CPU/GPU memory tradeoffs)")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--n_bootstrap", type=int, default=10000)
+    p.add_argument("--progress_every", type=int, default=25)
     args = p.parse_args()
+    if args.batch_size is not None and args.batch_size < 1:
+        p.error("--batch_size must be positive")
+    if args.progress_every < 1:
+        p.error("--progress_every must be positive")
     encfg = load_config(ROOT / "configs" / "cross_encoder.yaml")
     ecfg = load_config(ROOT / "configs" / "experiment.yaml")
     retcfg = load_config(ROOT / "configs" / "retrievers.yaml")
@@ -71,46 +80,88 @@ def main():
         for i, (_, te) in enumerate(create_kfold_splits(list(queries), ecfg["k_folds"], args.seed)):
             for q in te:
                 fold_by_q[q] = i
-        base = {q: ndcg_at_k([c.doc_id for c in hybs[fold_alphas[fold_by_q[q]]][q]], qrels[q], 10)
-                for q in queries}
-        summaries[ds] = {"hybrid": float(sum(base.values()) / len(base)), "models": {}}
+        base_run = {q: hybs[fold_alphas[fold_by_q[q]]][q] for q in queries}
+        metric_names = ["ndcg_cut_10", "mrr_10", "map", "recall_100"]
+        base_metrics = compute_ranking_metrics(qrels, base_run, metric_names)
+        base = base_metrics["ndcg_cut_10"].to_dict()
+        summaries[ds] = {"hybrid": {m: float(base_metrics[m].mean()) for m in metric_names}, "models": {}}
         for model_name in models:
-            reranker = CrossEncoderReranker(model_name=model_name, batch_size=encfg["batch_size"],
+            reranker = CrossEncoderReranker(model_name=model_name,
+                                            batch_size=args.batch_size or encfg["batch_size"],
                                             device=args.device, candidate_pool_size=50,
                                             max_length=encfg["max_length"])
             values = {}
+            reranked_runs = {}
             latencies = []
+            score_cache = args.output_dir / "runs" / ds / (model_name.replace("/", "__") + ".jsonl")
+            score_cache.parent.mkdir(parents=True, exist_ok=True)
+            if score_cache.exists():
+                with score_cache.open(encoding="utf-8") as cache_file:
+                    for line in cache_file:
+                        record = json.loads(line)
+                        qid = record["query_id"]
+                        reranked_runs[qid] = [Candidate(qid, row["doc_id"], row["score"], row["rank"])
+                                              for row in record["candidates"]]
+                        latencies.append(float(record["latency_ms"]))
             first_query = next(iter(queries))
             reranker.score_pairs([(queries[first_query].text,
                                    document_text(corpus[hybs[fold_alphas[fold_by_q[first_query]]][first_query][0].doc_id]))])
-            for q in queries:
-                alpha = fold_alphas[fold_by_q[q]]
-                candidates = hybs[alpha][q]
-                start = time.perf_counter()
-                final = reranker.rerank(queries[q], candidates, corpus, top_k=100)
-                latencies.append((time.perf_counter() - start) * 1000.0)
-                values[q] = ndcg_at_k(final, qrels[q], 10)
+            pending = [q for q in queries if q not in reranked_runs]
+            with score_cache.open("a", encoding="utf-8") as cache_file:
+                for i, q in enumerate(pending, start=1):
+                    alpha = fold_alphas[fold_by_q[q]]
+                    candidates = hybs[alpha][q]
+                    start = time.perf_counter()
+                    final = reranker.rerank(queries[q], candidates, corpus, top_k=100)
+                    latency_ms = (time.perf_counter() - start) * 1000.0
+                    latencies.append(latency_ms)
+                    reranked_runs[q] = final
+                    cache_file.write(json.dumps({
+                        "query_id": q,
+                        "candidates": [{"doc_id": c.doc_id, "score": c.score, "rank": c.rank}
+                                       for c in final],
+                        "latency_ms": latency_ms,
+                    }) + "\n")
+                    cache_file.flush()
+                    if i % args.progress_every == 0 or i == len(pending):
+                        print(f"[{ds}/{model_name}] scored {i}/{len(pending)} uncached queries; "
+                              f"{len(reranked_runs)}/{len(queries)} total", flush=True)
+            model_metrics = compute_ranking_metrics(qrels, reranked_runs, metric_names)
+            values = model_metrics["ndcg_cut_10"].to_dict()
             a = [values[q] for q in sorted(values)]
             b = [base[q] for q in sorted(values)]
             comp = paired_bootstrap_test(a, b, args.n_bootstrap, args.seed)
-            entry = {"n": len(values), "mean_ndcg10": float(sum(a) / len(a)),
-                     "hybrid_ndcg10": summaries[ds]["hybrid"], "reranker_minus_hybrid": comp,
+            comp["paired_wilcoxon"] = paired_wilcoxon_test(a, b)
+            comp["win_loss_tie"] = compute_win_loss_tie_counts(a, b)
+            entry = {"n": len(values),
+                     "mean_metrics": {m: float(model_metrics[m].mean()) for m in metric_names},
+                     "hybrid_metrics": summaries[ds]["hybrid"],
+                     "reranker_minus_hybrid": comp,
                      "rerank_latency_ms_mean": float(sum(latencies) / len(latencies)),
                      "rerank_latency_ms_p50": float(np.percentile(latencies, 50)),
                      "rerank_latency_ms_p95": float(np.percentile(latencies, 95))}
             summaries[ds]["models"][model_name] = entry
             rows.append({"dataset": ds, "model": model_name, **entry})
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    (args.output_dir / "summary.json").write_text(json.dumps({"exploratory": True, "results": summaries}, indent=2))
+    (args.output_dir / "summary.json").write_text(json.dumps({
+        "exploratory": True,
+        "settings": {"datasets": args.datasets, "models": models,
+                     "device": args.device, "batch_size": args.batch_size or encfg["batch_size"],
+                     "max_length": encfg["max_length"], "candidate_pool_size": 50},
+        "results": summaries,
+    }, indent=2))
     lines = ["# Cross-encoder checkpoint benchmark", "",
              "Exploratory matched-candidate-pool comparison. The registered Experiment 4 remains the primary result.",
-             "", "| Dataset | Model | Queries | Hybrid nDCG@10 | Reranker nDCG@10 | Δ [95% paired bootstrap CI] | Mean / p95 ms |",
-             "| :--- | :--- | ---: | ---: | ---: | :--- | :--- |"]
+             "", "| Dataset | Model | Queries | Hybrid nDCG@10 | Reranker nDCG@10 | Δ [95% paired bootstrap CI] | Bootstrap p | Wilcoxon p | Wins / losses / ties | Mean / p95 ms |",
+             "| :--- | :--- | ---: | ---: | ---: | :--- | ---: | ---: | :--- | :--- |"]
     for row in rows:
         d = row["reranker_minus_hybrid"]
-        lines.append(f"| {row['dataset']} | {row['model']} | {row['n']} | {row['hybrid_ndcg10']:.4f} "
-                     f"| {row['mean_ndcg10']:.4f} | {d['delta_mean']:+.4f} "
-                     f"[{d['ci_95_low']:+.4f}, {d['ci_95_high']:+.4f}] | "
+        lines.append(f"| {row['dataset']} | {row['model']} | {row['n']} | "
+                     f"{row['hybrid_metrics']['ndcg_cut_10']:.4f} "
+                     f"| {row['mean_metrics']['ndcg_cut_10']:.4f} | {d['delta_mean']:+.4f} "
+                     f"[{d['ci_95_low']:+.4f}, {d['ci_95_high']:+.4f}] | {d['p_value']:.4f} | "
+                     f"{d['paired_wilcoxon']['p_value']:.4f} | "
+                     f"{d['win_loss_tie']['wins']} / {d['win_loss_tie']['losses']} / {d['win_loss_tie']['ties']} | "
                      f"{row['rerank_latency_ms_mean']:.1f} / {row['rerank_latency_ms_p95']:.1f} |")
     (args.output_dir / "tables.md").write_text("\n".join(lines) + "\n")
 

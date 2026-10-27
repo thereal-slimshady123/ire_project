@@ -34,11 +34,14 @@ pip install -e .[dev]
 1. **Download Data**: `python scripts/download_data.py`
 2. **Build Indexes**: `python scripts/build_indexes.py`
 3. **Retrieval Baselines**: `python scripts/run_retrieval_baselines.py`
-4. **Oracle Headroom**: `python scripts/run_oracle_headroom.py`
-5. **Generate Labels**: `python scripts/generate_labels.py`
-6. **Extract Features**: `python scripts/extract_features.py`
-7. **Train Router**: `python scripts/train_router.py`
-8. **Sweep Escalation**: `python scripts/sweep_escalation.py`
-9. **Full Evaluation**: `python scripts/run_full_evaluation.py`
-10. **Synthetic Routing Demo**: `python scripts/demo_synthetic_routing.py`
-11. **Run Tests**: `pytest tests/`
+4. **Experiments 1–3**: `python scripts/run_experiment1_hybrid_degradation.py`, `run_experiment1b_query_types.py`, `run_experiment2_heldout_routing.py`, `run_experiment3_skip_dense.py`
+5. **Oracle Headroom** (all datasets, noise-corrected): `python scripts/run_oracle_headroom.py`
+6. **Route Labels** (training-fold α*/ε): `python scripts/generate_labels.py`
+7. **Escalation**: `python scripts/run_experiment4_escalation.py` (pre-registered), then `python scripts/run_tau_escalation.py` (router + τ escalation, risk-coverage)
+8. **Reranker Benchmark**: `python scripts/benchmark_cross_encoders.py`
+9. **Measured Policy Latency**: `python scripts/run_policy_latency.py`
+10. **Full Evaluation + Figures**: `python scripts/run_full_evaluation.py --reranker_benchmark_summary results/reranker_benchmark/summary.json && python scripts/make_report_figures.py`
+11. **Synthetic Routing Demo**: `python scripts/demo_synthetic_routing.py`
+12. **Run Tests**: `pytest tests/`
+
+Results and the write-up: `results/*/tables.md`, `results/metrics/combined.md`, `report/report.md`.

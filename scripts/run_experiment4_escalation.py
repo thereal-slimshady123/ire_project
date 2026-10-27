@@ -67,9 +67,16 @@ def parse_args():
     p.add_argument("--dense_model", type=str, default="intfloat/e5-small-v2")
     p.add_argument("--cross_encoder_model", type=str, default=None,
                    help="Override configured checkpoint for controlled reranker comparisons")
+    p.add_argument("--device", choices=["auto", "cpu", "cuda"], default=None,
+                   help="Override cross-encoder inference device")
+    p.add_argument("--batch_size", type=int, default=None,
+                   help="Override cross-encoder inference batch size")
     p.add_argument("--n_bootstrap", type=int, default=10000)
     p.add_argument("--no_plots", action="store_true")
-    return p.parse_args()
+    args = p.parse_args()
+    if args.batch_size is not None and args.batch_size < 1:
+        p.error("--batch_size must be positive")
+    return args
 
 
 def fold_alphas(df: pd.DataFrame, alphas, k_folds, seed) -> List[float]:
@@ -111,7 +118,8 @@ def main():
     alphas = [float(a) for a in hyb_cfg["alpha_grid"]]
     k = ret_cfg["dense"].get("top_k", 100)
     ce = CrossEncoderReranker(model_name=args.cross_encoder_model or ce_cfg["model_name"],
-                              batch_size=ce_cfg["batch_size"], device=ce_cfg["device"],
+                              batch_size=args.batch_size or ce_cfg["batch_size"],
+                              device=args.device or ce_cfg["device"],
                               candidate_pool_size=POOL, max_length=ce_cfg["max_length"])
 
     heldout, fold_log, rerank_gain = [], {}, {}
@@ -215,7 +223,8 @@ def main():
         return res
 
     pooled = block(heldout)
-    summary = {"preregistration": "improvements.md §4.2", "pooled": pooled,
+    summary = {"preregistration": "improvements.md §4.2", "cross_encoder_model": ce.model_name,
+               "device": ce.device, "pooled": pooled,
                "per_dataset": {ds: block(heldout[heldout["dataset"] == ds]) for ds in args.datasets},
                "always_rerank_gain_by_dataset": rerank_gain, "fold_info": fold_log,
                "verdict": "success" if pooled["primary_pg_minus_random"]["ci_95_low"] > 0 else "negative"}

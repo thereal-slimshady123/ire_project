@@ -88,6 +88,12 @@ def parse_args():
         help="Compute device ('auto', 'cpu', 'cuda')",
     )
     parser.add_argument(
+        "--dense_batch_size",
+        type=int,
+        default=None,
+        help="Override dense encoder batch size (useful when GPU memory is limited)",
+    )
+    parser.add_argument(
         "--n_bootstrap",
         type=int,
         default=10000,
@@ -99,7 +105,10 @@ def parse_args():
         default=42,
         help="Random seed",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.dense_batch_size is not None and args.dense_batch_size < 1:
+        parser.error("--dense_batch_size must be positive")
+    return args
 
 
 def read_trec_run(path: Path) -> Dict[str, List[Candidate]]:
@@ -205,7 +214,7 @@ def get_or_create_runs(
         query_prefix = "query: " if "e5" in model_name.lower() else ""
         kwargs = dict(
             model_name=model_name,
-            batch_size=dense_cfg.get("batch_size", 64),
+            batch_size=args.dense_batch_size or dense_cfg.get("batch_size", 64),
             device=device,
             passage_prefix=passage_prefix,
             query_prefix=query_prefix,
