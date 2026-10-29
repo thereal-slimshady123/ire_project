@@ -86,7 +86,7 @@ def write_tables(summary: dict, scaling: list, datasets: list, path: Path, prere
     if prereg:
         lines += [f"Reference, pre-registered Experiment 2 (3-class GBM, pooled): {fmt_ci(prereg)}.", ""]
     lines += ["## Scaling with synthetic training queries", "",
-              "| Synthetic per fold | " + " | ".join([*datasets, "**pooled**"]) + " | Pooled route shares B/D/H |",
+              "| Synthetic per dataset per fold (cap; realised counts) | " + " | ".join([*datasets, "**pooled**"]) + " | Pooled route shares B/D/H |",
               "| :--- | " + " | ".join(":---:" for _ in range(len(datasets) + 1)) + " | :---: |"]
     for row in scaling:
         cells = [fmt_ci(row[d]["tests"]["routed - hybrid"]) for d in datasets]
@@ -133,7 +133,9 @@ def main():
                                  stability=True if args.stability else None)
             held_all.append(prefix_index(held, ds).assign(dataset=ds, n_synthetic=used[ds]))
         pooled = pd.concat(held_all)
-        row = {"label": "0 (natural only)" if max(used.values()) == 0 else f"{max(used.values()):,}",
+        # Label the requested setting (a per-dataset cap), not the largest count actually used.
+        realised = ", ".join(f"{d} {used[d]:,}" for d in tables)
+        row = {"label": "0 (natural only)" if n_syn == 0 else f"{n_syn:,} per dataset (used: {realised})",
                "n_synthetic": used, "pooled": summarize_heldout(pooled, args.n_bootstrap, seed)}
         for ds in tables:
             row[ds] = summarize_heldout(pooled[pooled["dataset"] == ds], args.n_bootstrap, seed)

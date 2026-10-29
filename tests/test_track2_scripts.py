@@ -105,7 +105,8 @@ def test_ablations_cross_domain_and_experiment2b(workspace, monkeypatch):
                                                 "--n_synthetic", "0", "100", "--output_dir", str(out),
                                                 *COMMON(results, cfg)], monkeypatch)
     summ = json.loads((out / "summary.json").read_text())
-    assert [r["label"] for r in summ["scaling"]] == ["0 (natural only)", "100"]
+    assert [r["label"].split(" ")[0] for r in summ["scaling"]] == ["0", "100"]
+    assert summ["scaling"][1]["label"] == "100 per dataset (used: toya 100, toyb 100)"
     assert summ["scaling"][1]["n_synthetic"] == {"toya": 100, "toyb": 100}
     assert "Scaling with synthetic training queries" in (out / "tables.md").read_text()
 

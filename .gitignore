@@ -42,3 +42,13 @@ wandb/
 Thumbs.db
 .vscode/
 .idea/
+
+# Contract artifacts (plan.md section 3) are the cross-track handoff: re-include them after the blanket rules above
+!results/features/
+!results/features/*.parquet
+!results/models/
+!results/models/**/*.parquet
+!results/experiment4/
+!results/experiment4/*.parquet
+!results/synthetic/
+!results/synthetic/*.parquet
