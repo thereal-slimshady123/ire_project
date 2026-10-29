@@ -1,4 +1,4 @@
-.PHONY: help install data index baselines headroom labels features train sweep escalation rerankers policy-latency eval latency ablations test clean
+.PHONY: help install data index baselines headroom labels features train sweep escalation rerankers policy-latency eval latency ablations cross-domain synthetic advantage test clean
 
 PYTHON = python
 
@@ -19,6 +19,9 @@ help:
 	@echo "  eval       - Combined held-out evaluation + report figures"
 	@echo "  latency    - Run latency benchmark"
 	@echo "  ablations  - Run feature ablation studies"
+	@echo "  cross-domain - Router transfer: train on X, test on Y"
+	@echo "  synthetic  - Generate + label 30k synthetic training queries (needs data, torch, GPU)"
+	@echo "  advantage  - Experiment 2b: advantage-regression router (+ synthetic scaling if generated)"
 	@echo "  test       - Run unit and integration tests"
 	@echo "  clean      - Clean build artifacts and cache"
 
@@ -68,6 +71,15 @@ latency:
 
 ablations:
 	$(PYTHON) scripts/run_ablations.py
+
+cross-domain:
+	$(PYTHON) scripts/run_cross_domain.py
+
+synthetic:
+	$(PYTHON) scripts/generate_synthetic_queries.py --n_total 30000
+
+advantage:
+	$(PYTHON) scripts/run_experiment2b_advantage.py
 
 test:
 	pytest tests/

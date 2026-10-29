@@ -13,10 +13,13 @@ features:
     - "rank_correlation_spearman"
     - "bm25_top1_score"
     - "bm25_top1_top2_gap"
+    - "bm25_top1_top2_ratio"
     - "bm25_score_entropy"
     - "dense_top1_score"
     - "dense_top1_top2_gap"
     - "dense_score_entropy"
+    - "bm25_top10_query_term_coverage"
+    - "dense_top10_query_term_coverage"
 
 models:
   logistic:
@@ -32,3 +35,25 @@ models:
     num_leaves: 31
     class_weight: "balanced"
     use_regret_weights: true
+
+# Dual Advantage Regression (improvements.md section 2.2). Hyperparameters are fixed a priori
+# (small, heavily regularised trees: the held-out signal is weak) and are NOT tuned on held-out folds.
+advantage:
+  backend: "lightgbm"        # or "hist_gbm" (sklearn, no lightgbm needed)
+  objective: "regression"    # "huber" is the robust alternative for spiky nDCG deltas
+  n_estimators: 150
+  learning_rate: 0.03
+  num_leaves: 7
+  min_child_samples: 30
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_lambda: 1.0
+  theta_grid: [0.0, 0.01, 0.02, 0.03, 0.05, 0.075, 0.10]   # risk margins calibrated on training folds
+  label_epsilon: 0.02        # margin defining the "best route" labels used to fit the proba temperature
+  inner_folds: 3             # inner CV over training queries for theta / temperature calibration
+  min_gain_z: 1.645          # calibrated out-of-fold gain must have z >= this (one-sided 5%), else always-hybrid
+  synthetic_weight: 1.0      # per-row weight of synthetic training queries relative to natural ones
+  stability:                 # improvements.md section 2.3: drop queries whose winner flips at alpha* +/- shift
+    enabled: false
+    alpha_shift: 0.1
+    epsilon: 0.02

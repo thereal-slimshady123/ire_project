@@ -41,7 +41,13 @@ pip install -e .[dev]
 8. **Reranker Benchmark**: `python scripts/benchmark_cross_encoders.py`
 9. **Measured Policy Latency**: `python scripts/run_policy_latency.py`
 10. **Full Evaluation + Figures**: `python scripts/run_full_evaluation.py --reranker_benchmark_summary results/reranker_benchmark/summary.json && python scripts/make_report_figures.py`
-11. **Synthetic Routing Demo**: `python scripts/demo_synthetic_routing.py`
-12. **Run Tests**: `pytest tests/`
+11. **Synthetic Routing Demo** (60-doc pilot): `python scripts/demo_synthetic_routing.py`
+12. **Track 2 — features and advantage routing** (all run offline from the committed `results/experiment2/cache/`):
+    `python scripts/extract_features.py` (Contract 2 parquet; `--source runs` recomputes from raw data),
+    `python scripts/train_router.py` (Contract 3 `results/models/{dataset}/predictions.parquet`),
+    `python scripts/run_experiment2b_advantage.py`, `python scripts/run_ablations.py`, `python scripts/run_cross_domain.py`
+13. **Synthetic scaling** (needs `data/raw`, torch, GPU): `python scripts/generate_synthetic_queries.py --n_total 30000`, then
+    `python scripts/run_experiment2b_advantage.py --synthetic_dir results/synthetic --n_synthetic 0 1000 3000 10000 30000`
+14. **Run Tests**: `pytest tests/`
 
 Results and the write-up: `results/*/tables.md`, `results/metrics/combined.md`, `report/report.md`.

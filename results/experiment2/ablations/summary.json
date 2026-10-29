@@ -1,0 +1,3344 @@
+{
+  "advantage": {
+    "query_only": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.3588941459415545,
+          "random_same_mix": 0.3588941459415545,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 323
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7264189467170165,
+          "random_same_mix": 0.7264189467170165,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 300
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.40289856014040054,
+          "random_same_mix": 0.40289856014040054,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 648
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3763515920248359,
+          "random_same_mix": 0.3763515920248359,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 1072
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9674197979604596,
+          "random_same_mix": 0.9674197979604596,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 1000
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5880333427269788,
+          "random_same_mix": 0.5880333427269788,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 3343
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "retrieval_signal": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.3588941459415545,
+          "random_same_mix": 0.3588941459415545,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 323
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7264189467170165,
+          "random_same_mix": 0.7264189467170165,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 300
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.40289856014040054,
+          "random_same_mix": 0.40289856014040054,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 648
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.37551764707498464,
+          "random_same_mix": 0.37578144498622185,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.03171641791044776,
+          "hybrid": 0.9682835820895522
+        },
+        "wins_losses_ties": {
+          "win": 2,
+          "loss": 4,
+          "tie": 1066
+        },
+        "headroom_captured": -0.019945455167549832,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0008339449498512943,
+            "p_value": 0.29657034296570345,
+            "ci_95_low": -0.002618619543332131,
+            "ci_95_high": 0.0005891367099851495,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.24886387493792206
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.00026379791123721385,
+            "p_value": 0.7359264073592641,
+            "ci_95_low": -0.0019102799960047975,
+            "ci_95_high": 0.0010940383941764227,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9674197979604596,
+          "random_same_mix": 0.9674197979604596,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 1000
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5877659215525126,
+          "random_same_mix": 0.5878505136437021,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.01017050553395154,
+          "hybrid": 0.9898294944660485
+        },
+        "wins_losses_ties": {
+          "win": 2,
+          "loss": 4,
+          "tie": 3337
+        },
+        "headroom_captured": -0.0077806051824172735,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0002674211744662242,
+            "p_value": 0.30796920307969206,
+            "ci_95_low": -0.0008293999835671978,
+            "ci_95_high": 0.0001916589262820634,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.24886387493792206
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -8.459209118943864e-05,
+            "p_value": 0.7323267673232676,
+            "ci_95_low": -0.0006028129658063818,
+            "ci_95_high": 0.0003555224259985881,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "pre_dense": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.3588941459415545,
+          "random_same_mix": 0.3588941459415545,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 323
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7264189467170165,
+          "random_same_mix": 0.7264189467170165,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 300
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.40289856014040054,
+          "random_same_mix": 0.40289856014040054,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 648
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3770959413629254,
+          "random_same_mix": 0.37614918628692307,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.017723880597014924,
+          "hybrid": 0.9822761194029851
+        },
+        "wins_losses_ties": {
+          "win": 5,
+          "loss": 1,
+          "tie": 1066
+        },
+        "headroom_captured": 0.017802597586934175,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0007443493380894537,
+            "p_value": 0.09429057094290572,
+            "ci_95_low": 2.4661306535292674e-06,
+            "ci_95_high": 0.001776460372584085,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.11585149752593009
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0009467550760022663,
+            "p_value": 0.036096390360963904,
+            "ci_95_low": 0.0001777894797039537,
+            "ci_95_high": 0.0019474836367614095,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9674197979604596,
+          "random_same_mix": 0.9674197979604596,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 1000
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5882720332715292,
+          "random_same_mix": 0.5879684372674986,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.005683517798384685,
+          "hybrid": 0.9943164822016153
+        },
+        "wins_losses_ties": {
+          "win": 5,
+          "loss": 1,
+          "tie": 3337
+        },
+        "headroom_captured": 0.0069446889971578885,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0002386905445503722,
+            "p_value": 0.0882911708829117,
+            "ci_95_low": 7.904220814875038e-07,
+            "ci_95_high": 0.0005638348213274381,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.11585149752593009
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.00030359600403064,
+            "p_value": 0.0347965203479652,
+            "ci_95_low": 5.804866954363121e-05,
+            "ci_95_high": 0.0006205363968445737,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "all": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.3588941459415545,
+          "random_same_mix": 0.3588941459415545,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 323
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7264189467170165,
+          "random_same_mix": 0.7264189467170165,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 300
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.4027989993737754,
+          "random_same_mix": 0.40237841596599794,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0030864197530864196,
+          "dense": 0.0015432098765432098,
+          "hybrid": 0.9953703703703703
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 1,
+          "tie": 647
+        },
+        "headroom_captured": -0.002281978397821669,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -9.95607666251746e-05,
+            "p_value": 0.6322367763223677,
+            "ci_95_low": -0.0002986822998755238,
+            "ci_95_high": 0.0,
+            "n": 648,
+            "wilcoxon_p_two_sided": 0.31731050786291415
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0004205834077774195,
+            "p_value": 0.0027997200279972004,
+            "ci_95_low": 0.00014874746655059586,
+            "ci_95_high": 0.0006350005313711169,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3760150570247474,
+          "random_same_mix": 0.3756717498994024,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.0018656716417910447,
+          "dense": 0.03544776119402985,
+          "hybrid": 0.9626865671641791
+        },
+        "wins_losses_ties": {
+          "win": 4,
+          "loss": 3,
+          "tie": 1065
+        },
+        "headroom_captured": -0.008048905095921755,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0003365350000884869,
+            "p_value": 0.6642335766423357,
+            "ci_95_low": -0.0020433503513937515,
+            "ci_95_high": 0.0010006311002418828,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.9325263296150477
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.00034330712534507026,
+            "p_value": 0.6431356864313569,
+            "ci_95_low": -0.0012569753701226476,
+            "ci_95_high": 0.0016595591747414267,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9674197979604596,
+          "random_same_mix": 0.9674197979604596,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.0,
+          "hybrid": 1.0
+        },
+        "wins_losses_ties": {
+          "win": 0,
+          "loss": 0,
+          "tie": 1000
+        },
+        "headroom_captured": 0.0,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 1.0
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0,
+            "p_value": 1.0,
+            "ci_95_low": 0.0,
+            "ci_95_high": 0.0,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5879061273824177,
+          "random_same_mix": 0.5877145140750262,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.0011965300628178283,
+          "dense": 0.011666168112473826,
+          "hybrid": 0.9871373018247084
+        },
+        "wins_losses_ties": {
+          "win": 4,
+          "loss": 4,
+          "tie": 3335
+        },
+        "headroom_captured": -0.003701323843002592,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.00012721534456116396,
+            "p_value": 0.6149385061493851,
+            "ci_95_low": -0.0006649085573467929,
+            "ci_95_high": 0.00030316050945420855,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.9441140955776399
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0001916133073914697,
+            "p_value": 0.41785821417858215,
+            "ci_95_low": -0.0003154013566450755,
+            "ci_95_high": 0.0006142402962505476,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    }
+  },
+  "advantage_fixed": {
+    "query_only": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.3585515126566959,
+          "random_same_mix": 0.3576303603674404,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.015479876160990712,
+          "dense": 0.02476780185758514,
+          "hybrid": 0.9597523219814241
+        },
+        "wins_losses_ties": {
+          "win": 3,
+          "loss": 6,
+          "tie": 314
+        },
+        "headroom_captured": -0.011913909955844803,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0003426332848586189,
+            "p_value": 0.6478352164783522,
+            "ci_95_low": -0.0018415963278337454,
+            "ci_95_high": 0.0011699725149770144,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.5939546753269146
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.000921152289255507,
+            "p_value": 0.21777822217778223,
+            "ci_95_low": -0.00053460412777969,
+            "ci_95_high": 0.0024078117889162003,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7223236536803711,
+          "random_same_mix": 0.7166523656687455,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.11,
+          "dense": 0.15666666666666668,
+          "hybrid": 0.7333333333333333
+        },
+        "wins_losses_ties": {
+          "win": 9,
+          "loss": 16,
+          "tie": 275
+        },
+        "headroom_captured": -0.06333164515649271,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.00409529303664527,
+            "p_value": 0.5597440255974403,
+            "ci_95_low": -0.017760424738562146,
+            "ci_95_high": 0.009577642055034358,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.5358985358922672
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.005671288011625657,
+            "p_value": 0.3725627437256274,
+            "ci_95_low": -0.006707939991673531,
+            "ci_95_high": 0.01830966353233045,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.4002070967309514,
+          "random_same_mix": 0.401011652201717,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.06172839506172839,
+          "hybrid": 0.9382716049382716
+        },
+        "wins_losses_ties": {
+          "win": 6,
+          "loss": 12,
+          "tie": 630
+        },
+        "headroom_captured": -0.061689574790170905,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0026914634094491684,
+            "p_value": 0.0658934106589341,
+            "ci_95_low": -0.005903545572538016,
+            "ci_95_high": -4.592488111226649e-05,
+            "n": 648,
+            "wilcoxon_p_two_sided": 0.08531489464626932
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0008045554707656139,
+            "p_value": 0.5763423657634237,
+            "ci_95_low": -0.003852193213251151,
+            "ci_95_high": 0.00174206721888779,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3734485390243562,
+          "random_same_mix": 0.3746081045394195,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.0,
+          "dense": 0.09981343283582089,
+          "hybrid": 0.9001865671641791
+        },
+        "wins_losses_ties": {
+          "win": 12,
+          "loss": 16,
+          "tie": 1044
+        },
+        "headroom_captured": -0.06943229703640988,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.002903053000479706,
+            "p_value": 0.05219478052194781,
+            "ci_95_low": -0.006034606294791814,
+            "ci_95_high": -0.00014826000484150973,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.07926052606759473
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0011595655150632865,
+            "p_value": 0.4136586341365863,
+            "ci_95_low": -0.00407943547893045,
+            "ci_95_high": 0.0014614466646640087,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9667846893208284,
+          "random_same_mix": 0.9671041665028354,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.003,
+          "dense": 0.024,
+          "hybrid": 0.973
+        },
+        "wins_losses_ties": {
+          "win": 2,
+          "loss": 4,
+          "tie": 994
+        },
+        "headroom_captured": -0.04841565732511153,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0006351086396312733,
+            "p_value": 0.11338866113388661,
+            "ci_95_low": -0.0016032405107543625,
+            "ci_95_high": 2.0593485867707596e-05,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.11585149752593009
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0003194771820069432,
+            "p_value": 0.44275572442755723,
+            "ci_95_low": -0.0012536817829921316,
+            "ci_95_high": 0.0003175630297480298,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.585990115623338,
+          "random_same_mix": 0.5860155313476256,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.01226443314388274,
+          "dense": 0.0676039485492073,
+          "hybrid": 0.9201316183069099
+        },
+        "wins_losses_ties": {
+          "win": 32,
+          "loss": 54,
+          "tie": 3257
+        },
+        "headroom_captured": -0.05944758646421857,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0020432271036408896,
+            "p_value": 0.017798220177982202,
+            "ci_95_low": -0.0037739851576250915,
+            "ci_95_high": -0.00040300767379927656,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.010266570183256373
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -2.541572428766946e-05,
+            "p_value": 0.9739026097390261,
+            "ci_95_low": -0.0016452174998746105,
+            "ci_95_high": 0.0014848398770828954,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "retrieval_signal": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.35554792842870026,
+          "random_same_mix": 0.3550044509922917,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.043343653250773995,
+          "dense": 0.07120743034055728,
+          "hybrid": 0.8854489164086687
+        },
+        "wins_losses_ties": {
+          "win": 10,
+          "loss": 11,
+          "tie": 302
+        },
+        "headroom_captured": -0.11635336058277698,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.003346217512854228,
+            "p_value": 0.11968803119688032,
+            "ci_95_low": -0.007925946529609063,
+            "ci_95_high": 0.0005406222031756474,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.18084118136338856
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0005434774364085334,
+            "p_value": 0.7895210478952105,
+            "ci_95_low": -0.0037445536786611545,
+            "ci_95_high": 0.0042486788684898994,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7298591693815987,
+          "random_same_mix": 0.715336481604875,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.10666666666666667,
+          "dense": 0.19666666666666666,
+          "hybrid": 0.6966666666666667
+        },
+        "wins_losses_ties": {
+          "win": 9,
+          "loss": 11,
+          "tie": 280
+        },
+        "headroom_captured": 0.053201311628514616,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.003440222664582314,
+            "p_value": 0.29017098290170984,
+            "ci_95_low": -0.002559350930001808,
+            "ci_95_high": 0.010122411530605696,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.38987138252803966
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.01452268777672382,
+            "p_value": 0.0006999300069993001,
+            "ci_95_low": 0.006810341510981138,
+            "ci_95_high": 0.02240601539059258,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.4015065834332545,
+          "random_same_mix": 0.39850433666853685,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.006172839506172839,
+          "dense": 0.12191358024691358,
+          "hybrid": 0.8719135802469136
+        },
+        "wins_losses_ties": {
+          "win": 23,
+          "loss": 21,
+          "tie": 604
+        },
+        "headroom_captured": -0.0319047440437755,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0013919767071460662,
+            "p_value": 0.4767523247675233,
+            "ci_95_low": -0.005362632049046296,
+            "ci_95_high": 0.0024193680828552095,
+            "n": 648,
+            "wilcoxon_p_two_sided": 0.6116812947889607
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0030022467647176053,
+            "p_value": 0.11378862113788621,
+            "ci_95_low": -0.0007953109542166566,
+            "ci_95_high": 0.006638137060060599,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3730262812066712,
+          "random_same_mix": 0.3720509967754317,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.017723880597014924,
+          "dense": 0.16324626865671643,
+          "hybrid": 0.8190298507462687
+        },
+        "wins_losses_ties": {
+          "win": 21,
+          "loss": 37,
+          "tie": 1014
+        },
+        "headroom_captured": -0.07953143412367904,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0033253108181647275,
+            "p_value": 0.0817918208179182,
+            "ci_95_low": -0.007087050626123328,
+            "ci_95_high": 0.00038559189156058536,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.05529549550770744
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.000975284431239462,
+            "p_value": 0.5765423457654234,
+            "ci_95_low": -0.002595679133131796,
+            "ci_95_high": 0.004409795530762551,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9658726746481464,
+          "random_same_mix": 0.9661089199391211,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.029,
+          "dense": 0.038,
+          "hybrid": 0.933
+        },
+        "wins_losses_ties": {
+          "win": 6,
+          "loss": 16,
+          "tie": 978
+        },
+        "headroom_captured": -0.11794043956345042,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0015471233123134068,
+            "p_value": 0.30796920307969206,
+            "ci_95_low": -0.00446488822046214,
+            "ci_95_high": 0.0015954175510265085,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.08510319931479053
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.00023624529097479813,
+            "p_value": 0.8702129787021298,
+            "ci_95_low": -0.00307802728999486,
+            "ci_95_high": 0.00283677654225537,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5862198162917728,
+          "random_same_mix": 0.5840400181859313,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.029314986539036792,
+          "dense": 0.11187556087346695,
+          "hybrid": 0.8588094525874963
+        },
+        "wins_losses_ties": {
+          "win": 69,
+          "loss": 96,
+          "tie": 3178
+        },
+        "headroom_captured": -0.05276445744574791,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0018135264352060624,
+            "p_value": 0.04939506049395061,
+            "ci_95_low": -0.0036463616629321357,
+            "ci_95_high": -3.6693315485514546e-05,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.01691008318818448
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.002179798105841465,
+            "p_value": 0.016698330166983303,
+            "ci_95_low": 0.00040352391822893547,
+            "ci_95_high": 0.0039251741488476,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "pre_dense": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.35895906769097924,
+          "random_same_mix": 0.3569504313784492,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.02476780185758514,
+          "dense": 0.030959752321981424,
+          "hybrid": 0.9442724458204335
+        },
+        "wins_losses_ties": {
+          "win": 6,
+          "loss": 6,
+          "tie": 311
+        },
+        "headroom_captured": 0.0022574335623627923,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 6.492174942475561e-05,
+            "p_value": 0.9694030596940306,
+            "ci_95_low": -0.003010460789530257,
+            "ci_95_high": 0.0030386035075403396,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.8139453463016609
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0020086363125300663,
+            "p_value": 0.17588241175882413,
+            "ci_95_low": -0.0010288534332997944,
+            "ci_95_high": 0.004877989286709059,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7232200338874548,
+          "random_same_mix": 0.7171013001958162,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.11,
+          "dense": 0.12666666666666668,
+          "hybrid": 0.7633333333333333
+        },
+        "wins_losses_ties": {
+          "win": 8,
+          "loss": 16,
+          "tie": 276
+        },
+        "headroom_captured": -0.049469576510282595,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0031989128295616545,
+            "p_value": 0.636936306369363,
+            "ci_95_low": -0.01636638158109169,
+            "ci_95_high": 0.010752771438098448,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.4317998434848954
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.006118733691638469,
+            "p_value": 0.32686731326867313,
+            "ci_95_low": -0.006164196953184149,
+            "ci_95_high": 0.018762073376717956,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.3979116801759838,
+          "random_same_mix": 0.3992027579406321,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.0015432098765432098,
+          "dense": 0.11728395061728394,
+          "hybrid": 0.8811728395061729
+        },
+        "wins_losses_ties": {
+          "win": 17,
+          "loss": 26,
+          "tie": 605
+        },
+        "headroom_captured": -0.11430157417501438,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.004986879964416739,
+            "p_value": 0.0362963703629637,
+            "ci_95_low": -0.009847583119787827,
+            "ci_95_high": -0.0005418535207172381,
+            "n": 648,
+            "wilcoxon_p_two_sided": 0.06825275427233313
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0012910777646482894,
+            "p_value": 0.5535446455354465,
+            "ci_95_low": -0.005794930761809724,
+            "ci_95_high": 0.002842522886804944,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.37564065399268476,
+          "random_same_mix": 0.37272347384768795,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.010261194029850746,
+          "dense": 0.15391791044776118,
+          "hybrid": 0.835820895522388
+        },
+        "wins_losses_ties": {
+          "win": 23,
+          "loss": 26,
+          "tie": 1023
+        },
+        "headroom_captured": -0.017003499631126465,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0007109380321511198,
+            "p_value": 0.6875312468753124,
+            "ci_95_low": -0.0042152181431137645,
+            "ci_95_high": 0.0027371916657218595,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.6615527928819543
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.002917180144996872,
+            "p_value": 0.08509149085091491,
+            "ci_95_low": -0.00041370388691359104,
+            "ci_95_high": 0.006188615529781878,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9679208680026479,
+          "random_same_mix": 0.9664521988763415,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.02,
+          "dense": 0.036,
+          "hybrid": 0.944
+        },
+        "wins_losses_ties": {
+          "win": 5,
+          "loss": 3,
+          "tie": 992
+        },
+        "headroom_captured": 0.03819761524981343,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0005010700421882975,
+            "p_value": 0.42975702429757023,
+            "ci_95_low": -0.0007815623911313194,
+            "ci_95_high": 0.0018628137676428675,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.4795001221869535
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0014686691263064437,
+            "p_value": 0.03189681031896811,
+            "ci_95_low": 0.00016949907417688998,
+            "ci_95_high": 0.0028223106572914077,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5867078094128826,
+          "random_same_mix": 0.5848401224590417,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.021836673646425366,
+          "dense": 0.09721806760394855,
+          "hybrid": 0.880945258749626
+        },
+        "wins_losses_ties": {
+          "win": 59,
+          "loss": 77,
+          "tie": 3207
+        },
+        "headroom_captured": -0.038566322931272976,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0013255333140963356,
+            "p_value": 0.1820817918208179,
+            "ci_95_low": -0.0032967343049792952,
+            "ci_95_high": 0.0006117093671699891,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.13388644192048194
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0018676869538407875,
+            "p_value": 0.044795520447955206,
+            "ci_95_low": 1.9312952526847973e-05,
+            "ci_95_high": 0.003672517234692255,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "all": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.355537624523499,
+          "random_same_mix": 0.35533026674616547,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.043343653250773995,
+          "dense": 0.07120743034055728,
+          "hybrid": 0.8854489164086687
+        },
+        "wins_losses_ties": {
+          "win": 8,
+          "loss": 12,
+          "tie": 303
+        },
+        "headroom_captured": -0.11671164392589001,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.003356521418055452,
+            "p_value": 0.10028997100289971,
+            "ci_95_low": -0.007790099597182308,
+            "ci_95_high": 0.00031762854687858823,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.15600357596610903
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0002073577773335273,
+            "p_value": 0.9237076292370763,
+            "ci_95_low": -0.004132665478396268,
+            "ci_95_high": 0.003903473703977046,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7265751785063782,
+          "random_same_mix": 0.7148556289171832,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.09333333333333334,
+          "dense": 0.20666666666666667,
+          "hybrid": 0.7
+        },
+        "wins_losses_ties": {
+          "win": 11,
+          "loss": 15,
+          "tie": 274
+        },
+        "headroom_captured": 0.0024160459721654995,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.00015623178936178094,
+            "p_value": 0.9753024697530247,
+            "ci_95_low": -0.00958296139638163,
+            "ci_95_high": 0.010247793845830803,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.9291185409691551
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.011719549589195044,
+            "p_value": 0.024797520247975203,
+            "ci_95_low": 0.0018042460879950232,
+            "ci_95_high": 0.022147082913423412,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.4028634288747189,
+          "random_same_mix": 0.39836532558332766,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.007716049382716049,
+          "dense": 0.1111111111111111,
+          "hybrid": 0.8811728395061729
+        },
+        "wins_losses_ties": {
+          "win": 20,
+          "loss": 19,
+          "tie": 609
+        },
+        "headroom_captured": -0.0008052247094028772,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -3.513126568166089e-05,
+            "p_value": 0.9858014198580142,
+            "ci_95_low": -0.0040026022131209645,
+            "ci_95_high": 0.004021122834025004,
+            "n": 648,
+            "wilcoxon_p_two_sided": 0.8834909191866391
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.004498103291391215,
+            "p_value": 0.019998000199980003,
+            "ci_95_low": 0.0007144997937842326,
+            "ci_95_high": 0.008282640044219832,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.37378840183487994,
+          "random_same_mix": 0.37243735917362986,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.014925373134328358,
+          "dense": 0.15485074626865672,
+          "hybrid": 0.8302238805970149
+        },
+        "wins_losses_ties": {
+          "win": 21,
+          "loss": 30,
+          "tie": 1021
+        },
+        "headroom_captured": -0.06130380072304225,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0025631901899560135,
+            "p_value": 0.14238576142385762,
+            "ci_95_low": -0.005968296331461476,
+            "ci_95_high": 0.0008126741484995117,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.11851983850247307
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0013510426612500283,
+            "p_value": 0.42015798420157985,
+            "ci_95_low": -0.001908023000320976,
+            "ci_95_high": 0.004644320222438913,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9681859451959447,
+          "random_same_mix": 0.9662623957854073,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.026,
+          "dense": 0.035,
+          "hybrid": 0.939
+        },
+        "wins_losses_ties": {
+          "win": 9,
+          "loss": 8,
+          "tie": 983
+        },
+        "headroom_captured": 0.058405003017060204,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.0007661472354850461,
+            "p_value": 0.5572442755724427,
+            "ci_95_low": -0.001553869815081077,
+            "ci_95_high": 0.0035881394988714257,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.7579508203886518
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0019235494105373627,
+            "p_value": 0.12468753124687532,
+            "ci_95_low": -0.00033076187683576556,
+            "ci_95_high": 0.004684290401320253,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5871234879290331,
+          "random_same_mix": 0.5841712056930007,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.02662279389769668,
+          "dense": 0.10708944062219564,
+          "hybrid": 0.8662877654801077
+        },
+        "wins_losses_ties": {
+          "win": 69,
+          "loss": 84,
+          "tie": 3190
+        },
+        "headroom_captured": -0.026472178092384484,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.0009098547979458252,
+            "p_value": 0.3260673932606739,
+            "ci_95_low": -0.0027968455034924973,
+            "ci_95_high": 0.0009178599396415696,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 0.14804670538385406
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.002952282236032349,
+            "p_value": 0.0016998300169983002,
+            "ci_95_low": 0.0011471052046605086,
+            "ci_95_high": 0.004727722616041741,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    }
+  },
+  "gbm_cls": {
+    "query_only": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.34190590953443456,
+          "random_same_mix": 0.33509865253175275,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.30959752321981426,
+          "dense": 0.38080495356037153,
+          "hybrid": 0.30959752321981426
+        },
+        "wins_losses_ties": {
+          "win": 50,
+          "loss": 82,
+          "tie": 191
+        },
+        "headroom_captured": -0.5907082814401585,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.01698823640711991,
+            "p_value": 0.00029997000299970003,
+            "ci_95_low": -0.026800859661857374,
+            "ci_95_high": -0.00775592651892,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.001148641508169655
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0068072570026818345,
+            "p_value": 0.11548845115488451,
+            "ci_95_low": -0.0016967714283688425,
+            "ci_95_high": 0.015147280843122658,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7100894843310531,
+          "random_same_mix": 0.7048785378004265,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.17666666666666667,
+          "dense": 0.37333333333333335,
+          "hybrid": 0.45
+        },
+        "wins_losses_ties": {
+          "win": 17,
+          "loss": 38,
+          "tie": 245
+        },
+        "headroom_captured": -0.2525269152097808,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.016329462385963354,
+            "p_value": 0.09069093090690931,
+            "ci_95_low": -0.035332834382025044,
+            "ci_95_high": 0.00247516756911932,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.060058727921690154
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0052109465306264,
+            "p_value": 0.49345065493450657,
+            "ci_95_low": -0.009735520649645203,
+            "ci_95_high": 0.02014522910595474,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.36658549883265235,
+          "random_same_mix": 0.36866099235642813,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.14969135802469136,
+          "dense": 0.4027777777777778,
+          "hybrid": 0.44753086419753085
+        },
+        "wins_losses_ties": {
+          "win": 54,
+          "loss": 116,
+          "tie": 478
+        },
+        "headroom_captured": -0.8323120067468643,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.036313061307748216,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.04794331000855446,
+            "ci_95_high": -0.025566757245026623,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.2810711030333647e-10
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0020754935237757978,
+            "p_value": 0.6971302869713029,
+            "ci_95_low": -0.012904391972129853,
+            "ci_95_high": 0.008110368511987525,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.35622104827250445,
+          "random_same_mix": 0.35673818225339726,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.16138059701492538,
+          "dense": 0.376865671641791,
+          "hybrid": 0.46175373134328357
+        },
+        "wins_losses_ties": {
+          "win": 68,
+          "loss": 105,
+          "tie": 899
+        },
+        "headroom_captured": -0.4814620653103345,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.020130543752331455,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.02816332504253152,
+            "ci_95_high": -0.012208482497625808,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 6.071111904559741e-06
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0005171339808927404,
+            "p_value": 0.8877112288771123,
+            "ci_95_low": -0.007690336800297106,
+            "ci_95_high": 0.00644035729854682,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9627679974617076,
+          "random_same_mix": 0.9642086947318468,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.066,
+          "dense": 0.084,
+          "hybrid": 0.85
+        },
+        "wins_losses_ties": {
+          "win": 7,
+          "loss": 23,
+          "tie": 970
+        },
+        "headroom_captured": -0.3546164621900294,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.004651800498752097,
+            "p_value": 0.0023997600239976003,
+            "ci_95_low": -0.007721040714025135,
+            "ci_95_high": -0.0017637026733139417,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.0013590573967083737
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0014406972701391707,
+            "p_value": 0.31656834316568344,
+            "ci_95_low": -0.004332021377251892,
+            "ci_95_high": 0.0013315825229069482,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5700409268717707,
+          "random_same_mix": 0.569914680006682,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.1462758001794795,
+          "dense": 0.29434639545318575,
+          "hybrid": 0.5593778043673348
+        },
+        "wins_losses_ties": {
+          "win": 196,
+          "loss": 364,
+          "tie": 2783
+        },
+        "headroom_captured": -0.5234884048604792,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.017992415855208194,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.022003201846811614,
+            "ci_95_high": -0.01404406960610595,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 2.3886921816265667e-18
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.000126246865088617,
+            "p_value": 0.9442055794420557,
+            "ci_95_low": -0.003381594673705126,
+            "ci_95_high": 0.0036097725696334925,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "retrieval_signal": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.34700288339524016,
+          "random_same_mix": 0.34203224595598836,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.21052631578947367,
+          "dense": 0.28173374613003094,
+          "hybrid": 0.5077399380804953
+        },
+        "wins_losses_ties": {
+          "win": 39,
+          "loss": 59,
+          "tie": 225
+        },
+        "headroom_captured": -0.4134783090223044,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.011891262546314377,
+            "p_value": 0.0037996200379962005,
+            "ci_95_low": -0.019945363632982185,
+            "ci_95_high": -0.004377847621291226,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.006639525998712677
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.004970637439251787,
+            "p_value": 0.1710828917108289,
+            "ci_95_low": -0.0023448144494447104,
+            "ci_95_high": 0.01198347754766627,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7278036920868117,
+          "random_same_mix": 0.7152722809530502,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.08333333333333333,
+          "dense": 0.23,
+          "hybrid": 0.6866666666666666
+        },
+        "wins_losses_ties": {
+          "win": 18,
+          "loss": 21,
+          "tie": 261
+        },
+        "headroom_captured": 0.021414390034421343,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": 0.00138474536979529,
+            "p_value": 0.8385161483851615,
+            "ci_95_low": -0.012185244078716403,
+            "ci_95_high": 0.015152077550686736,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.8559794374966699
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.012531411133761525,
+            "p_value": 0.046995300469953004,
+            "ci_95_low": 0.00025925629605616637,
+            "ci_95_high": 0.02501133637267284,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.38233345347845665,
+          "random_same_mix": 0.3749206156376652,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.12962962962962962,
+          "dense": 0.3117283950617284,
+          "hybrid": 0.558641975308642
+        },
+        "wins_losses_ties": {
+          "win": 44,
+          "loss": 89,
+          "tie": 515
+        },
+        "headroom_captured": -0.4713616692821657,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.020565106661943885,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.029663975231629353,
+            "ci_95_high": -0.011847472353006006,
+            "n": 648,
+            "wilcoxon_p_two_sided": 4.924191779868805e-06
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.007412837840791466,
+            "p_value": 0.0826917308269173,
+            "ci_95_low": -0.0010811052262126118,
+            "ci_95_high": 0.015737159358984242,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.364523582191242,
+          "random_same_mix": 0.36326911123710454,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.10261194029850747,
+          "dense": 0.29384328358208955,
+          "hybrid": 0.6035447761194029
+        },
+        "wins_losses_ties": {
+          "win": 63,
+          "loss": 92,
+          "tie": 917
+        },
+        "headroom_captured": -0.2828904232819615,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.011828009833593955,
+            "p_value": 0.0012998700129987,
+            "ci_95_low": -0.01904450636335712,
+            "ci_95_high": -0.004756321268864496,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.0016975044160946174
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0012544709541373834,
+            "p_value": 0.6977302269773022,
+            "ci_95_low": -0.005109201904623773,
+            "ci_95_high": 0.007521348991041601,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9638831902473805,
+          "random_same_mix": 0.9656897022753278,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.039,
+          "dense": 0.045,
+          "hybrid": 0.916
+        },
+        "wins_losses_ties": {
+          "win": 12,
+          "loss": 28,
+          "tie": 960
+        },
+        "headroom_captured": -0.26960298828434553,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.003536607713079363,
+            "p_value": 0.022097790220977902,
+            "ci_95_low": -0.006725772023976517,
+            "ci_95_high": -0.0006234257437452598,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.018307112012476402
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0018065120279474238,
+            "p_value": 0.22617738226177383,
+            "ci_95_low": -0.00487767767287588,
+            "ci_95_high": 0.0010333920120435271,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5781715785740765,
+          "random_same_mix": 0.5752679773210919,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.09751720011965301,
+          "dense": 0.215973676338618,
+          "hybrid": 0.686509123541729
+        },
+        "wins_losses_ties": {
+          "win": 176,
+          "loss": 289,
+          "tie": 2878
+        },
+        "headroom_captured": -0.28692751585211673,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.009861764152902387,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.013203954910222937,
+            "ci_95_high": -0.006545422621596097,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 3.2674576563060944e-09
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.002903601252984597,
+            "p_value": 0.05849415058494151,
+            "ci_95_low": -0.00010741372780920426,
+            "ci_95_high": 0.005937195596810666,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "pre_dense": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.33705332791947185,
+          "random_same_mix": 0.3402648979122849,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.22291021671826625,
+          "dense": 0.3126934984520124,
+          "hybrid": 0.46439628482972134
+        },
+        "wins_losses_ties": {
+          "win": 40,
+          "loss": 79,
+          "tie": 204
+        },
+        "headroom_captured": -0.7594403427105905,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.021840818022082636,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.03127148821340822,
+            "ci_95_high": -0.01292833192219881,
+            "n": 323,
+            "wilcoxon_p_two_sided": 6.706811224573606e-06
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0032115699928130627,
+            "p_value": 0.43785621437856215,
+            "ci_95_low": -0.011351917459308629,
+            "ci_95_high": 0.004805161303770973,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7143413096249585,
+          "random_same_mix": 0.713046311073731,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.08,
+          "dense": 0.25666666666666665,
+          "hybrid": 0.6633333333333333
+        },
+        "wins_losses_ties": {
+          "win": 13,
+          "loss": 26,
+          "tie": 261
+        },
+        "headroom_captured": -0.18677457749633547,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.012077637092057895,
+            "p_value": 0.1546845315468453,
+            "ci_95_low": -0.028664406908337502,
+            "ci_95_high": 0.004916611619467693,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.10972622711243082
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0012949985512275798,
+            "p_value": 0.8668133186681332,
+            "ci_95_low": -0.01357120531613345,
+            "ci_95_high": 0.015969919835529606,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.37064595302251757,
+          "random_same_mix": 0.37746696834589,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.10648148148148148,
+          "dense": 0.33641975308641975,
+          "hybrid": 0.5570987654320988
+        },
+        "wins_losses_ties": {
+          "win": 50,
+          "loss": 106,
+          "tie": 492
+        },
+        "headroom_captured": -0.7392445358875759,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.032252607117883025,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.043086517882517904,
+            "ci_95_high": -0.022508300523773297,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.5256484417617604e-09
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.006821015323372416,
+            "p_value": 0.14378562143785623,
+            "ci_95_low": -0.01644025002336858,
+            "ci_95_high": 0.001959149636845023,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.3665241545304129,
+          "random_same_mix": 0.36346349376117626,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.09514925373134328,
+          "dense": 0.29757462686567165,
+          "hybrid": 0.6072761194029851
+        },
+        "wins_losses_ties": {
+          "win": 56,
+          "loss": 78,
+          "tie": 938
+        },
+        "headroom_captured": -0.23504274951465765,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.009827437494422964,
+            "p_value": 0.0021997800219978004,
+            "ci_95_low": -0.01610004145813565,
+            "ci_95_high": -0.0038100638159097797,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.003192293139176026
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0030606607692367153,
+            "p_value": 0.2866713328667133,
+            "ci_95_low": -0.002741973465956221,
+            "ci_95_high": 0.00865473394536338,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9619864532520912,
+          "random_same_mix": 0.9655418309956715,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.039,
+          "dense": 0.052,
+          "hybrid": 0.909
+        },
+        "wins_losses_ties": {
+          "win": 9,
+          "loss": 26,
+          "tie": 965
+        },
+        "headroom_captured": -0.4141952086847785,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.005433344708368576,
+            "p_value": 0.006299370062993701,
+            "ci_95_low": -0.009505544965392873,
+            "ci_95_high": -0.001710448594482843,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.003165252125532542
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0035553777435804227,
+            "p_value": 0.0648935106489351,
+            "ci_95_low": -0.007491920723940491,
+            "ci_95_high": 6.0984939278381735e-05,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5738108113289746,
+          "random_same_mix": 0.5754091376439056,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.09153454980556386,
+          "dense": 0.22943463954531856,
+          "hybrid": 0.6790308106491175
+        },
+        "wins_losses_ties": {
+          "win": 168,
+          "loss": 315,
+          "tie": 2860
+        },
+        "headroom_captured": -0.41380381236931907,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.014222531398004265,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.017820487079875155,
+            "ci_95_high": -0.010779551286813035,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 8.625627741155002e-16
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0015983263149310007,
+            "p_value": 0.32496750324967505,
+            "ci_95_low": -0.004846898272257505,
+            "ci_95_high": 0.0015366618034134995,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    },
+    "all": {
+      "nfcorpus": {
+        "n": 323,
+        "mean": {
+          "hybrid": 0.3588941459415545,
+          "bm25": 0.32228243673488716,
+          "dense": 0.32554296075648803,
+          "routed": 0.34328188810978133,
+          "random_same_mix": 0.34187420653185957,
+          "oracle": 0.3876532423363135
+        },
+        "route_share": {
+          "bm25": 0.20123839009287925,
+          "dense": 0.2848297213622291,
+          "hybrid": 0.5139318885448917
+        },
+        "wins_losses_ties": {
+          "win": 36,
+          "loss": 61,
+          "tie": 226
+        },
+        "headroom_captured": -0.5428632950588219,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.015612257831773124,
+            "p_value": 0.0004999500049995,
+            "ci_95_low": -0.02408123849926829,
+            "ci_95_high": -0.007696265752776153,
+            "n": 323,
+            "wilcoxon_p_two_sided": 0.0005666098407100291
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0014076815779218033,
+            "p_value": 0.6977302269773022,
+            "ci_95_low": -0.0058540813843115215,
+            "ci_95_high": 0.008563123789364217,
+            "n": 323
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.02875909639475894,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.02279774318935217,
+            "ci_95_high": 0.035150565276242926,
+            "n": 323
+          }
+        }
+      },
+      "scifact": {
+        "n": 300,
+        "mean": {
+          "hybrid": 0.7264189467170165,
+          "bm25": 0.6826735618320974,
+          "dense": 0.687499226674564,
+          "routed": 0.7242708027859207,
+          "random_same_mix": 0.7158761585500519,
+          "oracle": 0.7910831920011202
+        },
+        "route_share": {
+          "bm25": 0.08333333333333333,
+          "dense": 0.21,
+          "hybrid": 0.7066666666666667
+        },
+        "wins_losses_ties": {
+          "win": 11,
+          "loss": 21,
+          "tie": 268
+        },
+        "headroom_captured": -0.033219964474305044,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.002148143931095676,
+            "p_value": 0.7091290870912909,
+            "ci_95_low": -0.013523736230376709,
+            "ci_95_high": 0.009128142018519957,
+            "n": 300,
+            "wilcoxon_p_two_sided": 0.5245131234168898
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.008394644235868751,
+            "p_value": 0.11938806119388061,
+            "ci_95_low": -0.0021849720352737864,
+            "ci_95_high": 0.018891323730701202,
+            "n": 300
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.06466424528410382,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.0475721392011515,
+            "ci_95_high": 0.08354554704316693,
+            "n": 300
+          }
+        }
+      },
+      "fiqa": {
+        "n": 648,
+        "mean": {
+          "hybrid": 0.40289856014040054,
+          "bm25": 0.2528021278714477,
+          "dense": 0.3747382055134499,
+          "routed": 0.37703706698418293,
+          "random_same_mix": 0.37945987079636384,
+          "oracle": 0.44652770523669655
+        },
+        "route_share": {
+          "bm25": 0.09876543209876543,
+          "dense": 0.2962962962962963,
+          "hybrid": 0.6049382716049383
+        },
+        "wins_losses_ties": {
+          "win": 34,
+          "loss": 89,
+          "tie": 525
+        },
+        "headroom_captured": -0.5927572749623564,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.025861493156217656,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.03556269939634719,
+            "ci_95_high": -0.017000050762491878,
+            "n": 648,
+            "wilcoxon_p_two_sided": 1.639385334215239e-08
+          },
+          "routed - random_same_mix": {
+            "delta_mean": -0.0024228038121809257,
+            "p_value": 0.5832416758324167,
+            "ci_95_low": -0.0110307690024444,
+            "ci_95_high": 0.005794879094408655,
+            "n": 648
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04362914509629597,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.036448256657423184,
+            "ci_95_high": 0.051226953885164184,
+            "n": 648
+          }
+        }
+      },
+      "cqadupstack-unix": {
+        "n": 1072,
+        "mean": {
+          "hybrid": 0.3763515920248359,
+          "bm25": 0.29365645960460846,
+          "dense": 0.35970906316022105,
+          "routed": 0.367334116384281,
+          "random_same_mix": 0.3642868451057476,
+          "oracle": 0.4181628689721817
+        },
+        "route_share": {
+          "bm25": 0.09328358208955224,
+          "dense": 0.2621268656716418,
+          "hybrid": 0.644589552238806
+        },
+        "wins_losses_ties": {
+          "win": 59,
+          "loss": 80,
+          "tie": 933
+        },
+        "headroom_captured": -0.2156708978754917,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.009017475640554903,
+            "p_value": 0.0105989401059894,
+            "ci_95_low": -0.01593610668833962,
+            "ci_95_high": -0.0022803399427372014,
+            "n": 1072,
+            "wilcoxon_p_two_sided": 0.015458219281475708
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.003047271278533421,
+            "p_value": 0.33056694330566944,
+            "ci_95_low": -0.003046670001312937,
+            "ci_95_high": 0.009105706684437267,
+            "n": 1072
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.04181127694734574,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.035379178980346,
+            "ci_95_high": 0.048570615744284326,
+            "n": 1072
+          }
+        }
+      },
+      "quora": {
+        "n": 1000,
+        "mean": {
+          "hybrid": 0.9674197979604596,
+          "bm25": 0.9333175235674603,
+          "dense": 0.9587074537403949,
+          "routed": 0.9667484445884734,
+          "random_same_mix": 0.9660066451991757,
+          "oracle": 0.9805376336921222
+        },
+        "route_share": {
+          "bm25": 0.03,
+          "dense": 0.042,
+          "hybrid": 0.928
+        },
+        "wins_losses_ties": {
+          "win": 14,
+          "loss": 20,
+          "tie": 966
+        },
+        "headroom_captured": -0.0511786689298113,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.000671353371986402,
+            "p_value": 0.6838316168383162,
+            "ci_95_low": -0.0038373254306606997,
+            "ci_95_high": 0.0027104398313402634,
+            "n": 1000,
+            "wilcoxon_p_two_sided": 0.38774105760247957
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0007417993892977363,
+            "p_value": 0.6481351864813518,
+            "ci_95_low": -0.0023406046150635964,
+            "ci_95_high": 0.004037515029816215,
+            "n": 1000
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.01311783573166246,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.009248220247079709,
+            "ci_95_high": 0.017443692954112622,
+            "n": 1000
+          }
+        }
+      },
+      "pooled": {
+        "n": 3343,
+        "mean": {
+          "hybrid": 0.5880333427269788,
+          "bm25": 0.5147569018065499,
+          "dense": 0.5679168623833629,
+          "routed": 0.5782267207458596,
+          "random_same_mix": 0.5766079436743604,
+          "oracle": 0.6224035707743479
+        },
+        "route_share": {
+          "bm25": 0.0849536344600658,
+          "dense": 0.20041878552198625,
+          "hybrid": 0.7146275800179479
+        },
+        "wins_losses_ties": {
+          "win": 154,
+          "loss": 271,
+          "tie": 2918
+        },
+        "headroom_captured": -0.28532315722792834,
+        "tests": {
+          "routed - hybrid": {
+            "delta_mean": -0.009806621981119269,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": -0.013172440985336164,
+            "ci_95_high": -0.006535290182206488,
+            "n": 3343,
+            "wilcoxon_p_two_sided": 6.108056529702476e-10
+          },
+          "routed - random_same_mix": {
+            "delta_mean": 0.0016187770714991593,
+            "p_value": 0.28447155284471554,
+            "ci_95_low": -0.0013836456040204565,
+            "ci_95_high": 0.004592920911017196,
+            "n": 3343
+          },
+          "oracle - hybrid": {
+            "delta_mean": 0.03437022804736918,
+            "p_value": 9.999000099990002e-05,
+            "ci_95_low": 0.03110523966724395,
+            "ci_95_high": 0.03783638145634067,
+            "n": 3343
+          }
+        }
+      }
+    }
+  }
+}
