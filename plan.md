@@ -40,7 +40,7 @@ To completely eliminate these bottlenecks, the project enforces four architectur
 1. **Contract-First Data Serialization**:
    All communication between tracks happens via strictly typed on-disk artifacts (Parquet / JSON). For example, Track 2 and Track 3 consume candidate rankings from `results/runs/{dataset}/{retriever}.parquet` using a frozen schema (`query_id`, `doc_id`, `score`, `rank`).
 2. **Instant Parallel Start via Pre-Cached Runs**:
-   Base BM25 and dense retrieval runs for all 5 evaluation benchmarks (`nfcorpus`, `scifact`, `fiqa`, `cqadupstack-unix`, `quora`) are already generated and cached in `results/runs/` and `results/indexes/`. Track 2 (Features & Routing) and Track 3 (Escalation & Evaluation) can begin immediately on day one without waiting for Track 1's index builds.
+   Base runs are not committed (`results/runs/`, `results/indexes/` and `data/raw/` are gitignored). What is committed is the per-query route table `results/experiment2/cache/{dataset}.csv` (nDCG@10 for BM25, dense and every α, plus the 18 features), from which Tracks 2 and 3 run fully offline. The runs are regenerated from `data/raw` with one command per stage: `python scripts/download_data.py`, then `python scripts/run_retrieval_baselines.py` (BM25 + dense runs for NFCorpus, SciFact, FiQA) and `python scripts/run_experiment1b_query_types.py` (CQADupStack Unix and the Quora subset), both cached as `.trec` in `results/runs/{dataset}/`, then `python scripts/export_run_parquet.py` (Contract 1 parquet from those runs).
 3. **Zero-Overlap File & Directory Ownership**:
    Each person has 100% exclusive write ownership of specific modules in `src/`, scripts in `scripts/`, test suites in `tests/`, and output folders in `results/`. Merge conflicts are structurally prevented.
 4. **Offline Isolation & Mock Fixtures**:
@@ -194,11 +194,11 @@ To maintain complete autonomy, all data passed between tracks follows these immu
 | `entity_density` | `float32` | Heuristic capitalized / alphanumeric entity density | `0.142` |
 | `oov_fraction` | `float32` | Fraction of terms not in corpus vocabulary | `0.0` |
 | `jaccard_overlap` | `float32` | Top-10 Jaccard overlap between BM25 and Dense | `0.25` |
-| `rank_correlation` | `float32` | Kendall-tau rank correlation over top candidates | `0.38` |
-| `bm25_top1_score` | `float32` | Normalized top-1 score of BM25 | `0.89` |
+| `rank_correlation` | `float32` | Spearman rank correlation over shared top candidates (alias of `rank_correlation_spearman`) | `0.38` |
+| `bm25_top1_score` | `float32` | Raw (unnormalized) top-1 BM25 score | `14.82` |
 | `bm25_top1_top2_ratio`| `float32`| Ratio of top-1 to top-2 BM25 score | `1.34` |
 | `bm25_score_entropy` | `float32`| Shannon entropy of softmaxed candidate scores | `2.11` |
-| `dense_top1_score` | `float32` | Normalized top-1 score of Dense | `0.76` |
+| `dense_top1_score` | `float32` | Raw top-1 dense (cosine) score | `0.86` |
 | `dense_top1_top2_gap`| `float32`| Difference between top-1 and top-2 Dense scores | `0.08` |
 | `dense_score_entropy`| `float32`| Shannon entropy of Dense candidate distribution | `2.84` |
 

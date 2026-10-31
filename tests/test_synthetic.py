@@ -12,6 +12,7 @@ from router_retrieval.synthetic import (
     build_route_table, clean_queries, eligible_doc_ids, excluded_doc_ids, load_synthetic, plan_queries,
     save_synthetic, style_capacity, subsample_synthetic,
 )
+from router_retrieval.synthetic.generator import content_overlap, generate_low_overlap
 from router_retrieval.synthetic.sampler import _norm
 from tests.track2_fixtures import ALPHAS, toy_corpus
 
@@ -35,6 +36,36 @@ def test_extractive_generator_is_deterministic_and_handles_empty_passages():
     texts = ["alpha beta gamma delta epsilon zeta", "the of and"]
     assert mk().generate(texts, "lexical") == mk().generate(texts, "lexical")
     assert mk().generate(["the of and"], "lexical") == [""]
+
+
+def test_extractive_generator_pool_factor_samples_beyond_the_rarest_terms():
+    idf = {w: float(i) for i, w in enumerate("a b c d e f g h i j".split(), start=1)}
+    text = "a b c d e f g h i j"
+    rarest = ExtractiveLexicalGenerator(idf.get, min_terms=3, max_terms=3).generate([text] * 20, "lexical")
+    assert set(rarest) == {"h i j"}
+    harder = ExtractiveLexicalGenerator(idf.get, min_terms=3, max_terms=3, pool_factor=3, seed=0).generate([text] * 20, "lexical")
+    assert len(set(harder)) > 1 and all(set(q.split()) <= set("b c d e f g h i j".split()) for q in harder)
+    with pytest.raises(ValueError):
+        ExtractiveLexicalGenerator(idf.get, pool_factor=0.5)
+
+
+def test_generate_low_overlap_resamples_and_drops():
+    class Scripted:
+        def __init__(self):
+            self.calls = 0
+
+        def generate(self, passages, style):
+            self.calls += 1
+            # passage 0: overlapping on the first try, clean on the second; passage 1 always overlaps
+            return ["kubernetes memory" if (p.startswith("Kube") and self.calls == 1) else
+                    ("why do programs crash" if p.startswith("Kube") else "glucose metformin") for p in passages]
+
+    gen = Scripted()
+    passages = ["Kubernetes memory limits", "Metformin lowers glucose"]
+    assert content_overlap("kubernetes memory", passages[0]) == 2
+    out = generate_low_overlap(gen, passages, "semantic", max_overlap=0, attempts=3)
+    assert out == ["why do programs crash", ""]
+    assert gen.calls == 3
 
 
 def test_mixed_generator_dispatches_by_style():

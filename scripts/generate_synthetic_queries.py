@@ -39,7 +39,7 @@ from router_retrieval.synthetic import (  # noqa: E402
     assert_no_leakage, build_route_table, clean_queries, eligible_doc_ids, excluded_doc_ids, plan_queries,
     save_synthetic, style_capacity,
 )
-from router_retrieval.synthetic.generator import STYLES  # noqa: E402
+from router_retrieval.synthetic.generator import STYLES, generate_low_overlap  # noqa: E402
 from router_retrieval.retrieval.bm25 import document_text  # noqa: E402
 from router_retrieval.utils.config import load_config  # noqa: E402
 from router_retrieval.utils.logging_utils import get_logger  # noqa: E402
@@ -57,7 +57,13 @@ def parse_args():
     p.add_argument("--lexical_only", action="store_true", help="Model-free smoke test: only the lexical style")
     p.add_argument("--generator_model", type=str, default="google/flan-t5-base")
     p.add_argument("--lexical_generator", choices=["extractive", "seq2seq"], default="extractive")
+    p.add_argument("--lexical_pool_factor", type=float, default=1.0,
+                   help="Sample lexical terms from the top pool_factor*n rarest tokens (>1 = harder; problems.md item 3)")
     p.add_argument("--gen_batch_size", type=int, default=32)
+    p.add_argument("--semantic_max_overlap", type=int, default=-1,
+                   help="Keep a semantic query only if it shares <= this many analyzed terms with its passage "
+                        "(resampling failures); -1 = no filter")
+    p.add_argument("--semantic_attempts", type=int, default=8, help="Generation attempts per passage under the filter")
     p.add_argument("--dense_model", type=str, default="intfloat/e5-small-v2")
     p.add_argument("--max_passage_words", type=int, default=300)
     p.add_argument("--min_passage_words", type=int, default=25)
@@ -107,7 +113,7 @@ def main():
     log.info(f"Per-dataset budget: {budget} (requested {args.n_total})")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    manifest = {"seed": args.seed, "lexical_fraction": lex_frac, "generator_model": args.generator_model,
+    manifest = {"seed": args.seed, "lexical_fraction": lex_frac, "lexical_pool_factor": args.lexical_pool_factor, "semantic_max_overlap": args.semantic_max_overlap, "semantic_attempts": args.semantic_attempts, "generator_model": args.generator_model,
                 "dense_model": args.dense_model, "alphas": alphas, "datasets": {}}
     for ds in args.datasets:
         corpus, natural_queries, excluded = data[ds]
@@ -116,7 +122,7 @@ def main():
             continue
         bm25 = BM25Retriever(k1=ret_cfg["bm25"]["k1"], b=ret_cfg["bm25"]["b"])
         bm25.index(corpus)
-        lexical = ExtractiveLexicalGenerator(bm25.term_idf, seed=args.seed)
+        lexical = ExtractiveLexicalGenerator(bm25.term_idf, seed=args.seed, pool_factor=args.lexical_pool_factor)
         seq2seq = None if (args.lexical_only and args.lexical_generator == "extractive") else Seq2SeqGenerator(
             args.generator_model, batch_size=args.gen_batch_size, seed=args.seed)
         gen = MixedGenerator(lexical if args.lexical_generator == "extractive" else seq2seq, seq2seq)
@@ -129,7 +135,12 @@ def main():
             if not docs:
                 continue
             log.info(f"[{ds}] generating {len(docs)} {style} queries")
-            texts = gen.generate([document_text(corpus[d]) for d in docs], style)
+            passages = [document_text(corpus[d]) for d in docs]
+            if style == "semantic" and args.semantic_max_overlap >= 0:
+                texts = generate_low_overlap(gen, passages, style, args.semantic_max_overlap, args.semantic_attempts)
+                log.info(f"[{ds}] semantic overlap filter: {sum(bool(t) for t in texts)}/{len(texts)} passages passed")
+            else:
+                texts = gen.generate(passages, style)
             generated.extend(zip(docs, [style] * len(docs), texts))
         keep = clean_queries([t for _, _, t in generated], (q.text for q in natural_queries.values()))
         queries = [SyntheticQuery(f"syn-{ds}-{i}", t.strip(), d, s, ds)

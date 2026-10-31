@@ -111,3 +111,30 @@ Problems found while running Experiments 1, 1b and 2 (see `improvements.md` §1�
 
 ### D6. "Quality retained" metric breaks when reranking hurts
 * (policy − hybrid) / (always-rerank − hybrid) has a negative denominator here, which produces meaningless percentages. Only report it when always-rerank > always-hybrid.
+
+---
+
+## E. Why the Experiment 2 router is *worse* than hybrid, and the fix (Experiment 2d)
+
+### E1. Class balancing made the router leave hybrid far too often (fixed in Experiment 2d)
+* **Problem:** the GBM and logistic routers use `class_weight: "balanced"` (`configs/router.yaml`). Only 5–15% of queries are labelled BM25 or dense, so balancing multiplies their weight by roughly 6–15× and the router predicts them much more often than their expected value justifies.
+* **Why it costs nDCG:** leaving hybrid is asymmetric. Pooled, BM25 beats hybrid on 7% of queries (mean +0.20) and loses on 28% (mean −0.31); dense wins on 12% (+0.17) and loses on 18% (−0.22). A router has to be right well over half the time it switches. Of the 190 held-out queries the Experiment 2 router sent to BM25, 16 improved and 63 got worse (net −14.8 nDCG points).
+* **Fix:** Experiment 2d (`scripts/run_experiment2d_cost_aware_router.py`, pre-declared in `results/preregistration/experiment2d_cost_aware_router_20261031.md`) removes class balancing, measures label margins against hybrid (E2), and falls back to always-hybrid unless inner CV on the training fold shows a gain.
+* **Effect:** pooled router − hybrid goes from −0.0073 [−0.0100, −0.0045] (Experiment 2 router refit on the same folds) to −0.0012 [−0.0025, +0.0002]. Non-inferiority at δ = 0.005 holds. Superiority (H1) is still **not supported**; no variant (blended nDCG/MRR target, + query embedding, no fallback) has a CI above 0.
+* **Status:** `configs/router.yaml` is unchanged, so the pre-registered Experiment 2 and Experiment 3 results still reproduce; Experiment 2d sets its options in its own script.
+
+### E2. Margin labels compared the top route with the runner-up, not with hybrid (option added)
+* **Problem:** `MarginLabeler` labels a query "hybrid" when top1 − top2 < ε. If BM25 and dense are close to each other but both well above hybrid, the label is "hybrid", which is the worst route. It affects 1–2 queries per dataset at the tuned ε.
+* **Fix:** `MarginLabeler(margin_to="default")` measures the margin against hybrid. The default (`"runner_up"`) keeps the pre-registered rule.
+
+### E3. The labels were not the main problem
+* Labels are correct per query, but nDCG@10 per query is very noisy: all three routes tie on 34–79% of queries, and hybrid is strictly best on only 3–19%. Even cost-aware routers mostly fall back to hybrid, because no feature set separates the 7–12% of queries where a single retriever wins.
+
+### E4. Better models cannot fix it: the features lack precision (explanatory)
+* **Evidence** (`scripts/analyze_route_predictability.py`, `results/route_predictability/`): break-even precision among queries whose score changes is 61% (BM25) / 57% (dense). A held-out classifier on the 18 features + query embedding reaches AUC 0.67–0.68, but precision on its most confident 1–10% is 29–35% (BM25) and 32–46% (dense), with a negative mean change at every cut-off.
+* **Document-aware features** (Experiment 2e, `scripts/run_experiment2e_ce_feature_router.py`, pre-declared): cached cross-encoder scores of each route's top-3 make routing beat random routing (MRR@10 +0.0031 [+0.0014, +0.0048]) but not always-hybrid (nDCG@10 −0.0003 [−0.0017, +0.0011]), at about 40 ms per query.
+* **Remaining options:** more training data (30k synthetic queries, GPU) or an LLM reading the query, both untested here.
+
+### E5. Reranking depth matters more than query selection (Experiment 4c)
+* **Pre-declared test failed:** reranking every query's top-5 with the blended backend (same cross-encoder cost as escalating 10% of queries) gives +0.0010 [−0.0013, +0.0033], 15% of the always-blended gain, no better than 4b's escalation at equal cost.
+* **Secondary, post hoc:** top-10 +0.0026 [+0.0001, +0.0050]; top-20 +0.0067 [+0.0039, +0.0095], the whole always-blended gain at 40% of its cross-encoder pairs and a p95 well below 10% escalation's. Confirm on new data before claiming it.

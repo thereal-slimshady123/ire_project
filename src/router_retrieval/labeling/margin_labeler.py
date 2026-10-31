@@ -10,18 +10,27 @@ class MarginLabeler:
     """
     Labels each query with the best route using argmax over nDCG@10 with margin epsilon.
     If top1 - top2 < epsilon, defaults to 'hybrid' as the safe option.
+
+    With `margin_to="default"` the margin is instead top1 - score(default route): a query is labelled with
+    a non-default route only if that route beats the default by >= epsilon, so two non-default routes that
+    are close to each other but both far above the default are no longer labelled with the default.
     """
 
-    def __init__(self, epsilon: float = 0.02, default_route: str = "hybrid"):
+    def __init__(self, epsilon: float = 0.02, default_route: str = "hybrid", margin_to: str = "runner_up"):
         """
         Initialize MarginLabeler.
 
         Args:
             epsilon: Margin threshold below which differences are treated as ties.
             default_route: Default route to assign when within margin epsilon.
+            margin_to: "runner_up" (top1 - top2; the pre-registered Experiment 2 rule) or "default"
+                (top1 - score of `default_route`).
         """
+        if margin_to not in ("runner_up", "default"):
+            raise ValueError(f"margin_to must be 'runner_up' or 'default', got {margin_to!r}")
         self.epsilon = epsilon
         self.default_route = default_route
+        self.margin_to = margin_to
 
     def label_wide(self, scores: pd.DataFrame) -> pd.DataFrame:
         """
@@ -39,6 +48,8 @@ class MarginLabeler:
         default_is_top = (
             values[:, routes.index(self.default_route)] >= top1 if self.default_route in routes else False
         )
+        if self.margin_to == "default" and self.default_route in routes:
+            margin = top1 - values[:, routes.index(self.default_route)]
         best = np.where((margin < self.epsilon) | default_is_top, self.default_route, best)
         return pd.DataFrame(
             {"best_route": best, "margin": margin, "top1_score": top1, "top2_score": top2}, index=scores.index

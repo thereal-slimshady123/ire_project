@@ -40,6 +40,10 @@ class ExtractiveLexicalGenerator:
     Tokens are scored by the BM25 IDF of their analyzed form (`idf_fn`); tokens the corpus has never seen
     (error codes, gene symbols) get `oov_idf`. Digit-bearing and ALLCAPS tokens receive `entity_bonus`
     so identifiers outrank ordinary rare words. Deterministic given the seed.
+
+    `pool_factor` > 1 makes queries harder (problems.md item 3): the n terms are sampled from the
+    passage's `pool_factor * n` highest-scoring tokens instead of being its n rarest, so the query no
+    longer always contains the passage's most discriminative words. 1 keeps the original behaviour.
     """
 
     def __init__(
@@ -50,11 +54,14 @@ class ExtractiveLexicalGenerator:
         oov_idf: float = 12.0,
         entity_bonus: float = 1.0,
         seed: int = 42,
+        pool_factor: float = 1.0,
     ):
         if not 1 <= min_terms <= max_terms:
             raise ValueError("require 1 <= min_terms <= max_terms")
+        if pool_factor < 1:
+            raise ValueError("require pool_factor >= 1")
         self.idf_fn, self.min_terms, self.max_terms = idf_fn, min_terms, max_terms
-        self.oov_idf, self.entity_bonus = oov_idf, entity_bonus
+        self.oov_idf, self.entity_bonus, self.pool_factor = oov_idf, entity_bonus, pool_factor
         self.rng = np.random.default_rng(seed)
 
     def _score(self, token: str) -> Optional[float]:
@@ -80,7 +87,11 @@ class ExtractiveLexicalGenerator:
                     seen.add(key)
                     scored.append((s, pos, tok))
             n = int(self.rng.integers(self.min_terms, self.max_terms + 1))
-            best = sorted(scored, key=lambda t: (-t[0], t[1]))[:n]
+            ranked = sorted(scored, key=lambda t: (-t[0], t[1]))
+            if self.pool_factor > 1:
+                pool = ranked[:int(round(self.pool_factor * n))]
+                ranked = [pool[i] for i in self.rng.permutation(len(pool))]
+            best = ranked[:n]
             out.append(" ".join(tok for _, _, tok in sorted(best, key=lambda t: t[1])))
         return out
 
@@ -147,6 +158,34 @@ class Seq2SeqGenerator:
                                            temperature=self.temperature, top_p=self.top_p)
             out.extend(s.strip() for s in self._tok.batch_decode(ids, skip_special_tokens=True))
         return out
+
+
+def content_overlap(query: str, passage: str) -> int:
+    """Number of distinct analyzed query terms (BM25 tokenizer: stopwords removed, stemmed) found in the passage."""
+    return len(set(tokenize(query)) & set(tokenize(passage)))
+
+
+def generate_low_overlap(generator, passages: Sequence[str], style: str, max_overlap: int,
+                         attempts: int) -> List[str]:
+    """
+    Keep a query only if it shares at most `max_overlap` analyzed terms with its passage, resampling the
+    passages that fail up to `attempts` times in total; passages that never pass get "" (dropped later by
+    `clean_queries`). A style rule on the query's wording, independent of how any retriever scores it.
+    """
+    out = [""] * len(passages)
+    todo = list(range(len(passages)))
+    for _ in range(attempts):
+        if not todo:
+            break
+        texts = generator.generate([passages[i] for i in todo], style)
+        todo_next = []
+        for i, t in zip(todo, texts):
+            if t.strip() and content_overlap(t, passages[i]) <= max_overlap:
+                out[i] = t
+            else:
+                todo_next.append(i)
+        todo = todo_next
+    return out
 
 
 class MixedGenerator:

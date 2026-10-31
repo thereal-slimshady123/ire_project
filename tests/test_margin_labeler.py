@@ -24,6 +24,13 @@ def test_margin_tie_defaults_to_hybrid():
     assert out["best_route"].iloc[0] == "hybrid"
 
 
+def test_margin_to_default_measures_against_hybrid():
+    """BM25 and dense close to each other but both far above hybrid: not a hybrid label."""
+    out = MarginLabeler(0.05, margin_to="default").label_wide(_wide([[0.60, 0.58, 0.10], [0.60, 0.20, 0.57]]))
+    assert out["best_route"].tolist() == ["bm25", "hybrid"]
+    assert out["margin"].tolist() == [pytest.approx(0.5), pytest.approx(0.03)]
+
+
 def test_exact_tie():
     """Test exact tie edge case."""
     out = MarginLabeler(0.0).label_wide(_wide([[0.5, 0.5, 0.5], [0.7, 0.2, 0.7]]))

@@ -52,3 +52,9 @@ Thumbs.db
 !results/experiment4/*.parquet
 !results/synthetic/
 !results/synthetic/*.parquet
+!results/experiment2c/cache/
+!results/experiment2c/cache/*.parquet
+!results/phase2/synthetic/
+!results/phase2/synthetic/*.parquet
+!results/phase2b/synthetic/
+!results/phase2b/synthetic/*.parquet
