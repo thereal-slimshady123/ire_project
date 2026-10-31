@@ -13,11 +13,11 @@ We test whether cheap per-query features can route each query to BM25, dense, or
 | H3 | Budgeted escalation keeps most of the rerank gain | Not supported | At a 10% budget it keeps 16% of the +0.0067 blended gain. |
 | H4 | Latency near hybrid | Partly | Router +5–13 ms. 10% escalation is 2.5–7× hybrid. Always-rerank costs 368–406 ms. |
 
-**Phase 2 (added to try to explain the Phase 1 hypotheses failing).** Natural queries show no routing signal, so we ask when routing can work.
+**Phase 2 (tentative and subject to change, added to try to explain the Phase 1 hypotheses failing).** Natural queries show no routing signal, so we ask when routing can work.
 - **P2-H1:** routing needs query groups whose best retriever differs; natural sets have none.
 - **P2-H2:** the 18 features separate keyword from paraphrase queries, so route labels are learnable.
 - **P2-H3:** one shared α is a poor compromise on a mixed-style workload.
-- **P2-H4:** router gain is lowest at a balanced style mix and higher at either extreme.
+- **P2-H4:** router gain is lowest at a balanced style mix (due to majority of queries getting routed to fixed hybrid) and higher at either extreme.
 
 ## 3. What we have built
 - BM25, dense (e5-small-v2), hybrid and RRF retrievers
