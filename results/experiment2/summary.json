@@ -6,52 +6,52 @@
     "mean": {
       "hybrid": 0.5880333427269788,
       "best_single": 0.565201831901439,
-      "router_gbm": 0.5819089930282331,
-      "router_logistic": 0.5632116484510705,
-      "random_gbm": 0.5802213616332695,
-      "random_logistic": 0.5630880641475118,
+      "router_gbm": 0.5807627341840278,
+      "router_logistic": 0.5633843401535322,
+      "random_gbm": 0.5797732451142208,
+      "random_logistic": 0.5633890011498142,
       "oracle": 0.6224035707743479
     },
     "tests": {
       "router_gbm - hybrid": {
-        "delta_mean": -0.006124349698745889,
+        "delta_mean": -0.007270608542951106,
         "p_value": 9.999000099990002e-05,
-        "ci_95_low": -0.009063395809853967,
-        "ci_95_high": -0.0031856450038700115,
+        "ci_95_low": -0.010034854317191241,
+        "ci_95_high": -0.004496551025021192,
         "n": 3343,
-        "wilcoxon_p_greater": 0.999994083715967
+        "wilcoxon_p_greater": 0.9999999779251562
       },
       "router_logistic - hybrid": {
-        "delta_mean": -0.024821694275908253,
+        "delta_mean": -0.024649002573446665,
         "p_value": 9.999000099990002e-05,
-        "ci_95_low": -0.029578955690807197,
-        "ci_95_high": -0.02017866296646716,
+        "ci_95_low": -0.029458988865253208,
+        "ci_95_high": -0.019936169213614907,
         "n": 3343,
         "wilcoxon_p_greater": 1.0
       },
       "router_gbm - best_single": {
-        "delta_mean": 0.016707161126793952,
+        "delta_mean": 0.015560902282588739,
         "p_value": 9.999000099990002e-05,
-        "ci_95_low": 0.012023517769998918,
-        "ci_95_high": 0.02158869219499694,
+        "ci_95_low": 0.010969179937541571,
+        "ci_95_high": 0.020380886790650206,
         "n": 3343,
-        "wilcoxon_p_greater": 1.1488684917574635e-13
+        "wilcoxon_p_greater": 4.4056034071502874e-12
       },
       "router_gbm - random_gbm": {
-        "delta_mean": 0.001687631394963527,
-        "p_value": 0.22037796220377961,
-        "ci_95_low": -0.0010162063365065437,
-        "ci_95_high": 0.004398065289106194,
+        "delta_mean": 0.0009894890698069379,
+        "p_value": 0.46035396460353967,
+        "ci_95_low": -0.0016108730437557964,
+        "ci_95_high": 0.003574691425935037,
         "n": 3343,
-        "wilcoxon_p_greater": 5.769990222773918e-29
+        "wilcoxon_p_greater": 6.789866272819496e-26
       },
       "router_logistic - random_logistic": {
-        "delta_mean": 0.0001235843035589373,
-        "p_value": 0.950904909509049,
-        "ci_95_low": -0.004034233253192453,
-        "ci_95_high": 0.004247806773134027,
+        "delta_mean": -4.660996282057086e-06,
+        "p_value": 0.9987001299870013,
+        "ci_95_low": -0.004137286693922813,
+        "ci_95_high": 0.004149674757588749,
         "n": 3343,
-        "wilcoxon_p_greater": 4.2242578857952016e-05
+        "wilcoxon_p_greater": 4.493470895909061e-05
       },
       "oracle - hybrid": {
         "delta_mean": 0.03437022804736918,
@@ -59,7 +59,7 @@
         "ci_95_low": 0.031055043219832285,
         "ci_95_high": 0.03774516871931107,
         "n": 3343,
-        "wilcoxon_p_greater": 5.575280466287327e-106
+        "wilcoxon_p_greater": 5.583171248777494e-106
       }
     }
   },
@@ -69,60 +69,60 @@
       "mean": {
         "hybrid": 0.3588941459415545,
         "best_single": 0.31555478344538435,
-        "router_gbm": 0.3548104642375024,
-        "router_logistic": 0.33873016707528325,
-        "random_gbm": 0.3548817946138321,
+        "router_gbm": 0.35503830017229804,
+        "router_logistic": 0.3387301670752832,
+        "random_gbm": 0.3547725131942719,
         "random_logistic": 0.343037293304935,
         "oracle": 0.38765324233631343
       },
       "tests": {
         "router_gbm - hybrid": {
-          "delta_mean": -0.004083681704052107,
-          "p_value": 0.067993200679932,
-          "ci_95_low": -0.008712124773038675,
-          "ci_95_high": 4.004976738944876e-05,
+          "delta_mean": -0.0038558457692564416,
+          "p_value": 0.08769123087691232,
+          "ci_95_low": -0.008523558597408177,
+          "ci_95_high": 0.00033143886745049943,
           "n": 323,
-          "wilcoxon_p_greater": 0.9615845875733098
+          "wilcoxon_p_greater": 0.9395686405810955
         },
         "router_logistic - hybrid": {
-          "delta_mean": -0.020163978866271266,
+          "delta_mean": -0.020163978866271262,
           "p_value": 9.999000099990002e-05,
           "ci_95_low": -0.028385163215416148,
           "ci_95_high": -0.01260241012139573,
           "n": 323,
-          "wilcoxon_p_greater": 0.9999997477209641
+          "wilcoxon_p_greater": 0.9999997477144978
         },
         "router_gbm - best_single": {
-          "delta_mean": 0.03925568079211803,
+          "delta_mean": 0.0394835167269137,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": 0.02803520831955878,
-          "ci_95_high": 0.05101314397300671,
+          "ci_95_low": 0.02841796280085407,
+          "ci_95_high": 0.05107673476325418,
           "n": 323,
-          "wilcoxon_p_greater": 9.00777723125624e-12
+          "wilcoxon_p_greater": 7.2261387375393725e-12
         },
         "router_gbm - random_gbm": {
-          "delta_mean": -7.133037632974393e-05,
-          "p_value": 0.9737026297370263,
-          "ci_95_low": -0.004630865259185163,
-          "ci_95_high": 0.00395385330906026,
+          "delta_mean": 0.00026578697802621444,
+          "p_value": 0.9058094190580942,
+          "ci_95_low": -0.004296183858184077,
+          "ci_95_high": 0.004440405299567502,
           "n": 323,
-          "wilcoxon_p_greater": 9.674589322586314e-09
+          "wilcoxon_p_greater": 3.0046584057828827e-09
         },
         "router_logistic - random_logistic": {
-          "delta_mean": -0.004307126229651753,
+          "delta_mean": -0.004307126229651752,
           "p_value": 0.22477752224777522,
           "ci_95_low": -0.011323340565029946,
-          "ci_95_high": 0.00261842016917683,
+          "ci_95_high": 0.0026184201691768307,
           "n": 323,
           "wilcoxon_p_greater": 0.2393492705359268
         },
         "oracle - hybrid": {
-          "delta_mean": 0.02875909639475894,
+          "delta_mean": 0.028759096394758946,
           "p_value": 9.999000099990002e-05,
           "ci_95_low": 0.022704708102801775,
           "ci_95_high": 0.03524212978067876,
           "n": 323,
-          "wilcoxon_p_greater": 6.561786247182685e-21
+          "wilcoxon_p_greater": 6.560946865539547e-21
         }
       }
     },
@@ -131,57 +131,57 @@
       "mean": {
         "hybrid": 0.7264189467170165,
         "best_single": 0.667998674575947,
-        "router_gbm": 0.7300055866053591,
-        "router_logistic": 0.705974832421927,
-        "random_gbm": 0.7162444691724487,
-        "random_logistic": 0.7031575053074135,
+        "router_gbm": 0.7239008298800895,
+        "router_logistic": 0.7053643557873488,
+        "random_gbm": 0.7157776610149514,
+        "random_logistic": 0.704398380249491,
         "oracle": 0.7910831920011202
       },
       "tests": {
         "router_gbm - hybrid": {
-          "delta_mean": 0.0035866398883426156,
-          "p_value": 0.6245375462453755,
-          "ci_95_low": -0.00997147706202471,
-          "ci_95_high": 0.01824814093219998,
+          "delta_mean": -0.0025181168369268958,
+          "p_value": 0.7191280871912809,
+          "ci_95_low": -0.01586600359522138,
+          "ci_95_high": 0.01179727014218309,
           "n": 300,
-          "wilcoxon_p_greater": 0.4643756945109176
+          "wilcoxon_p_greater": 0.7698680031353649
         },
         "router_logistic - hybrid": {
-          "delta_mean": -0.020444114295089275,
-          "p_value": 0.0670932906709329,
-          "ci_95_low": -0.042842646064262115,
-          "ci_95_high": 0.0009953172619210013,
+          "delta_mean": -0.021054590929667605,
+          "p_value": 0.061193880611938804,
+          "ci_95_low": -0.0434426609467708,
+          "ci_95_high": 0.0006128252053851687,
           "n": 300,
-          "wilcoxon_p_greater": 0.9687428501638553
+          "wilcoxon_p_greater": 0.9761376162147404
         },
         "router_gbm - best_single": {
-          "delta_mean": 0.062006912029411984,
+          "delta_mean": 0.055902155304142456,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": 0.04112077906643295,
-          "ci_95_high": 0.08378322976886364,
+          "ci_95_low": 0.036162924217541595,
+          "ci_95_high": 0.07693100969331029,
           "n": 300,
-          "wilcoxon_p_greater": 3.057309498333929e-08
+          "wilcoxon_p_greater": 9.517697017301332e-08
         },
         "router_gbm - random_gbm": {
-          "delta_mean": 0.013761117432910374,
-          "p_value": 0.028997100289971003,
-          "ci_95_low": 0.0020159240268758653,
-          "ci_95_high": 0.02652222475844813,
+          "delta_mean": 0.008123168865138053,
+          "p_value": 0.1840815918408159,
+          "ci_95_low": -0.0035261034244807796,
+          "ci_95_high": 0.020381890138561606,
           "n": 300,
-          "wilcoxon_p_greater": 0.004802593127493769
+          "wilcoxon_p_greater": 0.029415175387916895
         },
         "router_logistic - random_logistic": {
-          "delta_mean": 0.0028173271145135455,
-          "p_value": 0.7614238576142386,
-          "ci_95_low": -0.015113619356455417,
-          "ci_95_high": 0.020236207185325625,
+          "delta_mean": 0.0009659755378577513,
+          "p_value": 0.9162083791620838,
+          "ci_95_low": -0.017089489640450484,
+          "ci_95_high": 0.01888550865209111,
           "n": 300,
-          "wilcoxon_p_greater": 0.22241836215761301
+          "wilcoxon_p_greater": 0.23988613988534752
         },
         "oracle - hybrid": {
           "delta_mean": 0.0646642452841038,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": 0.047597510288526844,
+          "ci_95_low": 0.04759751028852686,
           "ci_95_high": 0.0829266801176702,
           "n": 300,
           "wilcoxon_p_greater": 1.610498838344165e-11
@@ -193,52 +193,52 @@
       "mean": {
         "hybrid": 0.40289856014040054,
         "best_single": 0.3747382055134499,
-        "router_gbm": 0.39248557401400774,
-        "router_logistic": 0.3542229656129532,
-        "random_gbm": 0.3888944541913025,
-        "random_logistic": 0.3494891583532073,
+        "router_gbm": 0.39086249007935936,
+        "router_logistic": 0.3544658905524281,
+        "random_gbm": 0.38601347847493106,
+        "random_logistic": 0.35050380287155697,
         "oracle": 0.44652770523669655
       },
       "tests": {
         "router_gbm - hybrid": {
-          "delta_mean": -0.01041298612639285,
-          "p_value": 0.0017998200179982,
-          "ci_95_low": -0.017241296767189353,
-          "ci_95_high": -0.004341661268346656,
+          "delta_mean": -0.012036070061041194,
+          "p_value": 0.00029997000299970003,
+          "ci_95_low": -0.018867037289183222,
+          "ci_95_high": -0.00556178095348418,
           "n": 648,
-          "wilcoxon_p_greater": 0.9981098523631088
+          "wilcoxon_p_greater": 0.9996526363851082
         },
         "router_logistic - hybrid": {
-          "delta_mean": -0.04867559452744735,
+          "delta_mean": -0.048432669587972446,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": -0.06256187615957585,
-          "ci_95_high": -0.03527764140310096,
+          "ci_95_low": -0.06285340508799699,
+          "ci_95_high": -0.03490583227066647,
           "n": 648,
-          "wilcoxon_p_greater": 0.9999999999915271
+          "wilcoxon_p_greater": 0.9999999999827338
         },
         "router_gbm - best_single": {
-          "delta_mean": 0.017747368500557834,
-          "p_value": 0.0052994700529947,
-          "ci_95_low": 0.005463416682514223,
-          "ci_95_high": 0.03038852374090426,
+          "delta_mean": 0.016124284565909492,
+          "p_value": 0.012398760123987601,
+          "ci_95_low": 0.0037441912000183097,
+          "ci_95_high": 0.028704164750073934,
           "n": 648,
-          "wilcoxon_p_greater": 0.002520412582673983
+          "wilcoxon_p_greater": 0.005196744189834875
         },
         "router_gbm - random_gbm": {
-          "delta_mean": 0.003591119822705245,
-          "p_value": 0.26507349265073493,
-          "ci_95_low": -0.0030629197758754215,
-          "ci_95_high": 0.009576220681292422,
+          "delta_mean": 0.004849011604428288,
+          "p_value": 0.1471852814718528,
+          "ci_95_low": -0.0018910816084288541,
+          "ci_95_high": 0.011179047526674757,
           "n": 648,
-          "wilcoxon_p_greater": 8.46003255049691e-18
+          "wilcoxon_p_greater": 2.4254204113373686e-16
         },
         "router_logistic - random_logistic": {
-          "delta_mean": 0.00473380725974588,
-          "p_value": 0.43955604439556045,
-          "ci_95_low": -0.007293642597945191,
-          "ci_95_high": 0.016664458534786115,
+          "delta_mean": 0.003962087680871102,
+          "p_value": 0.5142485751424858,
+          "ci_95_low": -0.008348362945673565,
+          "ci_95_high": 0.016025422287842414,
           "n": 648,
-          "wilcoxon_p_greater": 0.0013433094230950549
+          "wilcoxon_p_greater": 0.0017785740048254684
         },
         "oracle - hybrid": {
           "delta_mean": 0.04362914509629597,
@@ -246,7 +246,7 @@
           "ci_95_low": 0.03659183286316413,
           "ci_95_high": 0.050969709240307866,
           "n": 648,
-          "wilcoxon_p_greater": 3.127161945037074e-33
+          "wilcoxon_p_greater": 3.127210753038794e-33
         }
       }
     },
@@ -255,52 +255,52 @@
       "mean": {
         "hybrid": 0.37635159202483587,
         "best_single": 0.359709063160221,
-        "router_gbm": 0.3658990501192661,
-        "router_logistic": 0.351465373006576,
-        "random_gbm": 0.36563668881642847,
-        "random_logistic": 0.34755171533185314,
+        "router_gbm": 0.36577461837004394,
+        "router_logistic": 0.352027906580198,
+        "random_gbm": 0.3662275324193053,
+        "random_logistic": 0.34752958871635287,
         "oracle": 0.4181628689721817
       },
       "tests": {
         "router_gbm - hybrid": {
-          "delta_mean": -0.010452541905569816,
-          "p_value": 0.0015998400159984002,
-          "ci_95_low": -0.01691979059842761,
-          "ci_95_high": -0.004212365707863331,
+          "delta_mean": -0.01057697365479197,
+          "p_value": 0.0006999300069993001,
+          "ci_95_low": -0.016627482528256538,
+          "ci_95_high": -0.004829544100522102,
           "n": 1072,
-          "wilcoxon_p_greater": 0.999280646803897
+          "wilcoxon_p_greater": 0.9998569157612233
         },
         "router_logistic - hybrid": {
-          "delta_mean": -0.02488621901825994,
+          "delta_mean": -0.02432368544463789,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": -0.033302328849818645,
-          "ci_95_high": -0.016640778708561135,
+          "ci_95_low": -0.03275925740012399,
+          "ci_95_high": -0.016031113785162553,
           "n": 1072,
-          "wilcoxon_p_greater": 0.9999999917883882
+          "wilcoxon_p_greater": 0.9999999829596506
         },
         "router_gbm - best_single": {
-          "delta_mean": 0.00618998695904507,
-          "p_value": 0.19088091190880913,
-          "ci_95_low": -0.003178836863015055,
-          "ci_95_high": 0.015570227433672416,
+          "delta_mean": 0.0060655552098229145,
+          "p_value": 0.20267973202679732,
+          "ci_95_low": -0.0032782457242699937,
+          "ci_95_high": 0.015499638981097777,
           "n": 1072,
-          "wilcoxon_p_greater": 0.11721024229791749
+          "wilcoxon_p_greater": 0.16417715551679218
         },
         "router_gbm - random_gbm": {
-          "delta_mean": 0.00026236130283764316,
-          "p_value": 0.9284071592840716,
-          "ci_95_low": -0.0054524847669301605,
-          "ci_95_high": 0.005881946320649507,
+          "delta_mean": -0.00045291404926134897,
+          "p_value": 0.8721127887211279,
+          "ci_95_low": -0.005959582899486815,
+          "ci_95_high": 0.004885657898789987,
           "n": 1072,
-          "wilcoxon_p_greater": 2.7845319069544222e-05
+          "wilcoxon_p_greater": 0.00010637878283268145
         },
         "router_logistic - random_logistic": {
-          "delta_mean": 0.003913657674722859,
-          "p_value": 0.3281671832816718,
-          "ci_95_low": -0.0038044988555217684,
-          "ci_95_high": 0.011563772919195373,
+          "delta_mean": 0.004498317863845202,
+          "p_value": 0.25917408259174085,
+          "ci_95_low": -0.003186972288802587,
+          "ci_95_high": 0.012042950144967474,
           "n": 1072,
-          "wilcoxon_p_greater": 0.0018722108986307224
+          "wilcoxon_p_greater": 0.0018610368673927613
         },
         "oracle - hybrid": {
           "delta_mean": 0.041811276947345745,
@@ -308,7 +308,7 @@
           "ci_95_low": 0.0352691809700997,
           "ci_95_high": 0.048492963867170835,
           "n": 1072,
-          "wilcoxon_p_greater": 6.974030661822091e-35
+          "wilcoxon_p_greater": 6.98534408109302e-35
         }
       }
     },
@@ -317,57 +317,57 @@
       "mean": {
         "hybrid": 0.9674197979604597,
         "best_single": 0.9587074537403949,
-        "router_gbm": 0.9651418740741317,
+        "router_gbm": 0.9642529159934137,
         "router_logistic": 0.9553068854997914,
-        "random_gbm": 0.9662137148008422,
+        "random_gbm": 0.9661244895453545,
         "random_logistic": 0.9616106876667886,
         "oracle": 0.9805376336921222
       },
       "tests": {
         "router_gbm - hybrid": {
-          "delta_mean": -0.0022779238863280516,
-          "p_value": 0.20777922207779223,
-          "ci_95_low": -0.005758332717375553,
-          "ci_95_high": 0.001399376378455084,
+          "delta_mean": -0.003166881967045963,
+          "p_value": 0.0347965203479652,
+          "ci_95_low": -0.0061944449335280885,
+          "ci_95_high": -0.0003227562769453213,
           "n": 1000,
-          "wilcoxon_p_greater": 0.9520414015788835
+          "wilcoxon_p_greater": 0.9828192341495254
         },
         "router_logistic - hybrid": {
-          "delta_mean": -0.012112912460668342,
+          "delta_mean": -0.012112912460668344,
           "p_value": 9.999000099990002e-05,
           "ci_95_low": -0.0179158683445057,
           "ci_95_high": -0.00643937610723352,
           "n": 1000,
-          "wilcoxon_p_greater": 0.9999973349361896
+          "wilcoxon_p_greater": 0.9999973345222687
         },
         "router_gbm - best_single": {
-          "delta_mean": 0.006434420333736686,
-          "p_value": 0.0198980101989801,
-          "ci_95_low": 0.0010609883213703116,
-          "ci_95_high": 0.011904553181077124,
+          "delta_mean": 0.005545462253018776,
+          "p_value": 0.033596640335966405,
+          "ci_95_low": 0.000438129190488803,
+          "ci_95_high": 0.010727037461176016,
           "n": 1000,
-          "wilcoxon_p_greater": 0.003836226729509812
+          "wilcoxon_p_greater": 0.0063565615163970485
         },
         "router_gbm - random_gbm": {
-          "delta_mean": -0.001071840726710485,
-          "p_value": 0.5428457154284572,
-          "ci_95_low": -0.004412373595180989,
-          "ci_95_high": 0.0024910881111348373,
+          "delta_mean": -0.0018715735519406554,
+          "p_value": 0.20177982201779823,
+          "ci_95_low": -0.004843157754595095,
+          "ci_95_high": 0.000927170069331312,
           "n": 1000,
-          "wilcoxon_p_greater": 8.192647532418546e-11
+          "wilcoxon_p_greater": 6.379365485661701e-10
         },
         "router_logistic - random_logistic": {
-          "delta_mean": -0.006303802166997256,
+          "delta_mean": -0.006303802166997257,
           "p_value": 0.015598440155984402,
-          "ci_95_low": -0.011513951416588866,
-          "ci_95_high": -0.0011773986770880894,
+          "ci_95_low": -0.011513951416588869,
+          "ci_95_high": -0.0011773986770880907,
           "n": 1000,
           "wilcoxon_p_greater": 0.5483900194318277
         },
         "oracle - hybrid": {
-          "delta_mean": 0.013117835731662461,
+          "delta_mean": 0.01311783573166246,
           "p_value": 9.999000099990002e-05,
-          "ci_95_low": 0.009150276007380468,
+          "ci_95_low": 0.009150276007380467,
           "ci_95_high": 0.01730027638402587,
           "n": 1000,
           "wilcoxon_p_greater": 7.886890847378996e-14
@@ -442,9 +442,9 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0156,
+          "bm25": 0.0312,
           "dense": 0.1094,
-          "hybrid": 0.875
+          "hybrid": 0.8594
         },
         "route_share_logistic": {
           "bm25": 0.1875,
@@ -457,16 +457,16 @@
       {
         "alpha": 0.4,
         "best_single": "bm25",
-        "epsilon": 0.05,
+        "epsilon": 0.01,
         "route_share_gbm": {
-          "bm25": 0.0167,
-          "dense": 0.2167,
-          "hybrid": 0.7667
+          "bm25": 0.05,
+          "dense": 0.2667,
+          "hybrid": 0.6833
         },
         "route_share_logistic": {
-          "bm25": 0.2667,
+          "bm25": 0.2333,
           "dense": 0.2,
-          "hybrid": 0.5333
+          "hybrid": 0.5667
         }
       },
       {
@@ -475,8 +475,8 @@
         "epsilon": 0.1,
         "route_share_gbm": {
           "bm25": 0.05,
-          "dense": 0.15,
-          "hybrid": 0.8
+          "dense": 0.1333,
+          "hybrid": 0.8167
         },
         "route_share_logistic": {
           "bm25": 0.2667,
@@ -487,46 +487,46 @@
       {
         "alpha": 0.4,
         "best_single": "dense",
-        "epsilon": 0.05,
+        "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0333,
+          "bm25": 0.05,
           "dense": 0.2,
-          "hybrid": 0.7667
+          "hybrid": 0.75
         },
         "route_share_logistic": {
           "bm25": 0.25,
-          "dense": 0.3,
-          "hybrid": 0.45
+          "dense": 0.25,
+          "hybrid": 0.5
         }
       },
       {
         "alpha": 0.6,
         "best_single": "dense",
-        "epsilon": 0.0,
+        "epsilon": 0.01,
         "route_share_gbm": {
-          "bm25": 0.1167,
-          "dense": 0.2167,
-          "hybrid": 0.6667
-        },
-        "route_share_logistic": {
-          "bm25": 0.2167,
-          "dense": 0.3167,
-          "hybrid": 0.4667
-        }
-      },
-      {
-        "alpha": 0.6,
-        "best_single": "dense",
-        "epsilon": 0.1,
-        "route_share_gbm": {
-          "bm25": 0.0833,
-          "dense": 0.2833,
-          "hybrid": 0.6333
+          "bm25": 0.1,
+          "dense": 0.1833,
+          "hybrid": 0.7167
         },
         "route_share_logistic": {
           "bm25": 0.2,
-          "dense": 0.4,
-          "hybrid": 0.4
+          "dense": 0.3167,
+          "hybrid": 0.4833
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.05,
+        "route_share_gbm": {
+          "bm25": 0.1333,
+          "dense": 0.3,
+          "hybrid": 0.5667
+        },
+        "route_share_logistic": {
+          "bm25": 0.2167,
+          "dense": 0.3667,
+          "hybrid": 0.4167
         }
       }
     ],
@@ -536,9 +536,9 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0923,
-          "dense": 0.0769,
-          "hybrid": 0.8308
+          "bm25": 0.1,
+          "dense": 0.0538,
+          "hybrid": 0.8462
         },
         "route_share_logistic": {
           "bm25": 0.2923,
@@ -551,9 +551,9 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0538,
-          "dense": 0.1385,
-          "hybrid": 0.8077
+          "bm25": 0.0615,
+          "dense": 0.1462,
+          "hybrid": 0.7923
         },
         "route_share_logistic": {
           "bm25": 0.3077,
@@ -567,8 +567,8 @@
         "epsilon": 0.1,
         "route_share_gbm": {
           "bm25": 0.0923,
-          "dense": 0.1077,
-          "hybrid": 0.8
+          "dense": 0.1308,
+          "hybrid": 0.7769
         },
         "route_share_logistic": {
           "bm25": 0.3385,
@@ -581,9 +581,9 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0388,
-          "dense": 0.2016,
-          "hybrid": 0.7597
+          "bm25": 0.0543,
+          "dense": 0.1783,
+          "hybrid": 0.7674
         },
         "route_share_logistic": {
           "bm25": 0.1938,
@@ -594,16 +594,16 @@
       {
         "alpha": 0.6,
         "best_single": "dense",
-        "epsilon": 0.1,
+        "epsilon": 0.05,
         "route_share_gbm": {
-          "bm25": 0.0543,
-          "dense": 0.1085,
-          "hybrid": 0.8372
+          "bm25": 0.1163,
+          "dense": 0.2248,
+          "hybrid": 0.6589
         },
         "route_share_logistic": {
-          "bm25": 0.3953,
-          "dense": 0.2403,
-          "hybrid": 0.3643
+          "bm25": 0.3333,
+          "dense": 0.3411,
+          "hybrid": 0.3256
         }
       }
     ],
@@ -628,9 +628,9 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.0837,
-          "dense": 0.2047,
-          "hybrid": 0.7116
+          "bm25": 0.0651,
+          "dense": 0.1953,
+          "hybrid": 0.7395
         },
         "route_share_logistic": {
           "bm25": 0.2884,
@@ -641,16 +641,16 @@
       {
         "alpha": 0.6,
         "best_single": "dense",
-        "epsilon": 0.02,
+        "epsilon": 0.05,
         "route_share_gbm": {
-          "bm25": 0.0748,
-          "dense": 0.2383,
-          "hybrid": 0.6869
+          "bm25": 0.0841,
+          "dense": 0.1869,
+          "hybrid": 0.729
         },
         "route_share_logistic": {
-          "bm25": 0.271,
+          "bm25": 0.2757,
           "dense": 0.3271,
-          "hybrid": 0.4019
+          "hybrid": 0.3972
         }
       },
       {
@@ -658,8 +658,8 @@
         "best_single": "dense",
         "epsilon": 0.0,
         "route_share_gbm": {
-          "bm25": 0.1075,
-          "dense": 0.2804,
+          "bm25": 0.1121,
+          "dense": 0.2757,
           "hybrid": 0.6121
         },
         "route_share_logistic": {
@@ -671,16 +671,16 @@
       {
         "alpha": 0.6,
         "best_single": "dense",
-        "epsilon": 0.02,
+        "epsilon": 0.0,
         "route_share_gbm": {
-          "bm25": 0.0935,
-          "dense": 0.3364,
-          "hybrid": 0.5701
+          "bm25": 0.0888,
+          "dense": 0.2897,
+          "hybrid": 0.6215
         },
         "route_share_logistic": {
-          "bm25": 0.3271,
-          "dense": 0.2944,
-          "hybrid": 0.3785
+          "bm25": 0.3178,
+          "dense": 0.3458,
+          "hybrid": 0.3364
         }
       }
     ],
@@ -690,9 +690,9 @@
         "best_single": "dense",
         "epsilon": 0.05,
         "route_share_gbm": {
-          "bm25": 0.04,
+          "bm25": 0.045,
           "dense": 0.025,
-          "hybrid": 0.935
+          "hybrid": 0.93
         },
         "route_share_logistic": {
           "bm25": 0.12,
@@ -705,9 +705,9 @@
         "best_single": "dense",
         "epsilon": 0.05,
         "route_share_gbm": {
-          "bm25": 0.03,
+          "bm25": 0.035,
           "dense": 0.04,
-          "hybrid": 0.93
+          "hybrid": 0.925
         },
         "route_share_logistic": {
           "bm25": 0.11,
@@ -721,8 +721,8 @@
         "epsilon": 0.1,
         "route_share_gbm": {
           "bm25": 0.015,
-          "dense": 0.005,
-          "hybrid": 0.98
+          "dense": 0.01,
+          "hybrid": 0.975
         },
         "route_share_logistic": {
           "bm25": 0.095,
@@ -750,8 +750,8 @@
         "best_single": "dense",
         "epsilon": 0.1,
         "route_share_gbm": {
-          "bm25": 0.005,
-          "dense": 0.015,
+          "bm25": 0.01,
+          "dense": 0.01,
           "hybrid": 0.98
         },
         "route_share_logistic": {
@@ -769,9 +769,9 @@
       "best_single": "dense",
       "epsilon": 0.1,
       "route_share_gbm": {
-        "bm25": 0.2322,
+        "bm25": 0.2105,
         "dense": 0.0991,
-        "hybrid": 0.6687
+        "hybrid": 0.6904
       },
       "route_share_logistic": {
         "bm25": 0.3777,
@@ -780,19 +780,19 @@
       },
       "mean_hybrid_source_alpha": 0.3525752357060362,
       "mean_hybrid_indomain_alpha": 0.3588941459415545,
-      "mean_router_gbm": 0.35180557452316613,
+      "mean_router_gbm": 0.3541101943637548,
       "gbm_vs_hybrid_source": {
-        "delta_mean": -0.0007696611828700386,
-        "p_value": 0.8226177382261773,
-        "ci_95_low": -0.007789815906497462,
-        "ci_95_high": 0.005868921085525178,
+        "delta_mean": 0.0015349586577186605,
+        "p_value": 0.6492350764923508,
+        "ci_95_low": -0.00540046719895463,
+        "ci_95_high": 0.007932320960320862,
         "n": 323
       },
       "gbm_vs_hybrid_indomain": {
-        "delta_mean": -0.007088571418388353,
-        "p_value": 0.0428957104289571,
-        "ci_95_low": -0.014199982258131839,
-        "ci_95_high": -0.0004877498127593585,
+        "delta_mean": -0.0047839515777996534,
+        "p_value": 0.1770822917708229,
+        "ci_95_low": -0.011936554994845952,
+        "ci_95_high": 0.0018541430012446708,
         "n": 323
       }
     },
@@ -802,9 +802,9 @@
       "best_single": "dense",
       "epsilon": 0.1,
       "route_share_gbm": {
-        "bm25": 0.11,
-        "dense": 0.1,
-        "hybrid": 0.79
+        "bm25": 0.1067,
+        "dense": 0.1067,
+        "hybrid": 0.7867
       },
       "route_share_logistic": {
         "bm25": 0.5133,
@@ -813,19 +813,19 @@
       },
       "mean_hybrid_source_alpha": 0.734757538445722,
       "mean_hybrid_indomain_alpha": 0.7264189467170165,
-      "mean_router_gbm": 0.7240859953637567,
+      "mean_router_gbm": 0.7249725871603048,
       "gbm_vs_hybrid_source": {
-        "delta_mean": -0.01067154308196526,
-        "p_value": 0.09069093090690931,
-        "ci_95_low": -0.023234433860197207,
-        "ci_95_high": 0.0014804169954886102,
+        "delta_mean": -0.009784951285417204,
+        "p_value": 0.13738626137386262,
+        "ci_95_low": -0.022529702108870318,
+        "ci_95_high": 0.0032841769318988287,
         "n": 300
       },
       "gbm_vs_hybrid_indomain": {
-        "delta_mean": -0.0023329513532597303,
-        "p_value": 0.7264273572642735,
-        "ci_95_low": -0.015638073810405186,
-        "ci_95_high": 0.010935453612654017,
+        "delta_mean": -0.001446359556711673,
+        "p_value": 0.845015498450155,
+        "ci_95_low": -0.01580251535438556,
+        "ci_95_high": 0.013616094305431183,
         "n": 300
       }
     },
@@ -833,32 +833,32 @@
       "n": 648,
       "alpha": 0.6,
       "best_single": "dense",
-      "epsilon": 0.1,
+      "epsilon": 0.05,
       "route_share_gbm": {
-        "bm25": 0.1219,
-        "dense": 0.3364,
-        "hybrid": 0.5417
+        "bm25": 0.159,
+        "dense": 0.4213,
+        "hybrid": 0.4198
       },
       "route_share_logistic": {
-        "bm25": 0.1898,
-        "dense": 0.6574,
-        "hybrid": 0.1528
+        "bm25": 0.1821,
+        "dense": 0.6281,
+        "hybrid": 0.1898
       },
       "mean_hybrid_source_alpha": 0.40289856014040054,
       "mean_hybrid_indomain_alpha": 0.40289856014040054,
-      "mean_router_gbm": 0.3745759617304029,
+      "mean_router_gbm": 0.37130392851661365,
       "gbm_vs_hybrid_source": {
-        "delta_mean": -0.02832259840999766,
+        "delta_mean": -0.031594631623786874,
         "p_value": 9.999000099990002e-05,
-        "ci_95_low": -0.038198023125943024,
-        "ci_95_high": -0.01900009540859576,
+        "ci_95_low": -0.04281897872615476,
+        "ci_95_high": -0.02084802548449366,
         "n": 648
       },
       "gbm_vs_hybrid_indomain": {
-        "delta_mean": -0.02832259840999766,
+        "delta_mean": -0.031594631623786874,
         "p_value": 9.999000099990002e-05,
-        "ci_95_low": -0.038198023125943024,
-        "ci_95_high": -0.01900009540859576,
+        "ci_95_low": -0.04281897872615476,
+        "ci_95_high": -0.02084802548449366,
         "n": 648
       }
     },
@@ -868,9 +868,9 @@
       "best_single": "dense",
       "epsilon": 0.1,
       "route_share_gbm": {
-        "bm25": 0.0868,
-        "dense": 0.1418,
-        "hybrid": 0.7715
+        "bm25": 0.0849,
+        "dense": 0.1381,
+        "hybrid": 0.7771
       },
       "route_share_logistic": {
         "bm25": 0.3256,
@@ -879,19 +879,19 @@
       },
       "mean_hybrid_source_alpha": 0.3763515920248359,
       "mean_hybrid_indomain_alpha": 0.3763515920248359,
-      "mean_router_gbm": 0.3677652341593715,
+      "mean_router_gbm": 0.3674870163959333,
       "gbm_vs_hybrid_source": {
-        "delta_mean": -0.008586357865464396,
-        "p_value": 0.0005999400059994001,
-        "ci_95_low": -0.013539703506626212,
-        "ci_95_high": -0.0038358798374196956,
+        "delta_mean": -0.008864575628902653,
+        "p_value": 0.0006999300069993001,
+        "ci_95_low": -0.013838983026971199,
+        "ci_95_high": -0.003951428866431194,
         "n": 1072
       },
       "gbm_vs_hybrid_indomain": {
-        "delta_mean": -0.008586357865464396,
-        "p_value": 0.0005999400059994001,
-        "ci_95_low": -0.013539703506626212,
-        "ci_95_high": -0.0038358798374196956,
+        "delta_mean": -0.008864575628902653,
+        "p_value": 0.0006999300069993001,
+        "ci_95_low": -0.013838983026971199,
+        "ci_95_high": -0.003951428866431194,
         "n": 1072
       }
     },
@@ -901,9 +901,9 @@
       "best_single": "dense",
       "epsilon": 0.1,
       "route_share_gbm": {
-        "bm25": 0.045,
-        "dense": 0.237,
-        "hybrid": 0.718
+        "bm25": 0.06,
+        "dense": 0.245,
+        "hybrid": 0.695
       },
       "route_share_logistic": {
         "bm25": 0.061,
@@ -912,19 +912,19 @@
       },
       "mean_hybrid_source_alpha": 0.9682854476033728,
       "mean_hybrid_indomain_alpha": 0.9674197979604596,
-      "mean_router_gbm": 0.9637131617765312,
+      "mean_router_gbm": 0.9620766032593763,
       "gbm_vs_hybrid_source": {
-        "delta_mean": -0.004572285826841492,
-        "p_value": 0.0301969803019698,
-        "ci_95_low": -0.008778937755530148,
-        "ci_95_high": -0.0004935628834805437,
+        "delta_mean": -0.006208844343996475,
+        "p_value": 0.006299370062993701,
+        "ci_95_low": -0.010601177389899167,
+        "ci_95_high": -0.0017882620340730082,
         "n": 1000
       },
       "gbm_vs_hybrid_indomain": {
-        "delta_mean": -0.003706636183928462,
-        "p_value": 0.09979002099790021,
-        "ci_95_low": -0.008137015788983458,
-        "ci_95_high": 0.0007740150028353772,
+        "delta_mean": -0.005343194701083444,
+        "p_value": 0.026697330266973303,
+        "ci_95_low": -0.010031644361763705,
+        "ci_95_high": -0.0005684153971125169,
         "n": 1000
       }
     }
