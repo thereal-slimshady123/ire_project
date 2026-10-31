@@ -8,7 +8,7 @@ We test whether cheap per-query features can route each query to BM25, dense, or
 
 | | Hypothesis | Verdict | Evidence |
 |:--|:--|:--|:--|
-| H1 | Routing beats hybrid and RRF | Not supported (vs hybrid) | Router −0.0073 [−0.0100, −0.0045]; with τ escalation −0.0054; cost-aware −0.0012 [−0.0025, +0.0002]. Beats RRF by +0.0142, but so does hybrid. |
+| H1 | Routing beats hybrid and RRF | Not supported (vs hybrid) | Fixed router (2d): nDCG@10 −0.0012 [−0.0025, +0.0002]. The difference isn't significant, so routing performs about the same as hybrid. Beats RRF by +0.0142. |
 | H2 | Recall@100 matches hybrid | Supported | All routers within ±0.01. |
 | H3 | Budgeted escalation keeps most of the rerank gain | Not supported | At a 10% budget it keeps 16% of the +0.0067 blended gain. |
 | H4 | Latency near hybrid | Partly | Router +5–13 ms. 10% escalation is 2.5–7× hybrid. Always-rerank costs 368–406 ms. |
@@ -31,4 +31,4 @@ We test whether cheap per-query features can route each query to BM25, dense, or
 
 
 ## 5. What's Next
-- Our next step is to run the pipelines on a different kind of dataset and check if it outperforms fixed hybrid on that, and if the results validate our Phase 2 hypotheses.
+- Our next step is to run the pipeline on a different kind of dataset and check if it outperforms fixed hybrid on that, and if the results validate our Phase 2 hypotheses.
