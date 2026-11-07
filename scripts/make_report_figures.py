@@ -71,7 +71,7 @@ def main():
         rows.append(("Exp 2: GBM router − hybrid", *t(s2["pooled"]["tests"]["router_gbm - hybrid"])))
         rows.append(("Exp 2: GBM router − random routing", *t(s2["pooled"]["tests"]["router_gbm - random_gbm"])))
     if s3:
-        scope = "+".join(s3["per_dataset"])
+        scope = "+".join(s3["per_dataset"]) if len(s3["per_dataset"]) < 4 else f"{len(s3['per_dataset'])} datasets"
         rows.append((f"Exp 3 ({scope}): skip-dense − hybrid", *t(s3["pooled"]["router_minus_hybrid"])))
         rows.append((f"Exp 3 ({scope}): skip-dense − random skip", *t(s3["pooled"]["router_minus_random"])))
     if s4:

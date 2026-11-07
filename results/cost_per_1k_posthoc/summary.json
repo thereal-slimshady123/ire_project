@@ -2,6 +2,13 @@
   "posthoc": true,
   "unit": "seconds of compute per 1,000 queries (= mean ms per query)",
   "frontier": {
+    "cqadupstack-unix": [
+      "always_bm25",
+      "always_dense",
+      "always_hybrid",
+      "router_confidence_escalation_5%",
+      "router_confidence_escalation_10%"
+    ],
     "fiqa": [
       "always_bm25",
       "always_dense",
@@ -13,10 +20,17 @@
     "nfcorpus": [
       "always_bm25",
       "always_dense",
+      "skip_dense_gbm",
       "always_hybrid",
       "random_escalation_5%",
       "predicted_gain_escalation_5%",
       "random_escalation_10%"
+    ],
+    "quora": [
+      "always_bm25",
+      "skip_dense_gbm",
+      "always_hybrid",
+      "router_confidence_escalation_5%"
     ],
     "scifact": [
       "always_bm25",

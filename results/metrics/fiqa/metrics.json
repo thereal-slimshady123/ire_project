@@ -5,12 +5,6 @@
     "always_bm25": {
       "ndcg_10_mean": 0.25280212787144773,
       "n": 648,
-      "metrics": {
-        "ndcg_10": 0.25280212787144773,
-        "mrr_10": 0.31320424260239077,
-        "map": 0.20553085705154892,
-        "recall_100": 0.5523265914469618
-      },
       "latency_ms": {
         "mean": 1.137101425880291,
         "p50": 0.8102105020952877,
@@ -119,6 +113,56 @@
         "ci_95": [
           0.41865268492102437,
           0.4753929066629953
+        ]
+      }
+    },
+    "skip_dense_gbm": {
+      "ndcg_10_mean": 0.39743668765636236,
+      "n": 648,
+      "ndcg_10": {
+        "mean": 0.39743668765636236,
+        "ci_95": [
+          0.3697044241277227,
+          0.4264085599836944
+        ]
+      },
+      "latency_ms": {
+        "mean": 32.46605207088555,
+        "p50": 15.492045999053516,
+        "p95": 130.4703279021851,
+        "device": "cuda"
+      }
+    },
+    "skip_dense_random": {
+      "ndcg_10_mean": 0.3956624207618475,
+      "n": 648,
+      "ndcg_10": {
+        "mean": 0.3956624207618475,
+        "ci_95": [
+          0.3683064814828709,
+          0.42388603423617244
+        ]
+      }
+    },
+    "skip_dense_oracle": {
+      "ndcg_10_mean": 0.42011327314717967,
+      "n": 648,
+      "ndcg_10": {
+        "mean": 0.42011327314717967,
+        "ci_95": [
+          0.3923914374437316,
+          0.4487966315598037
+        ]
+      }
+    },
+    "skip_dense_top_ratio": {
+      "ndcg_10_mean": 0.39786191959936734,
+      "n": 648,
+      "ndcg_10": {
+        "mean": 0.39786191959936734,
+        "ci_95": [
+          0.36980515726217983,
+          0.4269611007543941
         ]
       }
     },
@@ -384,6 +428,52 @@
         "n": 648
       }
     },
+    "skip_router_vs_hybrid": {
+      "system_a": "router",
+      "system_b": "hybrid",
+      "n": 648,
+      "paired_bootstrap": {
+        "delta_mean": -0.005461872484038141,
+        "p_value": 0.0058994100589941,
+        "ci_95_low": -0.009516008341942475,
+        "ci_95_high": -0.0020296066359955967,
+        "n": 648
+      },
+      "paired_wilcoxon": {
+        "statistic": 12.0,
+        "p_value": 0.0022633358728580753,
+        "n_nonzero": 17
+      },
+      "win_loss_tie": {
+        "wins": 2,
+        "losses": 15,
+        "ties": 631,
+        "n": 648
+      }
+    },
+    "skip_router_vs_random": {
+      "system_a": "router",
+      "system_b": "random",
+      "n": 648,
+      "paired_bootstrap": {
+        "delta_mean": 0.0017742668945149131,
+        "p_value": 0.35066493350664935,
+        "ci_95_low": -0.002190013854773543,
+        "ci_95_high": 0.005213031121730065,
+        "n": 648
+      },
+      "paired_wilcoxon": {
+        "statistic": 12169.0,
+        "p_value": 9.591035395351974e-29,
+        "n_nonzero": 378
+      },
+      "win_loss_tie": {
+        "wins": 304,
+        "losses": 73,
+        "ties": 271,
+        "n": 648
+      }
+    },
     "predicted_gain_vs_random_10pct": {
       "system_a": "predicted_gain@0.1",
       "system_b": "random@0.1",
@@ -601,7 +691,6 @@
   },
   "secondary_metrics": "Available for baseline systems when baseline artifacts exist.",
   "unavailable_systems": [
-    "skip_dense",
     "advantage_regression_router"
   ],
   "source": "saved baseline summaries and held-out Experiment 2\u20134 artifacts"

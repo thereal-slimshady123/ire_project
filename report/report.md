@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We evaluate query-adaptive retrieval and budgeted cross-encoder escalation on five BEIR-style query sets using held-out five-fold predictions over 3,343 queries. The pre-registered LightGBM route classifier scores 0.0073 nDCG@10 below always-hybrid (95% paired bootstrap CI [−0.0100, −0.0045]) and does not beat a matched random router. The proposal's full system, which routes and then escalates to a cross-encoder when the router's maximum probability falls below a threshold τ calibrated on training folds, is also below always-hybrid (−0.0053 [−0.0088, −0.0019] at a 10% target, 9.5% realized), although it beats random escalation at the same rate by a small margin (+0.0026 [+0.0003, +0.0050]). Router confidence does rank its own routing mistakes better than chance, but it does not predict which queries the reranker improves. The preregistered MiniLM-L6 reranker lowers mean nDCG@10. Predicted-gain escalation at 10% does not significantly beat random escalation. Two stronger checkpoints (MiniLM-L-12, BGE-reranker-base) also show no positive average gain over hybrid on three datasets. Measured on an RTX 2050, reranking the top-50 costs 340–400 ms per query against 7–27 ms for always-hybrid, so a 10% escalation budget multiplies mean latency by 2.5–7×. The saved Experiment 3 run (SciFact, 300 queries) supports selective dense skipping on quality, but at these corpus sizes it saves only about 9% of wall-clock latency. Always-hybrid remains the strongest dependable cheap policy. Phase 2 (§6 and `report/phase2_report.md`) explains the routing failure with pre-registered tests on new datasets: no group of queries identifiable before retrieval prefers BM25 or dense alone, the per-query winner is largely decided by which relevant document is examined, and a per-document fusion model gives a small pooled gain over hybrid (+0.0029 [+0.0019, +0.0038]).
+We evaluate query-adaptive retrieval and budgeted cross-encoder escalation on five BEIR-style query sets using held-out five-fold predictions over 3,343 queries. The pre-registered LightGBM route classifier scores 0.0073 nDCG@10 below always-hybrid (95% paired bootstrap CI [−0.0100, −0.0045]) and does not beat a matched random router. The proposal's full system, which routes and then escalates to a cross-encoder when the router's maximum probability falls below a threshold τ calibrated on training folds, is also below always-hybrid (−0.0053 [−0.0088, −0.0019] at a 10% target, 9.5% realized), although it beats random escalation at the same rate by a small margin (+0.0026 [+0.0003, +0.0050]). Router confidence does rank its own routing mistakes better than chance, but it does not predict which queries the reranker improves. The preregistered MiniLM-L6 reranker lowers mean nDCG@10. Predicted-gain escalation at 10% does not significantly beat random escalation. Two stronger checkpoints (MiniLM-L-12, BGE-reranker-base) also show no positive average gain over hybrid on three datasets. Measured on an RTX 2050, reranking the top-50 costs 330–400 ms per query (29 ms on Quora's short documents) against 7–27 ms for always-hybrid, so a 10% escalation budget multiplies mean latency by 1.2–7×. Experiment 3, the pre-registered dense-skipping test, meets all three of its criteria pooled over the five datasets (32.9% of queries skip dense retrieval at −0.0053 [−0.0073, −0.0032] vs hybrid, +0.0104 [+0.0080, +0.0129] vs random skipping), but at these corpus sizes the measured effect on latency ranges from 40% faster (Quora) to 20% slower (FiQA). Always-hybrid remains the strongest dependable cheap policy. Phase 2 (§6 and `report/phase2_report.md`) explains the routing failure with pre-registered tests on new datasets: no group of queries identifiable before retrieval prefers BM25 or dense alone, the per-query winner is largely decided by which relevant document is examined, and a per-document fusion model gives a small pooled gain over hybrid (+0.0029 [+0.0019, +0.0038]).
 
 ## 1. Introduction and Research Questions
 
@@ -15,9 +15,9 @@ The initial proposal expected routing to outperform a fixed hybrid and selective
 | Hypothesis | Test | Outcome |
 | :--- | :--- | :--- |
 | H1: Query-adaptive routing improves ranking quality over fixed-α hybrid and RRF. | Held-out route policy, with and without τ escalation, versus always-hybrid and matched random routing; RRF from the same runs. | Not supported against hybrid; supported against RRF. Pre-registered GBM routing: −0.0073 [−0.0100, −0.0045]; router + τ escalation (10%): −0.0053 [−0.0088, −0.0019]. The loss is mostly from class balancing: the cost-aware router (Experiment 2d, exploratory) is −0.0012 [−0.0025, +0.0002] nDCG@10, −0.0007 [−0.0024, +0.0010] MRR@10, −0.0007 [−0.0022, +0.0008] MAP, so it is non-inferior but not better. Adding cross-encoder relevance features for each route's top-3 (Experiment 2e) gives −0.0003 [−0.0017, +0.0011]. Against RRF it is +0.0142 [+0.0100, +0.0183] nDCG@10 pooled (also better on MRR@10 and MAP), significant on four of five datasets; on SciFact it is −0.0061 [−0.0211, +0.0094], inconclusive. That gain comes from convex fusion with a tuned α, not from routing: always-hybrid beats RRF by about as much. |
-| H2: Recall@100 matches or slightly improves on fixed hybrid. | Held-out Recall@100 of the routed list vs always-hybrid; equivalence margin ±0.01, fixed before computing (`results/h2_router_recall/`). Reranking alone cannot change Recall@100. | Supported (equivalence, no improvement). Pooled router − hybrid: GBM −0.0055 [−0.0093, −0.0017], cost-aware −0.0003 [−0.0018, +0.0010], router + τ at 10% −0.0032 [−0.0067, +0.0001], all inside ±0.01. The logistic router fails (−0.0219). FiQA is the weak spot for the Experiment 2 router (−0.0198 [−0.0310, −0.0096]). |
+| H2: Recall@100 matches or slightly improves on fixed hybrid. | Held-out Recall@100 of the routed list vs always-hybrid; equivalence margin ±0.01, fixed before computing (`results/h2_router_recall/`). Reranking alone cannot change Recall@100. | Supported (equivalence, no improvement). Pooled router − hybrid: GBM −0.0036 [−0.0074, −0.0000], cost-aware −0.0003 [−0.0018, +0.0010], router + τ at 10% −0.0030 [−0.0064, +0.0003], all inside ±0.01. The logistic router fails (−0.0224). FiQA is the weak spot for the Experiment 2 router (−0.0196 [−0.0302, −0.0099]). |
 | H3: Budgeted escalation retains most of the always-rerank quality gain at a small fraction of its cost. | Predicted-gain, rank-by-confidence and τ-threshold escalation versus random escalation at the same rate. | Not supported. With pure MiniLM-L6 reranking (and two stronger checkpoints) the backend has no positive gain over hybrid, so there is nothing to retain. Experiment 4b (exploratory) fixes that with a blended backend λ·CE + (1 − λ)·hybrid, which beats hybrid by +0.0067 [+0.0035, +0.0098] when always on. At a 10% budget, predicted-gain escalation retains only 16% of that gain (+0.0011 [−0.0001, +0.0023] vs hybrid; +0.0004 [−0.0007, +0.0016] vs random). Router confidence retains 29%. "Most" of the gain is reached only at about 50% escalation, which is not a small fraction of the cost. Spending the same cross-encoder budget on every query instead (Experiment 4c, exploratory) also fails the pre-declared test: blended reranking of every query's top-5 (5 pairs, the cost of escalating 10% over 50 documents) gives +0.0010 [−0.0013, +0.0033], 15% retained. A deeper rerank does better (secondary): top-20 for every query recovers the full always-blended gain, +0.0067 [+0.0039, +0.0095], at 40% of the cross-encoder pairs and roughly 40% of always-rerank's latency. |
-| H4: Mean per-query latency stays near hybrid and far below always-rerank. | Measured per-query component latency, composed per policy from the same held-out decisions (§3.5). | Partly. Router-only adds about 5–13 ms to hybrid's 7–27 ms. Any escalation at 10% raises mean latency to 44–76 ms (2.5–7× hybrid), still well below always-rerank (368–406 ms). The p95 of every escalation policy is close to always-rerank's. The cost-aware router uses the same features and model, so its cost is the same. |
+| H4: Mean per-query latency stays near hybrid and far below always-rerank. | Measured per-query component latency, composed per policy from the same held-out decisions (§3.5). | Partly. Router-only adds about 5–13 ms to hybrid's 7–27 ms. Any escalation at 10% raises mean latency to 44–77 ms (1.2–7.3× hybrid; 19–25 ms on Quora, whose short documents make the cross-encoder cheap), still well below always-rerank (348–406 ms; 45 ms on Quora). The p95 of every escalation policy is close to always-rerank's. The cost-aware router uses the same features and model, so its cost is the same. |
 
 Oracle headroom and the original hybrid-degradation framing are descriptive analyses, consistent with the issue log, not confirmatory evidence.
 
@@ -59,7 +59,7 @@ The *cost-aware classifier* (Experiment 2d, exploratory, pre-declared in `result
 
 ![Pooled held-out comparisons](figures/comparisons_forest.png)
 
-*Figure 1. Pooled paired differences in nDCG@10 with 95% bootstrap CIs. Dense skipping (SciFact) and router + τ escalation beat their random controls; routing, with or without τ escalation, is below always-hybrid.*
+*Figure 1. Pooled paired differences in nDCG@10 with 95% bootstrap CIs. Dense skipping (Experiment 3, five datasets) and router + τ escalation beat their random controls; routing, with or without τ escalation, is below always-hybrid.*
 
 ### 3.1 Initial hybrid analysis and held-out route selection
 
@@ -92,9 +92,9 @@ Even this corrected headroom is an upper bound: the held-out router realizes non
 
 ### 3.3 Skipping dense retrieval
 
-The currently saved Experiment 3 result covers SciFact (300 held-out queries): the skip router omitted dense retrieval for 46.7% of queries and scored 0.7237 nDCG@10 versus 0.7264 for always-hybrid, a difference of −0.0027 (95% CI [−0.0093, +0.0044]). It meets the three registered criteria on this dataset: the confidence interval lower bound exceeds −0.01, savings exceed 20%, and the router beats expected random skipping by +0.0198 (95% CI [+0.0104, +0.0296]). (These intervals use 10,000 resamples; an earlier saved run had used only 100.) The project issue log records a broader pooled result (32.9% skipped; approximately −0.005 nDCG@10), but current per-query/table artifacts contain only SciFact, so that result is not independently reproducible from this checkout.
+Experiment 3 was rerun on all five datasets on 2026-11-07 from the saved runs (the previously saved output covered SciFact only). Pooled over 3,343 held-out queries, the skip router omitted dense retrieval for 32.9% of queries and scored 0.5828 nDCG@10 versus 0.5880 for always-hybrid, a difference of −0.0053 (95% CI [−0.0073, −0.0032]). It meets the three registered criteria: the CI lower bound exceeds −0.01, the skip rate exceeds 20%, and it beats expected random skipping at the same rate by +0.0104 [+0.0080, +0.0129] (10,000 resamples; `results/experiment3/tables.md`). This reproduces the pooled result recorded in the project issue log (32.9% skipped, about −0.005). Skip rates differ widely: 62.7% on Quora, 46.7% on SciFact, 38.1% on NFCorpus, 16.7% on Unix and only 4.6% on FiQA, where BM25 trails hybrid by 0.15.
 
-The BM25 top-1/top-2 ratio heuristic is close to the learned classifier in the saved SciFact cost-quality curve. Measured latency (§3.5) shows the practical saving is small at this corpus size: skipping 46.7% of dense calls lowers mean latency from 7.33 ms to 6.67 ms (−9%), because the skip features and router cost about 2.6 ms per query against roughly 6.9 ms of dense encoding, search and fusion.
+The BM25 top-1/top-2 ratio heuristic is at least as good as the learned classifier: with its threshold fitted the same way it skips 34.4% and beats random skipping by +0.0120 [+0.0094, +0.0146] pooled. Measured latency (§3.5) shows that the practical saving depends on how many queries are skipped, because the skip features and router cost 2.4–6.8 ms per query: mean latency falls by 40% on Quora (15.7 → 9.4 ms) and 9% on SciFact (7.3 → 6.7 ms), is unchanged on NFCorpus (7.0 ms), and rises on Unix (14.9 → 15.5 ms) and FiQA (27.1 → 32.5 ms), where too few queries are skipped to pay for the check.
 
 ### 3.4 Cross-encoder escalation
 
@@ -139,29 +139,29 @@ The risk-coverage analysis separates two questions. **Does confidence identify t
 
 ### 3.5 Measured latency
 
-Every component was timed on every test query of NFCorpus, SciFact, and FiQA after warm-up. The setup was an NVIDIA RTX 2050 (4 GB) for the dense encoder and cross-encoder, with FAISS flat search and BM25 on the CPU. A policy's per-query latency is the sum of the components it runs, using the same held-out escalation and skip decisions that produced its nDCG@10 (`scripts/run_policy_latency.py`). This table replaces an earlier latency table in this report, which came from a benchmark that simulated dense encoding and cross-encoding with fixed sleeps and searched random query vectors.
+Every component was timed on every test query of all five datasets after warm-up (NFCorpus, SciFact and FiQA on 2026-10-27; CQADupStack-Unix and Quora on 2026-11-07 on the same machine, with their dense indexes rebuilt from the same encoder; the rebuilt indexes return the same top-10 as the saved dense runs). The setup was an NVIDIA RTX 2050 (4 GB) for the dense encoder and cross-encoder, with FAISS flat search and BM25 on the CPU. A policy's per-query latency is the sum of the components it runs, using the same held-out escalation and skip decisions that produced its nDCG@10 (`scripts/run_policy_latency.py`). This table replaces an earlier latency table in this report, which came from a benchmark that simulated dense encoding and cross-encoding with fixed sleeps and searched random query vectors.
 
-| Component (mean ms) | NFCorpus | SciFact | FiQA |
-| :--- | ---: | ---: | ---: |
-| BM25 search | 0.37 | 0.45 | 1.14 |
-| Dense query encoding (e5-small-v2) | 5.81 | 5.91 | 10.44 |
-| FAISS flat search | 0.42 | 0.53 | 14.59 |
-| Hybrid fusion | 0.40 | 0.44 | 0.89 |
-| 18-feature extraction | 3.65 | 3.95 | 8.29 |
-| GBM router inference | 1.40 | 1.34 | 4.49 |
-| Cross-encoder rerank, top-50 (MiniLM-L6) | 398.57 | 395.68 | 340.76 |
+| Component (mean ms) | NFCorpus | SciFact | FiQA | Unix | Quora |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| BM25 search | 0.37 | 0.45 | 1.14 | 0.69 | 0.62 |
+| Dense query encoding (e5-small-v2) | 5.81 | 5.91 | 10.44 | 5.96 | 6.08 |
+| FAISS flat search | 0.42 | 0.53 | 14.59 | 7.52 | 8.16 |
+| Hybrid fusion | 0.40 | 0.44 | 0.89 | 0.73 | 0.80 |
+| 18-feature extraction | 3.65 | 3.95 | 8.29 | 4.28 | 3.19 |
+| GBM router inference | 1.40 | 1.34 | 4.49 | 1.87 | 2.65 |
+| Cross-encoder rerank, top-50 (MiniLM-L6) | 398.57 | 395.68 | 340.76 | 333.16 | 29.12 |
 
-| System | NFCorpus nDCG / mean ms | SciFact nDCG / mean ms | FiQA nDCG / mean ms (p95) |
-| :--- | :--- | :--- | :--- |
-| Always-BM25 | 0.3223 / 0.4 | 0.6827 / 0.5 | 0.2528 / 1.1 (3.1) |
-| Always-hybrid | 0.3589 / 7.0 | 0.7264 / 7.3 | 0.4029 / 27.1 (103.9) |
-| GBM router | 0.3550 / 12.1 | 0.7239 / 12.6 | 0.3909 / 39.8 (153.5) |
-| Skip-dense router | — | 0.7237 / 6.7 | — |
-| Predicted-gain escalation, 10% | 0.3599 / 50.4 | 0.7272 / 53.3 | 0.4010 / 76.5 (352.2) |
-| Router + τ escalation, 10% target | 0.3556 / 44.0 | 0.7247 / 44.3 | 0.3940 / 67.7 (351.4) |
-| Always-rerank (MiniLM-L6) | 0.3546 / 405.6 | 0.6986 / 403.0 | 0.3759 / 367.8 (505.6) |
+| System (nDCG@10 / mean ms) | NFCorpus | SciFact | FiQA (p95) | Unix | Quora |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Always-BM25 | 0.3223 / 0.4 | 0.6827 / 0.5 | 0.2528 / 1.1 (3.1) | 0.2937 / 0.7 | 0.9333 / 0.6 |
+| Always-hybrid | 0.3589 / 7.0 | 0.7264 / 7.3 | 0.4029 / 27.1 (103.9) | 0.3764 / 14.9 | 0.9674 / 15.7 |
+| GBM router | 0.3550 / 12.0 | 0.7239 / 12.6 | 0.3909 / 39.8 (153.5) | 0.3658 / 21.0 | 0.9643 / 21.5 |
+| Skip-dense router | 0.3537 / 7.0 | 0.7237 / 6.7 | 0.3974 / 32.5 (130.5) | 0.3697 / 15.5 | 0.9630 / 9.4 |
+| Predicted-gain escalation, 10% | 0.3599 / 50.4 | 0.7272 / 53.3 | 0.4010 / 76.5 (352.2) | 0.3786 / 55.8 | 0.9630 / 25.3 |
+| Router + τ escalation, 10% target | 0.3556 / 44.0 | 0.7247 / 44.3 | 0.3940 / 67.7 (351.4) | 0.3715 / 56.1 | 0.9623 / 24.4 |
+| Always-rerank (MiniLM-L6) | 0.3546 / 405.6 | 0.6986 / 403.0 | 0.3759 / 367.8 (505.6) | 0.3683 / 348.0 | 0.9491 / 44.8 |
 
-The cross-encoder dominates every escalation policy. Escalating 10% of queries adds roughly 37–49 ms to the mean, and pushes the p95 to the reranker's own cost, because the slowest decile is exactly the escalated queries. FiQA's long tails in dense encoding and FAISS search come from its 57k-document corpus and longer queries.
+The cross-encoder dominates every escalation policy. Escalating 10% of queries adds roughly 34–49 ms to the mean (3–10 ms on Quora, whose short documents make the cross-encoder about 12× cheaper), and pushes the p95 to the reranker's own cost, because the slowest decile is exactly the escalated queries. FiQA's long tails in dense encoding and FAISS search come from its 57k-document corpus and longer queries.
 
 ![Quality versus latency](figures/quality_vs_latency.png)
 
@@ -171,17 +171,17 @@ The cross-encoder dominates every escalation policy. Escalating 10% of queries a
 
 Not pre-registered; computed from the saved measurements above by `scripts/posthoc_cost_per_1k.py` (`results/cost_per_1k_posthoc/tables.md`), with no new retrieval. Cost is compute time on this setup: X ms per query is X seconds per 1,000 queries. Converting to money needs an hourly hardware price: cost per 1,000 queries = seconds ÷ 3,600 × price per hour.
 
-| Policy | NFCorpus s / 1,000 q (nDCG@10) | SciFact | FiQA | × hybrid cost |
-| :--- | :--- | :--- | :--- | :---: |
-| BM25 | 0.4 (0.3223) | 0.5 (0.6827) | 1.1 (0.2528) | 0.04–0.06 |
-| Dense | 6.2 (0.3255) | 6.4 (0.6875) | 25.0 (0.3747) | 0.88–0.93 |
-| Hybrid | 7.0 (0.3589) | 7.3 (0.7264) | 27.1 (0.4029) | 1 |
-| GBM router | 12.0 (0.3550) | 12.6 (0.7239) | 39.8 (0.3909) | 1.5–1.7 |
-| Skip-dense router | — | 6.7 (0.7237) | — | 0.91 |
-| Predicted-gain escalation, 10% | 50.4 (0.3599) | 53.3 (0.7272) | 76.5 (0.4010) | 2.8–7.3 |
-| Always rerank (MiniLM-L6) | 405.6 (0.3546) | 403.0 (0.6986) | 367.8 (0.3759) | 14–58 |
+| Policy | NFCorpus s / 1,000 q (nDCG@10) | SciFact | FiQA | Unix | Quora | × hybrid cost |
+| :--- | :--- | :--- | :--- | :--- | :--- | :---: |
+| BM25 | 0.4 (0.3223) | 0.5 (0.6827) | 1.1 (0.2528) | 0.7 (0.2937) | 0.6 (0.9333) | 0.04–0.06 |
+| Dense | 6.2 (0.3255) | 6.4 (0.6875) | 25.0 (0.3747) | 13.5 (0.3597) | 14.2 (0.9587) | 0.88–0.93 |
+| Hybrid | 7.0 (0.3589) | 7.3 (0.7264) | 27.1 (0.4029) | 14.9 (0.3764) | 15.7 (0.9674) | 1 |
+| GBM router | 12.0 (0.3550) | 12.6 (0.7239) | 39.8 (0.3909) | 21.0 (0.3658) | 21.5 (0.9643) | 1.4–1.7 |
+| Skip-dense router | 7.0 (0.3537) | 6.7 (0.7237) | 32.5 (0.3974) | 15.5 (0.3697) | 9.4 (0.9630) | 0.60–1.20 |
+| Predicted-gain escalation, 10% | 50.4 (0.3599) | 53.3 (0.7272) | 76.5 (0.4010) | 55.8 (0.3786) | 25.3 (0.9630) | 1.6–7.3 |
+| Always rerank (MiniLM-L6) | 405.6 (0.3546) | 403.0 (0.6986) | 367.8 (0.3759) | 348.0 (0.3683) | 44.8 (0.9491) | 2.9–58 |
 
-The frontier (policies no other policy beats on both cost and quality) runs BM25 → dense → (skip-dense on SciFact) → hybrid, then a few selective-rerank budgets that add at most +0.0034 nDCG@10. Those last gains are within noise: Experiment 4 found no selector significantly better than random escalation. The reliable reading is that hybrid costs about as much as dense alone (the dense encoder dominates both) and is clearly better, while every reranking policy costs 1.6–58× hybrid for no reliable quality gain. The GBM router is never on the frontier: it costs more than hybrid and scores lower.
+The frontier (policies no other policy beats on both cost and quality) runs BM25 → dense (except on Quora) → skip-dense (on NFCorpus, SciFact and Quora) → hybrid, then a few selective-rerank budgets that add at most +0.0035 nDCG@10. Those last gains are within noise: Experiment 4 found no selector significantly better than random escalation. The reliable reading is that hybrid costs about as much as dense alone (the dense encoder and FAISS search dominate both) and is clearly better, while every reranking policy costs 1.1–58× hybrid for no reliable quality gain. The GBM router is never on the frontier: it costs more than hybrid and scores lower.
 
 ![Cost-quality frontier](figures/cost_quality_frontier.png)
 
@@ -191,7 +191,7 @@ The frontier (policies no other policy beats on both cost and quality) runs BM25
 
 Across all held-out evaluations, always-hybrid is the dependable fixed baseline. No routing or selective-escalation policy beats it. The learned route policy, the proposal's router + τ escalation, and every escalation selector are at best indistinguishable from it, and the routing variants are significantly below it pooled. The routing oracle's noise-corrected headroom (+0.0195 pooled) is an upper bound that no held-out policy reaches. Experiment 4's oracle-selected subset shows that some queries do benefit from reranking, but outcome-based selection cannot be reproduced without held-out signal. The central escalation prerequisite, a backend with positive average gain over hybrid, was not met by pure reranking with MiniLM-L6, MiniLM-L-12, or BGE-reranker-base on these candidate pools. It is met by blending the cross-encoder score with the hybrid score (Experiment 4b, +0.0067 [+0.0035, +0.0098] when applied to every query), which is the only policy here that beats always-hybrid; it costs 368–406 ms per query, and selecting 10% of queries for it keeps only 16% of the gain (H3 in §1.1).
 
-On cost, routing adds about 5–13 ms of feature extraction and inference to hybrid, and escalation multiplies mean latency several-fold. So the adaptive systems are both no better and more expensive than always-hybrid in this setting. Full per-system tables with 95% CIs, Wilcoxon tests, win/loss/tie counts, router confusion matrices, and measured latency are in `results/metrics/combined.md` and `results/metrics/{dataset}/metrics.json`. Per-query escalation records (Contract 4) are in `results/experiment4/{dataset}_escalation.parquet`. The advantage-regression router proposed in `plan.md` is implemented (Experiment 2b, `results/experiment2/advantage/`). On natural queries it sends about 87% of queries to hybrid and gives no significant gain (routed − hybrid −0.0009 [−0.0028, +0.0009]; rerun on 2026-11-07 against the 31 October Experiment 2 outputs, which moved it from 99% hybrid and −0.0001). RRF is computed for all five datasets from the saved runs (Experiments 2c and 2d); measured latency covers NFCorpus, SciFact and FiQA only.
+On cost, routing adds about 5–13 ms of feature extraction and inference to hybrid, and escalation multiplies mean latency several-fold. So the adaptive systems are both no better and more expensive than always-hybrid in this setting. Full per-system tables with 95% CIs, Wilcoxon tests, win/loss/tie counts, router confusion matrices, and measured latency are in `results/metrics/combined.md` and `results/metrics/{dataset}/metrics.json`. Per-query escalation records (Contract 4) are in `results/experiment4/{dataset}_escalation.parquet`. The advantage-regression router proposed in `plan.md` is implemented (Experiment 2b, `results/experiment2/advantage/`). On natural queries it sends about 87% of queries to hybrid and gives no significant gain (routed − hybrid −0.0009 [−0.0028, +0.0009]; rerun on 2026-11-07 against the 31 October Experiment 2 outputs, which moved it from 99% hybrid and −0.0001). RRF is computed for all five datasets from the saved runs (Experiments 2c and 2d); measured latency covers all five datasets.
 
 ## 4.2 Why routing loses to hybrid, and what removing that loss leaves
 
@@ -211,20 +211,20 @@ The Experiment 2 router's deficit is mostly an artefact of class balancing, not 
 
 The first-stage routing hypothesis was not supported. The 18 surface features did not choose routes well enough to beat tuned hybrid on unseen queries. This is consistent with weak, dataset-dependent feature correlations and with the small, discontinuous per-query relevance signals in these benchmarks, where much of the oracle gap is rank jitter. Router confidence carries real information about where the router is wrong. That information is not enough to beat hybrid, and the escalation backend cannot exploit it. Routing among BM25, dense, and hybrid should not be presented as a demonstrated quality improvement here.
 
-The skip-dense result has a narrower interpretation. On the saved SciFact evaluation, a sharp BM25 score head carries information about whether dense retrieval is necessary. At this corpus size, though, dense retrieval costs only about 7 ms, so skipping half the calls saves under 1 ms per query once the skip classifier is paid for. The saving grows with corpus size and encoder cost, but the five-dataset skip rates need the missing per-query output restored before they can be verified.
+The skip-dense result is the one pre-registered success, with a narrower practical meaning. Pooled over five datasets, a sharp BM25 score head carries real information about whether dense retrieval is needed (32.9% skipped for −0.0053 nDCG@10, and better than random skipping), and the free score-ratio heuristic does as well as the learned classifier. At these corpus sizes, though, dense retrieval costs only 6–25 ms, so the saving appears only where many queries are skipped (Quora −40%, SciFact −9%); on Unix and FiQA the check costs more than it saves. The saving grows with corpus size and encoder cost.
 
 Selective escalation relies on the expensive backend having positive gain over its base system. Pure reranking with MiniLM-L6 and the two alternatives did not meet that prerequisite on these pools; the blended backend of Experiment 4b does, but the selectors could not find the queries it helps. This study does not show that stronger rerankers cannot help on other datasets or candidate-generation methods.
 
 ### 5.1 Findings
 
-For the tested datasets and features, always-hybrid remains the strongest dependable cheap ranking policy. Router confidence ranks routing risk better than chance, but neither confidence nor a learned gain model identifies queries a cross-encoder improves. Escalating 10% of queries costs several times hybrid's mean latency for no measurable quality gain. The saved SciFact run supports BM25 score-ratio-based dense skipping on quality, with small wall-clock savings at this scale.
+For the tested datasets and features, always-hybrid remains the strongest dependable cheap ranking policy. Router confidence ranks routing risk better than chance, but neither confidence nor a learned gain model identifies queries a cross-encoder improves. Escalating 10% of queries costs several times hybrid's mean latency for no measurable quality gain. Dense skipping (Experiment 3) meets its pre-registered criteria over all five datasets, and a free BM25 score-ratio rule does as well as the learned skip model, but its wall-clock saving at this scale ranges from −40% (Quora) to +20% (FiQA).
 
 ### 5.2 Limitations, reproducibility, and next steps
 
 - **Scope.** Per-dataset query counts are small, benchmark difficulty varies widely, the Quora corpus is reduced, and Experiment 1 used a different dense model from Experiments 2–4. Pooled statistics improve precision but can hide domain variation.
-- **Missing artifacts.** Unix and Quora raw corpora, and Experiment 3 outputs beyond SciFact, are absent from this checkout. Latency is therefore measured on three datasets only, on one consumer GPU, with one timing pass per query.
-- **Reproducibility.** Refitting the Experiment 2 GBM router with the same α*, ε, features, and seed reproduces the saved held-out routes (from the 31 October rerun) for 100% of queries. Experiment 4's retuned ε may differ from Experiment 2's in a few folds, so its router-confidence policy can use a slightly different router; this does not change a verdict. The τ-escalation, policy-latency and combined tables and Figures 1, 4 and 5 were regenerated on 2026-11-07 from the current Experiment 2 outputs. The H2 recall row for router + τ predates that refresh and could not be recomputed in this checkout (it needs the Unix and Quora retrieval runs).
-- **Deviations from the proposal.** Escalation reranks the hybrid top-50, not the BM25 ∪ dense top-100 union the proposal described. The dense model is `intfloat/e5-small-v2` instead of Contriever (Experiment 1 used `msmarco-distilbert-base-v4`). The proposal's comparison with DAT's reported cost profile was not done, and escalation is a τ threshold on router confidence rather than a fourth "escalate" class. Latency was measured on three of the five datasets.
+- **Artifacts.** All five datasets' raw files and saved retrieval runs are in the checkout (Unix and Quora added on 2026-11-07; they reproduce Experiment 2's per-query BM25 and dense nDCG@10 exactly). Latency is measured on one consumer GPU, with one timing pass per query.
+- **Reproducibility.** Refitting the Experiment 2 GBM router with the same α*, ε, features, and seed reproduces the saved held-out routes (from the 31 October rerun) for 100% of queries. Experiment 4's retuned ε may differ from Experiment 2's in a few folds, so its router-confidence policy can use a slightly different router; this does not change a verdict. The τ-escalation, H2 recall, policy-latency, Experiment 3 and combined tables and Figures 1, 4, 5 and 6 were regenerated on 2026-11-07 from the current Experiment 2 outputs.
+- **Deviations from the proposal.** Escalation reranks the hybrid top-50, not the BM25 ∪ dense top-100 union the proposal described. The dense model is `intfloat/e5-small-v2` instead of Contriever (Experiment 1 used `msmarco-distilbert-base-v4`). The proposal's comparison with DAT's reported cost profile was not done, and escalation is a τ threshold on router confidence rather than a fourth "escalate" class.
 - **Next steps.** Promising directions are a backend with positive average gain on these pools (for example a reranker fine-tuned in-domain, or LLM reranking at a small budget), escalation targeted by a model of reranker gain rather than routing confidence, and latent-representation routers.
 
 ## 6. Phase 2: why per-query routing fails

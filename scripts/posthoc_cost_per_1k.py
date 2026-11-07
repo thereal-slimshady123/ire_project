@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-DATASETS = ["nfcorpus", "scifact", "fiqa"]
+DATASETS = ["nfcorpus", "scifact", "fiqa", "cqadupstack-unix", "quora"]
 GPU_PARTS = ["dense_encode", "cross_encoder_rerank"]
 
 # family -> (label, colour slot, marker); colours: reference categorical palette slots 1-5 (validated, light mode)
@@ -107,7 +107,9 @@ def plot(df: pd.DataFrame, path: Path) -> None:
     import matplotlib.pyplot as plt
 
     ink, ink2, grid, surface = "#0b0b0b", "#52514e", "#e4e3df", "#fcfcfb"
-    fig, axes = plt.subplots(1, 3, figsize=(13, 4.4), facecolor=surface)
+    fig, grid_axes = plt.subplots(2, 3, figsize=(13, 8.2), facecolor=surface)
+    axes = grid_axes.ravel()
+    axes[-1].axis("off")  # 5 datasets in a 2 x 3 grid; the spare cell holds the legend
     for ax, ds in zip(axes, DATASETS):
         g = df[df.dataset == ds]
         ax.set_facecolor(surface)
@@ -121,11 +123,18 @@ def plot(df: pd.DataFrame, path: Path) -> None:
         offsets = {"always_bm25": (6, 6, "left"), "always_dense": (-7, -3, "right"), "always_hybrid": (-7, 4, "right"),
                    "gbm_router": (7, -10, "left"), "always_rerank_minilm_l6": (0, -15, "center"),
                    "skip_dense_gbm": (-7, -11, "right")}
-        for sysname, (dx, dy, ha) in offsets.items():
+        # per-dataset fixes for crowded panels (None = no direct label; the legend still identifies the mark)
+        offsets.update({"fiqa": {"skip_dense_gbm": (-40, -12, "right")},
+                        "quora": {"gbm_router": None, "always_dense": (0, -14, "center")}}.get(ds, {}))
+        for sysname, pos in offsets.items():
+            if pos is None:
+                continue
+            dx, dy, ha = pos
             r = g[g.system == sysname]
             if len(r):
                 ax.annotate("Rerank all" if sysname.startswith("always_rerank") else NAMES[sysname], (r.mean_ms.iloc[0], r.ndcg_10.iloc[0]),
-                            textcoords="offset points", xytext=(dx, dy), ha=ha, fontsize=8, color=ink2)
+                            textcoords="offset points", xytext=(dx, dy), ha=ha, fontsize=8, color=ink2,
+                            arrowprops=dict(arrowstyle="-", color=ink2, lw=0.6) if abs(dx) > 20 else None)
         ax.set_xscale("log")
         ax.set_title(ds, color=ink, fontsize=11, loc="left")
         ax.set_xlabel("Mean latency per query, ms (= seconds per 1,000 queries), log scale", color=ink2, fontsize=8)
@@ -133,14 +142,15 @@ def plot(df: pd.DataFrame, path: Path) -> None:
         ax.tick_params(colors=ink2, labelsize=8)
         for s in ax.spines.values():
             s.set_visible(False)
-    axes[0].set_ylabel("Held-out nDCG@10", color=ink2, fontsize=9)
+    for i in (0, 3):
+        axes[i].set_ylabel("Held-out nDCG@10", color=ink2, fontsize=9)
     handles, labels = axes[0].get_legend_handles_labels()
     handles.append(plt.Line2D([], [], color=ink2, lw=1.2, ls="--"))
     labels.append("Cost–quality frontier")
-    fig.legend(handles, labels, loc="lower center", ncol=6, frameon=False, fontsize=8, labelcolor=ink2)
+    axes[-1].legend(handles, labels, loc="center", frameon=False, fontsize=10, labelcolor=ink2)
     fig.suptitle("Cost vs quality of every Phase 1 policy (post hoc; RTX 2050, one query at a time)",
                  color=ink, fontsize=11, x=0.01, ha="left")
-    fig.tight_layout(rect=(0, 0.07, 1, 0.95))
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=200, facecolor=surface)
 
@@ -170,7 +180,7 @@ def main():
          "measured on an RTX 2050 (dense encoder, cross-encoder) and CPU (BM25, FAISS, fusion, features), one query at a "
          "time (report §3.5). **Cost = compute time: X ms per query = X seconds per 1,000 queries.** To convert to money, "
          "multiply seconds per 1,000 queries / 3,600 by the hourly price of the hardware. Oracle selection is excluded "
-         "(it needs relevance labels). Skip-dense was only measured on SciFact.", ""]
+         "(it needs relevance labels).", ""]
     for ds in DATASETS:
         g = df[df.dataset == ds].set_index("system")
         L += [f"## {ds}", "", "| Policy | nDCG@10 | − hybrid | Seconds per 1,000 queries (mean) | p95 ms per query | × hybrid cost | GPU share | On frontier |",
@@ -184,10 +194,12 @@ def main():
         fr = g[g.on_frontier].sort_values("mean_ms")
         L += ["", "Frontier (cheapest first): " + " → ".join(f"{r['name']} ({r.mean_ms:.1f} s, {r.ndcg_10:.4f})"
                                                            for _, r in fr.iterrows()), ""]
-    L += ["**Reading the frontier.** Points above hybrid gain at most +0.0034 nDCG@10 and are within noise: Experiment 4 "
+    up = df[df.on_frontier & (df.ndcg_minus_hybrid > 0)]["ndcg_minus_hybrid"].max()
+    rr = df[df.family.isin(["escalation", "rerank"])]["x_hybrid_cost"]
+    L += [f"**Reading the frontier.** Points above hybrid gain at most {up:+.4f} nDCG@10 and are within noise: Experiment 4 "
           "found no selector significantly better than random escalation (`results/experiment4/tables.md`), and the random "
           "policy here is one seeded sample. The robust conclusions are the large gaps: hybrid costs about the same as "
-          "dense alone and is far better; every rerank policy costs 1.6–58× hybrid for no reliable gain.", ""]
+          f"dense alone and is far better; every rerank policy costs {rr.min():.1f}–{rr.max():.0f}× hybrid for no reliable gain.", ""]
     L += ["All budgets (5–50%) and policies: `cost_per_1k.csv`. Figure: `report/figures/cost_quality_frontier.png`."]
     (out / "tables.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     plot(df, args.figure)

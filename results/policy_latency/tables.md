@@ -6,6 +6,15 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 
 | Dataset | Component | Mean | p50 | p95 |
 | :--- | :--- | ---: | ---: | ---: |
+| cqadupstack-unix | bm25_search | 0.69 | 0.66 | 0.96 |
+| cqadupstack-unix | dense_encode | 5.96 | 5.87 | 6.48 |
+| cqadupstack-unix | faiss_search | 7.52 | 6.93 | 12.15 |
+| cqadupstack-unix | hybrid_fusion | 0.73 | 0.74 | 0.81 |
+| cqadupstack-unix | feature_extraction | 4.28 | 4.06 | 6.07 |
+| cqadupstack-unix | skip_feature_extraction | 1.09 | 1.04 | 1.52 |
+| cqadupstack-unix | router_inference | 1.87 | 1.70 | 2.80 |
+| cqadupstack-unix | gain_model_inference | 3.40 | 3.48 | 4.52 |
+| cqadupstack-unix | cross_encoder_rerank | 333.16 | 332.61 | 367.26 |
 | fiqa | bm25_search | 1.14 | 0.81 | 3.13 |
 | fiqa | dense_encode | 10.44 | 5.95 | 28.20 |
 | fiqa | faiss_search | 14.59 | 5.33 | 67.95 |
@@ -24,6 +33,15 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 | nfcorpus | router_inference | 1.40 | 1.22 | 2.09 |
 | nfcorpus | gain_model_inference | 2.64 | 2.31 | 4.47 |
 | nfcorpus | cross_encoder_rerank | 398.57 | 399.35 | 433.16 |
+| quora | bm25_search | 0.62 | 0.62 | 0.75 |
+| quora | dense_encode | 6.08 | 5.96 | 6.82 |
+| quora | faiss_search | 8.16 | 7.35 | 13.43 |
+| quora | hybrid_fusion | 0.80 | 0.79 | 0.95 |
+| quora | feature_extraction | 3.19 | 3.08 | 4.48 |
+| quora | skip_feature_extraction | 0.56 | 0.54 | 0.71 |
+| quora | router_inference | 2.65 | 2.46 | 4.37 |
+| quora | gain_model_inference | 3.57 | 3.26 | 5.16 |
+| quora | cross_encoder_rerank | 29.12 | 27.33 | 41.53 |
 | scifact | bm25_search | 0.45 | 0.43 | 0.58 |
 | scifact | dense_encode | 5.91 | 5.75 | 6.77 |
 | scifact | faiss_search | 0.53 | 0.51 | 0.65 |
@@ -47,6 +65,7 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 | nfcorpus | random_escalation_10% | 0.3610 | 44.41 | 6.75 | 409.50 |
 | nfcorpus | oracle_escalation_10% | 0.3751 | 43.72 | 6.76 | 404.75 |
 | nfcorpus | router_tau_escalation_10% | 0.3556 | 44.02 | 11.76 | 404.51 |
+| nfcorpus | skip_dense_gbm | 0.3537 | 6.97 | 8.98 | 11.09 |
 | scifact | always_bm25 | 0.6827 | 0.45 | 0.43 | 0.58 |
 | scifact | always_hybrid | 0.7264 | 7.33 | 7.13 | 8.42 |
 | scifact | gbm_router | 0.7239 | 12.62 | 12.19 | 14.62 |
@@ -66,5 +85,26 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 | fiqa | random_escalation_10% | 0.3987 | 61.29 | 12.78 | 346.92 |
 | fiqa | oracle_escalation_10% | 0.4399 | 61.28 | 12.80 | 347.59 |
 | fiqa | router_tau_escalation_10% | 0.3940 | 67.74 | 18.68 | 351.42 |
+| fiqa | skip_dense_gbm | 0.3974 | 32.47 | 15.49 | 130.47 |
+| cqadupstack-unix | always_bm25 | 0.2937 | 0.69 | 0.66 | 0.96 |
+| cqadupstack-unix | always_hybrid | 0.3764 | 14.89 | 14.22 | 19.77 |
+| cqadupstack-unix | gbm_router | 0.3658 | 21.03 | 20.06 | 27.21 |
+| cqadupstack-unix | always_rerank_minilm_l6 | 0.3683 | 348.05 | 347.43 | 381.80 |
+| cqadupstack-unix | predicted_gain_escalation_10% | 0.3786 | 55.76 | 22.31 | 355.50 |
+| cqadupstack-unix | router_confidence_escalation_10% | 0.3798 | 54.38 | 20.25 | 353.83 |
+| cqadupstack-unix | random_escalation_10% | 0.3764 | 48.52 | 14.37 | 351.42 |
+| cqadupstack-unix | oracle_escalation_10% | 0.4176 | 47.73 | 14.35 | 347.09 |
+| cqadupstack-unix | router_tau_escalation_10% | 0.3715 | 56.14 | 20.28 | 353.51 |
+| cqadupstack-unix | skip_dense_gbm | 0.3697 | 15.49 | 16.77 | 22.84 |
+| quora | always_bm25 | 0.9333 | 0.62 | 0.62 | 0.75 |
+| quora | always_hybrid | 0.9674 | 15.65 | 14.70 | 21.53 |
+| quora | gbm_router | 0.9643 | 21.49 | 20.55 | 28.00 |
+| quora | always_rerank_minilm_l6 | 0.9491 | 44.77 | 43.18 | 58.15 |
+| quora | predicted_gain_escalation_10% | 0.9630 | 25.31 | 21.90 | 49.50 |
+| quora | router_confidence_escalation_10% | 0.9639 | 24.33 | 20.93 | 48.63 |
+| quora | random_escalation_10% | 0.9662 | 18.58 | 14.94 | 43.60 |
+| quora | oracle_escalation_10% | 0.9781 | 18.54 | 15.02 | 43.57 |
+| quora | router_tau_escalation_10% | 0.9623 | 24.39 | 20.94 | 48.93 |
+| quora | skip_dense_gbm | 0.9630 | 9.41 | 4.55 | 21.82 |
 
 All budgets are in `policy_latency.csv`.

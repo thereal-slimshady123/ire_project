@@ -98,8 +98,8 @@ Problems found while running Experiments 1, 1b and 2 (see `improvements.md` §1�
 * A deployment would need per-domain threshold calibration.
 
 ### D3. Latency not yet measured (Experiment 3)
-* The pre-registration (§4.1) promised per-component timings on FiQA. Real per-component timings were later measured for NFCorpus, SciFact and FiQA (`results/policy_latency/`, report §3.5).
-* As expected, the wall-clock saving is small at our corpus sizes: on SciFact, skipping 46.7% of dense calls lowers mean latency from 7.33 ms to 6.67 ms (−9%).
+* The pre-registration (§4.1) promised per-component timings on FiQA. Real per-component timings were later measured for all five datasets (`results/policy_latency/`, report §3.5).
+* As expected, the wall-clock saving is small at our corpus sizes and depends on the skip rate: −40% on Quora (62.7% skipped), −9% on SciFact (46.7%), none on NFCorpus, and slower than hybrid on Unix (+4%) and FiQA (+20%), where too few queries are skipped to pay for the check (all five datasets measured on 2026-11-07).
 
 ### D4. The cross-encoder is weaker than the first stage (Experiment 4)
 * **Problem:** MiniLM-L6 reranking of the hybrid top-50 *lowers* nDCG@10 on all five datasets (−0.004 to −0.028; `results/experiment4/tables.md`). Escalation cannot help on average when the "expensive, better" backend is not better.

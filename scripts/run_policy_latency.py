@@ -124,7 +124,9 @@ def policy_latency(c: pd.DataFrame, policy: str, escalated=None, skipped=None) -
 
 
 def time_dataset(ds: str, args, ret_cfg, hyb_cfg, router_cfg, ce_cfg, alpha: float, seed: int) -> pd.DataFrame:
-    corpus, queries, _ = exp1b.load_split(args.data_dir / ds)
+    # The Quora subset lives in data/processed/quora-sub (as in run_h2_router_recall.py / Experiment 2).
+    path = args.data_dir.parent / "processed" / "quora-sub" if ds == "quora" else args.data_dir / ds
+    corpus, queries, _ = exp1b.load_split(path)
     k = ret_cfg["dense"].get("top_k", 100)
     bm25 = BM25Retriever(k1=ret_cfg["bm25"]["k1"], b=ret_cfg["bm25"]["b"])
     bm25.index(corpus)
