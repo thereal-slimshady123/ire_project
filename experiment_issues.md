@@ -31,8 +31,8 @@ Problems found while running Experiments 1, 1b and 2 (see `improvements.md` §1�
 
 ### A5. The router does not beat tuned hybrid on held-out queries (Experiment 2, pre-registered)
 * **Result:**
-  - Pooled GBM router − always-hybrid = −0.006 [−0.009, −0.003]: slightly but significantly worse.
-  - Router vs. random routing at the same route proportions: +0.002, CI includes 0.
+  - Pooled GBM router − always-hybrid = −0.0073 [−0.0100, −0.0045]: slightly but significantly worse (31 October rerun; the first run gave −0.006 [−0.009, −0.003]).
+  - Router vs. random routing at the same route proportions: +0.0010 [−0.0016, +0.0036], CI includes 0.
   - The logistic router and cross-dataset transfer are worse.
 * **Meaning:** the 18 query and retrieval-signal features carry essentially no held-out routing signal. The oracle headroom (+0.034) is real but unreachable with them.
 
@@ -98,11 +98,11 @@ Problems found while running Experiments 1, 1b and 2 (see `improvements.md` §1�
 * A deployment would need per-domain threshold calibration.
 
 ### D3. Latency not yet measured (Experiment 3)
-* The pre-registration (§4.1) promised per-component timings on FiQA. They have not been run yet.
-* At our corpus sizes, dense search takes milliseconds, so the wall-clock savings may be small even though 33% of dense calls are skipped.
+* The pre-registration (§4.1) promised per-component timings on FiQA. Real per-component timings were later measured for NFCorpus, SciFact and FiQA (`results/policy_latency/`, report §3.5).
+* As expected, the wall-clock saving is small at our corpus sizes: on SciFact, skipping 46.7% of dense calls lowers mean latency from 7.33 ms to 6.67 ms (−9%).
 
 ### D4. The cross-encoder is weaker than the first stage (Experiment 4)
-* **Problem:** MiniLM-L6 reranking of the hybrid top-50 *lowers* nDCG@10 on all five datasets (−0.004 to −0.041). Escalation cannot help on average when the "expensive, better" backend is not better.
+* **Problem:** MiniLM-L6 reranking of the hybrid top-50 *lowers* nDCG@10 on all five datasets (−0.004 to −0.028; `results/experiment4/tables.md`). Escalation cannot help on average when the "expensive, better" backend is not better.
 * This was flagged as a risk in the pre-registration, and it is what happened.
 * **Possible fix:** a stronger reranker, as a new pre-registered experiment.
 
@@ -118,7 +118,7 @@ Problems found while running Experiments 1, 1b and 2 (see `improvements.md` §1�
 
 ### E1. Class balancing made the router leave hybrid far too often (fixed in Experiment 2d)
 * **Problem:** the GBM and logistic routers use `class_weight: "balanced"` (`configs/router.yaml`). Only 5–15% of queries are labelled BM25 or dense, so balancing multiplies their weight by roughly 6–15× and the router predicts them much more often than their expected value justifies.
-* **Why it costs nDCG:** leaving hybrid is asymmetric. Pooled, BM25 beats hybrid on 7% of queries (mean +0.20) and loses on 28% (mean −0.31); dense wins on 12% (+0.17) and loses on 18% (−0.22). A router has to be right well over half the time it switches. Of the 190 held-out queries the Experiment 2 router sent to BM25, 16 improved and 63 got worse (net −14.8 nDCG points).
+* **Why it costs nDCG:** leaving hybrid is asymmetric. Pooled, BM25 beats hybrid on 7% of queries (mean +0.20) and loses on 28% (mean −0.31); dense wins on 12% (+0.17) and loses on 18% (−0.22). A router has to be right well over half the time it switches. Of the 209 held-out queries the Experiment 2 router sent to BM25 (31 October rerun), 17 improved and 73 got worse (summed change −16.9 nDCG@10 points).
 * **Fix:** Experiment 2d (`scripts/run_experiment2d_cost_aware_router.py`, pre-declared in `results/preregistration/experiment2d_cost_aware_router_20261031.md`) removes class balancing, measures label margins against hybrid (E2), and falls back to always-hybrid unless inner CV on the training fold shows a gain.
 * **Effect:** pooled router − hybrid goes from −0.0073 [−0.0100, −0.0045] (Experiment 2 router refit on the same folds) to −0.0012 [−0.0025, +0.0002]. Non-inferiority at δ = 0.005 holds. Superiority (H1) is still **not supported**; no variant (blended nDCG/MRR target, + query embedding, no fallback) has a CI above 0.
 * **Status:** `configs/router.yaml` is unchanged, so the pre-registered Experiment 2 and Experiment 3 results still reproduce; Experiment 2d sets its options in its own script.

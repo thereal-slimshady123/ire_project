@@ -157,7 +157,7 @@ def test_cv_covers_every_query_once_and_exposes_contract3():
     pred = predictions_frame(held)
     assert list(pred.columns) == ["query_id", "fold", "route_predicted", "p_bm25", "p_dense", "p_hybrid",
                                   "delta_pred_bm25", "delta_pred_dense"]
-    assert pred["fold"].dtype == np.int32 and pred["p_dense"].dtype == np.float32 and pred["query_id"].dtype == object
+    assert pred["fold"].dtype == np.int32 and pred["p_dense"].dtype == np.float32 and pd.api.types.is_string_dtype(pred["query_id"])
     assert set(pred["route_predicted"]) <= {"bm25", "dense", "hybrid"}
     np.testing.assert_allclose(pred[["p_bm25", "p_dense", "p_hybrid"]].sum(axis=1), 1.0, atol=1e-5)
 

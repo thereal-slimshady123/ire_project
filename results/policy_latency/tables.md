@@ -40,7 +40,7 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 | :--- | :--- | ---: | ---: | ---: | ---: |
 | nfcorpus | always_bm25 | 0.3223 | 0.37 | 0.38 | 0.53 |
 | nfcorpus | always_hybrid | 0.3589 | 7.00 | 6.73 | 8.95 |
-| nfcorpus | gbm_router | 0.3548 | 12.05 | 11.68 | 15.76 |
+| nfcorpus | gbm_router | 0.3550 | 12.05 | 11.68 | 15.76 |
 | nfcorpus | always_rerank_minilm_l6 | 0.3546 | 405.56 | 406.13 | 439.83 |
 | nfcorpus | predicted_gain_escalation_10% | 0.3599 | 50.41 | 12.80 | 414.23 |
 | nfcorpus | router_confidence_escalation_10% | 0.3558 | 48.88 | 11.76 | 406.33 |
@@ -49,22 +49,22 @@ Device: `cuda` (dense encoder and cross-encoder). Every component is timed for r
 | nfcorpus | router_tau_escalation_10% | 0.3556 | 44.02 | 11.76 | 404.51 |
 | scifact | always_bm25 | 0.6827 | 0.45 | 0.43 | 0.58 |
 | scifact | always_hybrid | 0.7264 | 7.33 | 7.13 | 8.42 |
-| scifact | gbm_router | 0.7300 | 12.62 | 12.19 | 14.62 |
+| scifact | gbm_router | 0.7239 | 12.62 | 12.19 | 14.62 |
 | scifact | always_rerank_minilm_l6 | 0.6986 | 403.01 | 399.17 | 454.91 |
 | scifact | predicted_gain_escalation_10% | 0.7272 | 53.28 | 13.27 | 400.64 |
 | scifact | router_confidence_escalation_10% | 0.7229 | 52.16 | 12.28 | 397.74 |
 | scifact | random_escalation_10% | 0.7251 | 46.96 | 7.16 | 399.47 |
 | scifact | oracle_escalation_10% | 0.7680 | 46.73 | 7.17 | 397.48 |
-| scifact | router_tau_escalation_10% | 0.7302 | 48.47 | 12.28 | 399.04 |
+| scifact | router_tau_escalation_10% | 0.7247 | 44.29 | 12.26 | 391.61 |
 | scifact | skip_dense_gbm | 0.7237 | 6.67 | 9.18 | 10.20 |
 | fiqa | always_bm25 | 0.2528 | 1.14 | 0.81 | 3.13 |
 | fiqa | always_hybrid | 0.4029 | 27.05 | 12.66 | 103.92 |
-| fiqa | gbm_router | 0.3925 | 39.83 | 18.42 | 153.54 |
+| fiqa | gbm_router | 0.3909 | 39.83 | 18.42 | 153.54 |
 | fiqa | always_rerank_minilm_l6 | 0.3759 | 367.81 | 348.04 | 505.59 |
 | fiqa | predicted_gain_escalation_10% | 0.4010 | 76.49 | 20.00 | 352.21 |
 | fiqa | router_confidence_escalation_10% | 0.4042 | 74.11 | 18.77 | 353.77 |
 | fiqa | random_escalation_10% | 0.3987 | 61.29 | 12.78 | 346.92 |
 | fiqa | oracle_escalation_10% | 0.4399 | 61.28 | 12.80 | 347.59 |
-| fiqa | router_tau_escalation_10% | 0.3947 | 67.81 | 18.68 | 351.42 |
+| fiqa | router_tau_escalation_10% | 0.3940 | 67.74 | 18.68 | 351.42 |
 
 All budgets are in `policy_latency.csv`.

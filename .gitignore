@@ -1,0 +1,70 @@
+# Environments & virtualenvs
+.venv/
+venv/
+env/
+ENV/
+*.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Data and artifacts (large files)
+# data/ is ignored except the small Phase 2 exploration reports cited by report/report.md §6
+/data/*
+!/data/processed/
+/data/processed/*
+!/data/processed/natural-niche/
+/data/processed/natural-niche/*
+!/data/processed/natural-niche/*.md
+!/data/processed/natural-niche/manifest_natural.json
+results/indexes/
+results/runs/
+results/features/
+results/models/
+results/latency/
+results/reranker_benchmark/runs/
+results/figures/
+results/logs/
+*.index
+*.pt
+*.bin
+*.parquet
+
+# Caches & experiment trackers
+.cache/
+wandb/
+.ipynb_checkpoints/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Contract artifacts (plan.md section 3) are the cross-track handoff: re-include them after the blanket rules above
+!results/features/
+!results/features/*.parquet
+!results/models/
+!results/models/**/*.parquet
+!results/experiment4/
+!results/experiment4/*.parquet
+!results/synthetic/
+!results/synthetic/*.parquet
+!results/experiment2c/cache/
+!results/experiment2c/cache/*.parquet
+!results/phase2/synthetic/
+!results/phase2/synthetic/*.parquet
+!results/phase2b/synthetic/
+!results/phase2b/synthetic/*.parquet
+# Phase 2 E1 input: the 288-query synthetic set (hash-pinned in results/preregistration/)
+!results/phase2_validation/synthetic/
+!results/phase2_validation/synthetic/*.parquet

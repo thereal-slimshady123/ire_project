@@ -1,0 +1,83 @@
+{
+  "max_overlap": 0,
+  "datasets": {
+    "scifact": {
+      "paraphrase_written": 80,
+      "paraphrase_kept": 75,
+      "dropped_overlap": [
+        {
+          "query": "Is swelling in fat stores actually needed for wholesome weight gain?",
+          "overlap": 1
+        },
+        {
+          "query": "Does switching off a chromosome-tagging enzyme return partly committed early lines to a ground condition?",
+          "overlap": 1
+        },
+        {
+          "query": "What helper for building translation machinery shapes face and skull in frogs?",
+          "overlap": 1
+        },
+        {
+          "query": "Do pumping transporters explain survival of the classic quinine-type pill?",
+          "overlap": 1
+        },
+        {
+          "query": "How do you build large-insert clone banks for crops?",
+          "overlap": 1
+        }
+      ],
+      "keyword": 75
+    },
+    "nfcorpus": {
+      "paraphrase_written": 80,
+      "paraphrase_kept": 69,
+      "dropped_overlap": [
+        {
+          "query": "Is a costly red crocus seasoning poisonous to tumour lines in a dish?",
+          "overlap": 2
+        },
+        {
+          "query": "Does a lipid-substitute lunch spare the heart's vessels compared to a greasy lunch?",
+          "overlap": 1
+        },
+        {
+          "query": "Are kitchen greens as harmful to hepatic tumour lines as their isolated aroma molecule?",
+          "overlap": 1
+        },
+        {
+          "query": "Can heat cameras replace X-ray bust screening?",
+          "overlap": 1
+        },
+        {
+          "query": "Can giving a newborn baking powder for wind be deadly?",
+          "overlap": 1
+        },
+        {
+          "query": "What part does surplus male-type hormone out of glands above the kidneys play in cystic ovary syndrome?",
+          "overlap": 1
+        },
+        {
+          "query": "Are isolated Amazon tribes' readings unusual in a global salt survey?",
+          "overlap": 1
+        },
+        {
+          "query": "Why do animal-type fats worsen liver build-up in teetotallers?",
+          "overlap": 1
+        },
+        {
+          "query": "Black US residents versus rural villagers on the continent: why the bowel tumour gap?",
+          "overlap": 1
+        },
+        {
+          "query": "Is a defence-suppressing drop safe for gritty eyes?",
+          "overlap": 1
+        },
+        {
+          "query": "Does strenuous training at particular ages cut mammary tumour odds post-menopause?",
+          "overlap": 1
+        }
+      ],
+      "keyword": 69
+    }
+  }
+}

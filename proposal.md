@@ -1,3 +1,5 @@
+> **Historical.** This is the original proposal. Deviations (e.g. e5-small-v2 instead of Contriever, escalation over the hybrid top-50) are listed in `report/report.md` §5.2.
+
 # Query Routing for Hybrid Retrieval: Confidence-Based Selection Among BM25, Dense, Hybrid, and Cross-Encoder Escalation
 
 ## Problem Statement

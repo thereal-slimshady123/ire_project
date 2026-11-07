@@ -74,7 +74,7 @@ def test_contract2_roundtrip(tmp_path, setup):
     df = fb.build_feature_matrix(list(queries.values()), bm25_run, dense_run)
     fb.save_features(df, tmp_path / "toy.parquet")
     raw = pd.read_parquet(tmp_path / "toy.parquet")
-    assert raw["query_id"].dtype == object and raw["query_id"].tolist() == ["a", "b"]
+    assert pd.api.types.is_string_dtype(raw["query_id"]) and raw["query_id"].tolist() == ["a", "b"]
     assert raw["max_idf"].dtype == np.float32
     assert (raw["jaccard_overlap"] == raw["jaccard_overlap_top10"]).all()  # Contract 2 alias
     assert (raw["rank_correlation"] == raw["rank_correlation_spearman"]).all()

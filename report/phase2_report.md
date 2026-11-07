@@ -11,10 +11,10 @@ before retrieval is better served by a single retriever, and the router gains no
 non-forum data and with e5-base). (2) The reason is that retrieval "wins" are decided per document, not per query:
 splitting a query's relevant documents in half, the winner on one half barely predicts the winner on the other
 (reference AUC′ 0.52 on fresh non-multi-hop data and 0.507 in a corrected re-test on Climate-FEVER, where 0.5 is
-chance), and swapping the dense encoder changes 46% of winners. Some multi-hop datasets are an exception. (3) Acting on this, a per-document learned fusion model, trained
-once on 16 exploration datasets and applied unchanged, beats fixed-α hybrid on all six fresh datasets
-(+0.0029 [+0.0019, +0.0038] nDCG@10) at about 5 ms extra per query. Effects are small, and three of eleven
-pre-registered predictions missed; all are reported.
+chance). Some multi-hop datasets are an exception. (3) Acting on this, a per-document learned fusion model, trained
+once on 16 exploration datasets and applied unchanged, beats fixed-α hybrid pooled over six fresh datasets
+(+0.0029 [+0.0019, +0.0038] nDCG@10; positive on all six, individually significant on two) at about 5 ms extra per
+query. Effects are small, and four of thirteen pre-registered predictions missed; all are reported.
 
 ## 1. From Phase 1 to Phase 2
 
@@ -35,18 +35,26 @@ was not carried forward.
 
 **Retrieval.** BM25 (k1 = 1.2, b = 0.75); dense `intfloat/e5-small-v2` (and `e5-base-v2` for robustness); top-100;
 hybrid = α·dense + (1 − α)·BM25 over min-max scores, α tuned on training folds. Metric nDCG@10; 5-fold CV by query,
-seed 42; paired bootstrap with 10,000 resamples; practical margin δ = 0.005.
+seed 42; paired bootstrap with 10,000 resamples (2,000 for the AUC′ confidence intervals in E2(c), E4, E4-R and E8);
+practical margin δ = 0.005.
+
+**Naming.** The first pre-registration (`phase2_explanatory_validation_20261107.md`) calls the skip-dense test "E4",
+and `e4_matched_rate_20261107.md` amends it. In this report those are **E3** and **E3′**, and **E4** is the split-half
+test of `phase2_strengthening_20261107.md`. Result tables written by `run_e4_matched_rate.py` keep the old title
+"E4 (amended)".
 
 **Pre-registration.** Each confirmatory test has a file in `results/preregistration/` stating the data rule, the
 exact criteria (accept / reject / inconclusive) and a prediction. The file and every script it uses are hashed in
 `SHA256SUMS.txt` before the test data is downloaded; each test set is used once. Exploration on already-seen data is
-disclosed in the same files, including variants that did not work.
+disclosed in the same files, including variants that did not work. The pre-registration files were committed to git
+together with the results (commit 840350b), so the repository history alone cannot show that they were written
+first; the hashes show only that neither the files nor the pinned scripts changed afterwards.
 
 **Data.**
 
 | Role | Datasets |
 | :--- | :--- |
-| Exploration (seen) | 16 sets: NFCorpus, SciFact, FiQA, Quora, ArguAna, WANDS, CoSQA, BRIGHT ×3, CQADupStack unix/android/webmasters, physics/programmers/gis |
+| Exploration (seen) | 19 sets: NFCorpus, SciFact, FiQA, Quora, ArguAna, WANDS, CoSQA, BRIGHT biology/economics/psychology, CQADupStack unix/android/webmasters, mathematica/english/gaming (after their validation run), physics/programmers/gis (after E3′). The E6 model and the E4 exploration use the 16 of them without BRIGHT |
 | Validation (E1–E3) | CQADupStack mathematica, english, gaming (3,969 queries) |
 | Fresh (E2-R, E4–E7) | Forums: CQADupStack stats, wordpress, tex. Non-forum: SciDocs, NQ, HotpotQA (15,956 queries) |
 | Boundary (E8) | MuSiQue, 2WikiMultihopQA (multi-hop); DBpedia-Entity (control) |
@@ -90,10 +98,16 @@ the half-B winner (reference AUC′):
 | Corrected test, Climate-FEVER (E4-R) | **0.507 [0.501, 0.556]** | −0.00 | 0.76 |
 
 Measurement choices barely move the label (κ 0.80–0.89 for α ± 0.1, nDCG@5/@20), so the instability comes from
-which documents are relevant, not from metric noise. Swapping e5-small for e5-base changes 46% of winners (κ 0.47).
+which documents are relevant, not from metric noise. Swapping e5-small for e5-base (κ 0.47) turns 44% of
+dense/BM25 winners into "no clear winner", but flips only 1.8% to the other retriever, and the e5-small margin still
+predicts the e5-base winner with AUC′ 0.95: the encoder swap mostly changes *whether* there is a clear winner, not
+*which* retriever it is.
 The pooled primary failed its AUC′ < 0.65 criterion because HotpotQA (46% of fresh queries, AUC′ 0.838) dominated
-it; on SciDocs, NQ and the three forums the per-dataset AUC′ was 0.53–0.60. Pooling across dataset types was a design
-flaw. It is corrected in E4-R (§6), which was accepted on new data. E4's own verdict stays inconclusive.
+it; on SciDocs, NQ, stats and tex the per-dataset AUC′ was 0.53–0.60 (wordpress had too few eligible queries to
+compute it). The pooled AUC′ was 0.7498, just below the 0.75 reject threshold. Pooling across dataset types was a
+design flaw. It is corrected in E4-R (§6), which was accepted on new data. E4's own verdict stays inconclusive.
+The split-half test needs at least two relevant documents, so it covers only part of each dataset (74–84% of
+forum queries have a single relevant document); for those queries the per-document explanation is untested.
 
 **E8 — Boundary condition: multi-hop data. Inconclusive; partly supported.** Prediction: when relevant documents are
 complements (all needed, as in multi-hop QA) rather than alternatives, the winner is more query-dependent.
@@ -105,10 +119,19 @@ complements (all needed, as in multi-hop QA) rather than alternatives, the winne
 | Difference | +0.090 [+0.032, +0.145] |
 
 2WikiMultihopQA (0.819) behaves like HotpotQA; MuSiQue (0.601), built to block reasoning shortcuts, does not.
-Multi-hop data is more query-dependent on average, but the boundary is dataset-specific, not clean.
+Multi-hop data is more query-dependent on average, but the boundary is dataset-specific, not clean. The multi-hop
+group pools two datasets that behave differently, the same issue E4-R corrects for E4.
+Both pre-registered secondary predictions failed. The learned skip router was predicted to beat H1 on the multi-hop
+group, as on HotpotQA: router − H1 at a 20% skip rate was +0.0014 [−0.0001, +0.0029] on multi-hop, but
++0.0166 [+0.0021, +0.0318] on DBpedia, the control. The E2(c) feature AUC′ was predicted to be higher on multi-hop
+data: 0.642 vs 0.643 (`results/strengthening/boundary/e8/tables.md`).
+Disclosure: one team member had run an exploratory per-source α check on DBpedia-Entity on 2026-11-05, before this
+pre-registration (no split-half analysis; files not used here). DBpedia was therefore not entirely unseen by the team.
 
 **Learning curve (HotpotQA).** More training queries make the router better at *predicting* the winner (AUC′
 0.632 → 0.749 from 1,000 to 5,554 queries) but not better at *ranking*: router − hybrid goes from −0.0025 to −0.0060.
+The pre-registered prediction had two parts: still no gain at the largest size held (CI upper −0.0037 < +0.005), but
+"AUC′ gain < 0.05" missed (+0.118 [+0.070, +0.166]; `results/strengthening/fresh/learning_curve/tables.md`).
 
 ## 4. What works instead: per-document fusion (E6, accepted)
 
@@ -128,9 +151,12 @@ to the six fresh datasets. Exploration had shown that the same model trained wit
 | hotpotqa | +0.0029 [+0.0019, +0.0040] | +0.0021 |
 | **pooled** | **+0.0029 [+0.0019, +0.0038]** | +0.0011 [+0.0000, +0.0021] |
 
-It is better on all six datasets against the pre-registered baseline. Against the stronger baseline, which tunes α
-on each target's own labels, the gain is smaller. Cost (CPU medians): query features 2.1 ms + candidate features
-2.6 ms + model 1.4 ms, so 27.9 ms against 22.7 ms for hybrid (+23%). The technique is learning-to-rank over fusion
+Against the pre-registered baseline the point estimate is positive on all six datasets, but individually only NQ and
+HotpotQA have confidence intervals above zero; the accepted claim is the pooled one. Against the stronger baseline,
+which tunes α on each target's own labels, the pooled gain is smaller and only just above zero, and NQ is
+significantly worse (−0.0040 [−0.0070, −0.0010]). Cost (CPU medians,
+`results/strengthening/fresh/fusion_latency/tables.md`): query features 2.1 ms + candidate features 2.6 ms + model
+1.4 ms, replacing hybrid's 0.9 ms min-max fusion step, so 27.9 ms against 22.7 ms for hybrid (+23%). The technique is learning-to-rank over fusion
 features and is not new; the contribution is the evidence for why it beats routing.
 
 **E5 — Query niche. Rejected (as predicted).** Of 73,008 niche × action candidates searched on exploration data, four
@@ -145,10 +171,14 @@ shuffle null had shown the best exploration candidate was barely above chance.
 | E3′ | At a fixed 20% skip rate the router picks the right queries | Inconclusive, as predicted: beats random (+0.0056), costs −0.0100 vs hybrid |
 | E7 | A free rule (BM25 top-1/top-2 ratio, H1) is as good as the learned skip router | Inconclusive: H1 − router −0.0047 [−0.0058, −0.0036] pooled; H1 ≥ router on 5 of 6 datasets, but not HotpotQA (+0.0131 for the router) |
 
-Measured CPU latency (fresh datasets): hybrid about 22 ms per query. The learned skip router's overhead (≈ 7.8 ms) means
-it is slower than hybrid unless it skips more than ~37% of queries. H1 costs ≈ 0.01 ms and saves 19–20% latency at a
-20% skip rate for −0.0084 nDCG@10 pooled. One CPU measurement was corrupted by the laptop suspending (one query
-recorded at 57 minutes); medians are reported, and no verdict depends on it.
+Measured CPU latency (fresh datasets): hybrid about 23 ms per query. The learned skip router's overhead (≈ 7.8 ms) means
+it is slower than hybrid unless it skips more than about 35% of queries (33–38% per dataset). H1 costs ≈ 0.01 ms and
+saves about 19% latency at a 20% skip rate for −0.0084 nDCG@10 pooled. One CPU measurement was corrupted by the laptop
+suspending (one HotpotQA query recorded at 56.7 minutes). The pre-registered table
+(`results/strengthening/fresh/cost_frontier/tables_cpu.md`) averages over it, so its HotpotQA and pooled latency rows
+are wrong (e.g. pooled hybrid 236 ms). The numbers above come from a post hoc recomputation without that one query
+(`tables_cpu_clean_posthoc.md`, `scripts/posthoc_cost_frontier_clean.py`); medians give the same picture, the GPU run
+was unaffected, and no verdict changes.
 
 ## 6. Corrected E4 (E4-R)
 
@@ -180,8 +210,10 @@ change of cut-off. The original E4 verdict (inconclusive) is not changed by this
 | E7 | Inconclusive | ✗ (predicted accepted) |
 | E8 | Inconclusive | ✗ (predicted accepted) |
 | E4-R (corrected E4, Climate-FEVER) | Accepted | ✓ |
+| Learning curve (HotpotQA, descriptive) | No gain held; AUC′ kept rising (+0.118) | ✗ (predicted AUC′ gain < 0.05) |
 
-9 of 12 predictions correct. All three misses involve multi-hop data (HotpotQA; MuSiQue).
+9 of 13 predictions correct. All four misses involve multi-hop data (HotpotQA; MuSiQue). E8's two secondary
+predictions also failed (§3).
 
 ## 8. Limitations
 
@@ -195,6 +227,10 @@ change of cut-off. The original E4 verdict (inconclusive) is not changed by this
 - Learned fusion was deliberately kept untuned (default settings, no cross-encoder features); its gain is likely a
   lower bound.
 - Latency was measured on one laptop, single-query, CPU.
+- The split-half test (E4, E4-R, E8) only uses queries with at least two relevant documents. Climate-FEVER's
+  judgments are known to be noisy, and noisy judgments alone would also push its split-half AUC′ towards 0.5.
+- The E5 paper reports fine-tuning e5 on MS MARCO, NQ and NLI data, so NQ is not new to the dense encoder.
+- Pre-registrations and results were committed together (§2).
 
 ## 9. Conclusion
 
@@ -203,7 +239,8 @@ nine held-out datasets where it was formally tested (forums, scientific literatu
 with two encoders. The main reason is that which retriever wins is decided
 largely per document, not per query, so query-level signals have little to learn. The exception is some multi-hop
 data, where relevant documents are complements. Acting on the per-document view, a fusion model that decides per
-document beats fixed-α hybrid on every fresh dataset, by a small margin at a moderate latency cost.
+document beats fixed-α hybrid pooled over the fresh datasets (positive on all six, significant on two), by a small
+margin at a moderate latency cost.
 
 ## Reproducibility
 

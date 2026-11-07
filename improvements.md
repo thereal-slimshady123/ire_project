@@ -1,5 +1,12 @@
 # Project Improvements & Experimental Designs
 
+> **Note (2026-11-07).** The original §3–4 of this file (the pre-registered designs of Experiments 2–4, including
+> §4.1 for Experiment 3) were overwritten in merge commit `f2a7309`. The hashed original is
+> `results/preregistration/improvements_exp3-4_20261008T200236.md` (checked by `SHA256SUMS.txt`); every reference to
+> "improvements.md §3–4" or "§4.1" in the reports and result tables means that file. It mentions a pre-registration
+> commit `f078818`, which does not exist in this repository's history (probably lost in that merge); the file's hash
+> is the evidence that its content is unchanged.
+
 ## 1. Experiment: Demonstrating That Always Picking Hybrid Degrades Accuracy
 
 ### 1.1 Objective & Research Question

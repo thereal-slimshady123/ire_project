@@ -1,3 +1,5 @@
+> **Historical (2026-10-26).** This is the original work plan. Some parts were not done (e.g. 30k synthetic scaling); see `report/report.md` and `report/phase2_report.md` for what was actually run.
+
 # Implementation Plan: Confidence-Based Query Router for Hybrid Retrieval
 ## Three-Person Independent Execution Blueprint
 

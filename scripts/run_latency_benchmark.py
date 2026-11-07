@@ -1,4 +1,11 @@
-"""Dedicated latency benchmark measuring mean, median, p95, and p99 wall-clock latency per component."""
+"""SIMULATED latency benchmark -- do not cite its numbers.
+
+WARNING (2026-11-07): this script does not run the dense encoder or the cross-encoder. It replaces them with fixed
+sleeps (time.sleep(0.0035) for dense encoding, time.sleep(0.018) for cross-encoding) and searches random query vectors.
+Its outputs in results/latency/ are therefore not real measurements (e.g. 18 ms for a cross-encoder rerank that really
+takes ~340-400 ms). Real per-component timings come from scripts/run_policy_latency.py (results/policy_latency/,
+report section 3.5). Kept only for history; `make latency` now runs run_policy_latency.py.
+"""
 
 import argparse
 import json
