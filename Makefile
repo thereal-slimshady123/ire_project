@@ -1,4 +1,4 @@
-.PHONY: help install data index baselines headroom labels features train sweep escalation rerankers policy-latency eval latency ablations cross-domain synthetic advantage phase2-validation strengthening boundary e4r posthoc-cost test clean
+.PHONY: help install data index baselines headroom labels features train sweep escalation rerankers policy-latency eval latency ablations cross-domain synthetic advantage phase2-validation strengthening boundary e4r posthoc-cost posthoc-tables test clean
 
 PYTHON = python
 
@@ -27,6 +27,7 @@ help:
 	@echo "  boundary   - Phase 2 E8 boundary test (downloads data; run once)"
 	@echo "  e4r        - Phase 2 E4-R on Climate-FEVER (downloads data; run once)"
 	@echo "  posthoc-cost - Post hoc cost table without the laptop-suspend outlier"
+	@echo "  posthoc-tables - Post hoc cost per 1,000 queries + macro nDCG tables (no retrieval)"
 	@echo "  test       - Run unit and integration tests"
 	@echo "  clean      - Clean build artifacts and cache"
 
@@ -100,6 +101,10 @@ e4r:
 
 posthoc-cost:
 	$(PYTHON) scripts/posthoc_cost_frontier_clean.py --timings results/strengthening/fresh/cost_frontier/timings_cpu.csv --output_dir results/strengthening/fresh/cost_frontier
+
+posthoc-tables:
+	$(PYTHON) scripts/posthoc_cost_per_1k.py
+	$(PYTHON) scripts/posthoc_macro_ndcg.py
 
 test:
 	pytest tests/

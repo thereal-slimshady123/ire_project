@@ -76,6 +76,11 @@ note that the first pre-registration calls the skip-dense test "E4" (= E3/E3′ 
 7. **Post hoc cost table without the laptop-suspend outlier**:
    `python scripts/posthoc_cost_frontier_clean.py --timings results/strengthening/fresh/cost_frontier/timings_cpu.csv --output_dir results/strengthening/fresh/cost_frontier`.
 
+8. **Post hoc reporting tables** (no retrieval): `python scripts/posthoc_cost_per_1k.py` (cost per 1,000 queries and
+   cost–quality frontier → `results/cost_per_1k_posthoc/`, Figure 6) and `python scripts/posthoc_macro_ndcg.py`
+   (category-balanced nDCG@10 over the E2 groupings → `results/macro_ndcg_posthoc/`; needs the query files in
+   `data/downloads/queries_only/` from Hugging Face `mteb/<dataset>`, `queries.jsonl` only).
+
 Scripts, `configs/` and `src/` listed in the `*.pins.txt` files are hash-pinned: do not edit them; add new, clearly
 labelled post hoc scripts instead.
 

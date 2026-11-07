@@ -167,6 +167,26 @@ The cross-encoder dominates every escalation policy. Escalating 10% of queries a
 
 *Figure 5. Held-out nDCG@10 against measured mean latency (log scale). Predicted-gain and random escalation are shown at budgets of 5–50%.*
 
+### 3.6 Cost per 1,000 queries and the cost–quality frontier (post hoc)
+
+Not pre-registered; computed from the saved measurements above by `scripts/posthoc_cost_per_1k.py` (`results/cost_per_1k_posthoc/tables.md`), with no new retrieval. Cost is compute time on this setup: X ms per query is X seconds per 1,000 queries. Converting to money needs an hourly hardware price: cost per 1,000 queries = seconds ÷ 3,600 × price per hour.
+
+| Policy | NFCorpus s / 1,000 q (nDCG@10) | SciFact | FiQA | × hybrid cost |
+| :--- | :--- | :--- | :--- | :---: |
+| BM25 | 0.4 (0.3223) | 0.5 (0.6827) | 1.1 (0.2528) | 0.04–0.06 |
+| Dense | 6.2 (0.3255) | 6.4 (0.6875) | 25.0 (0.3747) | 0.88–0.93 |
+| Hybrid | 7.0 (0.3589) | 7.3 (0.7264) | 27.1 (0.4029) | 1 |
+| GBM router | 12.0 (0.3550) | 12.6 (0.7239) | 39.8 (0.3909) | 1.5–1.7 |
+| Skip-dense router | — | 6.7 (0.7237) | — | 0.91 |
+| Predicted-gain escalation, 10% | 50.4 (0.3599) | 53.3 (0.7272) | 76.5 (0.4010) | 2.8–7.3 |
+| Always rerank (MiniLM-L6) | 405.6 (0.3546) | 403.0 (0.6986) | 367.8 (0.3759) | 14–58 |
+
+The frontier (policies no other policy beats on both cost and quality) runs BM25 → dense → (skip-dense on SciFact) → hybrid, then a few selective-rerank budgets that add at most +0.0034 nDCG@10. Those last gains are within noise: Experiment 4 found no selector significantly better than random escalation. The reliable reading is that hybrid costs about as much as dense alone (the dense encoder dominates both) and is clearly better, while every reranking policy costs 1.6–58× hybrid for no reliable quality gain. The GBM router is never on the frontier: it costs more than hybrid and scores lower.
+
+![Cost-quality frontier](figures/cost_quality_frontier.png)
+
+*Figure 6. Cost (log scale) against held-out nDCG@10 for every Phase 1 policy, per dataset; the dashed line is the cost–quality frontier. Post hoc.*
+
 ## 4.1 End-to-End Retrieval Performance, Headroom, and Escalation Trade-offs
 
 Across all held-out evaluations, always-hybrid is the dependable fixed baseline. No routing or selective-escalation policy beats it. The learned route policy, the proposal's router + τ escalation, and every escalation selector are at best indistinguishable from it, and the routing variants are significantly below it pooled. The routing oracle's noise-corrected headroom (+0.0195 pooled) is an upper bound that no held-out policy reaches. Experiment 4's oracle-selected subset shows that some queries do benefit from reranking, but outcome-based selection cannot be reproduced without held-out signal. The central escalation prerequisite, a backend with positive average gain over hybrid, was not met by pure reranking with MiniLM-L6, MiniLM-L-12, or BGE-reranker-base on these candidate pools. It is met by blending the cross-encoder score with the hybrid score (Experiment 4b, +0.0067 [+0.0035, +0.0098] when applied to every query), which is the only policy here that beats always-hybrid; it costs 368–406 ms per query, and selecting 10% of queries for it keeps only 16% of the gain (H3 in §1.1).
@@ -226,6 +246,22 @@ The mid-submission listed four tentative Phase 2 hypotheses. Exploration on 13 a
 | E8 | Are multi-hop datasets the exception? | MuSiQue, 2WikiMultihopQA vs DBpedia | Inconclusive (2Wiki behaves like HotpotQA, MuSiQue does not) |
 
 **Mechanism of the router's hybrid lock** (exploratory, `data/processed/natural-niche/router_diagnosis.md`): the fallback gate in Experiment 2d (keep hybrid unless the router beats it in inner cross-validation) fired in 41 of 55 exploration folds and 13 of 15 validation folds. Removing it makes the router worse (validation, post hoc: −0.0023 [−0.0039, −0.0007] vs hybrid, `results/phase2_validation/experiment2d/tables.md`), so the gate is a symptom; the cause is that the features do not predict the per-query winner.
+
+**Category-balanced check (post hoc, `results/macro_ndcg_posthoc/tables.md`, `scripts/posthoc_macro_ndcg.py`).** Pooled averages let large groups dominate, so E2 could in principle hide a niche inside a small group. Re-averaging so that every group of each E2 grouping weighs the same (macro nDCG@10) changes nothing:
+
+| Data | Grouping | Router − hybrid, macro [95% CI] | BM25 − hybrid, macro | Dense − hybrid, macro |
+| :--- | :--- | :---: | :---: | :---: |
+| Validation (3,969 queries) | Dataset | +0.0001 [−0.0004, +0.0006] | −0.0808 | −0.0264 |
+| | Length | −0.0002 [−0.0020, +0.0012] | −0.0790 | −0.0332 |
+| | Question form | +0.0001 [−0.0004, +0.0006] | −0.0816 | −0.0277 |
+| | Identifier-like token | −0.0001 [−0.0006, +0.0004] | −0.0942 | −0.0282 |
+| Exploration (7,235 queries, 13 datasets) | Dataset | −0.0003 [−0.0013, +0.0007] | −0.0518 | −0.0381 |
+| | Query family | −0.0005 [−0.0015, +0.0005] | −0.0684 | −0.0451 |
+| | Length | +0.0004 [−0.0008, +0.0020] | −0.0575 | −0.0453 |
+| | Question form | −0.0010 [−0.0018, −0.0001] | −0.0628 | −0.0438 |
+| | Identifier-like token | −0.0011 [−0.0020, −0.0001] | −0.0586 | −0.0547 |
+
+The router stays within ±0.0011 of hybrid under every weighting, and BM25 alone and dense alone stay 0.03–0.09 below it (all macro CIs below zero). So the E2 result is not an artefact of pooling. The groupings use E2's definitions; query texts for the validation forums, Unix and Quora were taken from the public `mteb/<dataset>` query files (IDs match the saved results exactly, and the validation group sizes reproduce E2's table), and BRIGHT, whose texts were deleted, counts only in the dataset grouping.
 
 **Conclusion of Phase 2.** Routing between BM25, dense and hybrid does not beat a tuned hybrid on natural queries, because the per-query headroom (oracle − hybrid ≈ +0.02 to +0.045) cannot be predicted from features available before retrieval, and synthetic query sets hide this. Which retriever wins depends largely on which relevant document is examined, so the decision is better made per document; doing so gives a small but consistent pooled gain. Nine of thirteen pre-registered predictions were correct; the four misses all involve multi-hop data. Limitations specific to Phase 2 (pooling across dataset types, split-half test only on queries with ≥ 2 relevant documents, 50,000-document corpus caps, one encoder family, pre-registrations committed together with results) are listed in `report/phase2_report.md` §8.
 

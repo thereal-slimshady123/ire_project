@@ -1,0 +1,30 @@
+{
+  "posthoc": true,
+  "unit": "seconds of compute per 1,000 queries (= mean ms per query)",
+  "frontier": {
+    "fiqa": [
+      "always_bm25",
+      "always_dense",
+      "always_hybrid",
+      "random_escalation_5%",
+      "router_confidence_escalation_10%",
+      "router_confidence_escalation_15%"
+    ],
+    "nfcorpus": [
+      "always_bm25",
+      "always_dense",
+      "always_hybrid",
+      "random_escalation_5%",
+      "predicted_gain_escalation_5%",
+      "random_escalation_10%"
+    ],
+    "scifact": [
+      "always_bm25",
+      "always_dense",
+      "skip_dense_gbm",
+      "always_hybrid",
+      "router_confidence_escalation_5%",
+      "predicted_gain_escalation_15%"
+    ]
+  }
+}
