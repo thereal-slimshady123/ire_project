@@ -1,0 +1,147 @@
+{
+  "datasets": [
+    "nfcorpus",
+    "scifact",
+    "fiqa",
+    "cqadupstack-unix",
+    "quora",
+    "wands",
+    "cosqa",
+    "cqadupstack-android",
+    "cqadupstack-webmasters",
+    "arguana",
+    "cqadupstack-mathematica",
+    "cqadupstack-english",
+    "cqadupstack-gaming",
+    "cqadupstack-physics",
+    "cqadupstack-programmers",
+    "cqadupstack-gis"
+  ],
+  "pooled_ref_auc": {
+    "ndcg@5": {
+      "auc": 0.9736344790099736,
+      "ci": [
+        0.9699598971848982,
+        0.9772199822463215
+      ],
+      "n_rows": 3089,
+      "n": 3089
+    },
+    "ndcg@20": {
+      "auc": 0.9985475736009809,
+      "ci": [
+        0.9978605220749068,
+        0.9991590230067329
+      ],
+      "n_rows": 3089,
+      "n": 3089
+    },
+    "mrr@10": {
+      "auc": 0.9867322302140086,
+      "ci": [
+        0.9833468542002041,
+        0.9898640359841568
+      ],
+      "n_rows": 3089,
+      "n": 3089
+    },
+    "e5-base": {
+      "auc": 0.9434630459126541,
+      "ci": [
+        0.9314038892571291,
+        0.9554336987309475
+      ],
+      "n_rows": 1154,
+      "n": 1154
+    },
+    "qrels-half": {
+      "auc": 0.568574954755618,
+      "ci": [
+        0.5429253413108496,
+        0.5936805119880366
+      ],
+      "n_rows": 5699,
+      "n": 1890
+    }
+  },
+  "single_relevant_share": 0.7260714024968972,
+  "pooled": [
+    {
+      "perturbation": "alpha-0.1",
+      "kappa_3way": 0.8537377452540194,
+      "agree_3way": 0.946995692487406,
+      "bin_retained": 0.9068039540718664,
+      "bin_flipped": 0.0,
+      "bin_lost": 0.09319604592813366,
+      "ref_auc": NaN,
+      "datasets": 16.0,
+      "n": 13697.0
+    },
+    {
+      "perturbation": "alpha+0.1",
+      "kappa_3way": 0.8574520720891087,
+      "agree_3way": 0.9486018836241513,
+      "bin_retained": 0.870506245061701,
+      "bin_flipped": 0.0,
+      "bin_lost": 0.1294937549382989,
+      "ref_auc": NaN,
+      "datasets": 16.0,
+      "n": 13697.0
+    },
+    {
+      "perturbation": "ndcg@5",
+      "kappa_3way": 0.817444790205144,
+      "agree_3way": 0.938161641235307,
+      "bin_retained": 0.748709857078315,
+      "bin_flipped": 0.0036442058122065353,
+      "bin_lost": 0.24764593710947844,
+      "ref_auc": 0.9724602530395717,
+      "datasets": 16.0,
+      "n": 13697.0
+    },
+    {
+      "perturbation": "ndcg@20",
+      "kappa_3way": 0.8403043129362407,
+      "agree_3way": 0.9342921807695116,
+      "bin_retained": 0.9589841600142952,
+      "bin_flipped": 0.006565848212664538,
+      "bin_lost": 0.03444999177304021,
+      "ref_auc": 0.9977835010140956,
+      "datasets": 16.0,
+      "n": 13697.0
+    },
+    {
+      "perturbation": "mrr@10",
+      "kappa_3way": 0.8639598639014586,
+      "agree_3way": 0.9543695699788275,
+      "bin_retained": 0.8186069047583124,
+      "bin_flipped": 0.0036312233730159305,
+      "bin_lost": 0.17776187186867148,
+      "ref_auc": 0.975993019898694,
+      "datasets": 16.0,
+      "n": 13697.0
+    },
+    {
+      "perturbation": "e5-base",
+      "kappa_3way": 0.4999183475570254,
+      "agree_3way": 0.8118243988528568,
+      "bin_retained": 0.5815382778010594,
+      "bin_flipped": 0.026785552243289993,
+      "bin_lost": 0.39167616995565063,
+      "ref_auc": 0.9411391475429923,
+      "datasets": 7.0,
+      "n": 4533.0
+    },
+    {
+      "perturbation": "qrels-half",
+      "kappa_3way": 0.03165113558280204,
+      "agree_3way": 0.5621002132196161,
+      "bin_retained": 0.19152308452143793,
+      "bin_flipped": 0.1760812416346296,
+      "bin_lost": 0.6323956738439324,
+      "ref_auc": 0.5942545962279795,
+      "datasets": 14.0,
+      "n": 3752.0
+    }
+  ]
+}

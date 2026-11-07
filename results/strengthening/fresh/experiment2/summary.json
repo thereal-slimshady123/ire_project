@@ -1,0 +1,1105 @@
+{
+  "preregistration": "improvements.md \u00a73",
+  "dense_model": "intfloat/e5-small-v2",
+  "pooled": {
+    "n": 15956,
+    "mean": {
+      "hybrid": 0.7075534485876607,
+      "best_single": 0.6860735321566643,
+      "router_gbm": 0.7017351236455345,
+      "router_logistic": 0.6862337987762062,
+      "random_gbm": 0.6989427278621537,
+      "random_logistic": 0.6844225088190479,
+      "oracle": 0.7329506716518754
+    },
+    "tests": {
+      "router_gbm - hybrid": {
+        "delta_mean": -0.005818324942126266,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.007040907114831316,
+        "ci_95_high": -0.004613246203318965,
+        "n": 15956,
+        "wilcoxon_p_greater": 1.0
+      },
+      "router_logistic - hybrid": {
+        "delta_mean": -0.021319649811454545,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.02332762679415913,
+        "ci_95_high": -0.01940712700288916,
+        "n": 15956,
+        "wilcoxon_p_greater": 1.0
+      },
+      "router_gbm - best_single": {
+        "delta_mean": 0.015661591488870117,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.013754501269812097,
+        "ci_95_high": 0.017591345256680196,
+        "n": 15956,
+        "wilcoxon_p_greater": 1.235319187572555e-64
+      },
+      "router_gbm - random_gbm": {
+        "delta_mean": 0.002792395783380766,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.001651474579641101,
+        "ci_95_high": 0.0039273907940112415,
+        "n": 15956,
+        "wilcoxon_p_greater": 6.774097261806264e-221
+      },
+      "router_logistic - random_logistic": {
+        "delta_mean": 0.0018112899571582689,
+        "p_value": 0.0400959904009599,
+        "ci_95_low": 5.13537172531126e-05,
+        "ci_95_high": 0.0035161340710735604,
+        "n": 15956,
+        "wilcoxon_p_greater": 8.604604142712693e-31
+      },
+      "oracle - hybrid": {
+        "delta_mean": 0.025397223064214734,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.024078090449137866,
+        "ci_95_high": 0.026703606262737736,
+        "n": 15956,
+        "wilcoxon_p_greater": 0.0
+      }
+    }
+  },
+  "per_dataset": {
+    "cqadupstack-stats": {
+      "n": 652,
+      "mean": {
+        "hybrid": 0.34470163080542476,
+        "best_single": 0.32515933074789694,
+        "router_gbm": 0.3318191738428949,
+        "router_logistic": 0.32842467166234274,
+        "random_gbm": 0.333942223185208,
+        "random_logistic": 0.32397175403766343,
+        "oracle": 0.38264408820428714
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.012882456962529867,
+          "p_value": 0.0008999100089991,
+          "ci_95_low": -0.020468885287002518,
+          "ci_95_high": -0.005427434562177892,
+          "n": 652,
+          "wilcoxon_p_greater": 0.9996281987644755
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.01627695914308203,
+          "p_value": 0.0022997700229977,
+          "ci_95_low": -0.026750952803755217,
+          "ci_95_high": -0.006227443076671679,
+          "n": 652,
+          "wilcoxon_p_greater": 0.9996235815709517
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.006659843094997955,
+          "p_value": 0.25077492250774924,
+          "ci_95_low": -0.0046313361529784144,
+          "ci_95_high": 0.018093947579031173,
+          "n": 652,
+          "wilcoxon_p_greater": 0.1462186470369013
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": -0.002123049342313072,
+          "p_value": 0.5558444155584441,
+          "ci_95_low": -0.009122588014439045,
+          "ci_95_high": 0.0048299271064615,
+          "n": 652,
+          "wilcoxon_p_greater": 0.021770254844229904
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": 0.004452917624679303,
+          "p_value": 0.32016798320167983,
+          "ci_95_low": -0.004448422947008443,
+          "ci_95_high": 0.013334033046535368,
+          "n": 652,
+          "wilcoxon_p_greater": 0.09079710573384359
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.037942457398862324,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.03000601117773376,
+          "ci_95_high": 0.04652906885260313,
+          "n": 652,
+          "wilcoxon_p_greater": 9.382952428931116e-21
+        }
+      }
+    },
+    "cqadupstack-wordpress": {
+      "n": 541,
+      "mean": {
+        "hybrid": 0.34110895632479304,
+        "best_single": 0.31231478300251186,
+        "router_gbm": 0.33548269399211705,
+        "router_logistic": 0.3152057470187205,
+        "random_gbm": 0.3334190308877791,
+        "random_logistic": 0.3166246307428903,
+        "oracle": 0.38060183572650813
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.005626262332675989,
+          "p_value": 0.09969003099690031,
+          "ci_95_low": -0.012495800282501525,
+          "ci_95_high": 0.0009623065128044643,
+          "n": 541,
+          "wilcoxon_p_greater": 0.9522784409300961
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.025903209306072518,
+          "p_value": 0.00039996000399960006,
+          "ci_95_low": -0.0385357029634375,
+          "ci_95_high": -0.01365786855945923,
+          "n": 541,
+          "wilcoxon_p_greater": 0.9999708832688833
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.023167910989605155,
+          "p_value": 0.0008999100089991,
+          "ci_95_low": 0.00973278487834189,
+          "ci_95_high": 0.03649645692567749,
+          "n": 541,
+          "wilcoxon_p_greater": 0.0003854056117680995
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": 0.002063663104337982,
+          "p_value": 0.5316468353164684,
+          "ci_95_low": -0.0046115069070078,
+          "ci_95_high": 0.00835313923953729,
+          "n": 541,
+          "wilcoxon_p_greater": 1.510561470683507e-07
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": -0.0014188837241698097,
+          "p_value": 0.791920807919208,
+          "ci_95_low": -0.011913460690067766,
+          "ci_95_high": 0.009043945938503365,
+          "n": 541,
+          "wilcoxon_p_greater": 0.21599486673968482
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.03949287940171507,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.030308627715196563,
+          "ci_95_high": 0.04922948055010771,
+          "n": 541,
+          "wilcoxon_p_greater": 8.253084226161638e-17
+        }
+      }
+    },
+    "cqadupstack-tex": {
+      "n": 2906,
+      "mean": {
+        "hybrid": 0.28626255582336435,
+        "best_single": 0.2595674718585172,
+        "router_gbm": 0.2785660418921087,
+        "router_logistic": 0.2734502016934797,
+        "random_gbm": 0.2700968489201377,
+        "random_logistic": 0.26461571554351637,
+        "oracle": 0.33368626572638893
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.0076965139312556415,
+          "p_value": 0.0012998700129987,
+          "ci_95_low": -0.011958098207815545,
+          "ci_95_high": -0.003355699104783393,
+          "n": 2906,
+          "wilcoxon_p_greater": 0.9998541484962701
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.012812354129884665,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.01808592001411344,
+          "ci_95_high": -0.007509841994821203,
+          "n": 2906,
+          "wilcoxon_p_greater": 0.9999993953203747
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.018998570033591476,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.012874513796790174,
+          "ci_95_high": 0.02519909315945334,
+          "n": 2906,
+          "wilcoxon_p_greater": 1.6541654162557514e-09
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": 0.008469192971971046,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.004574273335396089,
+          "ci_95_high": 0.012420105810694273,
+          "n": 2906,
+          "wilcoxon_p_greater": 3.5444403519473745e-10
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": 0.008834486149963326,
+          "p_value": 0.00029997000299970003,
+          "ci_95_low": 0.00423570757930089,
+          "ci_95_high": 0.013435712590468519,
+          "n": 2906,
+          "wilcoxon_p_greater": 1.2786995759599692e-05
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.04742370990302458,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.04295785542171199,
+          "ci_95_high": 0.05205082106307168,
+          "n": 2906,
+          "wilcoxon_p_greater": 1.9781841642426155e-93
+        }
+      }
+    },
+    "scidocs": {
+      "n": 1000,
+      "mean": {
+        "hybrid": 0.18688733774004038,
+        "best_single": 0.17713550557326174,
+        "router_gbm": 0.18333469719763038,
+        "router_logistic": 0.17467081816379393,
+        "random_gbm": 0.18340789443981564,
+        "random_logistic": 0.17441275355674044,
+        "oracle": 0.22143373193737528
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.0035526405424100285,
+          "p_value": 0.0007999200079992001,
+          "ci_95_low": -0.005721132660554517,
+          "ci_95_high": -0.0014767744184428558,
+          "n": 1000,
+          "wilcoxon_p_greater": 0.9994610323232451
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.01221651957624648,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.017244832530182833,
+          "ci_95_high": -0.007320112899299808,
+          "n": 1000,
+          "wilcoxon_p_greater": 0.999996563172598
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.006199191624368611,
+          "p_value": 0.018098190180981903,
+          "ci_95_low": 0.0009915375137575443,
+          "ci_95_high": 0.011314546390095328,
+          "n": 1000,
+          "wilcoxon_p_greater": 0.006079794822743621
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": -7.319724218527296e-05,
+          "p_value": 0.9453054694530547,
+          "ci_95_low": -0.0021680273984647576,
+          "ci_95_high": 0.0019304861772000616,
+          "n": 1000,
+          "wilcoxon_p_greater": 1.3128427567542557e-08
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": 0.00025806460705350795,
+          "p_value": 0.9029097090290971,
+          "ci_95_low": -0.004123064865292934,
+          "ci_95_high": 0.004480903879329086,
+          "n": 1000,
+          "wilcoxon_p_greater": 0.07236197364481098
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.034546394197334865,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.030699152800784498,
+          "ci_95_high": 0.03855405754988648,
+          "n": 1000,
+          "wilcoxon_p_greater": 2.0887703093163222e-60
+        }
+      }
+    },
+    "nq": {
+      "n": 3452,
+      "mean": {
+        "hybrid": 0.9283923482036054,
+        "best_single": 0.9218045374328726,
+        "router_gbm": 0.9239853935724043,
+        "router_logistic": 0.896857469796054,
+        "random_gbm": 0.919638437879398,
+        "random_logistic": 0.8930275379690077,
+        "oracle": 0.9465677836330346
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.004406954631201004,
+          "p_value": 0.0011998800119988001,
+          "ci_95_low": -0.007071617767129722,
+          "ci_95_high": -0.00183487581967249,
+          "n": 3452,
+          "wilcoxon_p_greater": 0.9999329316892492
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.03153487840755152,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.037000814185901426,
+          "ci_95_high": -0.026316998111950117,
+          "n": 3452,
+          "wilcoxon_p_greater": 1.0
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.0021808561395318176,
+          "p_value": 0.24037596240375964,
+          "ci_95_low": -0.0014169460950615301,
+          "ci_95_high": 0.005745643526961674,
+          "n": 3452,
+          "wilcoxon_p_greater": 0.0684210958830183
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": 0.004346955693006367,
+          "p_value": 0.0008999100089991,
+          "ci_95_low": 0.0017636479072869774,
+          "ci_95_high": 0.00686300766242867,
+          "n": 3452,
+          "wilcoxon_p_greater": 2.817164249738973e-143
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": 0.003829931827046165,
+          "p_value": 0.12858714128587143,
+          "ci_95_low": -0.0011828570836661335,
+          "ci_95_high": 0.008665624760542874,
+          "n": 3452,
+          "wilcoxon_p_greater": 2.1046122256509653e-22
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.01817543542942916,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.015414043643843224,
+          "ci_95_high": 0.02108199482230967,
+          "n": 3452,
+          "wilcoxon_p_greater": 3.59819147012504e-44
+        }
+      }
+    },
+    "hotpotqa": {
+      "n": 7405,
+      "mean": {
+        "hybrid": 0.8989683600332588,
+        "best_single": 0.8713727556822901,
+        "router_gbm": 0.893531154698826,
+        "router_logistic": 0.8777337215653135,
+        "random_gbm": 0.892818219524654,
+        "random_logistic": 0.8794064764155374,
+        "oracle": 0.9157182132343812
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.005437205334432779,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.006779282540285891,
+          "ci_95_high": -0.004172325655751866,
+          "n": 7405,
+          "wilcoxon_p_greater": 0.9999999999999979
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.021234638467945287,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.023510972848178473,
+          "ci_95_high": -0.01898296452826816,
+          "n": 7405,
+          "wilcoxon_p_greater": 1.0
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.022158399016535747,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.019649423583977182,
+          "ci_95_high": 0.024678648079689915,
+          "n": 7405,
+          "wilcoxon_p_greater": 1.1159118384594609e-71
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": 0.0007129351741720754,
+          "p_value": 0.26317368263173685,
+          "ci_95_low": -0.0005578030925855274,
+          "ci_95_high": 0.0019279792721006502,
+          "n": 7405,
+          "wilcoxon_p_greater": 1.0627959367870813e-133
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": -0.001672754850223902,
+          "p_value": 0.10188981101889812,
+          "ci_95_low": -0.0036828147687908036,
+          "ci_95_high": 0.0002836167884193768,
+          "n": 7405,
+          "wilcoxon_p_greater": 1.7860684485810055e-08
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.016749853201122277,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.01554823214324553,
+          "ci_95_high": 0.017960296449956475,
+          "n": 7405,
+          "wilcoxon_p_greater": 1.0735374446320783e-173
+        }
+      }
+    }
+  },
+  "fold_info": {
+    "cqadupstack-stats": [
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.05,
+        "route_share_gbm": {
+          "bm25": 0.1679,
+          "dense": 0.2443,
+          "hybrid": 0.5878
+        },
+        "route_share_logistic": {
+          "bm25": 0.3282,
+          "dense": 0.3206,
+          "hybrid": 0.3511
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.084,
+          "dense": 0.1298,
+          "hybrid": 0.7863
+        },
+        "route_share_logistic": {
+          "bm25": 0.2443,
+          "dense": 0.2977,
+          "hybrid": 0.458
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.05,
+        "route_share_gbm": {
+          "bm25": 0.1077,
+          "dense": 0.2077,
+          "hybrid": 0.6846
+        },
+        "route_share_logistic": {
+          "bm25": 0.2769,
+          "dense": 0.3769,
+          "hybrid": 0.3462
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.02,
+        "route_share_gbm": {
+          "bm25": 0.1154,
+          "dense": 0.2385,
+          "hybrid": 0.6462
+        },
+        "route_share_logistic": {
+          "bm25": 0.3,
+          "dense": 0.2846,
+          "hybrid": 0.4154
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.0,
+        "route_share_gbm": {
+          "bm25": 0.1231,
+          "dense": 0.3154,
+          "hybrid": 0.5615
+        },
+        "route_share_logistic": {
+          "bm25": 0.2846,
+          "dense": 0.2923,
+          "hybrid": 0.4231
+        }
+      }
+    ],
+    "cqadupstack-wordpress": [
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0642,
+          "dense": 0.1284,
+          "hybrid": 0.8073
+        },
+        "route_share_logistic": {
+          "bm25": 0.2661,
+          "dense": 0.3394,
+          "hybrid": 0.3945
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.1019,
+          "dense": 0.1204,
+          "hybrid": 0.7778
+        },
+        "route_share_logistic": {
+          "bm25": 0.2315,
+          "dense": 0.3426,
+          "hybrid": 0.4259
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0648,
+          "dense": 0.1019,
+          "hybrid": 0.8333
+        },
+        "route_share_logistic": {
+          "bm25": 0.25,
+          "dense": 0.3241,
+          "hybrid": 0.4259
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0463,
+          "dense": 0.0926,
+          "hybrid": 0.8611
+        },
+        "route_share_logistic": {
+          "bm25": 0.2222,
+          "dense": 0.3241,
+          "hybrid": 0.4537
+        }
+      },
+      {
+        "alpha": 0.7,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.1296,
+          "dense": 0.0278,
+          "hybrid": 0.8426
+        },
+        "route_share_logistic": {
+          "bm25": 0.2593,
+          "dense": 0.2315,
+          "hybrid": 0.5093
+        }
+      }
+    ],
+    "cqadupstack-tex": [
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.268,
+          "dense": 0.2027,
+          "hybrid": 0.5292
+        },
+        "route_share_logistic": {
+          "bm25": 0.2973,
+          "dense": 0.3677,
+          "hybrid": 0.3351
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.2719,
+          "dense": 0.1515,
+          "hybrid": 0.5766
+        },
+        "route_share_logistic": {
+          "bm25": 0.3064,
+          "dense": 0.3408,
+          "hybrid": 0.3528
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.179,
+          "dense": 0.3546,
+          "hybrid": 0.4664
+        },
+        "route_share_logistic": {
+          "bm25": 0.315,
+          "dense": 0.3563,
+          "hybrid": 0.3287
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.1566,
+          "dense": 0.3477,
+          "hybrid": 0.4957
+        },
+        "route_share_logistic": {
+          "bm25": 0.2978,
+          "dense": 0.3632,
+          "hybrid": 0.3391
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.2633,
+          "dense": 0.1721,
+          "hybrid": 0.5645
+        },
+        "route_share_logistic": {
+          "bm25": 0.2978,
+          "dense": 0.3201,
+          "hybrid": 0.3821
+        }
+      }
+    ],
+    "scidocs": [
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.09,
+          "dense": 0.07,
+          "hybrid": 0.84
+        },
+        "route_share_logistic": {
+          "bm25": 0.305,
+          "dense": 0.3,
+          "hybrid": 0.395
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.09,
+          "dense": 0.08,
+          "hybrid": 0.83
+        },
+        "route_share_logistic": {
+          "bm25": 0.235,
+          "dense": 0.33,
+          "hybrid": 0.435
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.1,
+          "dense": 0.07,
+          "hybrid": 0.83
+        },
+        "route_share_logistic": {
+          "bm25": 0.32,
+          "dense": 0.33,
+          "hybrid": 0.35
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.04,
+          "dense": 0.08,
+          "hybrid": 0.88
+        },
+        "route_share_logistic": {
+          "bm25": 0.265,
+          "dense": 0.305,
+          "hybrid": 0.43
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.1,
+          "dense": 0.115,
+          "hybrid": 0.785
+        },
+        "route_share_logistic": {
+          "bm25": 0.355,
+          "dense": 0.33,
+          "hybrid": 0.315
+        }
+      }
+    ],
+    "nq": [
+      {
+        "alpha": 0.8,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0434,
+          "dense": 0.0188,
+          "hybrid": 0.9378
+        },
+        "route_share_logistic": {
+          "bm25": 0.1462,
+          "dense": 0.1331,
+          "hybrid": 0.7207
+        }
+      },
+      {
+        "alpha": 0.8,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0434,
+          "dense": 0.0275,
+          "hybrid": 0.9291
+        },
+        "route_share_logistic": {
+          "bm25": 0.1708,
+          "dense": 0.191,
+          "hybrid": 0.6382
+        }
+      },
+      {
+        "alpha": 0.8,
+        "best_single": "dense",
+        "epsilon": 0.0,
+        "route_share_gbm": {
+          "bm25": 0.0478,
+          "dense": 0.0391,
+          "hybrid": 0.913
+        },
+        "route_share_logistic": {
+          "bm25": 0.1667,
+          "dense": 0.2072,
+          "hybrid": 0.6261
+        }
+      },
+      {
+        "alpha": 0.8,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0348,
+          "dense": 0.0304,
+          "hybrid": 0.9348
+        },
+        "route_share_logistic": {
+          "bm25": 0.2029,
+          "dense": 0.2029,
+          "hybrid": 0.5942
+        }
+      },
+      {
+        "alpha": 0.8,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0536,
+          "dense": 0.0304,
+          "hybrid": 0.9159
+        },
+        "route_share_logistic": {
+          "bm25": 0.2029,
+          "dense": 0.1681,
+          "hybrid": 0.629
+        }
+      }
+    ],
+    "hotpotqa": [
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.05,
+          "dense": 0.1263,
+          "hybrid": 0.8238
+        },
+        "route_share_logistic": {
+          "bm25": 0.2262,
+          "dense": 0.2174,
+          "hybrid": 0.5564
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0547,
+          "dense": 0.1013,
+          "hybrid": 0.844
+        },
+        "route_share_logistic": {
+          "bm25": 0.2465,
+          "dense": 0.1972,
+          "hybrid": 0.5564
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0554,
+          "dense": 0.1134,
+          "hybrid": 0.8312
+        },
+        "route_share_logistic": {
+          "bm25": 0.2174,
+          "dense": 0.2336,
+          "hybrid": 0.549
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0493,
+          "dense": 0.1094,
+          "hybrid": 0.8413
+        },
+        "route_share_logistic": {
+          "bm25": 0.1911,
+          "dense": 0.21,
+          "hybrid": 0.5989
+        }
+      },
+      {
+        "alpha": 0.5,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0473,
+          "dense": 0.1074,
+          "hybrid": 0.8454
+        },
+        "route_share_logistic": {
+          "bm25": 0.2539,
+          "dense": 0.212,
+          "hybrid": 0.5341
+        }
+      }
+    ]
+  },
+  "transfer": {
+    "cqadupstack-stats": {
+      "n": 652,
+      "alpha": 0.6,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.4985,
+        "dense": 0.4325,
+        "hybrid": 0.069
+      },
+      "route_share_logistic": {
+        "bm25": 0.3374,
+        "dense": 0.5598,
+        "hybrid": 0.1028
+      },
+      "mean_hybrid_source_alpha": 0.34470163080542476,
+      "mean_hybrid_indomain_alpha": 0.34470163080542476,
+      "mean_router_gbm": 0.318624598778523,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.02607703202690181,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.03856278531403298,
+        "ci_95_high": -0.01385830396145666,
+        "n": 652
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.02607703202690181,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.03856278531403298,
+        "ci_95_high": -0.01385830396145666,
+        "n": 652
+      }
+    },
+    "cqadupstack-wordpress": {
+      "n": 541,
+      "alpha": 0.6,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.3789,
+        "dense": 0.5083,
+        "hybrid": 0.1128
+      },
+      "route_share_logistic": {
+        "bm25": 0.3882,
+        "dense": 0.5231,
+        "hybrid": 0.0887
+      },
+      "mean_hybrid_source_alpha": 0.34382485141659475,
+      "mean_hybrid_indomain_alpha": 0.3411089563247931,
+      "mean_router_gbm": 0.31370008393815474,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.03012476747844006,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.04379867014720266,
+        "ci_95_high": -0.016648778942620974,
+        "n": 541
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.027408872386638323,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.04121268048128699,
+        "ci_95_high": -0.013910618191309888,
+        "n": 541
+      }
+    },
+    "cqadupstack-tex": {
+      "n": 2906,
+      "alpha": 0.6,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.2409,
+        "dense": 0.627,
+        "hybrid": 0.1321
+      },
+      "route_share_logistic": {
+        "bm25": 0.1132,
+        "dense": 0.7836,
+        "hybrid": 0.1032
+      },
+      "mean_hybrid_source_alpha": 0.28777970294684035,
+      "mean_hybrid_indomain_alpha": 0.28626255582336435,
+      "mean_router_gbm": 0.2693837406876476,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.01839596225919274,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.023944171267688805,
+        "ci_95_high": -0.012779135495836482,
+        "n": 2906
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.01687881513571672,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.02257446307940713,
+        "ci_95_high": -0.011047054697350752,
+        "n": 2906
+      }
+    },
+    "scidocs": {
+      "n": 1000,
+      "alpha": 0.6,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.324,
+        "dense": 0.57,
+        "hybrid": 0.106
+      },
+      "route_share_logistic": {
+        "bm25": 0.326,
+        "dense": 0.544,
+        "hybrid": 0.13
+      },
+      "mean_hybrid_source_alpha": 0.1868873377400404,
+      "mean_hybrid_indomain_alpha": 0.1868873377400404,
+      "mean_router_gbm": 0.17600340957944507,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.010883928160595304,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.01589860715563832,
+        "ci_95_high": -0.0059560422911144615,
+        "n": 1000
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.010883928160595304,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.01589860715563832,
+        "ci_95_high": -0.0059560422911144615,
+        "n": 1000
+      }
+    },
+    "nq": {
+      "n": 3452,
+      "alpha": 0.6,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.334,
+        "dense": 0.4177,
+        "hybrid": 0.2483
+      },
+      "route_share_logistic": {
+        "bm25": 0.3117,
+        "dense": 0.3627,
+        "hybrid": 0.3256
+      },
+      "mean_hybrid_source_alpha": 0.9201672407722515,
+      "mean_hybrid_indomain_alpha": 0.9283923482036054,
+      "mean_router_gbm": 0.879869025355187,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.04029821541706452,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.04625781567218689,
+        "ci_95_high": -0.0344057277666968,
+        "n": 3452
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.048523322848418496,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.05501536552214631,
+        "ci_95_high": -0.04217664242082749,
+        "n": 3452
+      }
+    },
+    "hotpotqa": {
+      "n": 7405,
+      "alpha": 0.7,
+      "best_single": "dense",
+      "epsilon": 0.1,
+      "route_share_gbm": {
+        "bm25": 0.4204,
+        "dense": 0.0735,
+        "hybrid": 0.5061
+      },
+      "route_share_logistic": {
+        "bm25": 0.04,
+        "dense": 0.1356,
+        "hybrid": 0.8244
+      },
+      "mean_hybrid_source_alpha": 0.8946376985097014,
+      "mean_hybrid_indomain_alpha": 0.8989683600332588,
+      "mean_router_gbm": 0.8715084409277765,
+      "gbm_vs_hybrid_source": {
+        "delta_mean": -0.023129257581924873,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.02541456363388919,
+        "ci_95_high": -0.020857595760327727,
+        "n": 7405
+      },
+      "gbm_vs_hybrid_indomain": {
+        "delta_mean": -0.027459919105482282,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.02975406146967009,
+        "ci_95_high": -0.02519686939777663,
+        "n": 7405
+      }
+    }
+  },
+  "primary_verdict": "negative"
+}

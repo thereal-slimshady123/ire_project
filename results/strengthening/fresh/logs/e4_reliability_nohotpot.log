@@ -1,0 +1,30 @@
+[cqadupstack-stats] alpha*=0.6 n=652 e5-base=yes
+[cqadupstack-wordpress] alpha*=0.6 n=541 e5-base=yes
+[cqadupstack-tex] alpha*=0.6 n=2906 e5-base=yes
+[scidocs] alpha*=0.6 n=1000 e5-base=yes
+[nq] alpha*=0.8 n=3452 e5-base=yes
+# Label reliability: is the per-query winner a stable property of the query?
+
+Datasets: cqadupstack-stats, cqadupstack-wordpress, cqadupstack-tex, scidocs, nq. Base label: nDCG@10, e5-small-v2, official qrels. Share of queries with a single relevant document: 69.4%.
+
+Pooled (query-weighted mean over datasets; qrels-half averaged over 5 random splits):
+
+| Perturbation | Datasets | n | κ (3-way) | 3-way agreement | Binary retained | Binary flipped | Binary lost | Reference AUC′ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| alpha-0.1 | 5 | 8551 | 0.834 | 0.960 | 0.925 | 0.000 | 0.075 | — |
+| alpha+0.1 | 5 | 8551 | 0.803 | 0.956 | 0.811 | 0.000 | 0.189 | — |
+| ndcg@5 | 5 | 8551 | 0.857 | 0.957 | 0.803 | 0.003 | 0.193 | 0.978 |
+| ndcg@20 | 5 | 8551 | 0.874 | 0.952 | 0.974 | 0.004 | 0.022 | 0.999 |
+| mrr@10 | 5 | 8551 | 0.884 | 0.971 | 0.819 | 0.004 | 0.177 | 0.989 |
+| e5-base | 5 | 8551 | 0.454 | 0.856 | 0.593 | 0.020 | 0.387 | 0.958 |
+| qrels-half | 5 | 2618 | 0.033 | 0.659 | 0.172 | 0.101 | 0.727 | 0.551 |
+
+Reference AUC′ pooled over queries (perturbed dense − BM25 margin → base binary label):
+
+| Perturbation | queries | AUC′ [95% CI] |
+| :--- | :---: | :---: |
+| ndcg@5 | 1497 | 0.976 [0.971, 0.981] |
+| ndcg@20 | 1497 | 0.999 [0.999, 1.000] |
+| mrr@10 | 1497 | 0.989 [0.984, 0.993] |
+| e5-base | 1497 | 0.955 [0.944, 0.964] |
+| qrels-half | 1024 | 0.522 [0.501, 0.559] |

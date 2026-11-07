@@ -1,0 +1,50 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3805.72it/s]
+[cqadupstack-stats] cuda: bm25_search=0.57, dense_encode=10.40, faiss_search=5.37, hybrid_fusion=0.67, skip_feature_extraction=1.92, router_inference=4.58, h1_score=0.01
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3846.39it/s]
+[cqadupstack-wordpress] cuda: bm25_search=0.71, dense_encode=13.32, faiss_search=6.25, hybrid_fusion=1.04, skip_feature_extraction=2.16, router_inference=5.21, h1_score=0.01
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3817.07it/s]
+[cqadupstack-tex] cuda: bm25_search=0.88, dense_encode=15.31, faiss_search=9.00, hybrid_fusion=0.82, skip_feature_extraction=2.45, router_inference=5.69, h1_score=0.01
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3658.73it/s]
+[scidocs] cuda: bm25_search=0.50, dense_encode=13.06, faiss_search=5.41, hybrid_fusion=0.74, skip_feature_extraction=2.33, router_inference=5.07, h1_score=0.01
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3273.68it/s]
+[nq] cuda: bm25_search=0.57, dense_encode=12.91, faiss_search=6.35, hybrid_fusion=0.78, skip_feature_extraction=1.90, router_inference=5.19, h1_score=0.01
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3881.09it/s]
+[hotpotqa] cuda: bm25_search=0.60, dense_encode=13.43, faiss_search=6.18, hybrid_fusion=0.78, skip_feature_extraction=1.76, router_inference=5.10, h1_score=0.01
+# Cost–quality frontier of skipping dense retrieval (cuda)
+
+Datasets: cqadupstack-stats, cqadupstack-wordpress, cqadupstack-tex, scidocs, nq, hotpotqa. Dense model intfloat/e5-small-v2; FAISS flat search timed over random unit vectors of the corpus size. Quality: held-out nDCG@10 at matched skip rates (run_e4_matched_rate.py).
+
+## Mean component latency (ms)
+
+| Dataset | bm25_search | dense_encode | faiss_search | hybrid_fusion | skip_feature_extraction | router_inference | h1_score | Break-even skip rate: router / H1 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| cqadupstack-stats | 0.57 | 10.40 | 5.37 | 0.67 | 1.92 | 4.58 | 0.01 | 39.6% / 0.05% |
+| cqadupstack-wordpress | 0.71 | 13.32 | 6.25 | 1.04 | 2.16 | 5.21 | 0.01 | 35.7% / 0.05% |
+| cqadupstack-tex | 0.88 | 15.31 | 9.00 | 0.82 | 2.45 | 5.69 | 0.01 | 32.4% / 0.05% |
+| scidocs | 0.50 | 13.06 | 5.41 | 0.74 | 2.33 | 5.07 | 0.01 | 38.5% / 0.05% |
+| nq | 0.57 | 12.91 | 6.35 | 0.78 | 1.90 | 5.19 | 0.01 | 35.4% / 0.05% |
+| hotpotqa | 0.60 | 13.43 | 6.18 | 0.78 | 1.76 | 5.10 | 0.01 | 33.6% / 0.05% |
+| pooled | 0.64 | 13.51 | 6.65 | 0.79 | 1.97 | 5.21 | 0.01 | 34.3% / 0.05% |
+
+## Pooled frontier
+
+| Skip rate | Hybrid ms | Router ms | H1 ms | Random ms | Router nDCG | H1 nDCG | Random nDCG | Hybrid nDCG |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 0% | 21.59 | 28.76 | 21.60 | 21.59 | 0.7076 | 0.7076 | 0.7076 | 0.7076 |
+| 10% | 21.59 | 26.67 | 19.50 | 19.49 | 0.7063 | 0.7036 | 0.6993 | 0.7076 |
+| 20% | 21.59 | 24.58 | 17.41 | 17.40 | 0.7038 | 0.6991 | 0.6910 | 0.7076 |
+| 30% | 21.59 | 22.48 | 15.31 | 15.30 | 0.7002 | 0.6944 | 0.6827 | 0.7076 |
+| 40% | 21.59 | 20.39 | 13.22 | 13.21 | 0.6958 | 0.6878 | 0.6744 | 0.7076 |
+| 50% | 21.59 | 18.29 | 11.12 | 11.11 | 0.6893 | 0.6798 | 0.6661 | 0.7076 |
+
+## Quality at 20% skip rate (paired bootstrap)
+
+| Dataset | H1 − hybrid | H1 − random | Router − hybrid | H1 latency saving vs hybrid |
+| :--- | :---: | :---: | :---: | :---: |
+| cqadupstack-stats | -0.0047 [-0.0102, +0.0005] | +0.0054 [+0.0002, +0.0105] | -0.0062 [-0.0124, -0.0007] | 19.3% |
+| cqadupstack-wordpress | -0.0015 [-0.0092, +0.0061] | +0.0113 [+0.0042, +0.0184] | -0.0105 [-0.0177, -0.0038] | 19.3% |
+| cqadupstack-tex | -0.0011 [-0.0038, +0.0015] | +0.0069 [+0.0044, +0.0095] | -0.0046 [-0.0077, -0.0015] | 19.3% |
+| scidocs | -0.0058 [-0.0089, -0.0029] | +0.0005 [-0.0023, +0.0032] | -0.0069 [-0.0101, -0.0040] | 19.4% |
+| nq | -0.0033 [-0.0051, -0.0017] | +0.0352 [+0.0326, +0.0378] | -0.0049 [-0.0069, -0.0030] | 19.4% |
+| hotpotqa | -0.0148 [-0.0164, -0.0133] | -0.0029 [-0.0043, -0.0015] | -0.0017 [-0.0022, -0.0012] | 19.4% |
+| pooled | -0.0084 [-0.0094, -0.0074] | +0.0082 [+0.0071, +0.0092] | -0.0037 [-0.0046, -0.0029] | 19.4% |

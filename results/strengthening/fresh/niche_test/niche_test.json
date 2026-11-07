@@ -1,0 +1,256 @@
+{
+  "datasets": [
+    "cqadupstack-stats",
+    "cqadupstack-wordpress",
+    "cqadupstack-tex",
+    "scidocs",
+    "nq",
+    "hotpotqa"
+  ],
+  "results": [
+    {
+      "conditions": [
+        [
+          "bm25_top1_score",
+          "low",
+          0.1
+        ],
+        [
+          "bm25_top1_top2_ratio",
+          "low",
+          0.1
+        ]
+      ],
+      "action": "hybrid@0.7",
+      "name": "bm25_top1_score in bottom 10% AND bm25_top1_top2_ratio in bottom 10%",
+      "rule": "top-3 by 95% LB",
+      "n": 388,
+      "share": 0.024316871396339933,
+      "inside": {
+        "delta_mean": 0.0036644267230671506,
+        "p_value": 0.48505149485051496,
+        "ci_95_low": -0.006614430049279197,
+        "ci_95_high": 0.013815114405414962,
+        "n": 388
+      },
+      "overall": {
+        "delta_mean": 8.910739336613526e-05,
+        "p_value": 0.47765223477652236,
+        "ci_95_low": -0.00015529965971052735,
+        "ci_95_high": 0.0003399615274268105,
+        "n": 15956
+      },
+      "per_dataset": {
+        "cqadupstack-stats": {
+          "n": 14,
+          "mean": -0.024664178762816187
+        },
+        "cqadupstack-wordpress": {
+          "n": 8,
+          "mean": -0.022154910848005964
+        },
+        "cqadupstack-tex": {
+          "n": 64,
+          "mean": -0.020317278734073987
+        },
+        "scidocs": {
+          "n": 14,
+          "mean": 0.013792275387922121
+        },
+        "nq": {
+          "n": 83,
+          "mean": -0.009494560055766953
+        },
+        "hotpotqa": {
+          "n": 205,
+          "mean": 0.01872974549361957
+        }
+      },
+      "p_holm": 0.48505149485051496,
+      "supported": false
+    },
+    {
+      "conditions": [
+        [
+          "bm25_top1_top2_gap",
+          "high",
+          0.1
+        ],
+        [
+          "dense_top1_score",
+          "low",
+          0.33
+        ]
+      ],
+      "action": "hybrid@0.5",
+      "name": "bm25_top1_top2_gap in top 10% AND dense_top1_score in bottom 33%",
+      "rule": "top-3 by 95% LB",
+      "n": 306,
+      "share": 0.019177738781649536,
+      "inside": {
+        "delta_mean": 0.011459551510439791,
+        "p_value": 0.03519648035196481,
+        "ci_95_low": 0.0015539530540597676,
+        "ci_95_high": 0.022891943365028984,
+        "n": 306
+      },
+      "overall": {
+        "delta_mean": 0.0002197682854220717,
+        "p_value": 0.040495950404959506,
+        "ci_95_low": 2.4351622458474166e-05,
+        "ci_95_high": 0.0004443489732024445,
+        "n": 15956
+      },
+      "per_dataset": {
+        "cqadupstack-stats": {
+          "n": 15,
+          "mean": 0.01983976134920828
+        },
+        "cqadupstack-wordpress": {
+          "n": 13,
+          "mean": -0.0008512647521458425
+        },
+        "cqadupstack-tex": {
+          "n": 70,
+          "mean": 0.024279250822426695
+        },
+        "scidocs": {
+          "n": 31,
+          "mean": 0.018843414516115976
+        },
+        "nq": {
+          "n": 64,
+          "mean": 0.01463124025257631
+        },
+        "hotpotqa": {
+          "n": 113,
+          "mean": 0.0
+        }
+      },
+      "p_holm": 0.14078592140785923,
+      "supported": false
+    },
+    {
+      "conditions": [
+        [
+          "mean_idf",
+          "low",
+          0.33
+        ],
+        [
+          "entity_density",
+          "high",
+          0.1
+        ]
+      ],
+      "action": "hybrid@0.7",
+      "name": "mean_idf in bottom 33% AND entity_density in top 10%",
+      "rule": "top-3 by 95% LB",
+      "n": 438,
+      "share": 0.027450488844321885,
+      "inside": {
+        "delta_mean": 0.004816468199378063,
+        "p_value": 0.1075892410758924,
+        "ci_95_low": -0.0009574858211138826,
+        "ci_95_high": 0.01089757272192859,
+        "n": 438
+      },
+      "overall": {
+        "delta_mean": 0.0001322144065760586,
+        "p_value": 0.10668933106689331,
+        "ci_95_low": -2.3275512740132304e-05,
+        "ci_95_high": 0.0002966061920978886,
+        "n": 15956
+      },
+      "per_dataset": {
+        "cqadupstack-stats": {
+          "n": 17,
+          "mean": 0.007701750210085737
+        },
+        "cqadupstack-wordpress": {
+          "n": 16,
+          "mean": -0.010917293826964726
+        },
+        "cqadupstack-tex": {
+          "n": 63,
+          "mean": 0.01303352622345747
+        },
+        "scidocs": {
+          "n": 33,
+          "mean": 0.003447555107026497
+        },
+        "nq": {
+          "n": 141,
+          "mean": -0.003872681112148446
+        },
+        "hotpotqa": {
+          "n": 168,
+          "mean": 0.010503134435659553
+        }
+      },
+      "p_holm": 0.21807819218078192,
+      "supported": false
+    },
+    {
+      "conditions": [
+        [
+          "bm25_top1_top2_gap",
+          "high",
+          0.33
+        ],
+        [
+          "bm25_score_entropy",
+          "low",
+          0.2
+        ]
+      ],
+      "action": "hybrid@0.5",
+      "name": "bm25_top1_top2_gap in top 33% AND bm25_score_entropy in bottom 20%",
+      "rule": "best with n >= 1000",
+      "n": 2010,
+      "share": 0.1259714214088744,
+      "inside": {
+        "delta_mean": 0.0019764788883850117,
+        "p_value": 0.07269273072692731,
+        "ci_95_low": -0.00011349660581983265,
+        "ci_95_high": 0.004242692260994863,
+        "n": 2010
+      },
+      "overall": {
+        "delta_mean": 0.00024897985495449194,
+        "p_value": 0.071992800719928,
+        "ci_95_low": -1.4941326214346024e-05,
+        "ci_95_high": 0.0005325212968281394,
+        "n": 15956
+      },
+      "per_dataset": {
+        "cqadupstack-stats": {
+          "n": 93,
+          "mean": 0.0070887577600614125
+        },
+        "cqadupstack-wordpress": {
+          "n": 75,
+          "mean": 0.009591874043908554
+        },
+        "cqadupstack-tex": {
+          "n": 372,
+          "mean": 0.008042057756857086
+        },
+        "scidocs": {
+          "n": 115,
+          "mean": 0.0011733151651163916
+        },
+        "nq": {
+          "n": 437,
+          "mean": -0.0012185336129615588
+        },
+        "hotpotqa": {
+          "n": 918,
+          "mean": 0.0
+        }
+      },
+      "p_holm": 0.21807819218078192,
+      "supported": false
+    }
+  ]
+}

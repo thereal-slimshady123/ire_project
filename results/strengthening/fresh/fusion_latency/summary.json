@@ -1,0 +1,86 @@
+{
+  "cqadupstack-stats": {
+    "hybrid_median_ms": 18.392649999441346,
+    "fusion_overhead_median_ms": 5.679050000253483,
+    "learned_fusion_median_ms": 23.353399999905378,
+    "overhead_p95_ms": 6.867944999430618,
+    "components_median_ms": {
+      "query_features": 2.185100001952378,
+      "candidate_features": 2.2209500002645655,
+      "rank": 1.2201999979879474
+    },
+    "median_candidates": 171.0
+  },
+  "cqadupstack-wordpress": {
+    "hybrid_median_ms": 21.260599998640828,
+    "fusion_overhead_median_ms": 5.767099995864555,
+    "learned_fusion_median_ms": 26.248999993185862,
+    "overhead_p95_ms": 8.0061000007845,
+    "components_median_ms": {
+      "query_features": 2.2310000022116583,
+      "candidate_features": 2.2466000009444542,
+      "rank": 1.2385000009089708
+    },
+    "median_candidates": 175.0
+  },
+  "cqadupstack-tex": {
+    "hybrid_median_ms": 24.737600000662496,
+    "fusion_overhead_median_ms": 6.1630999989574775,
+    "learned_fusion_median_ms": 29.987549999532348,
+    "overhead_p95_ms": 8.902750000743254,
+    "components_median_ms": {
+      "query_features": 2.523749997635605,
+      "candidate_features": 2.2630999992543366,
+      "rank": 1.2433499996404862
+    },
+    "median_candidates": 178.0
+  },
+  "scidocs": {
+    "hybrid_median_ms": 22.24149999983638,
+    "fusion_overhead_median_ms": 6.649900002230424,
+    "learned_fusion_median_ms": 28.00640000259591,
+    "overhead_p95_ms": 8.680595000441826,
+    "components_median_ms": {
+      "query_features": 2.708899999561254,
+      "candidate_features": 2.5377000001753913,
+      "rank": 1.3852000010956544
+    },
+    "median_candidates": 168.0
+  },
+  "nq": {
+    "hybrid_median_ms": 21.723100000599516,
+    "fusion_overhead_median_ms": 6.055200001355843,
+    "learned_fusion_median_ms": 26.899050001702562,
+    "overhead_p95_ms": 8.460955000009562,
+    "components_median_ms": {
+      "query_features": 2.044700000624289,
+      "candidate_features": 2.6130499991268152,
+      "rank": 1.3980999992782017
+    },
+    "median_candidates": 184.5
+  },
+  "hotpotqa": {
+    "hybrid_median_ms": 22.96099999875878,
+    "fusion_overhead_median_ms": 6.040899999788962,
+    "learned_fusion_median_ms": 28.142499999376014,
+    "overhead_p95_ms": 8.688480001728745,
+    "components_median_ms": {
+      "query_features": 1.9677000018418767,
+      "candidate_features": 2.6352000022598077,
+      "rank": 1.4092999990680255
+    },
+    "median_candidates": 182.0
+  },
+  "pooled": {
+    "hybrid_median_ms": 22.70955000039976,
+    "fusion_overhead_median_ms": 6.045299996912945,
+    "learned_fusion_median_ms": 27.883649995601445,
+    "overhead_p95_ms": 8.633574998384574,
+    "components_median_ms": {
+      "query_features": 2.100550000250223,
+      "candidate_features": 2.5920000007317867,
+      "rank": 1.3886000015190803
+    },
+    "median_candidates": 181.0
+  }
+}

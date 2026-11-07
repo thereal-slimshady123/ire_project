@@ -1,0 +1,12 @@
+# E2 replication: fresh, all six, e5-base-v2
+
+Datasets: cqadupstack-stats, cqadupstack-wordpress, cqadupstack-tex, scidocs, nq, hotpotqa (n = 15956). Definitions as in `results/preregistration/phase2_explanatory_validation_20261107.md`.
+
+**E2: ACCEPTED**
+
+- (a) Niche found: **no** (26 (group, retriever) pairs with n ≥ 300, Holm-corrected).
+- (b) Cost-aware router − hybrid: **-0.0003 [-0.0006, +0.0000]** → CI upper < +0.005: **yes**.
+- (c) Best AUC′ (dense-winner n = 1498 vs BM25-winner n = 975): **0.571** [0.548, 0.595] (`bm25_score_entropy`; within-dataset percentile features). Other definition: raw 0.553 [0.531, 0.576] (`bm25_top1_score`), percentile 0.571 [0.548, 0.595] (`bm25_score_entropy`).
+
+Secondary: TOST 90% CI [-0.0006, -0.0000]; oracle − hybrid headroom +0.0244; queries with a single retriever ≥ 0.10 above hybrid 7.8%; fallback gate 22/30 folds; router hybrid share 99.3%.
+

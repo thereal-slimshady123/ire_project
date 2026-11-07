@@ -1,0 +1,496 @@
+{
+  "label": "seen datasets, e5-base-v2 (exploration)",
+  "datasets": [
+    "nfcorpus",
+    "scifact",
+    "arguana",
+    "cqadupstack-webmasters",
+    "cqadupstack-android",
+    "cosqa",
+    "cqadupstack-mathematica"
+  ],
+  "n": 4533,
+  "verdict": "REJECTED",
+  "niche_found": false,
+  "pairs": [
+    {
+      "grouping": "dataset",
+      "group": "arguana",
+      "n": 1401,
+      "retriever": "bm25",
+      "delta_mean": -0.036831972066813864,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.04644642752403945,
+      "ci_95_high": -0.027119703231778047,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "arguana",
+      "n": 1401,
+      "retriever": "dense",
+      "delta_mean": -0.13890239097755108,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.1538065433587463,
+      "ci_95_high": -0.1242240146565759,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cosqa",
+      "n": 500,
+      "retriever": "bm25",
+      "delta_mean": -0.10370255208596503,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.12897771649902598,
+      "ci_95_high": -0.07993318367269414,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cosqa",
+      "n": 500,
+      "retriever": "dense",
+      "delta_mean": 0.006352760348338303,
+      "p_value": 0.07679232076792321,
+      "ci_95_low": -0.0005475462195183222,
+      "ci_95_high": 0.013498316537553772,
+      "p_holm": 0.07679232076792321,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-android",
+      "n": 699,
+      "retriever": "bm25",
+      "delta_mean": -0.07070257697937947,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.08719075210819419,
+      "ci_95_high": -0.05491335698552574,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-android",
+      "n": 699,
+      "retriever": "dense",
+      "delta_mean": -0.025045407875408376,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.03671405511969341,
+      "ci_95_high": -0.013386622057332483,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-mathematica",
+      "n": 804,
+      "retriever": "bm25",
+      "delta_mean": -0.06800824646999615,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.08540380083505522,
+      "ci_95_high": -0.050488140945008454,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-mathematica",
+      "n": 804,
+      "retriever": "dense",
+      "delta_mean": -0.00866706007058728,
+      "p_value": 0.008599140085991401,
+      "ci_95_low": -0.015273047997602509,
+      "ci_95_high": -0.002086073666449737,
+      "p_holm": 0.042995700429957005,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-webmasters",
+      "n": 506,
+      "retriever": "bm25",
+      "delta_mean": -0.0790834189049993,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.10220150992880885,
+      "ci_95_high": -0.057001570296665194,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "cqadupstack-webmasters",
+      "n": 506,
+      "retriever": "dense",
+      "delta_mean": -0.014010126587850101,
+      "p_value": 0.015198480151984802,
+      "ci_95_low": -0.02523220976355884,
+      "ci_95_high": -0.003042413235239335,
+      "p_holm": 0.04559544045595441,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "nfcorpus",
+      "n": 323,
+      "retriever": "bm25",
+      "delta_mean": -0.052243647375511265,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.06525018008491434,
+      "ci_95_high": -0.040065932528100354,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "nfcorpus",
+      "n": 323,
+      "retriever": "dense",
+      "delta_mean": -0.01942357006169478,
+      "p_value": 0.0008999100089991,
+      "ci_95_low": -0.030404715894339858,
+      "ci_95_high": -0.008698912438646287,
+      "p_holm": 0.0053994600539946005,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "scifact",
+      "n": 300,
+      "retriever": "bm25",
+      "delta_mean": -0.05802839343452438,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.08137377229837622,
+      "ci_95_high": -0.03556319632297176,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "dataset",
+      "group": "scifact",
+      "n": 300,
+      "retriever": "dense",
+      "delta_mean": -0.021273071238519556,
+      "p_value": 0.034096590340965904,
+      "ci_95_low": -0.04104565507526393,
+      "ci_95_high": -0.001703154857469777,
+      "p_holm": 0.06819318068193181,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": "4-7",
+      "n": 1276,
+      "retriever": "bm25",
+      "delta_mean": -0.07874786633273352,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.09215372507254328,
+      "ci_95_high": -0.06519166527694338,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": "4-7",
+      "n": 1276,
+      "retriever": "dense",
+      "delta_mean": -0.008278026720517374,
+      "p_value": 0.009799020097990201,
+      "ci_95_low": -0.014491857737777163,
+      "ci_95_high": -0.0019316760317550866,
+      "p_holm": 0.042995700429957005,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": "8-15",
+      "n": 1404,
+      "retriever": "bm25",
+      "delta_mean": -0.0707947427166153,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.08377008167320438,
+      "ci_95_high": -0.058496132152741694,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": "8-15",
+      "n": 1404,
+      "retriever": "dense",
+      "delta_mean": -0.014442245390847019,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.02166790143750111,
+      "ci_95_high": -0.007436617480693076,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": ">50",
+      "n": 1399,
+      "retriever": "bm25",
+      "delta_mean": -0.036576780777364426,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.0464237643622335,
+      "ci_95_high": -0.026695983373327098,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_length",
+      "group": ">50",
+      "n": 1399,
+      "retriever": "dense",
+      "delta_mean": -0.13871224160736972,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.15405697653167408,
+      "ci_95_high": -0.12337630781406243,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_form",
+      "group": "question",
+      "n": 1467,
+      "retriever": "bm25",
+      "delta_mean": -0.07181985583221963,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.08365870034167137,
+      "ci_95_high": -0.060237699640524965,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_form",
+      "group": "question",
+      "n": 1467,
+      "retriever": "dense",
+      "delta_mean": -0.03823339925692767,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.04747867622800519,
+      "ci_95_high": -0.029096509031893737,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_form",
+      "group": "statement/keywords",
+      "n": 3066,
+      "retriever": "bm25",
+      "delta_mean": -0.05756435028433228,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.06528486101781679,
+      "ci_95_high": -0.04987194960061351,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_form",
+      "group": "statement/keywords",
+      "n": 3066,
+      "retriever": "dense",
+      "delta_mean": -0.05856405343511582,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.06593613990967166,
+      "ci_95_high": -0.05133790575457109,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_ident",
+      "group": "has identifier-like token",
+      "n": 1707,
+      "retriever": "bm25",
+      "delta_mean": -0.05087489455341219,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.06085925054751252,
+      "ci_95_high": -0.04081207853830417,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_ident",
+      "group": "has identifier-like token",
+      "n": 1707,
+      "retriever": "dense",
+      "delta_mean": -0.08362335178458605,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.0951561305139517,
+      "ci_95_high": -0.07216762764255664,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_ident",
+      "group": "no identifier",
+      "n": 2826,
+      "retriever": "bm25",
+      "delta_mean": -0.06900515975759179,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.0773351187995065,
+      "ci_95_high": -0.06044515555137374,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    },
+    {
+      "grouping": "g_ident",
+      "group": "no identifier",
+      "n": 2826,
+      "retriever": "dense",
+      "delta_mean": -0.03287357503386045,
+      "p_value": 9.999000099990002e-05,
+      "ci_95_low": -0.0390871358094996,
+      "ci_95_high": -0.02670512642481496,
+      "p_holm": 0.0027997200279972004,
+      "niche": false
+    }
+  ],
+  "router_minus_hybrid": {
+    "delta_mean": -2.3562961318342023e-06,
+    "p_value": 0.9965003499650035,
+    "ci_95_low": -0.0009468011314667827,
+    "ci_95_high": 0.00094716217861509,
+    "n": 4533
+  },
+  "router_ci_upper_below_delta": true,
+  "best_auc": {
+    "feature": "bm25_top1_score",
+    "auc": 0.7023552946499804,
+    "ci": [
+      0.6718316494207023,
+      0.7317388754599254
+    ],
+    "n_dense_winner": 548,
+    "n_bm25_winner": 613
+  },
+  "tost_90": [
+    -0.0007891600764289367,
+    0.0007820759555586134
+  ],
+  "oracle_headroom": 0.050619711083579655,
+  "single_retriever_gain_ge_0.10": 0.14956982131039048,
+  "fallback_folds": [
+    28,
+    35
+  ],
+  "router_hybrid_share": 0.9752923009044783,
+  "per_dataset_bm25_dense_minus_hybrid": {
+    "arguana": {
+      "bm25": {
+        "delta_mean": -0.036831972066813864,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.04644642752403945,
+        "ci_95_high": -0.027119703231778047,
+        "n": 1401
+      },
+      "dense": {
+        "delta_mean": -0.13890239097755108,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.1538065433587463,
+        "ci_95_high": -0.1242240146565759,
+        "n": 1401
+      }
+    },
+    "cosqa": {
+      "bm25": {
+        "delta_mean": -0.10370255208596503,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.12897771649902598,
+        "ci_95_high": -0.07993318367269414,
+        "n": 500
+      },
+      "dense": {
+        "delta_mean": 0.006352760348338303,
+        "p_value": 0.07679232076792321,
+        "ci_95_low": -0.0005475462195183222,
+        "ci_95_high": 0.013498316537553772,
+        "n": 500
+      }
+    },
+    "cqadupstack-android": {
+      "bm25": {
+        "delta_mean": -0.07070257697937947,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.08719075210819419,
+        "ci_95_high": -0.05491335698552574,
+        "n": 699
+      },
+      "dense": {
+        "delta_mean": -0.025045407875408376,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.03671405511969341,
+        "ci_95_high": -0.013386622057332483,
+        "n": 699
+      }
+    },
+    "cqadupstack-mathematica": {
+      "bm25": {
+        "delta_mean": -0.06800824646999615,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.08540380083505522,
+        "ci_95_high": -0.050488140945008454,
+        "n": 804
+      },
+      "dense": {
+        "delta_mean": -0.00866706007058728,
+        "p_value": 0.008599140085991401,
+        "ci_95_low": -0.015273047997602509,
+        "ci_95_high": -0.002086073666449737,
+        "n": 804
+      }
+    },
+    "cqadupstack-webmasters": {
+      "bm25": {
+        "delta_mean": -0.0790834189049993,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.10220150992880885,
+        "ci_95_high": -0.057001570296665194,
+        "n": 506
+      },
+      "dense": {
+        "delta_mean": -0.014010126587850101,
+        "p_value": 0.015198480151984802,
+        "ci_95_low": -0.02523220976355884,
+        "ci_95_high": -0.003042413235239335,
+        "n": 506
+      }
+    },
+    "nfcorpus": {
+      "bm25": {
+        "delta_mean": -0.052243647375511265,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.06525018008491434,
+        "ci_95_high": -0.040065932528100354,
+        "n": 323
+      },
+      "dense": {
+        "delta_mean": -0.01942357006169478,
+        "p_value": 0.0008999100089991,
+        "ci_95_low": -0.030404715894339858,
+        "ci_95_high": -0.008698912438646287,
+        "n": 323
+      }
+    },
+    "scifact": {
+      "bm25": {
+        "delta_mean": -0.05802839343452438,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.08137377229837622,
+        "ci_95_high": -0.03556319632297176,
+        "n": 300
+      },
+      "dense": {
+        "delta_mean": -0.021273071238519556,
+        "p_value": 0.034096590340965904,
+        "ci_95_low": -0.04104565507526393,
+        "ci_95_high": -0.001703154857469777,
+        "n": 300
+      }
+    }
+  }
+}

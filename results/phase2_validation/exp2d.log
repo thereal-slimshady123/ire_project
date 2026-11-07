@@ -1,0 +1,8 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3986.37it/s]
+[2026-11-07 00:34:57] [INFO] [experiment2d]: [cqadupstack-mathematica] cost-aware ε per fold: always_hybrid, 0.0, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3746.58it/s]
+[2026-11-07 00:36:08] [INFO] [experiment2d]: [cqadupstack-english] cost-aware ε per fold: 0.1, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3829.78it/s]
+[2026-11-07 00:37:18] [INFO] [experiment2d]: [cqadupstack-gaming] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+[2026-11-07 00:37:28] [INFO] [experiment2d]: PRIMARY: cost-aware GBM − always-hybrid (pooled n=3969) = +0.0001 [-0.0004, +0.0005] p=7.2e-01 → NOT SUPPORTED; non-inferiority MET
+[2026-11-07 00:37:28] [INFO] [experiment2d]: Wrote results\phase2_validation\experiment2d\tables.md

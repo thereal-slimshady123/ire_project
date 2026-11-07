@@ -1,0 +1,32 @@
+# Cost–quality frontier of skipping dense retrieval (cuda)
+
+Datasets: cqadupstack-physics, cqadupstack-programmers, cqadupstack-gis. Dense model intfloat/e5-small-v2; FAISS flat search timed over random unit vectors of the corpus size. Quality: held-out nDCG@10 at matched skip rates (run_e4_matched_rate.py).
+
+## Mean component latency (ms)
+
+| Dataset | bm25_search | dense_encode | faiss_search | hybrid_fusion | skip_feature_extraction | router_inference | h1_score | Break-even skip rate: router / H1 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| cqadupstack-physics | 0.55 | 10.87 | 5.94 | 0.71 | 1.88 | 4.92 | 0.01 | 38.8% / 0.06% |
+| cqadupstack-programmers | 0.59 | 12.93 | 5.81 | 0.72 | 2.15 | 5.00 | 0.01 | 36.7% / 0.05% |
+| cqadupstack-gis | 0.60 | 13.05 | 6.10 | 0.73 | 2.05 | 5.07 | 0.01 | 35.8% / 0.05% |
+| pooled | 0.58 | 12.21 | 5.95 | 0.72 | 2.02 | 4.99 | 0.01 | 37.1% / 0.05% |
+
+## Pooled frontier
+
+| Skip rate | Hybrid ms | Router ms | H1 ms | Random ms | Router nDCG | H1 nDCG | Random nDCG | Hybrid nDCG |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 0% | 19.46 | 26.47 | 19.47 | 19.46 | 0.4018 | 0.4018 | 0.4018 | 0.4018 |
+| 10% | 19.46 | 24.58 | 17.58 | 17.57 | 0.3992 | 0.4006 | 0.3938 | 0.4018 |
+| 20% | 19.46 | 22.69 | 15.69 | 15.68 | 0.3918 | 0.3947 | 0.3862 | 0.4018 |
+| 30% | 19.46 | 20.80 | 13.80 | 13.79 | 0.3848 | 0.3865 | 0.3784 | 0.4018 |
+| 40% | 19.46 | 18.91 | 11.92 | 11.91 | 0.3787 | 0.3775 | 0.3705 | 0.4018 |
+| 50% | 19.46 | 17.03 | 10.03 | 10.02 | 0.3685 | 0.3691 | 0.3626 | 0.4018 |
+
+## Quality at 20% skip rate (paired bootstrap)
+
+| Dataset | H1 − hybrid | H1 − random | Router − hybrid | H1 latency saving vs hybrid |
+| :--- | :---: | :---: | :---: | :---: |
+| cqadupstack-physics | -0.0036 [-0.0088, +0.0016] | +0.0110 [+0.0059, +0.0160] | -0.0087 [-0.0146, -0.0030] | 19.3% |
+| cqadupstack-programmers | -0.0095 [-0.0158, -0.0037] | +0.0118 [+0.0056, +0.0177] | -0.0163 [-0.0229, -0.0103] | 19.4% |
+| cqadupstack-gis | -0.0088 [-0.0150, -0.0029] | +0.0025 [-0.0033, +0.0079] | -0.0054 [-0.0104, -0.0007] | 19.4% |
+| pooled | -0.0071 [-0.0104, -0.0038] | +0.0086 [+0.0053, +0.0117] | -0.0100 [-0.0133, -0.0068] | 19.4% |

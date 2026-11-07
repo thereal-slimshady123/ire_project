@@ -1,0 +1,11 @@
+[2026-11-07 00:19:38] [INFO] [experiment3]: [nfcorpus] skip rates per fold: 38%, 45%, 22%, 42%, 44%
+[2026-11-07 00:19:38] [INFO] [experiment3]: [scifact] skip rates per fold: 38%, 62%, 57%, 32%, 45%
+[2026-11-07 00:19:41] [INFO] [experiment3]: [fiqa] skip rates per fold: 3%, 2%, 7%, 6%, 5%
+[2026-11-07 00:19:44] [INFO] [experiment3]: [cqadupstack-unix] skip rates per fold: 18%, 17%, 20%, 11%, 17%
+[2026-11-07 00:19:48] [INFO] [experiment3]: [quora] skip rates per fold: 58%, 60%, 63%, 68%, 64%
+[2026-11-07 00:19:50] [INFO] [experiment3]: [wands] skip rates per fold: 26%, 45%, 19%, 35%, 27%
+[2026-11-07 00:19:51] [INFO] [experiment3]: [cosqa] skip rates per fold: 1%, 12%, 2%, 14%, 8%
+[2026-11-07 00:19:54] [INFO] [experiment3]: [cqadupstack-android] skip rates per fold: 16%, 15%, 16%, 15%, 12%
+[2026-11-07 00:19:55] [INFO] [experiment3]: [cqadupstack-webmasters] skip rates per fold: 9%, 19%, 13%, 13%, 18%
+[2026-11-07 00:20:00] [INFO] [experiment3]: [arguana] skip rates per fold: 46%, 32%, 43%, 43%, 50%
+[2026-11-07 00:20:18] [INFO] [experiment3]: VERDICT SUCCESS: skip=29.7% router-hybrid=-0.0059 [-0.0076, -0.0043] router-random=+0.0068 [+0.0051, +0.0085]

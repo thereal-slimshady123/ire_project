@@ -1,0 +1,4 @@
+[2026-11-07 11:37:48] [INFO] [experiment3]: [cqadupstack-physics] skip rates per fold: 22%, 17%, 10%, 12%, 16%
+[2026-11-07 11:37:49] [INFO] [experiment3]: [cqadupstack-programmers] skip rates per fold: 10%, 9%, 10%, 7%, 6%
+[2026-11-07 11:37:50] [INFO] [experiment3]: [cqadupstack-gis] skip rates per fold: 15%, 18%, 21%, 10%, 13%
+[2026-11-07 11:39:45] [INFO] [experiment3]: VERDICT NEGATIVE: skip=13.2% router-hybrid=-0.0043 [-0.0067, -0.0020] router-random=+0.0052 [+0.0029, +0.0075]

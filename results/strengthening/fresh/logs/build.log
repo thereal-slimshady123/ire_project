@@ -1,0 +1,6 @@
+[cqadupstack-stats] 652 queries, 42269 docs (913 positive), 913 qrels
+[cqadupstack-wordpress] 541 queries, 48605 docs (744 positive), 744 qrels
+[cqadupstack-tex] 2906 queries, 68184 docs (5154 positive), 5154 qrels
+[scidocs] 1000 queries, 25657 docs (4020 positive), 29928 qrels
+[nq] 3452 queries, 50000 docs (4201 positive), 4201 qrels
+[hotpotqa] 7405 queries, 50000 docs (13783 positive), 14810 qrels

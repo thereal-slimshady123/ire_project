@@ -1,0 +1,120 @@
+{
+  "datasets": [
+    "nfcorpus",
+    "scifact",
+    "fiqa",
+    "cqadupstack-unix",
+    "quora",
+    "wands",
+    "cosqa",
+    "cqadupstack-android",
+    "cqadupstack-webmasters",
+    "arguana",
+    "bright-biology",
+    "bright-economics",
+    "bright-psychology",
+    "cqadupstack-mathematica",
+    "cqadupstack-english",
+    "cqadupstack-gaming",
+    "cqadupstack-physics",
+    "cqadupstack-programmers",
+    "cqadupstack-gis"
+  ],
+  "meta": {
+    "n_candidates": 5616,
+    "n_actions": 13,
+    "n_tests": 73008,
+    "n_eligible": 682,
+    "split_half": {
+      "nfcorpus": 0,
+      "scifact": 1,
+      "fiqa": 1,
+      "cqadupstack-unix": 1,
+      "quora": 0,
+      "wands": 0,
+      "cosqa": 0,
+      "cqadupstack-android": 0,
+      "cqadupstack-webmasters": 1,
+      "arguana": 0,
+      "bright-biology": 1,
+      "bright-economics": 1,
+      "bright-psychology": 1,
+      "cqadupstack-mathematica": 0,
+      "cqadupstack-english": 0,
+      "cqadupstack-gaming": 0,
+      "cqadupstack-physics": 1,
+      "cqadupstack-programmers": 1,
+      "cqadupstack-gis": 0
+    }
+  },
+  "frozen": [
+    {
+      "conditions": [
+        [
+          "bm25_top1_score",
+          "low",
+          0.1
+        ],
+        [
+          "bm25_top1_top2_ratio",
+          "low",
+          0.1
+        ]
+      ],
+      "action": "hybrid@0.7",
+      "name": "bm25_top1_score in bottom 10% AND bm25_top1_top2_ratio in bottom 10%",
+      "rule": "top-3 by 95% LB"
+    },
+    {
+      "conditions": [
+        [
+          "bm25_top1_top2_gap",
+          "high",
+          0.1
+        ],
+        [
+          "dense_top1_score",
+          "low",
+          0.33
+        ]
+      ],
+      "action": "hybrid@0.5",
+      "name": "bm25_top1_top2_gap in top 10% AND dense_top1_score in bottom 33%",
+      "rule": "top-3 by 95% LB"
+    },
+    {
+      "conditions": [
+        [
+          "mean_idf",
+          "low",
+          0.33
+        ],
+        [
+          "entity_density",
+          "high",
+          0.1
+        ]
+      ],
+      "action": "hybrid@0.7",
+      "name": "mean_idf in bottom 33% AND entity_density in top 10%",
+      "rule": "top-3 by 95% LB"
+    },
+    {
+      "conditions": [
+        [
+          "bm25_top1_top2_gap",
+          "high",
+          0.33
+        ],
+        [
+          "bm25_score_entropy",
+          "low",
+          0.2
+        ]
+      ],
+      "action": "hybrid@0.5",
+      "name": "bm25_top1_top2_gap in top 33% AND bm25_score_entropy in bottom 20%",
+      "rule": "best with n >= 1000"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3547.56it/s]
+[2026-11-07 13:45:11] [INFO] [experiment2d]: [cqadupstack-stats] cost-aware ε per fold: 0.1, 0.1, always_hybrid, always_hybrid, 0.05
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4529.61it/s]
+[2026-11-07 13:45:35] [INFO] [experiment2d]: [cqadupstack-wordpress] cost-aware ε per fold: always_hybrid, 0.1, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3867.11it/s]
+[2026-11-07 13:47:02] [INFO] [experiment2d]: [cqadupstack-tex] cost-aware ε per fold: 0.1, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3437.25it/s]
+[2026-11-07 13:47:45] [INFO] [experiment2d]: [scidocs] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3910.45it/s]
+[2026-11-07 13:49:15] [INFO] [experiment2d]: [nq] cost-aware ε per fold: 0.01, 0.05, always_hybrid, always_hybrid, 0.02
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3800.59it/s]
+[2026-11-07 14:12:47] [INFO] [experiment2d]: [hotpotqa] cost-aware ε per fold: always_hybrid, 0.05, 0.05, always_hybrid, always_hybrid
+[2026-11-07 14:13:30] [INFO] [experiment2d]: PRIMARY: cost-aware GBM − always-hybrid (pooled n=15956) = -0.0006 [-0.0009, -0.0003] p=8.0e-04 → NOT SUPPORTED; non-inferiority MET
+[2026-11-07 14:13:30] [INFO] [experiment2d]: Wrote results\strengthening\fresh\experiment2d\tables.md

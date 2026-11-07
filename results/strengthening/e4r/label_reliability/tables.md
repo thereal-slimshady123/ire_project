@@ -1,0 +1,34 @@
+# Label reliability: is the per-query winner a stable property of the query?
+
+Datasets: climate-fever. Base label: nDCG@10, e5-small-v2, official qrels. Share of queries with a single relevant document: 9.4%.
+
+Pooled (query-weighted mean over datasets; qrels-half averaged over 5 random splits):
+
+| Perturbation | Datasets | n | κ (3-way) | 3-way agreement | Binary retained | Binary flipped | Binary lost | Reference AUC′ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| alpha-0.1 | 1 | 1535 | 0.837 | 0.911 | 0.910 | 0.000 | 0.090 | — |
+| alpha+0.1 | 1 | 1535 | 0.843 | 0.915 | 0.881 | 0.000 | 0.119 | — |
+| ndcg@5 | 1 | 1535 | 0.743 | 0.867 | 0.730 | 0.008 | 0.261 | 0.975 |
+| ndcg@20 | 1 | 1535 | 0.759 | 0.863 | 0.901 | 0.003 | 0.095 | 0.998 |
+| mrr@10 | 1 | 1535 | 0.701 | 0.850 | 0.648 | 0.008 | 0.343 | 0.970 |
+| qrels-half | 1 | 1391 | -0.004 | 0.530 | 0.172 | 0.151 | 0.677 | 0.506 |
+
+Reference AUC′ pooled over queries (perturbed dense − BM25 margin → base binary label):
+
+| Perturbation | queries | AUC′ [95% CI] |
+| :--- | :---: | :---: |
+| ndcg@5 | 597 | 0.975 [0.963, 0.985] |
+| ndcg@20 | 597 | 0.998 [0.995, 0.999] |
+| mrr@10 | 597 | 0.970 [0.956, 0.982] |
+| qrels-half | 718 | 0.507 [0.501, 0.556] |
+
+## Per dataset
+
+| Dataset | α* | Perturbation | n | κ (3-way) | Binary retained | Binary lost | Reference AUC′ |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| climate-fever | 0.6 | alpha-0.1 | 1535.0 | 0.837 | 0.910 | 0.090 | — |
+| climate-fever | 0.6 | alpha+0.1 | 1535.0 | 0.843 | 0.881 | 0.119 | — |
+| climate-fever | 0.6 | ndcg@5 | 1535.0 | 0.743 | 0.730 | 0.261 | 0.975 |
+| climate-fever | 0.6 | ndcg@20 | 1535.0 | 0.759 | 0.901 | 0.095 | 0.998 |
+| climate-fever | 0.6 | mrr@10 | 1535.0 | 0.701 | 0.648 | 0.343 | 0.970 |
+| climate-fever | 0.6 | qrels-half | 1391.0 | -0.004 | 0.172 | 0.677 | 0.506 |

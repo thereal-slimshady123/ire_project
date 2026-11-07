@@ -1,0 +1,14 @@
+# Learning curve: hotpotqa
+
+Fixed test set n = 1851 (237 with a dense/BM25 winner). Training subsets from the remaining 5554 queries; 5 repeats per size (1 at the largest).
+
+| Training queries | Router − hybrid [95% CI] | Learned winner AUC′ [95% CI] |
+| :---: | :---: | :---: |
+| 250 | -0.0025 [-0.0034, -0.0015] | 0.500 [0.500, 0.500] |
+| 500 | -0.0028 [-0.0039, -0.0017] | 0.663 [0.614, 0.709] |
+| 1000 | -0.0025 [-0.0035, -0.0017] | 0.632 [0.584, 0.678] |
+| 2000 | -0.0022 [-0.0032, -0.0012] | 0.693 [0.638, 0.748] |
+| 4000 | -0.0041 [-0.0056, -0.0026] | 0.704 [0.644, 0.760] |
+| 5554 | -0.0060 [-0.0085, -0.0037] | 0.749 [0.685, 0.810] |
+
+Plateau contrasts (5554 vs 1000 training queries): router − hybrid change -0.0035 [-0.0058, -0.0013]; AUC′ change +0.118 [+0.070, +0.166].

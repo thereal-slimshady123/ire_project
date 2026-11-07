@@ -1,0 +1,211 @@
+{
+  "preregistration": "improvements.md \u00a73",
+  "dense_model": "intfloat/e5-small-v2",
+  "pooled": {
+    "n": 1535,
+    "mean": {
+      "hybrid": 0.41190468284806353,
+      "best_single": 0.38015955121366607,
+      "router_gbm": 0.4044034466759982,
+      "router_logistic": 0.38069229751151146,
+      "random_gbm": 0.4000207756662043,
+      "random_logistic": 0.3653726105529589,
+      "oracle": 0.46075970037255687
+    },
+    "tests": {
+      "router_gbm - hybrid": {
+        "delta_mean": -0.00750123617206526,
+        "p_value": 0.00029997000299970003,
+        "ci_95_low": -0.011258980283463147,
+        "ci_95_high": -0.0038649477064585515,
+        "n": 1535,
+        "wilcoxon_p_greater": 0.9998956473214444
+      },
+      "router_logistic - hybrid": {
+        "delta_mean": -0.03121238533655205,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": -0.0381695838486853,
+        "ci_95_high": -0.02440471912640074,
+        "n": 1535,
+        "wilcoxon_p_greater": 1.0
+      },
+      "router_gbm - best_single": {
+        "delta_mean": 0.02424389546233221,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.017125894000013703,
+        "ci_95_high": 0.03147976748199843,
+        "n": 1535,
+        "wilcoxon_p_greater": 4.014374028408379e-11
+      },
+      "router_gbm - random_gbm": {
+        "delta_mean": 0.004382671009793854,
+        "p_value": 0.014498550144985502,
+        "ci_95_low": 0.0008123077719304649,
+        "ci_95_high": 0.007895342402232153,
+        "n": 1535,
+        "wilcoxon_p_greater": 3.195705278300261e-41
+      },
+      "router_logistic - random_logistic": {
+        "delta_mean": 0.015319686958552601,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.009395347262423739,
+        "ci_95_high": 0.021191091192940766,
+        "n": 1535,
+        "wilcoxon_p_greater": 2.0408100045398496e-12
+      },
+      "oracle - hybrid": {
+        "delta_mean": 0.04885501752449335,
+        "p_value": 9.999000099990002e-05,
+        "ci_95_low": 0.04440759558030305,
+        "ci_95_high": 0.05335224564542566,
+        "n": 1535,
+        "wilcoxon_p_greater": 6.321848771024221e-100
+      }
+    }
+  },
+  "per_dataset": {
+    "climate-fever": {
+      "n": 1535,
+      "mean": {
+        "hybrid": 0.41190468284806353,
+        "best_single": 0.38015955121366607,
+        "router_gbm": 0.4044034466759982,
+        "router_logistic": 0.38069229751151146,
+        "random_gbm": 0.4000207756662043,
+        "random_logistic": 0.3653726105529589,
+        "oracle": 0.46075970037255687
+      },
+      "tests": {
+        "router_gbm - hybrid": {
+          "delta_mean": -0.00750123617206526,
+          "p_value": 0.00029997000299970003,
+          "ci_95_low": -0.011258980283463147,
+          "ci_95_high": -0.0038649477064585515,
+          "n": 1535,
+          "wilcoxon_p_greater": 0.9998956473214444
+        },
+        "router_logistic - hybrid": {
+          "delta_mean": -0.03121238533655205,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": -0.0381695838486853,
+          "ci_95_high": -0.02440471912640074,
+          "n": 1535,
+          "wilcoxon_p_greater": 1.0
+        },
+        "router_gbm - best_single": {
+          "delta_mean": 0.02424389546233221,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.017125894000013703,
+          "ci_95_high": 0.03147976748199843,
+          "n": 1535,
+          "wilcoxon_p_greater": 4.014374028408379e-11
+        },
+        "router_gbm - random_gbm": {
+          "delta_mean": 0.004382671009793854,
+          "p_value": 0.014498550144985502,
+          "ci_95_low": 0.0008123077719304649,
+          "ci_95_high": 0.007895342402232153,
+          "n": 1535,
+          "wilcoxon_p_greater": 3.195705278300261e-41
+        },
+        "router_logistic - random_logistic": {
+          "delta_mean": 0.015319686958552601,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.009395347262423739,
+          "ci_95_high": 0.021191091192940766,
+          "n": 1535,
+          "wilcoxon_p_greater": 2.0408100045398496e-12
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.04885501752449335,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.04440759558030305,
+          "ci_95_high": 0.05335224564542566,
+          "n": 1535,
+          "wilcoxon_p_greater": 6.321848771024221e-100
+        }
+      }
+    }
+  },
+  "fold_info": {
+    "climate-fever": [
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0684,
+          "dense": 0.1792,
+          "hybrid": 0.7524
+        },
+        "route_share_logistic": {
+          "bm25": 0.2899,
+          "dense": 0.355,
+          "hybrid": 0.355
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0717,
+          "dense": 0.1205,
+          "hybrid": 0.8078
+        },
+        "route_share_logistic": {
+          "bm25": 0.3029,
+          "dense": 0.3127,
+          "hybrid": 0.3844
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0879,
+          "dense": 0.1401,
+          "hybrid": 0.772
+        },
+        "route_share_logistic": {
+          "bm25": 0.329,
+          "dense": 0.3192,
+          "hybrid": 0.3518
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0489,
+          "dense": 0.1238,
+          "hybrid": 0.8274
+        },
+        "route_share_logistic": {
+          "bm25": 0.3257,
+          "dense": 0.3844,
+          "hybrid": 0.2899
+        }
+      },
+      {
+        "alpha": 0.6,
+        "best_single": "dense",
+        "epsilon": 0.1,
+        "route_share_gbm": {
+          "bm25": 0.0586,
+          "dense": 0.0977,
+          "hybrid": 0.8436
+        },
+        "route_share_logistic": {
+          "bm25": 0.2834,
+          "dense": 0.3681,
+          "hybrid": 0.3485
+        }
+      }
+    ]
+  },
+  "transfer": {},
+  "primary_verdict": "negative"
+}

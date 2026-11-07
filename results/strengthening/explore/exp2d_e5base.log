@@ -1,0 +1,16 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  18%|#7        | 35/199 [00:00<00:00, 318.54it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 963.71it/s]
+[2026-11-07 12:24:29] [INFO] [experiment2d]: [nfcorpus] cost-aware ε per fold: 0.0, always_hybrid, always_hybrid, always_hybrid, 0.02
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  16%|#5        | 31/199 [00:00<00:00, 268.90it/s]Loading weights:  29%|##9       | 58/199 [00:00<00:00, 268.54it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 818.55it/s]
+[2026-11-07 12:24:49] [INFO] [experiment2d]: [scifact] cost-aware ε per fold: always_hybrid, 0.1, 0.05, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  16%|#6        | 32/199 [00:00<00:00, 298.32it/s]Loading weights:  31%|###1      | 62/199 [00:00<00:00, 262.07it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 844.94it/s]
+[2026-11-07 12:26:16] [INFO] [experiment2d]: [arguana] cost-aware ε per fold: 0.05, always_hybrid, 0.05, always_hybrid, 0.1
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  23%|##3       | 46/199 [00:00<00:00, 450.62it/s]Loading weights:  46%|####6     | 92/199 [00:00<00:00, 393.68it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 857.02it/s]
+[2026-11-07 12:26:41] [INFO] [experiment2d]: [cqadupstack-webmasters] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  14%|#4        | 28/199 [00:00<00:00, 279.01it/s]Loading weights:  31%|###1      | 62/199 [00:00<00:00, 304.12it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 951.34it/s]
+[2026-11-07 12:27:16] [INFO] [experiment2d]: [cqadupstack-android] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  17%|#7        | 34/199 [00:00<00:00, 329.55it/s]Loading weights:  34%|###3      | 67/199 [00:00<00:00, 308.13it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 910.78it/s]
+[2026-11-07 12:27:38] [INFO] [experiment2d]: [cosqa] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  17%|#6        | 33/199 [00:00<00:00, 326.98it/s]Loading weights:  33%|###3      | 66/199 [00:00<00:00, 248.07it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 767.13it/s]
+[2026-11-07 12:29:04] [INFO] [experiment2d]: [cqadupstack-mathematica] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+[2026-11-07 12:29:16] [INFO] [experiment2d]: PRIMARY: cost-aware GBM − always-hybrid (pooled n=4533) = -0.0000 [-0.0009, +0.0009] p=1.0e+00 → NOT SUPPORTED; non-inferiority MET
+[2026-11-07 12:29:16] [INFO] [experiment2d]: Wrote results\strengthening\explore\experiment2d_e5base\tables.md

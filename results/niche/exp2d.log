@@ -1,0 +1,18 @@
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4314.50it/s]
+[2026-11-06 23:16:00] [INFO] [experiment2d]: [wands] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3348.39it/s]
+[2026-11-06 23:16:24] [INFO] [experiment2d]: [cosqa] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, 0.05, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3296.25it/s]
+[2026-11-06 23:16:57] [INFO] [experiment2d]: [cqadupstack-android] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, 0.1
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3273.72it/s]
+[2026-11-06 23:17:21] [INFO] [experiment2d]: [cqadupstack-webmasters] cost-aware ε per fold: always_hybrid, always_hybrid, 0.0, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3955.67it/s]
+[2026-11-06 23:18:30] [INFO] [experiment2d]: [arguana] cost-aware ε per fold: always_hybrid, always_hybrid, always_hybrid, always_hybrid, 0.0
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3867.58it/s]
+[2026-11-06 23:18:39] [INFO] [experiment2d]: [bright-biology] cost-aware ε per fold: 0.0, always_hybrid, always_hybrid, 0.0, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 3998.56it/s]
+[2026-11-06 23:18:47] [INFO] [experiment2d]: [bright-economics] cost-aware ε per fold: always_hybrid, 0.02, always_hybrid, always_hybrid, always_hybrid
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 4111.17it/s]
+[2026-11-06 23:18:56] [INFO] [experiment2d]: [bright-psychology] cost-aware ε per fold: always_hybrid, always_hybrid, 0.1, always_hybrid, 0.05
+[2026-11-06 23:19:07] [INFO] [experiment2d]: PRIMARY: cost-aware GBM − always-hybrid (pooled n=3892) = -0.0005 [-0.0017, +0.0005] p=3.4e-01 → NOT SUPPORTED; non-inferiority MET
+[2026-11-06 23:19:07] [INFO] [experiment2d]: Wrote results\niche\experiment2d\tables.md

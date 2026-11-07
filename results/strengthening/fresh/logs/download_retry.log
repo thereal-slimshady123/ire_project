@@ -1,0 +1,6 @@
+nq/corpus.jsonl ok (1460.9 MB, 174s)
+nq/queries.jsonl ok (0.3 MB, 2s)
+nq/qrels/test.tsv ok (0.1 MB, 1s)
+hotpotqa/corpus.jsonl ok (1790.0 MB, 204s)
+hotpotqa/queries.jsonl ok (15.0 MB, 4s)
+hotpotqa/qrels/test.tsv ok (0.5 MB, 1s)

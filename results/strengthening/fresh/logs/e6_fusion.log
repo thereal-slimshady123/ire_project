@@ -1,0 +1,37 @@
+[nfcorpus] 323 queries, 47035 candidates, 85.4% queries with a relevant candidate
+[scifact] 300 queries, 51287 candidates, 97.0% queries with a relevant candidate
+[fiqa] 648 queries, 117256 candidates, 88.7% queries with a relevant candidate
+[cqadupstack-unix] 1072 queries, 185073 candidates, 80.5% queries with a relevant candidate
+[quora] 1000 queries, 171965 candidates, 100.0% queries with a relevant candidate
+[wands] 479 queries, 72437 candidates, 98.7% queries with a relevant candidate
+[cosqa] 500 queries, 83679 candidates, 91.0% queries with a relevant candidate
+[cqadupstack-android] 699 queries, 117243 candidates, 87.7% queries with a relevant candidate
+[cqadupstack-webmasters] 506 queries, 86458 candidates, 79.1% queries with a relevant candidate
+[arguana] 1401 queries, 235166 candidates, 98.6% queries with a relevant candidate
+[cqadupstack-mathematica] 804 queries, 139185 candidates, 72.9% queries with a relevant candidate
+[cqadupstack-english] 1570 queries, 285400 candidates, 79.7% queries with a relevant candidate
+[cqadupstack-gaming] 1595 queries, 273870 candidates, 91.3% queries with a relevant candidate
+[cqadupstack-physics] 1039 queries, 178052 candidates, 83.6% queries with a relevant candidate
+[cqadupstack-programmers] 876 queries, 153077 candidates, 82.3% queries with a relevant candidate
+[cqadupstack-gis] 885 queries, 152029 candidates, 77.2% queries with a relevant candidate
+[apply -> cqadupstack-stats] vs src alpha +0.0011, vs tuned +0.0011
+[apply -> cqadupstack-wordpress] vs src alpha +0.0055, vs tuned +0.0082
+[apply -> cqadupstack-tex] vs src alpha +0.0016, vs tuned +0.0031
+[apply -> scidocs] vs src alpha +0.0013, vs tuned +0.0013
+[apply -> nq] vs src alpha +0.0043, vs tuned -0.0040
+[apply -> hotpotqa] vs src alpha +0.0029, vs tuned +0.0021
+# Per-document learned fusion: frozen model applied to new datasets
+
+One LambdaRank model (doc+query features) trained on 16 source datasets; applied unchanged. Source α = 0.6.
+
+**Verdict (vs hybrid at source α): ACCEPTED**
+
+| Dataset | n | Learned fusion | Hybrid (source α) | Hybrid (α* tuned on target) | Learned − hybrid (source α) | Learned − hybrid (tuned α*) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| cqadupstack-stats | 652 | 0.3459 | 0.3447 | 0.3447 | +0.0011 [-0.0036, +0.0061] | +0.0011 [-0.0036, +0.0061] |
+| cqadupstack-wordpress | 541 | 0.3493 | 0.3438 | 0.3411 | +0.0055 [-0.0020, +0.0132] | +0.0082 [+0.0007, +0.0161] |
+| cqadupstack-tex | 2906 | 0.2894 | 0.2878 | 0.2863 | +0.0016 [-0.0013, +0.0043] | +0.0031 [-0.0000, +0.0061] |
+| scidocs | 1000 | 0.1882 | 0.1869 | 0.1869 | +0.0013 [-0.0013, +0.0038] | +0.0013 [-0.0013, +0.0038] |
+| nq | 3452 | 0.9244 | 0.9202 | 0.9284 | +0.0043 [+0.0018, +0.0067] | -0.0040 [-0.0070, -0.0010] |
+| hotpotqa | 7405 | 0.9011 | 0.8982 | 0.8990 | +0.0029 [+0.0019, +0.0040] | +0.0021 [+0.0010, +0.0031] |
+| **pooled** | 15956 | 0.7086 | 0.7058 | 0.7076 | +0.0029 [+0.0019, +0.0038] | +0.0011 [+0.0000, +0.0021] |

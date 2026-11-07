@@ -1,0 +1,12 @@
+# E2 replication: fresh non-forum, e5-small-v2
+
+Datasets: scidocs, nq, hotpotqa (n = 11857). Definitions as in `results/preregistration/phase2_explanatory_validation_20261107.md`.
+
+**E2: ACCEPTED**
+
+- (a) Niche found: **no** (20 (group, retriever) pairs with n ≥ 300, Holm-corrected).
+- (b) Cost-aware router − hybrid: **-0.0004 [-0.0008, -0.0001]** → CI upper < +0.005: **yes**.
+- (c) Best AUC′ (dense-winner n = 972 vs BM25-winner n = 735): **0.588** [0.562, 0.615] (`dense_top1_score`; within-dataset percentile features). Other definition: raw 0.633 [0.606, 0.658] (`query_length`), percentile 0.588 [0.562, 0.615] (`dense_top1_score`).
+
+Secondary: TOST 90% CI [-0.0007, -0.0002]; oracle − hybrid headroom +0.0187; queries with a single retriever ≥ 0.10 above hybrid 6.4%; fallback gate 20/30 folds; router hybrid share 99.0%.
+

@@ -1,0 +1,3 @@
+[musique] 2417 queries, 21100 docs (2629 positive), 6404 qrels
+[2wikimultihopqa] 3000 queries, 16997 docs (6674 positive), 7302 qrels
+[dbpedia] 400 queries, 50000 docs (14877 positive), 43515 qrels
