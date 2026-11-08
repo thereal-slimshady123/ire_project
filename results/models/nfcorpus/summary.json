@@ -1,0 +1,489 @@
+{
+  "dataset": "nfcorpus",
+  "features": "all",
+  "n_features": 18,
+  "kinds": {
+    "advantage": {
+      "n": 323,
+      "mean": {
+        "hybrid": 0.3588941459415545,
+        "bm25": 0.32228243673488716,
+        "dense": 0.32554296075648803,
+        "routed": 0.3588941459415545,
+        "random_same_mix": 0.3588941459415545,
+        "oracle": 0.3876532423363135
+      },
+      "route_share": {
+        "bm25": 0.0,
+        "dense": 0.0,
+        "hybrid": 1.0
+      },
+      "wins_losses_ties": {
+        "win": 0,
+        "loss": 0,
+        "tie": 323
+      },
+      "headroom_captured": 0.0,
+      "tests": {
+        "routed - hybrid": {
+          "delta_mean": 0.0,
+          "p_value": 1.0,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.0,
+          "n": 323,
+          "wilcoxon_p_two_sided": 1.0
+        },
+        "routed - random_same_mix": {
+          "delta_mean": 0.0,
+          "p_value": 1.0,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.0,
+          "n": 323
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.02875909639475894,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.02279774318935217,
+          "ci_95_high": 0.035150565276242926,
+          "n": 323
+        }
+      },
+      "folds": [
+        {
+          "kind": "advantage",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": Infinity,
+          "theta_dense": Infinity,
+          "temperature": 0.039810717055349734,
+          "oof_gain": 0.0011388427530473367,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0,
+            "hybrid": 1.0
+          },
+          "fold": 0
+        },
+        {
+          "kind": "advantage",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": Infinity,
+          "theta_dense": Infinity,
+          "temperature": 0.039810717055349734,
+          "oof_gain": 0.0,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0,
+            "hybrid": 1.0
+          },
+          "fold": 1
+        },
+        {
+          "kind": "advantage",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": Infinity,
+          "theta_dense": Infinity,
+          "temperature": 0.039810717055349734,
+          "oof_gain": 0.0,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0,
+            "hybrid": 1.0
+          },
+          "fold": 2
+        },
+        {
+          "kind": "advantage",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "theta_bm25": Infinity,
+          "theta_dense": Infinity,
+          "temperature": 0.05011872336272725,
+          "oof_gain": 0.00018723597409702386,
+          "n_fit_rows": 259,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0,
+            "hybrid": 1.0
+          },
+          "fold": 3
+        },
+        {
+          "kind": "advantage",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "theta_bm25": Infinity,
+          "theta_dense": Infinity,
+          "temperature": 0.05011872336272725,
+          "oof_gain": 0.0,
+          "n_fit_rows": 259,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0,
+            "hybrid": 1.0
+          },
+          "fold": 4
+        }
+      ]
+    },
+    "advantage_fixed": {
+      "n": 323,
+      "mean": {
+        "hybrid": 0.3588941459415545,
+        "bm25": 0.32228243673488716,
+        "dense": 0.32554296075648803,
+        "routed": 0.355537624523499,
+        "random_same_mix": 0.35533026674616547,
+        "oracle": 0.3876532423363135
+      },
+      "route_share": {
+        "bm25": 0.043343653250773995,
+        "dense": 0.07120743034055728,
+        "hybrid": 0.8854489164086687
+      },
+      "wins_losses_ties": {
+        "win": 8,
+        "loss": 12,
+        "tie": 303
+      },
+      "headroom_captured": -0.11671164392589001,
+      "tests": {
+        "routed - hybrid": {
+          "delta_mean": -0.003356521418055452,
+          "p_value": 0.10028997100289971,
+          "ci_95_low": -0.007790099597182308,
+          "ci_95_high": 0.00031762854687858823,
+          "n": 323,
+          "wilcoxon_p_two_sided": 0.15600357596610903
+        },
+        "routed - random_same_mix": {
+          "delta_mean": 0.0002073577773335273,
+          "p_value": 0.9237076292370763,
+          "ci_95_low": -0.004132665478396268,
+          "ci_95_high": 0.003903473703977046,
+          "n": 323
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.02875909639475894,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.02279774318935217,
+          "ci_95_high": 0.035150565276242926,
+          "n": 323
+        }
+      },
+      "folds": [
+        {
+          "kind": "advantage_fixed",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": 0.02,
+          "theta_dense": 0.02,
+          "temperature": 0.05,
+          "oof_gain": null,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0769,
+            "dense": 0.0615,
+            "hybrid": 0.8615
+          },
+          "fold": 0
+        },
+        {
+          "kind": "advantage_fixed",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": 0.02,
+          "theta_dense": 0.02,
+          "temperature": 0.05,
+          "oof_gain": null,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0308,
+            "dense": 0.0923,
+            "hybrid": 0.8769
+          },
+          "fold": 1
+        },
+        {
+          "kind": "advantage_fixed",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "theta_bm25": 0.02,
+          "theta_dense": 0.02,
+          "temperature": 0.05,
+          "oof_gain": null,
+          "n_fit_rows": 258,
+          "route_share": {
+            "bm25": 0.0,
+            "dense": 0.0615,
+            "hybrid": 0.9385
+          },
+          "fold": 2
+        },
+        {
+          "kind": "advantage_fixed",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "theta_bm25": 0.02,
+          "theta_dense": 0.02,
+          "temperature": 0.05,
+          "oof_gain": null,
+          "n_fit_rows": 259,
+          "route_share": {
+            "bm25": 0.0156,
+            "dense": 0.0938,
+            "hybrid": 0.8906
+          },
+          "fold": 3
+        },
+        {
+          "kind": "advantage_fixed",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "theta_bm25": 0.02,
+          "theta_dense": 0.02,
+          "temperature": 0.05,
+          "oof_gain": null,
+          "n_fit_rows": 259,
+          "route_share": {
+            "bm25": 0.0938,
+            "dense": 0.0469,
+            "hybrid": 0.8594
+          },
+          "fold": 4
+        }
+      ]
+    },
+    "gbm_cls": {
+      "n": 323,
+      "mean": {
+        "hybrid": 0.3588941459415545,
+        "bm25": 0.32228243673488716,
+        "dense": 0.32554296075648803,
+        "routed": 0.34328188810978133,
+        "random_same_mix": 0.34187420653185957,
+        "oracle": 0.3876532423363135
+      },
+      "route_share": {
+        "bm25": 0.20123839009287925,
+        "dense": 0.2848297213622291,
+        "hybrid": 0.5139318885448917
+      },
+      "wins_losses_ties": {
+        "win": 36,
+        "loss": 61,
+        "tie": 226
+      },
+      "headroom_captured": -0.5428632950588219,
+      "tests": {
+        "routed - hybrid": {
+          "delta_mean": -0.015612257831773124,
+          "p_value": 0.0004999500049995,
+          "ci_95_low": -0.02408123849926829,
+          "ci_95_high": -0.007696265752776153,
+          "n": 323,
+          "wilcoxon_p_two_sided": 0.0005666098407100291
+        },
+        "routed - random_same_mix": {
+          "delta_mean": 0.0014076815779218033,
+          "p_value": 0.6977302269773022,
+          "ci_95_low": -0.0058540813843115215,
+          "ci_95_high": 0.008563123789364217,
+          "n": 323
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.02875909639475894,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.02279774318935217,
+          "ci_95_high": 0.035150565276242926,
+          "n": 323
+        }
+      },
+      "folds": [
+        {
+          "kind": "gbm_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.1538,
+            "dense": 0.3077,
+            "hybrid": 0.5385
+          },
+          "fold": 0
+        },
+        {
+          "kind": "gbm_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2462,
+            "dense": 0.2923,
+            "hybrid": 0.4615
+          },
+          "fold": 1
+        },
+        {
+          "kind": "gbm_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2154,
+            "dense": 0.2154,
+            "hybrid": 0.5692
+          },
+          "fold": 2
+        },
+        {
+          "kind": "gbm_cls",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2188,
+            "dense": 0.3438,
+            "hybrid": 0.4375
+          },
+          "fold": 3
+        },
+        {
+          "kind": "gbm_cls",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.1719,
+            "dense": 0.2656,
+            "hybrid": 0.5625
+          },
+          "fold": 4
+        }
+      ]
+    },
+    "logistic_cls": {
+      "n": 323,
+      "mean": {
+        "hybrid": 0.3588941459415545,
+        "bm25": 0.32228243673488716,
+        "dense": 0.32554296075648803,
+        "routed": 0.34254755841436935,
+        "random_same_mix": 0.3384111771317671,
+        "oracle": 0.3876532423363135
+      },
+      "route_share": {
+        "bm25": 0.29411764705882354,
+        "dense": 0.33126934984520123,
+        "hybrid": 0.3746130030959752
+      },
+      "wins_losses_ties": {
+        "win": 52,
+        "loss": 83,
+        "tie": 188
+      },
+      "headroom_captured": -0.5683971186996047,
+      "tests": {
+        "routed - hybrid": {
+          "delta_mean": -0.01634658752718517,
+          "p_value": 0.0016998300169983002,
+          "ci_95_low": -0.026361893953022075,
+          "ci_95_high": -0.007075330242770112,
+          "n": 323,
+          "wilcoxon_p_two_sided": 0.001343365051931557
+        },
+        "routed - random_same_mix": {
+          "delta_mean": 0.0041363812826022035,
+          "p_value": 0.33396660333966605,
+          "ci_95_low": -0.004504730149479783,
+          "ci_95_high": 0.01244345942836764,
+          "n": 323
+        },
+        "oracle - hybrid": {
+          "delta_mean": 0.02875909639475894,
+          "p_value": 9.999000099990002e-05,
+          "ci_95_low": 0.02279774318935217,
+          "ci_95_high": 0.035150565276242926,
+          "n": 323
+        }
+      },
+      "folds": [
+        {
+          "kind": "logistic_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2769,
+            "dense": 0.3077,
+            "hybrid": 0.4154
+          },
+          "fold": 0
+        },
+        {
+          "kind": "logistic_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2923,
+            "dense": 0.2923,
+            "hybrid": 0.4154
+          },
+          "fold": 1
+        },
+        {
+          "kind": "logistic_cls",
+          "alpha": 0.5,
+          "n_train": 258,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.3077,
+            "dense": 0.4615,
+            "hybrid": 0.2308
+          },
+          "fold": 2
+        },
+        {
+          "kind": "logistic_cls",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.2656,
+            "dense": 0.4062,
+            "hybrid": 0.3281
+          },
+          "fold": 3
+        },
+        {
+          "kind": "logistic_cls",
+          "alpha": 0.5,
+          "n_train": 259,
+          "n_synthetic": 0,
+          "route_share": {
+            "bm25": 0.3281,
+            "dense": 0.1875,
+            "hybrid": 0.4844
+          },
+          "fold": 4
+        }
+      ]
+    }
+  }
+}

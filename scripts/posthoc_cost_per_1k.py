@@ -19,6 +19,7 @@ Usage:
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -156,6 +157,9 @@ def plot(df: pd.DataFrame, path: Path) -> None:
 
 
 def main():
+    # The tables contain non-ASCII symbols (−, α); Windows consoles default to cp1252 and would crash on print().
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--output_dir", type=Path, default=ROOT / "results/cost_per_1k_posthoc")
     ap.add_argument("--figure", type=Path, default=ROOT / "report/figures/cost_quality_frontier.png")
