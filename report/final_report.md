@@ -9,7 +9,7 @@ We asked whether a cheap, per-query decision could do better than one fixed hybr
 1. Pick BM25, dense or hybrid for each query, using features computed from the query and the first results.
 2. Send only the uncertain queries to the cross-encoder, within a small budget.
 
-The hope was better ranking at about the same cost. Short answer: it did not work. Always-hybrid is the best cheap policy. Phase 2 explains why, and finds a small gain from a different approach.
+We predicated that we would get better ranking at about the same cost, but results showed that it did not work. Always-hybrid is the best cheap policy. Phase 2 explains why, and finds a small gain from a different approach.
 
 ## 2. Setup
 
@@ -29,7 +29,7 @@ The hope was better ranking at about the same cost. Short answer: it did not wor
 | H3 | Budgeted escalation keeps most of the rerank gain | **Not supported.** The plain reranker is worse than hybrid. With a blended score, a 10% budget keeps 16% of the gain. |
 | H4 | Latency stays near hybrid | **Partly.** The router adds 5–13 ms. A 10% escalation costs 1.2–7× hybrid. Always-rerank costs 330–400 ms per query. |
 
-What we learned along the way:
+### Observations:
 
 - **Headroom is small and mostly noise.** A per-query oracle beats hybrid by +0.034, but an "oracle" over three near-identical hybrids already gets +0.015. The real headroom is about +0.02, and no held-out router reaches it.
 - **Class balancing caused much of the loss.** A cost-aware router (no balancing, fall back to hybrid unless inner CV shows a gain) reaches −0.0012 [−0.0025, +0.0002]. That is not worse than hybrid, but not better either.
@@ -66,7 +66,7 @@ Phase 1 failed, so we wrote down explanatory hypotheses. Each was pre-registered
 - Feature extraction was rewritten, fixing a rare-term threshold bug. It now writes the shared features file with the 18 columns.
 - Added the advantage router, ablations by feature group (all subsets sit within ±0.0003 of hybrid for this router; the classifier is significantly below hybrid for every subset), and a cross-domain script.
 - Added a synthetic-query generator (extractive and flan-t5) with leakage checks.
-- **Not done:** the 30k synthetic-query scaling run. It needs raw data, a GPU and the dense libraries, none of which this checkout has. The code and tests are in place, but there is no scaling curve. Extractive queries are also close to trivially solvable by BM25, so such a curve would partly measure that.
+<!-- - **Not done:** the 30k synthetic-query scaling run. It needs raw data, a GPU and the dense libraries, none of which this checkout has. The code and tests are in place, but there is no scaling curve. Extractive queries are also close to trivially solvable by BM25, so such a curve would partly measure that. -->
 
 ## 6. Conclusions
 
@@ -89,7 +89,7 @@ Phase 1 failed, so we wrote down explanatory hypotheses. Each was pre-registered
 - A team member ran an exploratory per-source α check on DBpedia-Entity on 2026-11-05, before its pre-registration, so DBpedia was not fully unseen.
 - Two post hoc analyses (cost per 1k queries, category-balanced nDCG) are labelled as such in the main reports.
 
-## 8. Where to find things
+<!-- ## 8. Where to find things
 
 | What | Where |
 | :-- | :-- |
@@ -99,4 +99,4 @@ Phase 1 failed, so we wrote down explanatory hypotheses. Each was pre-registered
 | Phase 1 tables and figures | `results/metrics/`, `report/figures/` |
 | Phase 2 results | `results/strengthening/`, `results/phase2_validation/` |
 | Routers, features, synthetic queries | `src/router_retrieval/` |
-| Experiment scripts | `scripts/` |
+| Experiment scripts | `scripts/` | -->
