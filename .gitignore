@@ -68,3 +68,4 @@ Thumbs.db
 # Phase 2 E1 input: the 288-query synthetic set (hash-pinned in results/preregistration/)
 !results/phase2_validation/synthetic/
 !results/phase2_validation/synthetic/*.parquet
+viva_prep.md
