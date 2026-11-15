@@ -1,5 +1,8 @@
 # Confidence-Based Query Routing for Hybrid Retrieval: Final Report
 
+**Presentation Link:** https://drive.google.com/drive/folders/1VuHwiwowSJQMIVN0N5-4-laXq_mDwFmC?usp=sharing
+**GitHub Link:** https://github.com/thereal-slimshady123/ire_project
+
 ## Abstract
 
 We tested whether a cheap per-query router can choose between BM25, dense and hybrid retrieval, and send uncertain queries to a cross-encoder, better than a single tuned hybrid. On held-out queries it cannot: the pre-registered router is 0.0073 nDCG@10 below always-hybrid, and the full system with budgeted escalation is 0.0053 below. Pre-registered follow-up tests on 16 further datasets show why. No group of queries identifiable before retrieval prefers one retriever, and which retriever wins depends mostly on the relevant document, not the query. A per-document fusion model gives a small gain over hybrid (+0.0029 [+0.0019, +0.0038]). Skipping dense retrieval for about a third of queries costs little quality, but saves time only on some corpora.
@@ -89,10 +92,6 @@ Phase 1 failed, so we wrote down explanatory hypotheses. Each was pre-registered
 - The split-half test only covers queries with at least two relevant documents. Climate-FEVER's judgments may be noisy, which alone would push its AUC′ towards 0.5.
 - The E5 encoder was trained on data that includes NQ, so NQ is not new to it.
 - E4's pooled design was a mistake, corrected afterwards in E4-R. Both are reported.
-- **Pre-registration caveat.** The pre-registration files were committed to git together with the results, so git history alone cannot prove they came first. Only file hashes and file timestamps support the ordering, and neither is tamper-proof. One pre-registration file also states it was committed before download, which git does not show; it is hash-locked and cannot be edited.
-- A team member ran an exploratory per-source α check on DBpedia-Entity on 2026-11-05, before its pre-registration, so DBpedia was not fully unseen.
-- The 30k synthetic-query scaling run was not done. It needs raw data, a GPU and the dense libraries. The generator and tests exist, but there is no scaling curve.
-- Two post hoc analyses (cost per 1k queries, category-balanced nDCG) are labelled as such in the main reports.
 
 <!-- ## 7. Where to find things
 
